@@ -1,0 +1,95 @@
+:-op(1150,fx,package).
+begin_predicate('TauMachine.builtin_tau',(package)/1).
+        info([(package)/1,'builtins_tau.pl']).
+        import_package('com.googlecode.prolog_cafe.lang').
+        import_package('com.googlecode.prolog_cafe.builtin').
+main((package)/1,non-(public)) :
+        put_con(package,s(1)).
+(package)/1 :
+        comment((package A:-nb_setval(package,A))).
+        setB0.
+        decl_term_vars([a(1)]).
+        set(arg(1),a(1)).
+        comment((package A:-[nb_setval(package,A)])).
+        execute(nb_setval(s(1),a(1),cont)).
+end_predicate('TauMachine.builtin_tau',(package)/1).
+
+begin_predicate('TauMachine.builtin_tau',undo/1).
+        info([undo/1,'builtins_tau.pl']).
+        import_package('com.googlecode.prolog_cafe.lang').
+        import_package('com.googlecode.prolog_cafe.builtin').
+main(undo/1,public) :
+        put_con(call/1,s(1)).
+undo/1 :
+        comment((undo(A):-undo(call(A)))).
+        setB0.
+        decl_term_vars([a(1),a(2)]).
+        set(arg(1),a(1)).
+        comment((undo(A):-[undo(call(A))])).
+        put_str_args([a(1)],y(1)).
+        put_str(s(1),y(1),a(2)).
+        set(a(2),ea(1)).
+        set(cont,econt).
+        goto(undo/1+top).
+end_predicate('TauMachine.builtin_tau',undo/1).
+
+begin_predicate('TauMachine.builtin_tau',undo1/1).
+        info([undo1/1,'builtins_tau.pl']).
+        import_package('com.googlecode.prolog_cafe.lang').
+        import_package('com.googlecode.prolog_cafe.builtin').
+main(undo1/1,non-(public)) :
+        put_con(user,s(1)).
+        put_int(0,si(2)).
+        put_con(interpret,s(3)).
+undo1/1 :
+        comment((undo1(A):-'$get_current_B'(B),'$meta_call'(A,user,B,0,interpret))).
+        setB0.
+        decl_term_vars([a(1),a(2)]).
+        decl_pred_vars([p(1)]).
+        set(arg(1),a(1)).
+        comment((undo1(A):-['$get_current_B'(B),'$meta_call'(A,user,B,0,interpret)])).
+        put_var(a(2)).
+        put_cont('$meta_call'(a(1),s(1),a(2),si(2),s(3),cont),p(1)).
+        execute('$get_current_B'(a(2),p(1))).
+end_predicate('TauMachine.builtin_tau',undo1/1).
+
+begin_predicate('TauMachine.builtin_tau',redo_each_call/3).
+        info([redo_each_call/3,'builtins_tau.pl']).
+        import_package('com.googlecode.prolog_cafe.lang').
+        import_package('com.googlecode.prolog_cafe.builtin').
+main(redo_each_call/3,non-(public)) :
+redo_each_call/3 :
+        comment((redo_each_call(A,B,C):-redo_each_call(A,B,C))).
+        setB0.
+        decl_term_vars([a(1),a(2),a(3)]).
+        set(arg(1),a(1)).
+        set(arg(2),a(2)).
+        set(arg(3),a(3)).
+        comment((redo_each_call(A,B,C):-[redo_each_call(A,B,C)])).
+        set(a(1),ea(1)).
+        set(a(2),ea(2)).
+        set(a(3),ea(3)).
+        set(cont,econt).
+        goto(redo_each_call/3+top).
+end_predicate('TauMachine.builtin_tau',redo_each_call/3).
+
+begin_predicate('TauMachine.builtin_tau',one_of_or_else/3).
+        info([one_of_or_else/3,'builtins_tau.pl']).
+        import_package('com.googlecode.prolog_cafe.lang').
+        import_package('com.googlecode.prolog_cafe.builtin').
+main(one_of_or_else/3,non-(public)) :
+one_of_or_else/3 :
+        comment((one_of_or_else(A,B,C):-one_of_or_else(A,B,C))).
+        setB0.
+        decl_term_vars([a(1),a(2),a(3)]).
+        set(arg(1),a(1)).
+        set(arg(2),a(2)).
+        set(arg(3),a(3)).
+        comment((one_of_or_else(A,B,C):-[one_of_or_else(A,B,C)])).
+        set(a(1),ea(1)).
+        set(a(2),ea(2)).
+        set(a(3),ea(3)).
+        set(cont,econt).
+        goto(one_of_or_else/3+top).
+end_predicate('TauMachine.builtin_tau',one_of_or_else/3).
+
