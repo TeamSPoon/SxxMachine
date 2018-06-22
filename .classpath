@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="jsrc/machine"/>
-	<classpathentry kind="src" path="jsrc/part1"/>
-	<classpathentry kind="src" path="jsrc/part2"/>
-	<classpathentry kind="src" path="jsrc/part3"/>
-	<classpathentry kind="src" path="jsrc/part4"/>
-	<classpathentry kind="src" path="jsrc/part5"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="output" path="build/classes"/>
 </classpath>
