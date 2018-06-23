@@ -1,7 +1,4 @@
 #include "library.h"
-#include "Prolog.h"
-#include "Term.h"
-#include "builtins.h"
 
 Code* pred_ap_3::entry_code;
 Code* pred_ap_3::cl1 = new pred_ap_3_1();
@@ -382,6 +379,8 @@ Code* pred_collectvars_3::entry_code;
 Code* pred_collectvars_3::cl1 = new pred_collectvars_3_1();
 Code* pred_collectvars_3::cl2 = new pred_collectvars_3_2();
 Code* pred_collectvars_3::cl3 = new pred_collectvars_3_3();
+Code* pred_collectvars_3::cut2cont;
+Code* pred_collectvars_3::noteq3cont;
 std::string pred_collectvars_3::string0 = Const::IStr("cut");
 std::string pred_collectvars_3::string1 = Const::IStr(".");
 std::string pred_collectvars_3::string2 = Const::IStr("=");
@@ -396,7 +395,7 @@ Int* pred_collectvars_3::posint1 = new Int(1);
 
 void pred_collectvars_3::Init(PrologMachine* mach) {
 	entry_code = this;
-	//pred_noteq_2.INST  = mach.LoadPred("noteq", 2);
+	noteq3cont = mach->LoadPred("noteq", 2);
 }
 
 int pred_collectvars_3::Arity() {
@@ -463,7 +462,7 @@ Code* pred_collectvars_3_2::Exec(PrologMachine* mach) {
 	local_aregs[2] = new Funct(string8, var2->Deref(), var5->Deref(), &tempVar2);
 	mach->CUTB = mach->CurrentChoice;
 	local_aregs[3] = nullptr;
-	return pred_noteq_2::INST;
+	return noteq3cont;
 }
 
 Code* pred_collectvars_3_3::Exec(PrologMachine* mach) {
@@ -2910,7 +2909,6 @@ Code* pred_not_1_2::Exec(PrologMachine* mach) {
 	return UpperPrologMachine::Call1;
 }
 
-Code* pred_noteq_2::INST = new pred_not_1();
 Code* pred_noteq_2::entry_code;
 Code* pred_noteq_2::cl1 = new pred_noteq_2_1();
 Code* pred_noteq_2::cl2 = new pred_noteq_2_2();
@@ -2975,6 +2973,7 @@ Code* pred_noteq_2_2::Exec(PrologMachine* mach) {
 	return UpperPrologMachine::Call1;
 }
 
+Code* pred_notmore_0::entry_code;
 Code* pred_notmore_0::cl1 = new pred_notmore_0_1();
 Code* pred_notmore_0::cl2 = new pred_notmore_0_2();
 Code* pred_notmore_0::get02cont;
@@ -2988,11 +2987,10 @@ std::string pred_notmore_0::string6 = Const::IStr("notmore");
 std::string pred_notmore_0::string7 = Const::IStr("untilend");
 Int* pred_notmore_0::posint1 = new Int(1);
 Int* pred_notmore_0::posint10 = new Int(10);
-Code* pred_notmore_0::entry_code = new pred_notmore_0();
 
 void pred_notmore_0::Init(PrologMachine* mach) {
 	entry_code = this;
-	get02cont = pred_get0_1::INST;
+	get02cont = mach->LoadPred("get0", 1);
 }
 
 int pred_notmore_0::Arity() {

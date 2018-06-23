@@ -36,7 +36,7 @@ import java.util.Hashtable;
 //return (Code)((Hashtable)elementAt(A)).get(N);
 //}
 //}
-class PredTable {
+public class PredTable {
 	Hashtable<String, Code> tables[];
 
 	PredTable() {

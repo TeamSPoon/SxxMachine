@@ -2,7 +2,7 @@
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class /**/ pred_ap_3 extends Code {
+class pred_ap_3 extends Code {
 	static Code entry_code;
 	static Code cl1 = new pred_ap_3_1();
 	static Code cl2 = new pred_ap_3_2();
@@ -417,8 +417,8 @@ class /**/ pred_collectvars_3 extends Code {
 	static Code cl1 = new pred_collectvars_3_1();
 	static Code cl2 = new pred_collectvars_3_2();
 	static Code cl3 = new pred_collectvars_3_3();
-	//static Code cut2cont;
-	//static Code pred_noteq_3.INST;
+	static Code cut2cont;
+	static Code noteq3cont;
 	static String string0 = Const.IStr("cut");
 	static String string1 = Const.IStr(".");
 	static String string2 = Const.IStr("=");
@@ -433,7 +433,7 @@ class /**/ pred_collectvars_3 extends Code {
 
 	void Init(PrologMachine mach) {
 		entry_code = this;
-		//pred_noteq_2.INST  = mach.LoadPred("noteq", 2);
+		noteq3cont = mach.LoadPred("noteq", 2);
 	}
 
 	int Arity() {
@@ -499,7 +499,7 @@ class pred_collectvars_3_2 extends pred_collectvars_3 {
 								var6.Deref(), continuation)));
 		mach.CUTB = mach.CurrentChoice;
 		local_aregs[3] = null;
-		return pred_noteq_2.INST;
+		return noteq3cont;
 	}
 }
 
@@ -2922,8 +2922,7 @@ class pred_not_1_2 extends pred_not_1 {
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class /**/ pred_noteq_2 extends Code {
-	public static Code INST = new pred_not_1();
+class pred_noteq_2 extends Code {
 	static Code entry_code;
 	static Code cl1 = new pred_noteq_2_1();
 	static Code cl2 = new pred_noteq_2_2();
@@ -2994,7 +2993,8 @@ class pred_noteq_2_2 extends pred_noteq_2 {
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class /**/ pred_notmore_0 extends Code {
+class pred_notmore_0 extends Code {
+	static Code entry_code;
 	static Code cl1 = new pred_notmore_0_1();
 	static Code cl2 = new pred_notmore_0_2();
 	static Code get02cont;
@@ -3008,11 +3008,10 @@ class /**/ pred_notmore_0 extends Code {
 	static String string7 = Const.IStr("untilend");
 	static Int posint1 = new Int(1);
 	static Int posint10 = new Int(10);
-	static Code entry_code = new pred_notmore_0();
 
 	void Init(PrologMachine mach) {
 		entry_code = this;
-		get02cont = pred_get0_1.INST;
+		get02cont = mach.LoadPred("get0", 1);
 	}
 
 	int Arity() {
@@ -3024,7 +3023,7 @@ class /**/ pred_notmore_0 extends Code {
 		mach.CreateChoicePoint(aregs);
 		return cl1.Exec(mach);
 	}
-}
+} 
 
 class pred_notmore_0_1 extends pred_notmore_0 {
 	Code Exec(PrologMachine mach) {
@@ -3074,7 +3073,7 @@ class /**/ pred_notvmember_2 extends Code {
 		entry_code = this;
 	}
 
-	int Arity() {
+	int Arity() {  
 		return 2;
 	}
 

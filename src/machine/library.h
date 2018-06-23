@@ -1,7 +1,7 @@
 #ifndef LIBRARY
 #define LIBRARY
 
-#include "Code.h"
+#include "Prolog.h"
 #include <string>
 #include <vector>
 
@@ -225,8 +225,8 @@ public:
 	static Code* cl1;
 	static Code* cl2;
 	static Code* cl3;
-	//static Code cut2cont;
-	//static Code pred_noteq_3.INST;
+	static Code* cut2cont;
+	static Code* noteq3cont;
 	static std::string string0;
 	static std::string string1;
 	static std::string string2;
@@ -1191,7 +1191,6 @@ public:
 
 class pred_noteq_2 : public Code {
 public:
-	static Code* INST;
 	static Code* entry_code;
 	static Code* cl1;
 	static Code* cl2;
@@ -1226,6 +1225,7 @@ public:
 
 class pred_notmore_0 : public Code {
 public:
+	static Code* entry_code;
 	static Code* cl1;
 	static Code* cl2;
 	static Code* get02cont;
@@ -1239,7 +1239,6 @@ public:
 	static std::string string7;
 	static Int* posint1;
 	static Int* posint10;
-	static Code* entry_code;
 
 	void Init(PrologMachine* mach) override;
 

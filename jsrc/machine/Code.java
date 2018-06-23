@@ -5,7 +5,7 @@
 // changes by Bart Demoen - 25 Jan 1997 - for calling Prolog from within Java
 // allows to make a new PrologMachine, start a goal and get answers back
 // all at once as with findall
-
+/*
 abstract public class Code {
 	int Arity() {
 		System.out.println("no general code arity !");
@@ -146,3 +146,4 @@ class Call2Proc extends Code {
 		return code;
 	}
 }
+*/

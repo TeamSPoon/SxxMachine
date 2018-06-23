@@ -20,7 +20,7 @@ public class Lexer extends StreamTokenizer {
 
 	PrologMachine prologmachine;
 
-	Lexer(InputStream I, PrologMachine p) throws Exception {
+	public Lexer(InputStream I, PrologMachine p) throws Exception {
 		super(I);
 		parseNumbers();
 		eolIsSignificant(true);

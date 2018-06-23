@@ -1,4 +1,5 @@
-abstract class Term {
+/*
+
 
 	Term Deref() {
 		System.out.println("general deref on terms not available");
@@ -782,3 +783,4 @@ final class Funct extends Term {
 		return Name;
 	}
 }
+*/

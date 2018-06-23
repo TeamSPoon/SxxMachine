@@ -1,5 +1,4 @@
 #include "Lexer.h"
-#include "Prolog.h"
 
 Lexer::PrologTokenizer::PrologTokenizer(InputStream* I) : StreamTokenizer(I) {
 	parseNumbers();

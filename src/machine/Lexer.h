@@ -1,7 +1,7 @@
 #ifndef LEXER
 #define LEXER
 
-#include "Term.h"
+#include "Prolog.h"
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -13,6 +13,7 @@
 #include "stringhelper.h"
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
+class PrologTokenizer;
 class PrologMachine;
 class Term;
 

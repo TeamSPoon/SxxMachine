@@ -1,5 +1,4 @@
 #include "PredTable.h"
-#include "Code.h"
 #include "Prolog.h"
 #include "Package.h"
 #include "ClassNotFoundException.h"
