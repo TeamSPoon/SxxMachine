@@ -1,3 +1,14 @@
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.function.Function;
+
+// jProlog 0.1 Copyright (C) Bart Demoen, Paul Tarau 1996
+// Prolog implementation in Java
+// KUL and CUM
+
+// changes by Bart Demoen - 25 Jan 1997 - for calling Prolog from within Java
+// allows to make a new PrologMachine, start a goal and get answers back
+// all at once as with findall
 
 
 class Code {
@@ -137,4 +148,10 @@ class Call2Proc extends Code {
 		}
 		return code;
 	}
+}
+
+interface Undoable {
+
+	public void Unwind();
+
 }
