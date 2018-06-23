@@ -1,12 +1,6 @@
-// jProlog 0.1 Copyright (C) Bart Demoen, Paul Tarau 1996
-// Prolog implementation in Java
-// KUL and CUM
 
-// changes by Bart Demoen - 25 Jan 1997 - for calling Prolog from within Java
-// allows to make a new PrologMachine, start a goal and get answers back
-// all at once as with findall
-/*
-abstract public class Code {
+
+class Code {
 	int Arity() {
 		System.out.println("no general code arity !");
 		return 0;
@@ -18,9 +12,7 @@ abstract public class Code {
 	}
 
 	void Init(PrologMachine mach) {
-
 	}
-
 }
 
 class FailProc extends Code {
@@ -146,4 +138,3 @@ class Call2Proc extends Code {
 		return code;
 	}
 }
-*/

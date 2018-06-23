@@ -1,17 +1,16 @@
-/*
-
+class Term {
 
 	Term Deref() {
-		System.out.println("general deref on terms not available");
+		System.out.println("general deref on objects not available");
 		return null;
 	}
 
 	public String toString() {
-		return "general print on terms not available";
+		return "general print on objects not available";
 	}
 
 	boolean Unify(Term that) {
-		System.out.println("general unify on terms not available");
+		System.out.println("general unify on objects not available");
 		return false;
 	}
 
@@ -20,26 +19,26 @@
 	}
 
 	boolean Equal(Term that) {
-		System.out.println("general equal on terms not available");
+		System.out.println("general equal on objects not available");
 		return false;
 	}
 
 	String GetName() {
-		System.out.println("general getname on terms not available");
+		System.out.println("general getname on objects not available");
 		return "";
 	}
 
 	int Arity() {
-		System.out.println("general getarity on terms not available");
+		System.out.println("general getarity on objects not available");
 		return 0;
 	}
 
 	void UnTrailSelf() {
-		System.out.println("general untrail on terms not available");
+		System.out.println("general untrail on objects not available");
 	}
 
 	Term Copy(PrologMachine m, long t) {
-		System.out.println("general copy on terms not available");
+		System.out.println("general copy on objects not available");
 		return null;
 	}
 
@@ -55,16 +54,27 @@
 		return false;
 	}
 
+	public static Term Compound(String string6, Term... terms) {
+		return new Funct(string6, terms);
+	}
+
 	public static Term Var(PrologMachine mach) {
 		return new Var(mach);
 	}
 
-	public static Int Number(long i) {
-		return new Int(i);
+	public Term findOrAttrValue(PrologMachine mach, boolean b, Term deref) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public static Funct Compound(String funct, Term... deref) {
-		return new Funct(funct, deref);
+	public void putAttrValue(PrologMachine mach, Term deref, Term deref2) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void setAttrs(PrologMachine mach, Term deref) {
+		// TODO Auto-generated method stub
+
 	}
 
 }
@@ -271,14 +281,6 @@ final class Int extends Term {
 final class Const extends Term {
 	String Name;
 
-	static String IStr(String s) {
-		return s.intern();
-	}
-
-	static Const Intern(String s) {
-		return new Const(s);
-	}
-
 	long LongValue() {
 		return 0;
 	}
@@ -322,6 +324,16 @@ final class Const extends Term {
 
 	boolean IsNil() {
 		return this.Name.equals("[]".intern());
+	}
+
+	public static String IStr(String string) {
+		// TODO Auto-generated method stub
+		return string.intern();
+	}
+
+	public static Term Intern(String N) {
+		// TODO Auto-generated method stub
+		return new Const(N);
 	}
 
 }
@@ -649,7 +661,7 @@ final class Funct extends Term {
 
 	long LongValue() {
 		int arity = Arguments.length;
-		Term a1, a2;
+		// Term a1, a2;
 		long i1, i2;
 		if (arity == 1) {
 			i1 = (Arguments[0].Deref()).LongValue();
@@ -783,4 +795,3 @@ final class Funct extends Term {
 		return Name;
 	}
 }
-*/

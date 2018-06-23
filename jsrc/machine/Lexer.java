@@ -7,7 +7,7 @@ import java.util.Hashtable;
 
 ////////////// lexer
 
-public class Lexer extends StreamTokenizer {
+public class Lexer  extends StreamTokenizer {
 
 	public static class PrologTokenizer extends StreamTokenizer {
 		PrologTokenizer(InputStream I) {
@@ -17,7 +17,6 @@ public class Lexer extends StreamTokenizer {
 			// add more options here
 		}
 	}
-
 	PrologMachine prologmachine;
 
 	public Lexer(InputStream I, PrologMachine p) throws Exception {
