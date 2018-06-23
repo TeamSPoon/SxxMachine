@@ -6,6 +6,7 @@
 // allows to make a new PrologMachine, start a goal and get answers back
 // all at once as with findall
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -23,6 +24,17 @@ public class Prolog {
 
 		M.InitAlways();
 
+		if (false && args.length == 0) {
+			while (true) {
+				try {
+					M.run();
+				} catch (Throwable t) {
+					t.printStackTrace();
+				}
+				if (M.ExceptionRaised == 4)
+					return;
+			}
+		}
 		// then you can call the goal
 
 		Term Goal = new Funct("animal".intern(), new Var(M)); // animal(X)
@@ -74,7 +86,11 @@ class UpperPrologMachine {
 	static TrueProc True0 = null;
 }
 
-class PrologMachine extends UpperPrologMachine implements Runnable {
+class PrologMachine extends UpperPrologMachine {
+	public PredTable getPredicates() {
+		return Predicates;
+	}
+
 	Term Areg[] = new Term[32];
 	ChoicePointStackEntry ChoicePointStack[];
 	Term TrailStack[];
@@ -97,10 +113,15 @@ class PrologMachine extends UpperPrologMachine implements Runnable {
 		Areg[0] = new Funct("toplevel".intern(), new Int(0));
 		// 0 is a dummy continuation
 		InitAlways();
+		Object next = null;
 		code = UpperPrologMachine.Call1;
 		while (true) {
-			while (ExceptionRaised == 0) {
-				code = code.Exec(this);
+			while (ExceptionRaised == 0 && code != null) {
+				next = code.Exec(this);
+				if (next == null) {
+					Debug();
+				}
+				code = (Code) next;
 			}
 			if (ExceptionRaised > 1) {
 				if (ExceptionRaised != 2)
@@ -115,6 +136,17 @@ class PrologMachine extends UpperPrologMachine implements Runnable {
 			pendinggoals = new Const("[]".intern());
 			code = UpperPrologMachine.Call1;
 		}
+	}
+
+	public static void Debug() {
+		try {
+			System.in.read();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// TODO Auto-generated method stub
+
 	}
 
 	Term SolveGoal(Term Goal) {
@@ -274,11 +306,79 @@ class PrologMachine extends UpperPrologMachine implements Runnable {
 		}
 		CurrentChoice = CutTo;
 	}
+
+	public Code LoadPred1(String name, int arity) {
+		return Predicates.LoadPred(this, name, arity);
+	}
+
+	public void push1(Undoable undoable) {
+		// TODO Auto-generated method stub
+
+	}
+}
+
+abstract class PrologObject extends Term {
+
+	Term Deref() {
+		System.out.println("general deref on objects not available");
+		return null;
+	}
+
+	@Override
+	public void formattedOutput(int formatFlags, Appendable buffer) throws IOException {
+		buffer.append("general print on objects not available");
+	}
+
+	boolean Unify(Term that) {
+		System.out.println("general unify on objects not available");
+		return false;
+	}
+
+	boolean Bind(Term that) {
+		return false;
+	}
+
+	boolean Equal(Term that) {
+		System.out.println("general equal on objects not available");
+		return false;
+	}
+
+	String GetName() {
+		System.out.println("general getname on objects not available");
+		return "";
+	}
+
+	int Arity() {
+		System.out.println("general getarity on objects not available");
+		return 0;
+	}
+
+	void UnTrailSelf() {
+		System.out.println("general untrail on objects not available");
+	}
+
+	Term Copy(PrologMachine m, long t) {
+		System.out.println("general copy on objects not available");
+		return null;
+	}
+
+	long ValueOf() {
+		return 0;
+	}
+
+	boolean islist() {
+		return false;
+	}
+
+	boolean isnil() {
+		return false;
+	}
+
 }
 
 // the following is used while copying a term
 
-final class VarDict extends Term {
+final class VarDict extends PrologObject {
 	Var old, newer;
 
 	VarDict(Var changed, Var copy) {
@@ -299,7 +399,7 @@ final class VarDict extends Term {
 	}
 }
 
-final class HeapChoice extends Term {
+final class HeapChoice extends PrologObject {
 	int CutTo;
 
 	HeapChoice(int c) {
@@ -307,7 +407,7 @@ final class HeapChoice extends Term {
 	}
 }
 
-final class SetArgTrail extends Term {
+final class SetArgTrail extends PrologObject {
 	Term OldValue;
 	Var Which;
 	PrologMachine mach;
@@ -325,7 +425,7 @@ final class SetArgTrail extends Term {
 
 }
 
-final class PopPendingGoals extends Term {
+final class PopPendingGoals extends PrologObject {
 	PrologMachine mach;
 	Term old;
 
@@ -340,7 +440,7 @@ final class PopPendingGoals extends Term {
 
 }
 
-final class PopAssumptions extends Term {
+final class PopAssumptions extends PrologObject {
 	PrologMachine mach;
 	Term old;
 

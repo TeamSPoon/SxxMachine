@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 class Term {
 
 	Term Deref() {
@@ -73,6 +75,11 @@ class Term {
 	}
 
 	public void setAttrs(PrologMachine mach, Term deref) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void formattedOutput(int formatFlags, Appendable buffer) throws IOException {
 		// TODO Auto-generated method stub
 
 	}
