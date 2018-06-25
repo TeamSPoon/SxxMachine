@@ -140,7 +140,7 @@ class CutProc extends Code {
 		// type
 		// HeapChoice
 		int i = ((HeapChoice) (mach.Areg[0])).CutTo;
-		mach.DoCut(i); 
+		mach.DoCut(i);
 		mach.Areg[0] = mach.Areg[1];
 		mach.CUTB = mach.CurrentChoice;
 		return mach.Call1.exec_static(mach);

@@ -23,6 +23,7 @@ class Term;
 class ChoicePointStackEntry;
 class PrologTokenizer;
 class Lexer;
+class run;
 class Code;
 class Undoable;
 class Var;

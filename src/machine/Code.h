@@ -49,6 +49,8 @@ public:
 
 	virtual void Init(PrologMachine* mach);
 
+	static Term* Float(const double& d);
+
 };
 
 class FailProc : public Code {

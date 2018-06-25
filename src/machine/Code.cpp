@@ -92,6 +92,11 @@ void Code::Init(PrologMachine* mach) {
 
 }
 
+Term* Code::Float(const double& d) {
+	// TODO Auto-generated method stub
+	return nullptr;
+}
+
 int FailProc::Arity() {
 	return 1;
 }

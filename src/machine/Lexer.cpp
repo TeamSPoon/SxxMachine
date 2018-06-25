@@ -463,8 +463,8 @@ int StreamTokenizer::nextToken() throw(IOException) {
 		ttype = c;
 		int i = 0;
 		/*
-		 * Invariants (because \Octal needs a lookahead): (i) c contains
-		 * char value (ii) d contains the lookahead
+		 * Invariants (because \Octal needs a lookahead): (i) c contains char value (ii)
+		 * d contains the lookahead
 		 */
 		int d = read();
 		while(d >= 0 && d != ttype && d != '\n' && d != '\r') {
@@ -523,9 +523,9 @@ int StreamTokenizer::nextToken() throw(IOException) {
 		}
 
 		/*
-		 * If we broke out of the loop because we found a matching quote
-		 * character then arrange to read a new character next time around;
-		 * otherwise, save the character.
+		 * If we broke out of the loop because we found a matching quote character then
+		 * arrange to read a new character next time around; otherwise, save the
+		 * character.
 		 */
 		peekc = (d == ttype) ? NEED_CHAR : d;
 
@@ -618,10 +618,9 @@ wstring StreamTokenizer::toString() {
 		break;
 	default: {
 		/*
-		 * ttype is the first character of either a quoted string or is an
-		 * ordinary character. ttype can definitely not be less than 0,
-		 * since those are reserved values used in the previous case
-		 * statements
+		 * ttype is the first character of either a quoted string or is an ordinary
+		 * character. ttype can definitely not be less than 0, since those are reserved
+		 * values used in the previous case statements
 		 */
 		if(ttype < 256 && ((ctype[ttype] & CT_QUOTE) != 0)) {
 			ret = sval;

@@ -2,8 +2,10 @@ using namespace std;
 
 #include "Metaterm.h"
 #include "Prolog.h"
+#include "../bootlib/sxx_library.h"
 #include "builtins.h"
 #include "Term.h"
+#include "../bootlib/sxx_builtins.h"
 
 Code* Metaterm::pred_freeze_2(PrologMachine* mach) {
 	mach->Areg[0]->Deref().freeze(mach, mach->Areg[1]->Deref());

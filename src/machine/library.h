@@ -13,7 +13,7 @@ class Int;
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_ap_3 : public Code {
+class hand_pred_ap_3: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -31,12 +31,12 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_ap_3_1 : public hand_pred_ap_3 {
+class hand_pred_ap_3_1: public hand_pred_ap_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_ap_3_2 : public hand_pred_ap_3 {
+class hand_pred_ap_3_2: public hand_pred_ap_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -45,7 +45,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_append_3 : public Code {
+class hand_pred_append_3: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -63,12 +63,12 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_append_3_1 : public hand_pred_append_3 {
+class hand_pred_append_3_1: public hand_pred_append_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_append_3_2 : public hand_pred_append_3 {
+class hand_pred_append_3_2: public hand_pred_append_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -77,7 +77,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_assumed_1 : public Code {
+class hand_pred_assumed_1: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -94,7 +94,7 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_assumed_1_1 : public hand_pred_assumed_1 {
+class hand_pred_assumed_1_1: public hand_pred_assumed_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -103,7 +103,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_assumeduring_2 : public Code {
+class hand_pred_assumeduring_2: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -123,7 +123,7 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_assumeduring_2_1 : public hand_pred_assumeduring_2 {
+class hand_pred_assumeduring_2_1: public hand_pred_assumeduring_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -132,7 +132,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_atom_1 : public Code {
+class hand_pred_atom_1: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -148,7 +148,7 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_atom_1_1 : public hand_pred_atom_1 {
+class hand_pred_atom_1_1: public hand_pred_atom_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -157,7 +157,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_atomic_1 : public Code {
+class hand_pred_atomic_1: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -174,7 +174,7 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_atomic_1_1 : public hand_pred_atomic_1 {
+class hand_pred_atomic_1_1: public hand_pred_atomic_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -183,7 +183,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_atomic2_1 : public Code {
+class hand_pred_atomic2_1: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -204,12 +204,12 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_atomic2_1_1 : public hand_pred_atomic2_1 {
+class hand_pred_atomic2_1_1: public hand_pred_atomic2_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_atomic2_1_2 : public hand_pred_atomic2_1 {
+class hand_pred_atomic2_1_2: public hand_pred_atomic2_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -218,7 +218,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_collectvars_3 : public Code {
+class hand_pred_collectvars_3: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -245,17 +245,17 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_collectvars_3_1 : public hand_pred_collectvars_3 {
+class hand_pred_collectvars_3_1: public hand_pred_collectvars_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_collectvars_3_2 : public hand_pred_collectvars_3 {
+class hand_pred_collectvars_3_2: public hand_pred_collectvars_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_collectvars_3_3 : public hand_pred_collectvars_3 {
+class hand_pred_collectvars_3_3: public hand_pred_collectvars_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -264,7 +264,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_copy_term_2 : public Code {
+class hand_pred_copy_term_2: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -283,7 +283,7 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_copy_term_2_1 : public hand_pred_copy_term_2 {
+class hand_pred_copy_term_2_1: public hand_pred_copy_term_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -292,7 +292,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_exec_1 : public Code {
+class hand_pred_exec_1: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -325,32 +325,32 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_exec_1_1 : public hand_pred_exec_1 {
+class hand_pred_exec_1_1: public hand_pred_exec_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_exec_1_2 : public hand_pred_exec_1 {
+class hand_pred_exec_1_2: public hand_pred_exec_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_exec_1_3 : public hand_pred_exec_1 {
+class hand_pred_exec_1_3: public hand_pred_exec_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_exec_1_4 : public hand_pred_exec_1 {
+class hand_pred_exec_1_4: public hand_pred_exec_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_exec_1_5 : public hand_pred_exec_1 {
+class hand_pred_exec_1_5: public hand_pred_exec_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_exec_1_6 : public hand_pred_exec_1 {
+class hand_pred_exec_1_6: public hand_pred_exec_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -359,7 +359,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_execdisj_2 : public Code {
+class hand_pred_execdisj_2: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -382,22 +382,22 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_execdisj_2_1 : public hand_pred_execdisj_2 {
+class hand_pred_execdisj_2_1: public hand_pred_execdisj_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_execdisj_2_2 : public hand_pred_execdisj_2 {
+class hand_pred_execdisj_2_2: public hand_pred_execdisj_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_execdisj_2_3 : public hand_pred_execdisj_2 {
+class hand_pred_execdisj_2_3: public hand_pred_execdisj_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_execdisj_2_4 : public hand_pred_execdisj_2 {
+class hand_pred_execdisj_2_4: public hand_pred_execdisj_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -406,7 +406,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_execpendinggoals_1 : public Code {
+class hand_pred_execpendinggoals_1: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -427,12 +427,12 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_execpendinggoals_1_1 : public hand_pred_execpendinggoals_1 {
+class hand_pred_execpendinggoals_1_1: public hand_pred_execpendinggoals_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_execpendinggoals_1_2 : public hand_pred_execpendinggoals_1 {
+class hand_pred_execpendinggoals_1_2: public hand_pred_execpendinggoals_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -441,7 +441,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_findall2_4 : public Code {
+class hand_pred_findall2_4: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -462,12 +462,12 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_findall2_4_1 : public hand_pred_findall2_4 {
+class hand_pred_findall2_4_1: public hand_pred_findall2_4 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_findall2_4_2 : public hand_pred_findall2_4 {
+class hand_pred_findall2_4_2: public hand_pred_findall2_4 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -476,7 +476,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_findall_3 : public Code {
+class hand_pred_findall_3: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -493,7 +493,7 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_findall_3_1 : public hand_pred_findall_3 {
+class hand_pred_findall_3_1: public hand_pred_findall_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -502,7 +502,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_freeze_2 : public Code {
+class hand_pred_freeze_2: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -524,12 +524,12 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_freeze_2_1 : public hand_pred_freeze_2 {
+class hand_pred_freeze_2_1: public hand_pred_freeze_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_freeze_2_2 : public hand_pred_freeze_2 {
+class hand_pred_freeze_2_2: public hand_pred_freeze_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -538,7 +538,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_getargs_2 : public Code {
+class hand_pred_getargs_2: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -563,12 +563,12 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_getargs_2_1 : public hand_pred_getargs_2 {
+class hand_pred_getargs_2_1: public hand_pred_getargs_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_getargs_2_2 : public hand_pred_getargs_2 {
+class hand_pred_getargs_2_2: public hand_pred_getargs_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -577,7 +577,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_infix_3 : public Code {
+class hand_pred_infix_3: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -660,142 +660,142 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_infix_3_1 : public hand_pred_infix_3 {
+class hand_pred_infix_3_1: public hand_pred_infix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_infix_3_2 : public hand_pred_infix_3 {
+class hand_pred_infix_3_2: public hand_pred_infix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_infix_3_3 : public hand_pred_infix_3 {
+class hand_pred_infix_3_3: public hand_pred_infix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_infix_3_4 : public hand_pred_infix_3 {
+class hand_pred_infix_3_4: public hand_pred_infix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_infix_3_5 : public hand_pred_infix_3 {
+class hand_pred_infix_3_5: public hand_pred_infix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_infix_3_6 : public hand_pred_infix_3 {
+class hand_pred_infix_3_6: public hand_pred_infix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_infix_3_7 : public hand_pred_infix_3 {
+class hand_pred_infix_3_7: public hand_pred_infix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_infix_3_8 : public hand_pred_infix_3 {
+class hand_pred_infix_3_8: public hand_pred_infix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_infix_3_9 : public hand_pred_infix_3 {
+class hand_pred_infix_3_9: public hand_pred_infix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_infix_3_10 : public hand_pred_infix_3 {
+class hand_pred_infix_3_10: public hand_pred_infix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_infix_3_11 : public hand_pred_infix_3 {
+class hand_pred_infix_3_11: public hand_pred_infix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_infix_3_12 : public hand_pred_infix_3 {
+class hand_pred_infix_3_12: public hand_pred_infix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_infix_3_13 : public hand_pred_infix_3 {
+class hand_pred_infix_3_13: public hand_pred_infix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_infix_3_14 : public hand_pred_infix_3 {
+class hand_pred_infix_3_14: public hand_pred_infix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_infix_3_15 : public hand_pred_infix_3 {
+class hand_pred_infix_3_15: public hand_pred_infix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_infix_3_16 : public hand_pred_infix_3 {
+class hand_pred_infix_3_16: public hand_pred_infix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_infix_3_17 : public hand_pred_infix_3 {
+class hand_pred_infix_3_17: public hand_pred_infix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_infix_3_18 : public hand_pred_infix_3 {
+class hand_pred_infix_3_18: public hand_pred_infix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_infix_3_19 : public hand_pred_infix_3 {
+class hand_pred_infix_3_19: public hand_pred_infix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_infix_3_20 : public hand_pred_infix_3 {
+class hand_pred_infix_3_20: public hand_pred_infix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_infix_3_21 : public hand_pred_infix_3 {
+class hand_pred_infix_3_21: public hand_pred_infix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_infix_3_22 : public hand_pred_infix_3 {
+class hand_pred_infix_3_22: public hand_pred_infix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_infix_3_23 : public hand_pred_infix_3 {
+class hand_pred_infix_3_23: public hand_pred_infix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_infix_3_24 : public hand_pred_infix_3 {
+class hand_pred_infix_3_24: public hand_pred_infix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_infix_3_25 : public hand_pred_infix_3 {
+class hand_pred_infix_3_25: public hand_pred_infix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_infix_3_26 : public hand_pred_infix_3 {
+class hand_pred_infix_3_26: public hand_pred_infix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_infix_3_27 : public hand_pred_infix_3 {
+class hand_pred_infix_3_27: public hand_pred_infix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_infix_3_28 : public hand_pred_infix_3 {
+class hand_pred_infix_3_28: public hand_pred_infix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -804,7 +804,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_integer_1 : public Code {
+class hand_pred_integer_1: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -820,7 +820,7 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_integer_1_1 : public hand_pred_integer_1 {
+class hand_pred_integer_1_1: public hand_pred_integer_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -829,7 +829,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_loop_1 : public Code {
+class hand_pred_loop_1: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -851,12 +851,12 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_loop_1_1 : public hand_pred_loop_1 {
+class hand_pred_loop_1_1: public hand_pred_loop_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_loop_1_2 : public hand_pred_loop_1 {
+class hand_pred_loop_1_2: public hand_pred_loop_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -865,7 +865,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_m1_2 : public Code {
+class hand_pred_m1_2: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -884,12 +884,12 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_m1_2_1 : public hand_pred_m1_2 {
+class hand_pred_m1_2_1: public hand_pred_m1_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_m1_2_2 : public hand_pred_m1_2 {
+class hand_pred_m1_2_2: public hand_pred_m1_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -898,7 +898,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_maketerm_2 : public Code {
+class hand_pred_maketerm_2: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -914,7 +914,7 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_maketerm_2_1 : public hand_pred_maketerm_2 {
+class hand_pred_maketerm_2_1: public hand_pred_maketerm_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -923,7 +923,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_maketerm_3 : public Code {
+class hand_pred_maketerm_3: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -975,57 +975,57 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_maketerm_3_1 : public hand_pred_maketerm_3 {
+class hand_pred_maketerm_3_1: public hand_pred_maketerm_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_maketerm_3_2 : public hand_pred_maketerm_3 {
+class hand_pred_maketerm_3_2: public hand_pred_maketerm_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_maketerm_3_3 : public hand_pred_maketerm_3 {
+class hand_pred_maketerm_3_3: public hand_pred_maketerm_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_maketerm_3_4 : public hand_pred_maketerm_3 {
+class hand_pred_maketerm_3_4: public hand_pred_maketerm_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_maketerm_3_5 : public hand_pred_maketerm_3 {
+class hand_pred_maketerm_3_5: public hand_pred_maketerm_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_maketerm_3_6 : public hand_pred_maketerm_3 {
+class hand_pred_maketerm_3_6: public hand_pred_maketerm_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_maketerm_3_7 : public hand_pred_maketerm_3 {
+class hand_pred_maketerm_3_7: public hand_pred_maketerm_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_maketerm_3_8 : public hand_pred_maketerm_3 {
+class hand_pred_maketerm_3_8: public hand_pred_maketerm_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_maketerm_3_9 : public hand_pred_maketerm_3 {
+class hand_pred_maketerm_3_9: public hand_pred_maketerm_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_maketerm_3_10 : public hand_pred_maketerm_3 {
+class hand_pred_maketerm_3_10: public hand_pred_maketerm_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_maketerm_3_11 : public hand_pred_maketerm_3 {
+class hand_pred_maketerm_3_11: public hand_pred_maketerm_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -1034,7 +1034,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_max_3 : public Code {
+class hand_pred_max_3: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -1053,17 +1053,17 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_max_3_1 : public hand_pred_max_3 {
+class hand_pred_max_3_1: public hand_pred_max_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_max_3_2 : public hand_pred_max_3 {
+class hand_pred_max_3_2: public hand_pred_max_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_max_3_3 : public hand_pred_max_3 {
+class hand_pred_max_3_3: public hand_pred_max_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -1072,7 +1072,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_newprec_3 : public Code {
+class hand_pred_newprec_3: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -1095,12 +1095,12 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_newprec_3_1 : public hand_pred_newprec_3 {
+class hand_pred_newprec_3_1: public hand_pred_newprec_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_newprec_3_2 : public hand_pred_newprec_3 {
+class hand_pred_newprec_3_2: public hand_pred_newprec_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -1109,7 +1109,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_newprec_4 : public Code {
+class hand_pred_newprec_4: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -1134,17 +1134,17 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_newprec_4_1 : public hand_pred_newprec_4 {
+class hand_pred_newprec_4_1: public hand_pred_newprec_4 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_newprec_4_2 : public hand_pred_newprec_4 {
+class hand_pred_newprec_4_2: public hand_pred_newprec_4 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_newprec_4_3 : public hand_pred_newprec_4 {
+class hand_pred_newprec_4_3: public hand_pred_newprec_4 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -1153,7 +1153,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_not_1 : public Code {
+class hand_pred_not_1: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -1174,12 +1174,12 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_not_1_1 : public hand_pred_not_1 {
+class hand_pred_not_1_1: public hand_pred_not_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_not_1_2 : public hand_pred_not_1 {
+class hand_pred_not_1_2: public hand_pred_not_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -1188,7 +1188,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_noteq_2 : public Code {
+class hand_pred_noteq_2: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -1208,12 +1208,12 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_noteq_2_1 : public hand_pred_noteq_2 {
+class hand_pred_noteq_2_1: public hand_pred_noteq_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_noteq_2_2 : public hand_pred_noteq_2 {
+class hand_pred_noteq_2_2: public hand_pred_noteq_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -1222,7 +1222,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_notmore_0 : public Code {
+class hand_pred_notmore_0: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -1246,12 +1246,12 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_notmore_0_1 : public hand_pred_notmore_0 {
+class hand_pred_notmore_0_1: public hand_pred_notmore_0 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_notmore_0_2 : public hand_pred_notmore_0 {
+class hand_pred_notmore_0_2: public hand_pred_notmore_0 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -1260,7 +1260,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_notvmember_2 : public Code {
+class hand_pred_notvmember_2: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -1283,17 +1283,17 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_notvmember_2_1 : public hand_pred_notvmember_2 {
+class hand_pred_notvmember_2_1: public hand_pred_notvmember_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_notvmember_2_2 : public hand_pred_notvmember_2 {
+class hand_pred_notvmember_2_2: public hand_pred_notvmember_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_notvmember_2_3 : public hand_pred_notvmember_2 {
+class hand_pred_notvmember_2_3: public hand_pred_notvmember_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -1302,7 +1302,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_nrev_2 : public Code {
+class hand_pred_nrev_2: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -1323,12 +1323,12 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_nrev_2_1 : public hand_pred_nrev_2 {
+class hand_pred_nrev_2_1: public hand_pred_nrev_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_nrev_2_2 : public hand_pred_nrev_2 {
+class hand_pred_nrev_2_2: public hand_pred_nrev_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -1337,7 +1337,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_or_2 : public Code {
+class hand_pred_or_2: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -1354,12 +1354,12 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_or_2_1 : public hand_pred_or_2 {
+class hand_pred_or_2_1: public hand_pred_or_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_or_2_2 : public hand_pred_or_2 {
+class hand_pred_or_2_2: public hand_pred_or_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -1368,7 +1368,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_prefix_3 : public Code {
+class hand_pred_prefix_3: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -1393,22 +1393,22 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_prefix_3_1 : public hand_pred_prefix_3 {
+class hand_pred_prefix_3_1: public hand_pred_prefix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_prefix_3_2 : public hand_pred_prefix_3 {
+class hand_pred_prefix_3_2: public hand_pred_prefix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_prefix_3_3 : public hand_pred_prefix_3 {
+class hand_pred_prefix_3_3: public hand_pred_prefix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_prefix_3_4 : public hand_pred_prefix_3 {
+class hand_pred_prefix_3_4: public hand_pred_prefix_3 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -1417,7 +1417,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_read_1 : public Code {
+class hand_pred_read_1: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -1437,7 +1437,7 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_read_1_1 : public hand_pred_read_1 {
+class hand_pred_read_1_1: public hand_pred_read_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -1446,7 +1446,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_readall_2 : public Code {
+class hand_pred_readall_2: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -1473,17 +1473,17 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_readall_2_1 : public hand_pred_readall_2 {
+class hand_pred_readall_2_1: public hand_pred_readall_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_readall_2_2 : public hand_pred_readall_2 {
+class hand_pred_readall_2_2: public hand_pred_readall_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_readall_2_3 : public hand_pred_readall_2 {
+class hand_pred_readall_2_3: public hand_pred_readall_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -1492,7 +1492,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_smeq_1 : public Code {
+class hand_pred_smeq_1: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -1513,12 +1513,12 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_smeq_1_1 : public hand_pred_smeq_1 {
+class hand_pred_smeq_1_1: public hand_pred_smeq_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_smeq_1_2 : public hand_pred_smeq_1 {
+class hand_pred_smeq_1_2: public hand_pred_smeq_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -1527,7 +1527,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_smgr_1 : public Code {
+class hand_pred_smgr_1: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -1548,12 +1548,12 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_smgr_1_1 : public hand_pred_smgr_1 {
+class hand_pred_smgr_1_1: public hand_pred_smgr_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_smgr_1_2 : public hand_pred_smgr_1 {
+class hand_pred_smgr_1_2: public hand_pred_smgr_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -1562,7 +1562,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_sort_2 : public Code {
+class hand_pred_sort_2: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -1585,12 +1585,12 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_sort_2_1 : public hand_pred_sort_2 {
+class hand_pred_sort_2_1: public hand_pred_sort_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_sort_2_2 : public hand_pred_sort_2 {
+class hand_pred_sort_2_2: public hand_pred_sort_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -1599,7 +1599,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_specialgoal_2 : public Code {
+class hand_pred_specialgoal_2: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -1649,62 +1649,62 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_specialgoal_2_1 : public hand_pred_specialgoal_2 {
+class hand_pred_specialgoal_2_1: public hand_pred_specialgoal_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_specialgoal_2_2 : public hand_pred_specialgoal_2 {
+class hand_pred_specialgoal_2_2: public hand_pred_specialgoal_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_specialgoal_2_3 : public hand_pred_specialgoal_2 {
+class hand_pred_specialgoal_2_3: public hand_pred_specialgoal_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_specialgoal_2_4 : public hand_pred_specialgoal_2 {
+class hand_pred_specialgoal_2_4: public hand_pred_specialgoal_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_specialgoal_2_5 : public hand_pred_specialgoal_2 {
+class hand_pred_specialgoal_2_5: public hand_pred_specialgoal_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_specialgoal_2_6 : public hand_pred_specialgoal_2 {
+class hand_pred_specialgoal_2_6: public hand_pred_specialgoal_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_specialgoal_2_7 : public hand_pred_specialgoal_2 {
+class hand_pred_specialgoal_2_7: public hand_pred_specialgoal_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_specialgoal_2_8 : public hand_pred_specialgoal_2 {
+class hand_pred_specialgoal_2_8: public hand_pred_specialgoal_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_specialgoal_2_9 : public hand_pred_specialgoal_2 {
+class hand_pred_specialgoal_2_9: public hand_pred_specialgoal_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_specialgoal_2_10 : public hand_pred_specialgoal_2 {
+class hand_pred_specialgoal_2_10: public hand_pred_specialgoal_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_specialgoal_2_11 : public hand_pred_specialgoal_2 {
+class hand_pred_specialgoal_2_11: public hand_pred_specialgoal_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_specialgoal_2_12 : public hand_pred_specialgoal_2 {
+class hand_pred_specialgoal_2_12: public hand_pred_specialgoal_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -1713,7 +1713,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_split_4 : public Code {
+class hand_pred_split_4: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -1736,17 +1736,17 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_split_4_1 : public hand_pred_split_4 {
+class hand_pred_split_4_1: public hand_pred_split_4 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_split_4_2 : public hand_pred_split_4 {
+class hand_pred_split_4_2: public hand_pred_split_4 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_split_4_3 : public hand_pred_split_4 {
+class hand_pred_split_4_3: public hand_pred_split_4 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -1755,7 +1755,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_statistics_2 : public Code {
+class hand_pred_statistics_2: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -1774,7 +1774,7 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_statistics_2_1 : public hand_pred_statistics_2 {
+class hand_pred_statistics_2_1: public hand_pred_statistics_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -1783,7 +1783,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_termequal_2 : public Code {
+class hand_pred_termequal_2: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -1800,7 +1800,7 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_termequal_2_1 : public hand_pred_termequal_2 {
+class hand_pred_termequal_2_1: public hand_pred_termequal_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -1809,7 +1809,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_termgreaterequal_2 : public Code {
+class hand_pred_termgreaterequal_2: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -1826,7 +1826,7 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_termgreaterequal_2_1 : public hand_pred_termgreaterequal_2 {
+class hand_pred_termgreaterequal_2_1: public hand_pred_termgreaterequal_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -1835,7 +1835,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_termgreaterthan_2 : public Code {
+class hand_pred_termgreaterthan_2: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -1852,7 +1852,7 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_termgreaterthan_2_1 : public hand_pred_termgreaterthan_2 {
+class hand_pred_termgreaterthan_2_1: public hand_pred_termgreaterthan_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -1861,7 +1861,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_termsmallerequal_2 : public Code {
+class hand_pred_termsmallerequal_2: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -1878,7 +1878,7 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_termsmallerequal_2_1 : public hand_pred_termsmallerequal_2 {
+class hand_pred_termsmallerequal_2_1: public hand_pred_termsmallerequal_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -1887,7 +1887,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_termsmallerthan_2 : public Code {
+class hand_pred_termsmallerthan_2: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -1904,7 +1904,7 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_termsmallerthan_2_1 : public hand_pred_termsmallerthan_2 {
+class hand_pred_termsmallerthan_2_1: public hand_pred_termsmallerthan_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -1913,7 +1913,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_time_1 : public Code {
+class hand_pred_time_1: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -1934,7 +1934,7 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_time_1_1 : public hand_pred_time_1 {
+class hand_pred_time_1_1: public hand_pred_time_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -1943,7 +1943,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_top_0 : public Code {
+class hand_pred_top_0: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -1970,12 +1970,12 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_top_0_1 : public hand_pred_top_0 {
+class hand_pred_top_0_1: public hand_pred_top_0 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_top_0_2 : public hand_pred_top_0 {
+class hand_pred_top_0_2: public hand_pred_top_0 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -1984,7 +1984,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_toplevel_0 : public Code {
+class hand_pred_toplevel_0: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -2000,12 +2000,12 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_toplevel_0_1 : public hand_pred_toplevel_0 {
+class hand_pred_toplevel_0_1: public hand_pred_toplevel_0 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_toplevel_0_2 : public hand_pred_toplevel_0 {
+class hand_pred_toplevel_0_2: public hand_pred_toplevel_0 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -2014,7 +2014,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_untilend_1 : public Code {
+class hand_pred_untilend_1: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -2035,12 +2035,12 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_untilend_1_1 : public hand_pred_untilend_1 {
+class hand_pred_untilend_1_1: public hand_pred_untilend_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_untilend_1_2 : public hand_pred_untilend_1 {
+class hand_pred_untilend_1_2: public hand_pred_untilend_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -2049,7 +2049,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_var_1 : public Code {
+class hand_pred_var_1: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -2065,7 +2065,7 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_var_1_1 : public hand_pred_var_1 {
+class hand_pred_var_1_1: public hand_pred_var_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -2074,7 +2074,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_vread_2 : public Code {
+class hand_pred_vread_2: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -2096,7 +2096,7 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_vread_2_1 : public hand_pred_vread_2 {
+class hand_pred_vread_2_1: public hand_pred_vread_2 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
@@ -2105,7 +2105,7 @@ public:
 // Copyright August 16, 1996, KUL and CUM
 // Authors: Bart Demoen and Paul Tarau
 
-class hand_pred_writevars_1 : public Code {
+class hand_pred_writevars_1: public Code {
 public:
 	static Function* entry_code;
 	static Function* cl1;
@@ -2130,20 +2130,19 @@ public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_writevars_1_1 : public hand_pred_writevars_1 {
+class hand_pred_writevars_1_1: public hand_pred_writevars_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_writevars_1_2 : public hand_pred_writevars_1 {
+class hand_pred_writevars_1_2: public hand_pred_writevars_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
 
-class hand_pred_writevars_1_3 : public hand_pred_writevars_1 {
+class hand_pred_writevars_1_3: public hand_pred_writevars_1 {
 public:
 	static Function* exec_static(PrologMachine* mach);
 };
-
 
 #endif	//#ifndef LIBRARY

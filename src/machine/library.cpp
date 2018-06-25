@@ -22,7 +22,8 @@ int hand_pred_ap_3::Arity() {
 }
 
 Function* hand_pred_ap_3::exec_static(PrologMachine* mach) {
-	std::vector<Term*> aregs = { mach->Areg[0], mach->Areg[1], mach->Areg[2], mach->Areg[3] };
+	std::vector<Term*> aregs = { mach->Areg[0], mach->Areg[1], mach->Areg[2],
+			mach->Areg[3] };
 	mach->CreateChoicePoint(aregs);
 	return static_cast<Function*>(cl1->apply(mach));
 }
@@ -36,13 +37,13 @@ Function* hand_pred_ap_3_1::exec_static(PrologMachine* mach) {
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var1 = new Var(mach);
 	Const tempVar(string2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var1))) {
+	if (!((areg1)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg2)->Unify(var1->Deref()))) {
+	if (!((areg2)->Unify(var1->Deref()))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -63,14 +64,14 @@ Function* hand_pred_ap_3_2::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string1, var1, var2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var3))) {
+	if (!((areg1)->Unify(var3))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Funct tempVar2(string1, var1->Deref(), var4);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var2->Deref();
@@ -82,8 +83,10 @@ Function* hand_pred_ap_3_2::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_append_3::entry_code;
-java::util::function::Function* hand_pred_append_3::cl1 = new hand_pred_append_3_1();
-java::util::function::Function* hand_pred_append_3::cl2 = new hand_pred_append_3_2();
+java::util::function::Function* hand_pred_append_3::cl1 =
+		new hand_pred_append_3_1();
+java::util::function::Function* hand_pred_append_3::cl2 =
+		new hand_pred_append_3_2();
 wstring hand_pred_append_3::string0 = (wstring("cut")).intern();
 wstring hand_pred_append_3::string1 = (wstring(".")).intern();
 wstring hand_pred_append_3::string2 = (wstring("[]")).intern();
@@ -99,7 +102,8 @@ int hand_pred_append_3::Arity() {
 }
 
 Function* hand_pred_append_3::exec_static(PrologMachine* mach) {
-	std::vector<Term*> aregs = { mach->Areg[0], mach->Areg[1], mach->Areg[2], mach->Areg[3] };
+	std::vector<Term*> aregs = { mach->Areg[0], mach->Areg[1], mach->Areg[2],
+			mach->Areg[3] };
 	mach->CreateChoicePoint(aregs);
 	return static_cast<Function*>(cl1->apply(mach));
 }
@@ -113,13 +117,13 @@ Function* hand_pred_append_3_1::exec_static(PrologMachine* mach) {
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var1 = new Var(mach);
 	Const tempVar(string2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var1))) {
+	if (!((areg1)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg2)->Unify(var1->Deref()))) {
+	if (!((areg2)->Unify(var1->Deref()))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -140,14 +144,14 @@ Function* hand_pred_append_3_2::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string1, var1, var2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var3))) {
+	if (!((areg1)->Unify(var3))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Funct tempVar2(string1, var1->Deref(), var4);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var2->Deref();
@@ -159,7 +163,8 @@ Function* hand_pred_append_3_2::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_assumed_1::entry_code;
-java::util::function::Function* hand_pred_assumed_1::cl1 = new hand_pred_assumed_1_1();
+java::util::function::Function* hand_pred_assumed_1::cl1 =
+		new hand_pred_assumed_1_1();
 java::util::function::Function* hand_pred_assumed_1::allassumed2cont;
 wstring hand_pred_assumed_1::string0 = (wstring("cut")).intern();
 wstring hand_pred_assumed_1::string1 = (wstring("allassumed")).intern();
@@ -188,17 +193,19 @@ Function* hand_pred_assumed_1_1::exec_static(PrologMachine* mach) {
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var2;
-	local_aregs[1] = new Funct(string3, var1->Deref(), var2->Deref(), continuation);
+	local_aregs[1] = new Funct(string3, var1->Deref(), var2->Deref(),
+			continuation);
 	mach->CUTB = mach->CurrentChoice;
 	return allassumed2cont;
 }
 
 java::util::function::Function* hand_pred_assumeduring_2::entry_code;
-java::util::function::Function* hand_pred_assumeduring_2::cl1 = new hand_pred_assumeduring_2_1();
+java::util::function::Function* hand_pred_assumeduring_2::cl1 =
+		new hand_pred_assumeduring_2_1();
 java::util::function::Function* hand_pred_assumeduring_2::assume2cont;
 wstring hand_pred_assumeduring_2::string0 = (wstring("cut")).intern();
 wstring hand_pred_assumeduring_2::string1 = (wstring("-")).intern();
@@ -232,10 +239,10 @@ Function* hand_pred_assumeduring_2_1::exec_static(PrologMachine* mach) {
 	Term* var3 = new Var(mach);
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var2))) {
+	if (!((areg1)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = new Funct(string1, var2->Deref(), var3);
@@ -247,7 +254,8 @@ Function* hand_pred_assumeduring_2_1::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_atom_1::entry_code;
-java::util::function::Function* hand_pred_atom_1::cl1 = new hand_pred_atom_1_1();
+java::util::function::Function* hand_pred_atom_1::cl1 =
+		new hand_pred_atom_1_1();
 java::util::function::Function* hand_pred_atom_1::type_of3cont;
 wstring hand_pred_atom_1::string0 = Const::IStr("cut");
 wstring hand_pred_atom_1::string1 = Const::IStr("atom");
@@ -274,7 +282,7 @@ Function* hand_pred_atom_1_1::exec_static(PrologMachine* mach) {
 	Term* continuation = local_aregs[1];
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var1->Deref();
@@ -285,7 +293,8 @@ Function* hand_pred_atom_1_1::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_atomic_1::entry_code;
-java::util::function::Function* hand_pred_atomic_1::cl1 = new hand_pred_atomic_1_1();
+java::util::function::Function* hand_pred_atomic_1::cl1 =
+		new hand_pred_atomic_1_1();
 java::util::function::Function* hand_pred_atomic_1::type_of3cont;
 wstring hand_pred_atomic_1::string0 = (wstring("cut")).intern();
 wstring hand_pred_atomic_1::string1 = (wstring("atomic")).intern();
@@ -314,7 +323,7 @@ Function* hand_pred_atomic_1_1::exec_static(PrologMachine* mach) {
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var1->Deref();
@@ -325,8 +334,10 @@ Function* hand_pred_atomic_1_1::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_atomic2_1::entry_code;
-java::util::function::Function* hand_pred_atomic2_1::cl1 = new hand_pred_atomic2_1_1();
-java::util::function::Function* hand_pred_atomic2_1::cl2 = new hand_pred_atomic2_1_2();
+java::util::function::Function* hand_pred_atomic2_1::cl1 =
+		new hand_pred_atomic2_1_1();
+java::util::function::Function* hand_pred_atomic2_1::cl2 =
+		new hand_pred_atomic2_1_2();
 java::util::function::Function* hand_pred_atomic2_1::cut2cont;
 wstring hand_pred_atomic2_1::string0 = (wstring("cut")).intern();
 wstring hand_pred_atomic2_1::string1 = (wstring("atom")).intern();
@@ -356,7 +367,7 @@ Function* hand_pred_atomic2_1_1::exec_static(PrologMachine* mach) {
 	Term* continuation = local_aregs[1];
 	Term* areg0 = local_aregs[0]->Deref();
 	Const tempVar(string1);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -371,7 +382,7 @@ Function* hand_pred_atomic2_1_2::exec_static(PrologMachine* mach) {
 	Term* continuation = local_aregs[1];
 	Term* areg0 = local_aregs[0]->Deref();
 	Const tempVar(string5);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -381,9 +392,12 @@ Function* hand_pred_atomic2_1_2::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_collectvars_3::entry_code;
-java::util::function::Function* hand_pred_collectvars_3::cl1 = new hand_pred_collectvars_3_1();
-java::util::function::Function* hand_pred_collectvars_3::cl2 = new hand_pred_collectvars_3_2();
-java::util::function::Function* hand_pred_collectvars_3::cl3 = new hand_pred_collectvars_3_3();
+java::util::function::Function* hand_pred_collectvars_3::cl1 =
+		new hand_pred_collectvars_3_1();
+java::util::function::Function* hand_pred_collectvars_3::cl2 =
+		new hand_pred_collectvars_3_2();
+java::util::function::Function* hand_pred_collectvars_3::cl3 =
+		new hand_pred_collectvars_3_3();
 java::util::function::Function* hand_pred_collectvars_3::cut2cont;
 java::util::function::Function* hand_pred_collectvars_3::noteq3cont;
 wstring hand_pred_collectvars_3::string0 = (wstring("cut")).intern();
@@ -408,7 +422,8 @@ int hand_pred_collectvars_3::Arity() {
 }
 
 Function* hand_pred_collectvars_3::exec_static(PrologMachine* mach) {
-	std::vector<Term*> aregs = { mach->Areg[0], mach->Areg[1], mach->Areg[2], mach->Areg[3] };
+	std::vector<Term*> aregs = { mach->Areg[0], mach->Areg[1], mach->Areg[2],
+			mach->Areg[3] };
 	mach->CreateChoicePoint(aregs);
 	return static_cast<Function*>(cl1->apply(mach));
 }
@@ -422,13 +437,13 @@ Function* hand_pred_collectvars_3_1::exec_static(PrologMachine* mach) {
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var1 = new Var(mach);
 	Const tempVar(string3);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var1))) {
+	if (!((areg1)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg2)->Unify(var1->Deref()))) {
+	if (!((areg2)->Unify(var1->Deref()))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -452,19 +467,24 @@ Function* hand_pred_collectvars_3_2::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string1, new Funct(string9, var1, var2, var3), var4);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var5))) {
+	if (!((areg1)->Unify(var5))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg2)->Unify(var6))) {
+	if (!((areg2)->Unify(var6))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var2->Deref();
 	local_aregs[1] = new Const(string4);
-	Funct tempVar2(string0, new HeapChoice(mach->CUTB), new Funct(string5, var4->Deref(), new Funct(string1, new Funct(string2, var1->Deref(), var2->Deref()), var5->Deref()), var6->Deref(), continuation));
-	local_aregs[2] = new Funct(string8, var2->Deref(), var5->Deref(), &tempVar2);
+	Funct tempVar2(string0, new HeapChoice(mach->CUTB),
+			new Funct(string5, var4->Deref(),
+					new Funct(string1,
+							new Funct(string2, var1->Deref(), var2->Deref()),
+							var5->Deref()), var6->Deref(), continuation));
+	local_aregs[2] = new Funct(string8, var2->Deref(), var5->Deref(),
+			&tempVar2);
 	mach->CUTB = mach->CurrentChoice;
 	local_aregs[3] = nullptr;
 	return noteq3cont;
@@ -482,13 +502,13 @@ Function* hand_pred_collectvars_3_3::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string1, var1, var2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var3))) {
+	if (!((areg1)->Unify(var3))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg2)->Unify(var4))) {
+	if (!((areg2)->Unify(var4))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var2->Deref();
@@ -500,7 +520,8 @@ Function* hand_pred_collectvars_3_3::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_copy_term_2::entry_code;
-java::util::function::Function* hand_pred_copy_term_2::cl1 = new hand_pred_copy_term_2_1();
+java::util::function::Function* hand_pred_copy_term_2::cl1 =
+		new hand_pred_copy_term_2_1();
 java::util::function::Function* hand_pred_copy_term_2::findall4cont;
 wstring hand_pred_copy_term_2::string0 = (wstring("cut")).intern();
 wstring hand_pred_copy_term_2::string1 = (wstring(".")).intern();
@@ -533,10 +554,10 @@ Function* hand_pred_copy_term_2_1::exec_static(PrologMachine* mach) {
 	Term* var3 = new Var(mach);
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var2))) {
+	if (!((areg1)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var3;
@@ -549,12 +570,18 @@ Function* hand_pred_copy_term_2_1::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_exec_1::entry_code;
-java::util::function::Function* hand_pred_exec_1::cl1 = new hand_pred_exec_1_1();
-java::util::function::Function* hand_pred_exec_1::cl2 = new hand_pred_exec_1_2();
-java::util::function::Function* hand_pred_exec_1::cl3 = new hand_pred_exec_1_3();
-java::util::function::Function* hand_pred_exec_1::cl4 = new hand_pred_exec_1_4();
-java::util::function::Function* hand_pred_exec_1::cl5 = new hand_pred_exec_1_5();
-java::util::function::Function* hand_pred_exec_1::cl6 = new hand_pred_exec_1_6();
+java::util::function::Function* hand_pred_exec_1::cl1 =
+		new hand_pred_exec_1_1();
+java::util::function::Function* hand_pred_exec_1::cl2 =
+		new hand_pred_exec_1_2();
+java::util::function::Function* hand_pred_exec_1::cl3 =
+		new hand_pred_exec_1_3();
+java::util::function::Function* hand_pred_exec_1::cl4 =
+		new hand_pred_exec_1_4();
+java::util::function::Function* hand_pred_exec_1::cl5 =
+		new hand_pred_exec_1_5();
+java::util::function::Function* hand_pred_exec_1::cl6 =
+		new hand_pred_exec_1_6();
 java::util::function::Function* hand_pred_exec_1::cut2cont;
 java::util::function::Function* hand_pred_exec_1::specialgoal3cont;
 java::util::function::Function* hand_pred_exec_1::var2cont;
@@ -594,7 +621,7 @@ Function* hand_pred_exec_1_1::exec_static(PrologMachine* mach) {
 	Term* continuation = local_aregs[1];
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var1->Deref();
@@ -613,7 +640,7 @@ Function* hand_pred_exec_1_2::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string1, var1, var2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -631,7 +658,7 @@ Function* hand_pred_exec_1_3::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string2, var1, var2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -650,11 +677,12 @@ Function* hand_pred_exec_1_4::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string3, var1, var2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
-	local_aregs[0] = new Funct(string7, var1->Deref(), var2->Deref(), continuation);
+	local_aregs[0] = new Funct(string7, var1->Deref(), var2->Deref(),
+			continuation);
 	mach->CUTB = mach->CurrentChoice;
 	return UpperPrologMachine::Call1;
 }
@@ -666,7 +694,7 @@ Function* hand_pred_exec_1_5::exec_static(PrologMachine* mach) {
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var1->Deref();
@@ -684,7 +712,7 @@ Function* hand_pred_exec_1_6::exec_static(PrologMachine* mach) {
 	Term* continuation = local_aregs[1];
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var1->Deref();
@@ -694,10 +722,14 @@ Function* hand_pred_exec_1_6::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_execdisj_2::entry_code;
-java::util::function::Function* hand_pred_execdisj_2::cl1 = new hand_pred_execdisj_2_1();
-java::util::function::Function* hand_pred_execdisj_2::cl2 = new hand_pred_execdisj_2_2();
-java::util::function::Function* hand_pred_execdisj_2::cl3 = new hand_pred_execdisj_2_3();
-java::util::function::Function* hand_pred_execdisj_2::cl4 = new hand_pred_execdisj_2_4();
+java::util::function::Function* hand_pred_execdisj_2::cl1 =
+		new hand_pred_execdisj_2_1();
+java::util::function::Function* hand_pred_execdisj_2::cl2 =
+		new hand_pred_execdisj_2_2();
+java::util::function::Function* hand_pred_execdisj_2::cl3 =
+		new hand_pred_execdisj_2_3();
+java::util::function::Function* hand_pred_execdisj_2::cl4 =
+		new hand_pred_execdisj_2_4();
 java::util::function::Function* hand_pred_execdisj_2::cut2cont;
 java::util::function::Function* hand_pred_execdisj_2::exec2cont;
 wstring hand_pred_execdisj_2::string0 = (wstring("cut")).intern();
@@ -732,10 +764,10 @@ Function* hand_pred_execdisj_2_1::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string1, var1, var2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var3))) {
+	if (!((areg1)->Unify(var3))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var1->Deref();
@@ -757,10 +789,10 @@ Function* hand_pred_execdisj_2_2::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string1, var1, var2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var3))) {
+	if (!((areg1)->Unify(var3))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -778,10 +810,10 @@ Function* hand_pred_execdisj_2_3::exec_static(PrologMachine* mach) {
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var2))) {
+	if (!((areg1)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var1->Deref();
@@ -799,10 +831,10 @@ Function* hand_pred_execdisj_2_4::exec_static(PrologMachine* mach) {
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var2))) {
+	if (!((areg1)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var2->Deref();
@@ -813,16 +845,20 @@ Function* hand_pred_execdisj_2_4::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_execpendinggoals_1::entry_code;
-java::util::function::Function* hand_pred_execpendinggoals_1::cl1 = new hand_pred_execpendinggoals_1_1();
-java::util::function::Function* hand_pred_execpendinggoals_1::cl2 = new hand_pred_execpendinggoals_1_2();
+java::util::function::Function* hand_pred_execpendinggoals_1::cl1 =
+		new hand_pred_execpendinggoals_1_1();
+java::util::function::Function* hand_pred_execpendinggoals_1::cl2 =
+		new hand_pred_execpendinggoals_1_2();
 java::util::function::Function* hand_pred_execpendinggoals_1::exec2cont;
 java::util::function::Function* hand_pred_execpendinggoals_1::execcontinuation1cont;
 wstring hand_pred_execpendinggoals_1::string0 = (wstring("cut")).intern();
 wstring hand_pred_execpendinggoals_1::string1 = (wstring(".")).intern();
 wstring hand_pred_execpendinggoals_1::string2 = (wstring("[]")).intern();
 wstring hand_pred_execpendinggoals_1::string3 = (wstring("exec")).intern();
-wstring hand_pred_execpendinggoals_1::string4 = (wstring("execcontinuation")).intern();
-wstring hand_pred_execpendinggoals_1::string5 = (wstring("execpendinggoals")).intern();
+wstring hand_pred_execpendinggoals_1::string4 =
+		(wstring("execcontinuation")).intern();
+wstring hand_pred_execpendinggoals_1::string5 =
+		(wstring("execpendinggoals")).intern();
 
 void hand_pred_execpendinggoals_1::Init(PrologMachine* mach) {
 	entry_code = this;
@@ -846,7 +882,7 @@ Function* hand_pred_execpendinggoals_1_1::exec_static(PrologMachine* mach) {
 	Term* continuation = local_aregs[1];
 	Term* areg0 = local_aregs[0]->Deref();
 	Const tempVar(string2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -863,7 +899,7 @@ Function* hand_pred_execpendinggoals_1_2::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string1, var1, var2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var1->Deref();
@@ -873,8 +909,10 @@ Function* hand_pred_execpendinggoals_1_2::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_findall2_4::entry_code;
-java::util::function::Function* hand_pred_findall2_4::cl1 = new hand_pred_findall2_4_1();
-java::util::function::Function* hand_pred_findall2_4::cl2 = new hand_pred_findall2_4_2();
+java::util::function::Function* hand_pred_findall2_4::cl1 =
+		new hand_pred_findall2_4_1();
+java::util::function::Function* hand_pred_findall2_4::cl2 =
+		new hand_pred_findall2_4_2();
 java::util::function::Function* hand_pred_findall2_4::exec2cont;
 java::util::function::Function* hand_pred_findall2_4::retrievefindall3cont;
 wstring hand_pred_findall2_4::string0 = (wstring("cut")).intern();
@@ -895,7 +933,8 @@ int hand_pred_findall2_4::Arity() {
 }
 
 Function* hand_pred_findall2_4::exec_static(PrologMachine* mach) {
-	std::vector<Term*> aregs = { mach->Areg[0], mach->Areg[1], mach->Areg[2], mach->Areg[3], mach->Areg[4] };
+	std::vector<Term*> aregs = { mach->Areg[0], mach->Areg[1], mach->Areg[2],
+			mach->Areg[3], mach->Areg[4] };
 	mach->CreateChoicePoint(aregs);
 	return static_cast<Function*>(cl1->apply(mach));
 }
@@ -912,16 +951,16 @@ Function* hand_pred_findall2_4_1::exec_static(PrologMachine* mach) {
 	Term* var3 = new Var(mach);
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var2))) {
+	if (!((areg1)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg2)->Unify(var3))) {
+	if (!((areg2)->Unify(var3))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg3)->Unify(var4))) {
+	if (!((areg3)->Unify(var4))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var2->Deref();
@@ -944,16 +983,16 @@ Function* hand_pred_findall2_4_2::exec_static(PrologMachine* mach) {
 	Term* var3 = new Var(mach);
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var2))) {
+	if (!((areg1)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg2)->Unify(var3))) {
+	if (!((areg2)->Unify(var3))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg3)->Unify(var4))) {
+	if (!((areg3)->Unify(var4))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var3->Deref();
@@ -965,7 +1004,8 @@ Function* hand_pred_findall2_4_2::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_findall_3::entry_code;
-java::util::function::Function* hand_pred_findall_3::cl1 = new hand_pred_findall_3_1();
+java::util::function::Function* hand_pred_findall_3::cl1 =
+		new hand_pred_findall_3_1();
 java::util::function::Function* hand_pred_findall_3::initfindall2cont;
 wstring hand_pred_findall_3::string0 = (wstring("cut")).intern();
 wstring hand_pred_findall_3::string1 = (wstring("findall")).intern();
@@ -982,7 +1022,8 @@ int hand_pred_findall_3::Arity() {
 }
 
 Function* hand_pred_findall_3::exec_static(PrologMachine* mach) {
-	std::vector<Term*> aregs = { mach->Areg[0], mach->Areg[1], mach->Areg[2], mach->Areg[3] };
+	std::vector<Term*> aregs = { mach->Areg[0], mach->Areg[1], mach->Areg[2],
+			mach->Areg[3] };
 	mach->CreateChoicePoint(aregs);
 	return static_cast<Function*>(cl1->apply(mach));
 }
@@ -998,25 +1039,28 @@ Function* hand_pred_findall_3_1::exec_static(PrologMachine* mach) {
 	Term* var3 = new Var(mach);
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var2))) {
+	if (!((areg1)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg2)->Unify(var3))) {
+	if (!((areg2)->Unify(var3))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var4;
-	local_aregs[1] = new Funct(string2, var1->Deref(), var2->Deref(), var3->Deref(), var4->Deref(), continuation);
+	local_aregs[1] = new Funct(string2, var1->Deref(), var2->Deref(),
+			var3->Deref(), var4->Deref(), continuation);
 	mach->CUTB = mach->CurrentChoice;
 	local_aregs[3] = local_aregs[2] = nullptr;
 	return initfindall2cont;
 }
 
 java::util::function::Function* hand_pred_freeze_2::entry_code;
-java::util::function::Function* hand_pred_freeze_2::cl1 = new hand_pred_freeze_2_1();
-java::util::function::Function* hand_pred_freeze_2::cl2 = new hand_pred_freeze_2_2();
+java::util::function::Function* hand_pred_freeze_2::cl1 =
+		new hand_pred_freeze_2_1();
+java::util::function::Function* hand_pred_freeze_2::cl2 =
+		new hand_pred_freeze_2_2();
 java::util::function::Function* hand_pred_freeze_2::exec2cont;
 java::util::function::Function* hand_pred_freeze_2::var2cont;
 wstring hand_pred_freeze_2::string0 = (wstring("cut")).intern();
@@ -1051,10 +1095,10 @@ Function* hand_pred_freeze_2_1::exec_static(PrologMachine* mach) {
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var2))) {
+	if (!((areg1)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var1->Deref();
@@ -1074,10 +1118,10 @@ Function* hand_pred_freeze_2_2::exec_static(PrologMachine* mach) {
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var2))) {
+	if (!((areg1)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var2->Deref();
@@ -1088,8 +1132,10 @@ Function* hand_pred_freeze_2_2::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_getargs_2::entry_code;
-java::util::function::Function* hand_pred_getargs_2::cl1 = new hand_pred_getargs_2_1();
-java::util::function::Function* hand_pred_getargs_2::cl2 = new hand_pred_getargs_2_2();
+java::util::function::Function* hand_pred_getargs_2::cl1 =
+		new hand_pred_getargs_2_1();
+java::util::function::Function* hand_pred_getargs_2::cl2 =
+		new hand_pred_getargs_2_2();
 java::util::function::Function* hand_pred_getargs_2::ap4cont;
 wstring hand_pred_getargs_2::string0 = (wstring("cut")).intern();
 wstring hand_pred_getargs_2::string1 = (wstring(")")).intern();
@@ -1128,10 +1174,10 @@ Function* hand_pred_getargs_2_1::exec_static(PrologMachine* mach) {
 	Term* var3 = new Var(mach);
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var2))) {
+	if (!((areg1)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var3;
@@ -1139,8 +1185,11 @@ Function* hand_pred_getargs_2_1::exec_static(PrologMachine* mach) {
 	Const tempVar2(string4);
 	local_aregs[1] = new Funct(string3, &tempVar, &tempVar2);
 	local_aregs[2] = var1->Deref();
-	Funct tempVar3(string9, new Funct(string3, var4->Deref(), new Const(string4)), var2->Deref(), continuation);
-	local_aregs[3] = new Funct(string8, var3->Deref(), var4, posint900, &tempVar3);
+	Funct tempVar3(string9,
+			new Funct(string3, var4->Deref(), new Const(string4)),
+			var2->Deref(), continuation);
+	local_aregs[3] = new Funct(string8, var3->Deref(), var4, posint900,
+			&tempVar3);
 	mach->CUTB = mach->CurrentChoice;
 	return ap4cont;
 }
@@ -1157,51 +1206,82 @@ Function* hand_pred_getargs_2_2::exec_static(PrologMachine* mach) {
 	Term* var3 = new Var(mach);
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var2))) {
+	if (!((areg1)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var3;
 	Funct tempVar(string6, new Const(string2));
 	local_aregs[1] = new Funct(string3, &tempVar, var4);
 	local_aregs[2] = var1->Deref();
-	Funct tempVar2(string9, new Funct(string3, var5->Deref(), var6), var2->Deref(), new Funct(string7, var4->Deref(), var6->Deref(), continuation));
-	local_aregs[3] = new Funct(string8, var3->Deref(), var5, posint900, &tempVar2);
+	Funct tempVar2(string9, new Funct(string3, var5->Deref(), var6),
+			var2->Deref(),
+			new Funct(string7, var4->Deref(), var6->Deref(), continuation));
+	local_aregs[3] = new Funct(string8, var3->Deref(), var5, posint900,
+			&tempVar2);
 	mach->CUTB = mach->CurrentChoice;
 	return ap4cont;
 }
 
 java::util::function::Function* hand_pred_infix_3::entry_code;
-java::util::function::Function* hand_pred_infix_3::cl1 = new hand_pred_infix_3_1();
-java::util::function::Function* hand_pred_infix_3::cl2 = new hand_pred_infix_3_2();
-java::util::function::Function* hand_pred_infix_3::cl3 = new hand_pred_infix_3_3();
-java::util::function::Function* hand_pred_infix_3::cl4 = new hand_pred_infix_3_4();
-java::util::function::Function* hand_pred_infix_3::cl5 = new hand_pred_infix_3_5();
-java::util::function::Function* hand_pred_infix_3::cl6 = new hand_pred_infix_3_6();
-java::util::function::Function* hand_pred_infix_3::cl7 = new hand_pred_infix_3_7();
-java::util::function::Function* hand_pred_infix_3::cl8 = new hand_pred_infix_3_8();
-java::util::function::Function* hand_pred_infix_3::cl9 = new hand_pred_infix_3_9();
-java::util::function::Function* hand_pred_infix_3::cl10 = new hand_pred_infix_3_10();
-java::util::function::Function* hand_pred_infix_3::cl11 = new hand_pred_infix_3_11();
-java::util::function::Function* hand_pred_infix_3::cl12 = new hand_pred_infix_3_12();
-java::util::function::Function* hand_pred_infix_3::cl13 = new hand_pred_infix_3_13();
-java::util::function::Function* hand_pred_infix_3::cl14 = new hand_pred_infix_3_14();
-java::util::function::Function* hand_pred_infix_3::cl15 = new hand_pred_infix_3_15();
-java::util::function::Function* hand_pred_infix_3::cl16 = new hand_pred_infix_3_16();
-java::util::function::Function* hand_pred_infix_3::cl17 = new hand_pred_infix_3_17();
-java::util::function::Function* hand_pred_infix_3::cl18 = new hand_pred_infix_3_18();
-java::util::function::Function* hand_pred_infix_3::cl19 = new hand_pred_infix_3_19();
-java::util::function::Function* hand_pred_infix_3::cl20 = new hand_pred_infix_3_20();
-java::util::function::Function* hand_pred_infix_3::cl21 = new hand_pred_infix_3_21();
-java::util::function::Function* hand_pred_infix_3::cl22 = new hand_pred_infix_3_22();
-java::util::function::Function* hand_pred_infix_3::cl23 = new hand_pred_infix_3_23();
-java::util::function::Function* hand_pred_infix_3::cl24 = new hand_pred_infix_3_24();
-java::util::function::Function* hand_pred_infix_3::cl25 = new hand_pred_infix_3_25();
-java::util::function::Function* hand_pred_infix_3::cl26 = new hand_pred_infix_3_26();
-java::util::function::Function* hand_pred_infix_3::cl27 = new hand_pred_infix_3_27();
-java::util::function::Function* hand_pred_infix_3::cl28 = new hand_pred_infix_3_28();
+java::util::function::Function* hand_pred_infix_3::cl1 =
+		new hand_pred_infix_3_1();
+java::util::function::Function* hand_pred_infix_3::cl2 =
+		new hand_pred_infix_3_2();
+java::util::function::Function* hand_pred_infix_3::cl3 =
+		new hand_pred_infix_3_3();
+java::util::function::Function* hand_pred_infix_3::cl4 =
+		new hand_pred_infix_3_4();
+java::util::function::Function* hand_pred_infix_3::cl5 =
+		new hand_pred_infix_3_5();
+java::util::function::Function* hand_pred_infix_3::cl6 =
+		new hand_pred_infix_3_6();
+java::util::function::Function* hand_pred_infix_3::cl7 =
+		new hand_pred_infix_3_7();
+java::util::function::Function* hand_pred_infix_3::cl8 =
+		new hand_pred_infix_3_8();
+java::util::function::Function* hand_pred_infix_3::cl9 =
+		new hand_pred_infix_3_9();
+java::util::function::Function* hand_pred_infix_3::cl10 =
+		new hand_pred_infix_3_10();
+java::util::function::Function* hand_pred_infix_3::cl11 =
+		new hand_pred_infix_3_11();
+java::util::function::Function* hand_pred_infix_3::cl12 =
+		new hand_pred_infix_3_12();
+java::util::function::Function* hand_pred_infix_3::cl13 =
+		new hand_pred_infix_3_13();
+java::util::function::Function* hand_pred_infix_3::cl14 =
+		new hand_pred_infix_3_14();
+java::util::function::Function* hand_pred_infix_3::cl15 =
+		new hand_pred_infix_3_15();
+java::util::function::Function* hand_pred_infix_3::cl16 =
+		new hand_pred_infix_3_16();
+java::util::function::Function* hand_pred_infix_3::cl17 =
+		new hand_pred_infix_3_17();
+java::util::function::Function* hand_pred_infix_3::cl18 =
+		new hand_pred_infix_3_18();
+java::util::function::Function* hand_pred_infix_3::cl19 =
+		new hand_pred_infix_3_19();
+java::util::function::Function* hand_pred_infix_3::cl20 =
+		new hand_pred_infix_3_20();
+java::util::function::Function* hand_pred_infix_3::cl21 =
+		new hand_pred_infix_3_21();
+java::util::function::Function* hand_pred_infix_3::cl22 =
+		new hand_pred_infix_3_22();
+java::util::function::Function* hand_pred_infix_3::cl23 =
+		new hand_pred_infix_3_23();
+java::util::function::Function* hand_pred_infix_3::cl24 =
+		new hand_pred_infix_3_24();
+java::util::function::Function* hand_pred_infix_3::cl25 =
+		new hand_pred_infix_3_25();
+java::util::function::Function* hand_pred_infix_3::cl26 =
+		new hand_pred_infix_3_26();
+java::util::function::Function* hand_pred_infix_3::cl27 =
+		new hand_pred_infix_3_27();
+java::util::function::Function* hand_pred_infix_3::cl28 =
+		new hand_pred_infix_3_28();
 wstring hand_pred_infix_3::string0 = Const::IStr("cut");
 wstring hand_pred_infix_3::string1 = Const::IStr("#");
 wstring hand_pred_infix_3::string2 = Const::IStr("*");
@@ -1256,7 +1336,8 @@ int hand_pred_infix_3::Arity() {
 }
 
 Function* hand_pred_infix_3::exec_static(PrologMachine* mach) {
-	std::vector<Term*> aregs = { mach->Areg[0], mach->Areg[1], mach->Areg[2], mach->Areg[3] };
+	std::vector<Term*> aregs = { mach->Areg[0], mach->Areg[1], mach->Areg[2],
+			mach->Areg[3] };
 	mach->CreateChoicePoint(aregs);
 	return static_cast<Function*>(cl1->apply(mach));
 }
@@ -1268,15 +1349,15 @@ Function* hand_pred_infix_3_1::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint1200))) {
+	if (!((areg0)->Unify(posint1200))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string31);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string10);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -1292,15 +1373,15 @@ Function* hand_pred_infix_3_2::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint1000))) {
+	if (!((areg0)->Unify(posint1000))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string32);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string4);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -1316,15 +1397,15 @@ Function* hand_pred_infix_3_3::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint1100))) {
+	if (!((areg0)->Unify(posint1100))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string32);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string11);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -1340,15 +1421,15 @@ Function* hand_pred_infix_3_4::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint1050))) {
+	if (!((areg0)->Unify(posint1050))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string32);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string6);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -1364,15 +1445,15 @@ Function* hand_pred_infix_3_5::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint700))) {
+	if (!((areg0)->Unify(posint700))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string31);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string14);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -1388,15 +1469,15 @@ Function* hand_pred_infix_3_6::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint700))) {
+	if (!((areg0)->Unify(posint700))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string31);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string29);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -1412,15 +1493,15 @@ Function* hand_pred_infix_3_7::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint700))) {
+	if (!((areg0)->Unify(posint700))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string31);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string15);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -1436,15 +1517,15 @@ Function* hand_pred_infix_3_8::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint700))) {
+	if (!((areg0)->Unify(posint700))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string31);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string18);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -1460,15 +1541,15 @@ Function* hand_pred_infix_3_9::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint700))) {
+	if (!((areg0)->Unify(posint700))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string31);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string22);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -1484,15 +1565,15 @@ Function* hand_pred_infix_3_10::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint700))) {
+	if (!((areg0)->Unify(posint700))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string31);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string24);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -1508,15 +1589,15 @@ Function* hand_pred_infix_3_11::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint700))) {
+	if (!((areg0)->Unify(posint700))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string31);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string23);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -1532,15 +1613,15 @@ Function* hand_pred_infix_3_12::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint700))) {
+	if (!((areg0)->Unify(posint700))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string31);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string25);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -1556,15 +1637,15 @@ Function* hand_pred_infix_3_13::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint700))) {
+	if (!((areg0)->Unify(posint700))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string31);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string16);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -1580,15 +1661,15 @@ Function* hand_pred_infix_3_14::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint700))) {
+	if (!((areg0)->Unify(posint700))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string31);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string12);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -1604,15 +1685,15 @@ Function* hand_pred_infix_3_15::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint700))) {
+	if (!((areg0)->Unify(posint700))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string31);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string17);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -1628,15 +1709,15 @@ Function* hand_pred_infix_3_16::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint700))) {
+	if (!((areg0)->Unify(posint700))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string31);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string19);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -1652,15 +1733,15 @@ Function* hand_pred_infix_3_17::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint700))) {
+	if (!((areg0)->Unify(posint700))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string31);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string20);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -1676,15 +1757,15 @@ Function* hand_pred_infix_3_18::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint550))) {
+	if (!((areg0)->Unify(posint550))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string32);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string9);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -1700,15 +1781,15 @@ Function* hand_pred_infix_3_19::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint500))) {
+	if (!((areg0)->Unify(posint500))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string33);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string3);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -1724,15 +1805,15 @@ Function* hand_pred_infix_3_20::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint500))) {
+	if (!((areg0)->Unify(posint500))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string33);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string5);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -1748,15 +1829,15 @@ Function* hand_pred_infix_3_21::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint500))) {
+	if (!((areg0)->Unify(posint500))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string33);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string1);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -1772,15 +1853,15 @@ Function* hand_pred_infix_3_22::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint400))) {
+	if (!((areg0)->Unify(posint400))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string33);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string2);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -1796,15 +1877,15 @@ Function* hand_pred_infix_3_23::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint400))) {
+	if (!((areg0)->Unify(posint400))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string33);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string7);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -1820,15 +1901,15 @@ Function* hand_pred_infix_3_24::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint400))) {
+	if (!((areg0)->Unify(posint400))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string33);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string8);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -1844,15 +1925,15 @@ Function* hand_pred_infix_3_25::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint400))) {
+	if (!((areg0)->Unify(posint400))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string33);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string13);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -1868,15 +1949,15 @@ Function* hand_pred_infix_3_26::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint400))) {
+	if (!((areg0)->Unify(posint400))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string33);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string21);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -1892,15 +1973,15 @@ Function* hand_pred_infix_3_27::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint300))) {
+	if (!((areg0)->Unify(posint300))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string31);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string30);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -1916,15 +1997,15 @@ Function* hand_pred_infix_3_28::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint200))) {
+	if (!((areg0)->Unify(posint200))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string32);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string26);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -1934,7 +2015,8 @@ Function* hand_pred_infix_3_28::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_integer_1::entry_code;
-java::util::function::Function* hand_pred_integer_1::cl1 = new hand_pred_integer_1_1();
+java::util::function::Function* hand_pred_integer_1::cl1 =
+		new hand_pred_integer_1_1();
 java::util::function::Function* hand_pred_integer_1::type_of3cont;
 wstring hand_pred_integer_1::string0 = Const::IStr("cut");
 wstring hand_pred_integer_1::string1 = Const::IStr("integer");
@@ -1961,7 +2043,7 @@ Function* hand_pred_integer_1_1::exec_static(PrologMachine* mach) {
 	Term* continuation = local_aregs[1];
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var1->Deref();
@@ -1972,8 +2054,10 @@ Function* hand_pred_integer_1_1::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_loop_1::entry_code;
-java::util::function::Function* hand_pred_loop_1::cl1 = new hand_pred_loop_1_1();
-java::util::function::Function* hand_pred_loop_1::cl2 = new hand_pred_loop_1_2();
+java::util::function::Function* hand_pred_loop_1::cl1 =
+		new hand_pred_loop_1_1();
+java::util::function::Function* hand_pred_loop_1::cl2 =
+		new hand_pred_loop_1_2();
 java::util::function::Function* hand_pred_loop_1::cut2cont;
 java::util::function::Function* hand_pred_loop_1::is3cont;
 wstring hand_pred_loop_1::string0 = (wstring("cut")).intern();
@@ -2004,7 +2088,7 @@ Function* hand_pred_loop_1_1::exec_static(PrologMachine* mach) {
 	std::vector<Term*> local_aregs = mach->Areg;
 	Term* continuation = local_aregs[1];
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint0))) {
+	if (!((areg0)->Unify(posint0))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -2020,7 +2104,7 @@ Function* hand_pred_loop_1_2::exec_static(PrologMachine* mach) {
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var2;
@@ -2064,11 +2148,11 @@ Function* hand_pred_m1_2_1::exec_static(PrologMachine* mach) {
 	Term* var3 = new Var(mach);
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Funct tempVar(string2, new Funct(string1, var1->Deref(), var2), var3);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var2->Deref();
@@ -2087,11 +2171,11 @@ Function* hand_pred_m1_2_2::exec_static(PrologMachine* mach) {
 	Term* var3 = new Var(mach);
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Funct tempVar(string2, var2, var3);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var1->Deref();
@@ -2102,7 +2186,8 @@ Function* hand_pred_m1_2_2::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_maketerm_2::entry_code;
-java::util::function::Function* hand_pred_maketerm_2::cl1 = new hand_pred_maketerm_2_1();
+java::util::function::Function* hand_pred_maketerm_2::cl1 =
+		new hand_pred_maketerm_2_1();
 java::util::function::Function* hand_pred_maketerm_2::maketerm4cont;
 wstring hand_pred_maketerm_2::string0 = (wstring("cut")).intern();
 wstring hand_pred_maketerm_2::string1 = (wstring("maketerm")).intern();
@@ -2131,10 +2216,10 @@ Function* hand_pred_maketerm_2_1::exec_static(PrologMachine* mach) {
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var2))) {
+	if (!((areg1)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var1->Deref();
@@ -2146,17 +2231,28 @@ Function* hand_pred_maketerm_2_1::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_maketerm_3::entry_code;
-java::util::function::Function* hand_pred_maketerm_3::cl1 = new hand_pred_maketerm_3_1();
-java::util::function::Function* hand_pred_maketerm_3::cl2 = new hand_pred_maketerm_3_2();
-java::util::function::Function* hand_pred_maketerm_3::cl3 = new hand_pred_maketerm_3_3();
-java::util::function::Function* hand_pred_maketerm_3::cl4 = new hand_pred_maketerm_3_4();
-java::util::function::Function* hand_pred_maketerm_3::cl5 = new hand_pred_maketerm_3_5();
-java::util::function::Function* hand_pred_maketerm_3::cl6 = new hand_pred_maketerm_3_6();
-java::util::function::Function* hand_pred_maketerm_3::cl7 = new hand_pred_maketerm_3_7();
-java::util::function::Function* hand_pred_maketerm_3::cl8 = new hand_pred_maketerm_3_8();
-java::util::function::Function* hand_pred_maketerm_3::cl9 = new hand_pred_maketerm_3_9();
-java::util::function::Function* hand_pred_maketerm_3::cl10 = new hand_pred_maketerm_3_10();
-java::util::function::Function* hand_pred_maketerm_3::cl11 = new hand_pred_maketerm_3_11();
+java::util::function::Function* hand_pred_maketerm_3::cl1 =
+		new hand_pred_maketerm_3_1();
+java::util::function::Function* hand_pred_maketerm_3::cl2 =
+		new hand_pred_maketerm_3_2();
+java::util::function::Function* hand_pred_maketerm_3::cl3 =
+		new hand_pred_maketerm_3_3();
+java::util::function::Function* hand_pred_maketerm_3::cl4 =
+		new hand_pred_maketerm_3_4();
+java::util::function::Function* hand_pred_maketerm_3::cl5 =
+		new hand_pred_maketerm_3_5();
+java::util::function::Function* hand_pred_maketerm_3::cl6 =
+		new hand_pred_maketerm_3_6();
+java::util::function::Function* hand_pred_maketerm_3::cl7 =
+		new hand_pred_maketerm_3_7();
+java::util::function::Function* hand_pred_maketerm_3::cl8 =
+		new hand_pred_maketerm_3_8();
+java::util::function::Function* hand_pred_maketerm_3::cl9 =
+		new hand_pred_maketerm_3_9();
+java::util::function::Function* hand_pred_maketerm_3::cl10 =
+		new hand_pred_maketerm_3_10();
+java::util::function::Function* hand_pred_maketerm_3::cl11 =
+		new hand_pred_maketerm_3_11();
 java::util::function::Function* hand_pred_maketerm_3::ap4cont;
 java::util::function::Function* hand_pred_maketerm_3::cut2cont;
 java::util::function::Function* hand_pred_maketerm_3::getargs3cont;
@@ -2201,7 +2297,8 @@ int hand_pred_maketerm_3::Arity() {
 }
 
 Function* hand_pred_maketerm_3::exec_static(PrologMachine* mach) {
-	std::vector<Term*> aregs = { mach->Areg[0], mach->Areg[1], mach->Areg[2], mach->Areg[3] };
+	std::vector<Term*> aregs = { mach->Areg[0], mach->Areg[1], mach->Areg[2],
+			mach->Areg[3] };
 	mach->CreateChoicePoint(aregs);
 	return static_cast<Function*>(cl1->apply(mach));
 }
@@ -2218,14 +2315,15 @@ Function* hand_pred_maketerm_3_1::exec_static(PrologMachine* mach) {
 	Term* var3 = new Var(mach);
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	Funct tempVar(string4, new Funct(string21, var1, var2, var3), new Const(string6));
-	if(!((areg0)->Unify(&tempVar))) {
+	Funct tempVar(string4, new Funct(string21, var1, var2, var3),
+			new Const(string6));
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var4))) {
+	if (!((areg1)->Unify(var4))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg2)->Unify(var5))) {
+	if (!((areg2)->Unify(var5))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var1->Deref();
@@ -2248,17 +2346,18 @@ Function* hand_pred_maketerm_3_2::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string4, new Funct(string14, var1), new Const(string6));
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var2))) {
+	if (!((areg1)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg2)->Unify(var3))) {
+	if (!((areg2)->Unify(var3))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
-	local_aregs[0] = new Funct(string19, var1->Deref(), var2->Deref(), continuation);
+	local_aregs[0] = new Funct(string19, var1->Deref(), var2->Deref(),
+			continuation);
 	mach->CUTB = mach->CurrentChoice;
 	local_aregs[3] = local_aregs[2] = nullptr;
 	return UpperPrologMachine::Call1;
@@ -2275,17 +2374,18 @@ Function* hand_pred_maketerm_3_3::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string4, new Funct(string10, var1), new Const(string6));
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var2))) {
+	if (!((areg1)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg2)->Unify(var3))) {
+	if (!((areg2)->Unify(var3))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
-	local_aregs[0] = new Funct(string19, var1->Deref(), var2->Deref(), continuation);
+	local_aregs[0] = new Funct(string19, var1->Deref(), var2->Deref(),
+			continuation);
 	mach->CUTB = mach->CurrentChoice;
 	local_aregs[3] = local_aregs[2] = nullptr;
 	return UpperPrologMachine::Call1;
@@ -2303,19 +2403,21 @@ Function* hand_pred_maketerm_3_4::exec_static(PrologMachine* mach) {
 	Term* var3 = new Var(mach);
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	Funct tempVar(string4, new Funct(string10, var1), new Funct(string4, new Funct(string10, new Const(string1)), var2));
-	if(!((areg0)->Unify(&tempVar))) {
+	Funct tempVar(string4, new Funct(string10, var1),
+			new Funct(string4, new Funct(string10, new Const(string1)), var2));
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var3))) {
+	if (!((areg1)->Unify(var3))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg2)->Unify(var4))) {
+	if (!((areg2)->Unify(var4))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var2->Deref();
 	local_aregs[1] = var5;
-	local_aregs[2] = new Funct(string20, var3->Deref(), var1->Deref(), var5->Deref(), continuation);
+	local_aregs[2] = new Funct(string20, var3->Deref(), var1->Deref(),
+			var5->Deref(), continuation);
 	mach->CUTB = mach->CurrentChoice;
 	local_aregs[3] = nullptr;
 	return getargs3cont;
@@ -2340,20 +2442,32 @@ Function* hand_pred_maketerm_3_5::exec_static(PrologMachine* mach) {
 	Term* var3 = new Var(mach);
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var2))) {
+	if (!((areg1)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg2)->Unify(var3))) {
+	if (!((areg2)->Unify(var3))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var4;
 	Funct tempVar(string10, var5);
 	local_aregs[1] = new Funct(string4, &tempVar, var6);
 	local_aregs[2] = var1->Deref();
-	Funct tempVar2(string18, var7->Deref(), var3->Deref(), new Funct(string16, var8->Deref(), var7->Deref(), var9, var10, new Funct(string15, var4->Deref(), var11, var9->Deref(), new Funct(string15, var6->Deref(), var12, var10->Deref(), new Funct(string20, var2->Deref(), var5->Deref(), new Funct(string4, var11->Deref(), new Funct(string4, var12->Deref(), new Const(string6))), continuation)))));
+	Funct tempVar2(string18, var7->Deref(), var3->Deref(),
+			new Funct(string16, var8->Deref(), var7->Deref(), var9, var10,
+					new Funct(string15, var4->Deref(), var11, var9->Deref(),
+							new Funct(string15, var6->Deref(), var12,
+									var10->Deref(),
+									new Funct(string20, var2->Deref(),
+											var5->Deref(),
+											new Funct(string4, var11->Deref(),
+													new Funct(string4,
+															var12->Deref(),
+															new Const(
+																	string6))),
+											continuation)))));
 	local_aregs[3] = new Funct(string13, var7, var8, var5->Deref(), &tempVar2);
 	mach->CUTB = mach->CurrentChoice;
 	return ap4cont;
@@ -2375,20 +2489,25 @@ Function* hand_pred_maketerm_3_6::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string4, new Funct(string10, var1), var2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var3))) {
+	if (!((areg1)->Unify(var3))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg2)->Unify(var4))) {
+	if (!((areg2)->Unify(var4))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var5;
 	local_aregs[1] = var6;
 	local_aregs[2] = var1->Deref();
-	Funct tempVar2(string16, var6->Deref(), var5->Deref(), var7, new Funct(string15, var2->Deref(), var8, var7->Deref(), new Funct(string20, var3->Deref(), var1->Deref(), new Funct(string4, var8->Deref(), new Const(string6)), continuation)));
-	local_aregs[3] = new Funct(string18, var5->Deref(), var4->Deref(), &tempVar2);
+	Funct tempVar2(string16, var6->Deref(), var5->Deref(), var7,
+			new Funct(string15, var2->Deref(), var8, var7->Deref(),
+					new Funct(string20, var3->Deref(), var1->Deref(),
+							new Funct(string4, var8->Deref(),
+									new Const(string6)), continuation)));
+	local_aregs[3] = new Funct(string18, var5->Deref(), var4->Deref(),
+			&tempVar2);
 	mach->CUTB = mach->CurrentChoice;
 	return prefix4cont;
 }
@@ -2407,22 +2526,25 @@ Function* hand_pred_maketerm_3_7::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string4, new Funct(string10, new Const(string5)), var1);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Funct tempVar2(string4, var2, var3);
-	if(!((areg1)->Unify(&tempVar2))) {
+	if (!((areg1)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg2)->Unify(var4))) {
+	if (!((areg2)->Unify(var4))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var5;
 	Funct tempVar3(string10, new Const(string3));
 	local_aregs[1] = new Funct(string4, &tempVar3, var6);
 	local_aregs[2] = var1->Deref();
-	Funct tempVar4(string15, new Funct(string4, new Funct(string10, new Const(string5)), var6->Deref()), var3->Deref(), posint900, continuation);
-	local_aregs[3] = new Funct(string15, var5->Deref(), var2->Deref(), posint900, &tempVar4);
+	Funct tempVar4(string15,
+			new Funct(string4, new Funct(string10, new Const(string5)),
+					var6->Deref()), var3->Deref(), posint900, continuation);
+	local_aregs[3] = new Funct(string15, var5->Deref(), var2->Deref(),
+			posint900, &tempVar4);
 	mach->CUTB = mach->CurrentChoice;
 	return ap4cont;
 }
@@ -2442,23 +2564,27 @@ Function* hand_pred_maketerm_3_8::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string4, new Funct(string10, new Const(string5)), var1);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Funct tempVar2(string4, var2, var3);
-	if(!((areg1)->Unify(&tempVar2))) {
+	if (!((areg1)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg2)->Unify(var4))) {
+	if (!((areg2)->Unify(var4))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var5;
 	Funct tempVar3(string10, new Const(string22));
 	local_aregs[1] = new Funct(string4, &tempVar3, var6);
 	local_aregs[2] = var1->Deref();
-	Funct tempVar4(string4, new Funct(string10, new Const(string7)), new Const(string6));
-	Funct tempVar5(string15, var5->Deref(), var2->Deref(), posint900, new Funct(string15, var7->Deref(), var3->Deref(), posint900, continuation));
-	local_aregs[3] = new Funct(string8, var7, &tempVar4, var6->Deref(), &tempVar5);
+	Funct tempVar4(string4, new Funct(string10, new Const(string7)),
+			new Const(string6));
+	Funct tempVar5(string15, var5->Deref(), var2->Deref(), posint900,
+			new Funct(string15, var7->Deref(), var3->Deref(), posint900,
+					continuation));
+	local_aregs[3] = new Funct(string8, var7, &tempVar4, var6->Deref(),
+			&tempVar5);
 	mach->CUTB = mach->CurrentChoice;
 	return ap4cont;
 }
@@ -2475,13 +2601,13 @@ Function* hand_pred_maketerm_3_9::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string4, new Funct(string10, new Const(string1)), var1);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var2))) {
+	if (!((areg1)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg2)->Unify(var3))) {
+	if (!((areg2)->Unify(var3))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var4;
@@ -2508,14 +2634,14 @@ Function* hand_pred_maketerm_3_10::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string4, new Funct(string10, new Const(string5)), var1);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Funct tempVar2(string4, var2, new Const(string6));
-	if(!((areg1)->Unify(&tempVar2))) {
+	if (!((areg1)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg2)->Unify(var3))) {
+	if (!((areg2)->Unify(var3))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var4;
@@ -2523,7 +2649,8 @@ Function* hand_pred_maketerm_3_10::exec_static(PrologMachine* mach) {
 	Const tempVar4(string6);
 	local_aregs[1] = new Funct(string4, &tempVar3, &tempVar4);
 	local_aregs[2] = var1->Deref();
-	local_aregs[3] = new Funct(string15, var4->Deref(), var2->Deref(), posint900, continuation);
+	local_aregs[3] = new Funct(string15, var4->Deref(), var2->Deref(),
+			posint900, continuation);
 	mach->CUTB = mach->CurrentChoice;
 	return ap4cont;
 }
@@ -2536,15 +2663,17 @@ Function* hand_pred_maketerm_3_11::exec_static(PrologMachine* mach) {
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var1 = new Var(mach);
-	Funct tempVar(string4, new Funct(string10, new Const(string5)), new Funct(string4, new Funct(string10, new Const(string7)), new Const(string6)));
-	if(!((areg0)->Unify(&tempVar))) {
+	Funct tempVar(string4, new Funct(string10, new Const(string5)),
+			new Funct(string4, new Funct(string10, new Const(string7)),
+					new Const(string6)));
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string6);
-	if(!((areg1)->Unify(&tempVar2))) {
+	if (!((areg1)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg2)->Unify(var1))) {
+	if (!((areg2)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -2573,7 +2702,8 @@ int hand_pred_max_3::Arity() {
 }
 
 Function* hand_pred_max_3::exec_static(PrologMachine* mach) {
-	std::vector<Term*> aregs = { mach->Areg[0], mach->Areg[1], mach->Areg[2], mach->Areg[3] };
+	std::vector<Term*> aregs = { mach->Areg[0], mach->Areg[1], mach->Areg[2],
+			mach->Areg[3] };
 	mach->CreateChoicePoint(aregs);
 	return static_cast<Function*>(cl1->apply(mach));
 }
@@ -2587,13 +2717,13 @@ Function* hand_pred_max_3_1::exec_static(PrologMachine* mach) {
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var2))) {
+	if (!((areg1)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg2)->Unify(var2->Deref()))) {
+	if (!((areg2)->Unify(var2->Deref()))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var1->Deref();
@@ -2613,13 +2743,13 @@ Function* hand_pred_max_3_2::exec_static(PrologMachine* mach) {
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var2))) {
+	if (!((areg1)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg2)->Unify(var1->Deref()))) {
+	if (!((areg2)->Unify(var1->Deref()))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var2->Deref();
@@ -2638,13 +2768,13 @@ Function* hand_pred_max_3_3::exec_static(PrologMachine* mach) {
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var1->Deref()))) {
+	if (!((areg1)->Unify(var1->Deref()))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg2)->Unify(var1->Deref()))) {
+	if (!((areg2)->Unify(var1->Deref()))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -2654,8 +2784,10 @@ Function* hand_pred_max_3_3::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_newprec_3::entry_code;
-java::util::function::Function* hand_pred_newprec_3::cl1 = new hand_pred_newprec_3_1();
-java::util::function::Function* hand_pred_newprec_3::cl2 = new hand_pred_newprec_3_2();
+java::util::function::Function* hand_pred_newprec_3::cl1 =
+		new hand_pred_newprec_3_1();
+java::util::function::Function* hand_pred_newprec_3::cl2 =
+		new hand_pred_newprec_3_2();
 java::util::function::Function* hand_pred_newprec_3::cut2cont;
 wstring hand_pred_newprec_3::string0 = (wstring("cut")).intern();
 wstring hand_pred_newprec_3::string1 = (wstring("-")).intern();
@@ -2676,7 +2808,8 @@ int hand_pred_newprec_3::Arity() {
 }
 
 Function* hand_pred_newprec_3::exec_static(PrologMachine* mach) {
-	std::vector<Term*> aregs = { mach->Areg[0], mach->Areg[1], mach->Areg[2], mach->Areg[3] };
+	std::vector<Term*> aregs = { mach->Areg[0], mach->Areg[1], mach->Areg[2],
+			mach->Areg[3] };
 	mach->CreateChoicePoint(aregs);
 	return static_cast<Function*>(cl1->apply(mach));
 }
@@ -2691,13 +2824,13 @@ Function* hand_pred_newprec_3_1::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Const tempVar(string4);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var1))) {
+	if (!((areg1)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg2)->Unify(var2))) {
+	if (!((areg2)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -2717,13 +2850,13 @@ Function* hand_pred_newprec_3_2::exec_static(PrologMachine* mach) {
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var1 = new Var(mach);
 	Const tempVar(string5);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var1))) {
+	if (!((areg1)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg2)->Unify(var1->Deref()))) {
+	if (!((areg2)->Unify(var1->Deref()))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -2733,9 +2866,12 @@ Function* hand_pred_newprec_3_2::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_newprec_4::entry_code;
-java::util::function::Function* hand_pred_newprec_4::cl1 = new hand_pred_newprec_4_1();
-java::util::function::Function* hand_pred_newprec_4::cl2 = new hand_pred_newprec_4_2();
-java::util::function::Function* hand_pred_newprec_4::cl3 = new hand_pred_newprec_4_3();
+java::util::function::Function* hand_pred_newprec_4::cl1 =
+		new hand_pred_newprec_4_1();
+java::util::function::Function* hand_pred_newprec_4::cl2 =
+		new hand_pred_newprec_4_2();
+java::util::function::Function* hand_pred_newprec_4::cl3 =
+		new hand_pred_newprec_4_3();
 java::util::function::Function* hand_pred_newprec_4::cut2cont;
 wstring hand_pred_newprec_4::string0 = (wstring("cut")).intern();
 wstring hand_pred_newprec_4::string1 = (wstring("-")).intern();
@@ -2757,7 +2893,8 @@ int hand_pred_newprec_4::Arity() {
 }
 
 Function* hand_pred_newprec_4::exec_static(PrologMachine* mach) {
-	std::vector<Term*> aregs = { mach->Areg[0], mach->Areg[1], mach->Areg[2], mach->Areg[3], mach->Areg[4] };
+	std::vector<Term*> aregs = { mach->Areg[0], mach->Areg[1], mach->Areg[2],
+			mach->Areg[3], mach->Areg[4] };
 	mach->CreateChoicePoint(aregs);
 	return static_cast<Function*>(cl1->apply(mach));
 }
@@ -2774,21 +2911,22 @@ Function* hand_pred_newprec_4_1::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Const tempVar(string6);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var1))) {
+	if (!((areg1)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg2)->Unify(var2))) {
+	if (!((areg2)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg3)->Unify(var3))) {
+	if (!((areg3)->Unify(var3))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
 	Funct tempVar2(string1, var1->Deref(), posint1);
-	Funct tempVar3(string3, var3->Deref(), new Funct(string1, var1->Deref(), posint1), continuation);
+	Funct tempVar3(string3, var3->Deref(),
+			new Funct(string1, var1->Deref(), posint1), continuation);
 	local_aregs[0] = new Funct(string3, var2->Deref(), &tempVar2, &tempVar3);
 	mach->CUTB = mach->CurrentChoice;
 	local_aregs[4] = local_aregs[3] = local_aregs[2] = nullptr;
@@ -2807,16 +2945,16 @@ Function* hand_pred_newprec_4_2::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Const tempVar(string7);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var1))) {
+	if (!((areg1)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg2)->Unify(var2))) {
+	if (!((areg2)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg3)->Unify(var3))) {
+	if (!((areg3)->Unify(var3))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -2840,16 +2978,16 @@ Function* hand_pred_newprec_4_3::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Const tempVar(string8);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var1))) {
+	if (!((areg1)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg2)->Unify(var2))) {
+	if (!((areg2)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg3)->Unify(var3))) {
+	if (!((areg3)->Unify(var3))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -2894,7 +3032,7 @@ Function* hand_pred_not_1_1::exec_static(PrologMachine* mach) {
 	Term* continuation = local_aregs[1];
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var1->Deref();
@@ -2911,7 +3049,7 @@ Function* hand_pred_not_1_2::exec_static(PrologMachine* mach) {
 	Term* continuation = local_aregs[1];
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -2921,8 +3059,10 @@ Function* hand_pred_not_1_2::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_noteq_2::entry_code;
-java::util::function::Function* hand_pred_noteq_2::cl1 = new hand_pred_noteq_2_1();
-java::util::function::Function* hand_pred_noteq_2::cl2 = new hand_pred_noteq_2_2();
+java::util::function::Function* hand_pred_noteq_2::cl1 =
+		new hand_pred_noteq_2_1();
+java::util::function::Function* hand_pred_noteq_2::cl2 =
+		new hand_pred_noteq_2_2();
 java::util::function::Function* hand_pred_noteq_2::cut2cont;
 wstring hand_pred_noteq_2::string0 = (wstring("cut")).intern();
 wstring hand_pred_noteq_2::string1 = (wstring("call")).intern();
@@ -2952,10 +3092,10 @@ Function* hand_pred_noteq_2_1::exec_static(PrologMachine* mach) {
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var1->Deref()))) {
+	if (!((areg1)->Unify(var1->Deref()))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -2973,10 +3113,10 @@ Function* hand_pred_noteq_2_2::exec_static(PrologMachine* mach) {
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var2))) {
+	if (!((areg1)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -2986,8 +3126,10 @@ Function* hand_pred_noteq_2_2::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_notmore_0::entry_code;
-java::util::function::Function* hand_pred_notmore_0::cl1 = new hand_pred_notmore_0_1();
-java::util::function::Function* hand_pred_notmore_0::cl2 = new hand_pred_notmore_0_2();
+java::util::function::Function* hand_pred_notmore_0::cl1 =
+		new hand_pred_notmore_0_1();
+java::util::function::Function* hand_pred_notmore_0::cl2 =
+		new hand_pred_notmore_0_2();
 java::util::function::Function* hand_pred_notmore_0::get02cont;
 wstring hand_pred_notmore_0::string0 = (wstring("cut")).intern();
 wstring hand_pred_notmore_0::string1 = (wstring("call")).intern();
@@ -3021,7 +3163,9 @@ Function* hand_pred_notmore_0_1::exec_static(PrologMachine* mach) {
 	Term* continuation = local_aregs[0];
 	Term* var1 = new Var(mach);
 	local_aregs[0] = var1;
-	Funct tempVar(string0, new HeapChoice(mach->CUTB), new Funct(string7, var1->Deref(), new Funct(string3, continuation)));
+	Funct tempVar(string0, new HeapChoice(mach->CUTB),
+			new Funct(string7, var1->Deref(),
+					new Funct(string3, continuation)));
 	local_aregs[1] = new Funct(string5, var1->Deref(), posint10, &tempVar);
 	mach->CUTB = mach->CurrentChoice;
 	return get02cont;
@@ -3037,9 +3181,12 @@ Function* hand_pred_notmore_0_2::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_notvmember_2::entry_code;
-java::util::function::Function* hand_pred_notvmember_2::cl1 = new hand_pred_notvmember_2_1();
-java::util::function::Function* hand_pred_notvmember_2::cl2 = new hand_pred_notvmember_2_2();
-java::util::function::Function* hand_pred_notvmember_2::cl3 = new hand_pred_notvmember_2_3();
+java::util::function::Function* hand_pred_notvmember_2::cl1 =
+		new hand_pred_notvmember_2_1();
+java::util::function::Function* hand_pred_notvmember_2::cl2 =
+		new hand_pred_notvmember_2_2();
+java::util::function::Function* hand_pred_notvmember_2::cl3 =
+		new hand_pred_notvmember_2_3();
 java::util::function::Function* hand_pred_notvmember_2::cut2cont;
 wstring hand_pred_notvmember_2::string0 = (wstring("cut")).intern();
 wstring hand_pred_notvmember_2::string1 = (wstring(".")).intern();
@@ -3071,11 +3218,11 @@ Function* hand_pred_notvmember_2_1::exec_static(PrologMachine* mach) {
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string3);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -3094,11 +3241,11 @@ Function* hand_pred_notvmember_2_2::exec_static(PrologMachine* mach) {
 	Term* var3 = new Var(mach);
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Funct tempVar(string1, new Funct(string2, var2, var1->Deref()), var3);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -3117,11 +3264,11 @@ Function* hand_pred_notvmember_2_3::exec_static(PrologMachine* mach) {
 	Term* var3 = new Var(mach);
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Funct tempVar(string1, var2, var3);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var1->Deref();
@@ -3132,8 +3279,10 @@ Function* hand_pred_notvmember_2_3::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_nrev_2::entry_code;
-java::util::function::Function* hand_pred_nrev_2::cl1 = new hand_pred_nrev_2_1();
-java::util::function::Function* hand_pred_nrev_2::cl2 = new hand_pred_nrev_2_2();
+java::util::function::Function* hand_pred_nrev_2::cl1 =
+		new hand_pred_nrev_2_1();
+java::util::function::Function* hand_pred_nrev_2::cl2 =
+		new hand_pred_nrev_2_2();
 java::util::function::Function* hand_pred_nrev_2::cut2cont;
 wstring hand_pred_nrev_2::string0 = (wstring("cut")).intern();
 wstring hand_pred_nrev_2::string1 = (wstring(".")).intern();
@@ -3164,11 +3313,11 @@ Function* hand_pred_nrev_2_1::exec_static(PrologMachine* mach) {
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
 	Const tempVar(string2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string2);
-	if(!((areg1)->Unify(&tempVar2))) {
+	if (!((areg1)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -3189,16 +3338,17 @@ Function* hand_pred_nrev_2_2::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string1, var1, var2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var3))) {
+	if (!((areg1)->Unify(var3))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var2->Deref();
 	local_aregs[1] = var4;
 	Funct tempVar2(string1, var1->Deref(), new Const(string2));
-	local_aregs[2] = new Funct(string3, var4->Deref(), &tempVar2, var3->Deref(), continuation);
+	local_aregs[2] = new Funct(string3, var4->Deref(), &tempVar2, var3->Deref(),
+			continuation);
 	mach->CUTB = mach->CurrentChoice;
 	return entry_code;
 }
@@ -3234,10 +3384,10 @@ Function* hand_pred_or_2_1::exec_static(PrologMachine* mach) {
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var2))) {
+	if (!((areg1)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var1->Deref();
@@ -3255,10 +3405,10 @@ Function* hand_pred_or_2_2::exec_static(PrologMachine* mach) {
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var2))) {
+	if (!((areg1)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var2->Deref();
@@ -3269,10 +3419,14 @@ Function* hand_pred_or_2_2::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_prefix_3::entry_code;
-java::util::function::Function* hand_pred_prefix_3::cl1 = new hand_pred_prefix_3_1();
-java::util::function::Function* hand_pred_prefix_3::cl2 = new hand_pred_prefix_3_2();
-java::util::function::Function* hand_pred_prefix_3::cl3 = new hand_pred_prefix_3_3();
-java::util::function::Function* hand_pred_prefix_3::cl4 = new hand_pred_prefix_3_4();
+java::util::function::Function* hand_pred_prefix_3::cl1 =
+		new hand_pred_prefix_3_1();
+java::util::function::Function* hand_pred_prefix_3::cl2 =
+		new hand_pred_prefix_3_2();
+java::util::function::Function* hand_pred_prefix_3::cl3 =
+		new hand_pred_prefix_3_3();
+java::util::function::Function* hand_pred_prefix_3::cl4 =
+		new hand_pred_prefix_3_4();
 wstring hand_pred_prefix_3::string0 = (wstring("cut")).intern();
 wstring hand_pred_prefix_3::string1 = (wstring("+")).intern();
 wstring hand_pred_prefix_3::string2 = (wstring("-")).intern();
@@ -3293,7 +3447,8 @@ int hand_pred_prefix_3::Arity() {
 }
 
 Function* hand_pred_prefix_3::exec_static(PrologMachine* mach) {
-	std::vector<Term*> aregs = { mach->Areg[0], mach->Areg[1], mach->Areg[2], mach->Areg[3] };
+	std::vector<Term*> aregs = { mach->Areg[0], mach->Areg[1], mach->Areg[2],
+			mach->Areg[3] };
 	mach->CreateChoicePoint(aregs);
 	return static_cast<Function*>(cl1->apply(mach));
 }
@@ -3305,15 +3460,15 @@ Function* hand_pred_prefix_3_1::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint1200))) {
+	if (!((areg0)->Unify(posint1200))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string6);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string3);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -3329,15 +3484,15 @@ Function* hand_pred_prefix_3_2::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint1200))) {
+	if (!((areg0)->Unify(posint1200))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string6);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string4);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -3353,15 +3508,15 @@ Function* hand_pred_prefix_3_3::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint500))) {
+	if (!((areg0)->Unify(posint500))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string6);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string1);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -3377,15 +3532,15 @@ Function* hand_pred_prefix_3_4::exec_static(PrologMachine* mach) {
 	Term* areg2 = local_aregs[2]->Deref();
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint500))) {
+	if (!((areg0)->Unify(posint500))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string6);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string2);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -3395,7 +3550,8 @@ Function* hand_pred_prefix_3_4::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_read_1::entry_code;
-java::util::function::Function* hand_pred_read_1::cl1 = new hand_pred_read_1_1();
+java::util::function::Function* hand_pred_read_1::cl1 =
+		new hand_pred_read_1_1();
 java::util::function::Function* hand_pred_read_1::nexttoken2cont;
 wstring hand_pred_read_1::string0 = (wstring("cut")).intern();
 wstring hand_pred_read_1::string1 = (wstring("cut")).intern();
@@ -3428,20 +3584,24 @@ Function* hand_pred_read_1_1::exec_static(PrologMachine* mach) {
 	Term* var3 = new Var(mach);
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var2;
-	Funct tempVar(string2, var3->Deref(), var1->Deref(), new Funct(string0, new HeapChoice(mach->CUTB), continuation));
+	Funct tempVar(string2, var3->Deref(), var1->Deref(),
+			new Funct(string0, new HeapChoice(mach->CUTB), continuation));
 	local_aregs[1] = new Funct(string5, var2->Deref(), var3, &tempVar);
 	mach->CUTB = mach->CurrentChoice;
 	return nexttoken2cont;
 }
 
 java::util::function::Function* hand_pred_readall_2::entry_code;
-java::util::function::Function* hand_pred_readall_2::cl1 = new hand_pred_readall_2_1();
-java::util::function::Function* hand_pred_readall_2::cl2 = new hand_pred_readall_2_2();
-java::util::function::Function* hand_pred_readall_2::cl3 = new hand_pred_readall_2_3();
+java::util::function::Function* hand_pred_readall_2::cl1 =
+		new hand_pred_readall_2_1();
+java::util::function::Function* hand_pred_readall_2::cl2 =
+		new hand_pred_readall_2_2();
+java::util::function::Function* hand_pred_readall_2::cl3 =
+		new hand_pred_readall_2_3();
 java::util::function::Function* hand_pred_readall_2::cut2cont;
 java::util::function::Function* hand_pred_readall_2::nexttoken2cont;
 wstring hand_pred_readall_2::string0 = (wstring("cut")).intern();
@@ -3479,10 +3639,10 @@ Function* hand_pred_readall_2_1::exec_static(PrologMachine* mach) {
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var1 = new Var(mach);
 	Const tempVar(string5);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var1))) {
+	if (!((areg1)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -3500,10 +3660,10 @@ Function* hand_pred_readall_2_2::exec_static(PrologMachine* mach) {
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var1 = new Var(mach);
 	Const tempVar(string4);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var1))) {
+	if (!((areg1)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -3523,23 +3683,26 @@ Function* hand_pred_readall_2_3::exec_static(PrologMachine* mach) {
 	Term* var3 = new Var(mach);
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Funct tempVar(string1, var1->Deref(), var2);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var3;
-	local_aregs[1] = new Funct(string8, var3->Deref(), var2->Deref(), continuation);
+	local_aregs[1] = new Funct(string8, var3->Deref(), var2->Deref(),
+			continuation);
 	mach->CUTB = mach->CurrentChoice;
 	local_aregs[2] = nullptr;
 	return nexttoken2cont;
 }
 
 java::util::function::Function* hand_pred_smeq_1::entry_code;
-java::util::function::Function* hand_pred_smeq_1::cl1 = new hand_pred_smeq_1_1();
-java::util::function::Function* hand_pred_smeq_1::cl2 = new hand_pred_smeq_1_2();
+java::util::function::Function* hand_pred_smeq_1::cl1 =
+		new hand_pred_smeq_1_1();
+java::util::function::Function* hand_pred_smeq_1::cl2 =
+		new hand_pred_smeq_1_2();
 java::util::function::Function* hand_pred_smeq_1::cut2cont;
 wstring hand_pred_smeq_1::string0 = (wstring("cut")).intern();
 wstring hand_pred_smeq_1::string1 = (wstring("<")).intern();
@@ -3569,7 +3732,7 @@ Function* hand_pred_smeq_1_1::exec_static(PrologMachine* mach) {
 	Term* continuation = local_aregs[1];
 	Term* areg0 = local_aregs[0]->Deref();
 	Const tempVar(string1);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -3584,7 +3747,7 @@ Function* hand_pred_smeq_1_2::exec_static(PrologMachine* mach) {
 	Term* continuation = local_aregs[1];
 	Term* areg0 = local_aregs[0]->Deref();
 	Const tempVar(string2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -3594,8 +3757,10 @@ Function* hand_pred_smeq_1_2::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_smgr_1::entry_code;
-java::util::function::Function* hand_pred_smgr_1::cl1 = new hand_pred_smgr_1_1();
-java::util::function::Function* hand_pred_smgr_1::cl2 = new hand_pred_smgr_1_2();
+java::util::function::Function* hand_pred_smgr_1::cl1 =
+		new hand_pred_smgr_1_1();
+java::util::function::Function* hand_pred_smgr_1::cl2 =
+		new hand_pred_smgr_1_2();
 java::util::function::Function* hand_pred_smgr_1::cut2cont;
 wstring hand_pred_smgr_1::string0 = (wstring("cut")).intern();
 wstring hand_pred_smgr_1::string1 = (wstring("=")).intern();
@@ -3625,7 +3790,7 @@ Function* hand_pred_smgr_1_1::exec_static(PrologMachine* mach) {
 	Term* continuation = local_aregs[1];
 	Term* areg0 = local_aregs[0]->Deref();
 	Const tempVar(string2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -3640,7 +3805,7 @@ Function* hand_pred_smgr_1_2::exec_static(PrologMachine* mach) {
 	Term* continuation = local_aregs[1];
 	Term* areg0 = local_aregs[0]->Deref();
 	Const tempVar(string1);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -3650,8 +3815,10 @@ Function* hand_pred_smgr_1_2::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_sort_2::entry_code;
-java::util::function::Function* hand_pred_sort_2::cl1 = new hand_pred_sort_2_1();
-java::util::function::Function* hand_pred_sort_2::cl2 = new hand_pred_sort_2_2();
+java::util::function::Function* hand_pred_sort_2::cl1 =
+		new hand_pred_sort_2_1();
+java::util::function::Function* hand_pred_sort_2::cl2 =
+		new hand_pred_sort_2_2();
 java::util::function::Function* hand_pred_sort_2::cut2cont;
 java::util::function::Function* hand_pred_sort_2::split5cont;
 wstring hand_pred_sort_2::string0 = (wstring("cut")).intern();
@@ -3685,11 +3852,11 @@ Function* hand_pred_sort_2_1::exec_static(PrologMachine* mach) {
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
 	Const tempVar(string2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string2);
-	if(!((areg1)->Unify(&tempVar2))) {
+	if (!((areg1)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -3713,35 +3880,50 @@ Function* hand_pred_sort_2_2::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string1, var1, var2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var3))) {
+	if (!((areg1)->Unify(var3))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var1->Deref();
 	local_aregs[1] = var2->Deref();
 	local_aregs[2] = var4;
 	local_aregs[3] = var5;
-	Funct tempVar2(string5, var5->Deref(), var7, new Funct(string3, var6->Deref(), new Funct(string1, var1->Deref(), var7->Deref()), var3->Deref(), continuation));
+	Funct tempVar2(string5, var5->Deref(), var7,
+			new Funct(string3, var6->Deref(),
+					new Funct(string1, var1->Deref(), var7->Deref()),
+					var3->Deref(), continuation));
 	local_aregs[4] = new Funct(string5, var4->Deref(), var6, &tempVar2);
 	mach->CUTB = mach->CurrentChoice;
 	return split5cont;
 }
 
 java::util::function::Function* hand_pred_specialgoal_2::entry_code;
-java::util::function::Function* hand_pred_specialgoal_2::cl1 = new hand_pred_specialgoal_2_1();
-java::util::function::Function* hand_pred_specialgoal_2::cl2 = new hand_pred_specialgoal_2_2();
-java::util::function::Function* hand_pred_specialgoal_2::cl3 = new hand_pred_specialgoal_2_3();
-java::util::function::Function* hand_pred_specialgoal_2::cl4 = new hand_pred_specialgoal_2_4();
-java::util::function::Function* hand_pred_specialgoal_2::cl5 = new hand_pred_specialgoal_2_5();
-java::util::function::Function* hand_pred_specialgoal_2::cl6 = new hand_pred_specialgoal_2_6();
-java::util::function::Function* hand_pred_specialgoal_2::cl7 = new hand_pred_specialgoal_2_7();
-java::util::function::Function* hand_pred_specialgoal_2::cl8 = new hand_pred_specialgoal_2_8();
-java::util::function::Function* hand_pred_specialgoal_2::cl9 = new hand_pred_specialgoal_2_9();
-java::util::function::Function* hand_pred_specialgoal_2::cl10 = new hand_pred_specialgoal_2_10();
-java::util::function::Function* hand_pred_specialgoal_2::cl11 = new hand_pred_specialgoal_2_11();
-java::util::function::Function* hand_pred_specialgoal_2::cl12 = new hand_pred_specialgoal_2_12();
+java::util::function::Function* hand_pred_specialgoal_2::cl1 =
+		new hand_pred_specialgoal_2_1();
+java::util::function::Function* hand_pred_specialgoal_2::cl2 =
+		new hand_pred_specialgoal_2_2();
+java::util::function::Function* hand_pred_specialgoal_2::cl3 =
+		new hand_pred_specialgoal_2_3();
+java::util::function::Function* hand_pred_specialgoal_2::cl4 =
+		new hand_pred_specialgoal_2_4();
+java::util::function::Function* hand_pred_specialgoal_2::cl5 =
+		new hand_pred_specialgoal_2_5();
+java::util::function::Function* hand_pred_specialgoal_2::cl6 =
+		new hand_pred_specialgoal_2_6();
+java::util::function::Function* hand_pred_specialgoal_2::cl7 =
+		new hand_pred_specialgoal_2_7();
+java::util::function::Function* hand_pred_specialgoal_2::cl8 =
+		new hand_pred_specialgoal_2_8();
+java::util::function::Function* hand_pred_specialgoal_2::cl9 =
+		new hand_pred_specialgoal_2_9();
+java::util::function::Function* hand_pred_specialgoal_2::cl10 =
+		new hand_pred_specialgoal_2_10();
+java::util::function::Function* hand_pred_specialgoal_2::cl11 =
+		new hand_pred_specialgoal_2_11();
+java::util::function::Function* hand_pred_specialgoal_2::cl12 =
+		new hand_pred_specialgoal_2_12();
 wstring hand_pred_specialgoal_2::string0 = Const::IStr("cut");
 wstring hand_pred_specialgoal_2::string1 = Const::IStr(";");
 wstring hand_pred_specialgoal_2::string2 = Const::IStr("<");
@@ -3792,11 +3974,11 @@ Function* hand_pred_specialgoal_2_1::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string2, var1, var2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Funct tempVar2(string17, var1->Deref(), var2->Deref());
-	if(!((areg1)->Unify(&tempVar2))) {
+	if (!((areg1)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -3815,11 +3997,11 @@ Function* hand_pred_specialgoal_2_2::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string5, var1, var2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Funct tempVar2(string16, var1->Deref(), var2->Deref());
-	if(!((areg1)->Unify(&tempVar2))) {
+	if (!((areg1)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -3838,11 +4020,11 @@ Function* hand_pred_specialgoal_2_3::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string7, var1, var2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Funct tempVar2(string17, var2->Deref(), var1->Deref());
-	if(!((areg1)->Unify(&tempVar2))) {
+	if (!((areg1)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -3861,11 +4043,11 @@ Function* hand_pred_specialgoal_2_4::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string8, var1, var2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Funct tempVar2(string16, var2->Deref(), var1->Deref());
-	if(!((areg1)->Unify(&tempVar2))) {
+	if (!((areg1)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -3884,11 +4066,11 @@ Function* hand_pred_specialgoal_2_5::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string4, var1, var2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Funct tempVar2(string13, var2->Deref(), var1->Deref());
-	if(!((areg1)->Unify(&tempVar2))) {
+	if (!((areg1)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -3907,11 +4089,11 @@ Function* hand_pred_specialgoal_2_6::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string3, var1, var2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Funct tempVar2(string24, var2->Deref(), var1->Deref());
-	if(!((areg1)->Unify(&tempVar2))) {
+	if (!((areg1)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -3930,11 +4112,11 @@ Function* hand_pred_specialgoal_2_7::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string1, var1, var2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Funct tempVar2(string15, var1->Deref(), var2->Deref());
-	if(!((areg1)->Unify(&tempVar2))) {
+	if (!((areg1)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -3953,11 +4135,11 @@ Function* hand_pred_specialgoal_2_8::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string9, var1, var2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Funct tempVar2(string23, var1->Deref(), var2->Deref());
-	if(!((areg1)->Unify(&tempVar2))) {
+	if (!((areg1)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -3976,11 +4158,11 @@ Function* hand_pred_specialgoal_2_9::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string11, var1, var2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Funct tempVar2(string21, var1->Deref(), var2->Deref());
-	if(!((areg1)->Unify(&tempVar2))) {
+	if (!((areg1)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -3999,11 +4181,11 @@ Function* hand_pred_specialgoal_2_10::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string10, var1, var2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Funct tempVar2(string22, var1->Deref(), var2->Deref());
-	if(!((areg1)->Unify(&tempVar2))) {
+	if (!((areg1)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -4022,11 +4204,11 @@ Function* hand_pred_specialgoal_2_11::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string12, var1, var2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Funct tempVar2(string20, var1->Deref(), var2->Deref());
-	if(!((areg1)->Unify(&tempVar2))) {
+	if (!((areg1)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -4045,11 +4227,11 @@ Function* hand_pred_specialgoal_2_12::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string6, var1, var2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Funct tempVar2(string19, var1->Deref(), var2->Deref());
-	if(!((areg1)->Unify(&tempVar2))) {
+	if (!((areg1)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -4060,9 +4242,12 @@ Function* hand_pred_specialgoal_2_12::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_split_4::entry_code;
-java::util::function::Function* hand_pred_split_4::cl1 = new hand_pred_split_4_1();
-java::util::function::Function* hand_pred_split_4::cl2 = new hand_pred_split_4_2();
-java::util::function::Function* hand_pred_split_4::cl3 = new hand_pred_split_4_3();
+java::util::function::Function* hand_pred_split_4::cl1 =
+		new hand_pred_split_4_1();
+java::util::function::Function* hand_pred_split_4::cl2 =
+		new hand_pred_split_4_2();
+java::util::function::Function* hand_pred_split_4::cl3 =
+		new hand_pred_split_4_3();
 java::util::function::Function* hand_pred_split_4::cut2cont;
 java::util::function::Function* hand_pred_split_4::smallerthan3cont;
 wstring hand_pred_split_4::string0 = Const::IStr("cut");
@@ -4083,7 +4268,8 @@ int hand_pred_split_4::Arity() {
 }
 
 Function* hand_pred_split_4::exec_static(PrologMachine* mach) {
-	std::vector<Term*> aregs = { mach->Areg[0], mach->Areg[1], mach->Areg[2], mach->Areg[3], mach->Areg[4] };
+	std::vector<Term*> aregs = { mach->Areg[0], mach->Areg[1], mach->Areg[2],
+			mach->Areg[3], mach->Areg[4] };
 	mach->CreateChoicePoint(aregs);
 	return static_cast<Function*>(cl1->apply(mach));
 }
@@ -4097,19 +4283,19 @@ Function* hand_pred_split_4_1::exec_static(PrologMachine* mach) {
 	Term* areg1 = local_aregs[1]->Deref();
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar(string2);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar2(string2);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Const tempVar3(string2);
-	if(!((areg3)->Unify(&tempVar3))) {
+	if (!((areg3)->Unify(&tempVar3))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -4132,24 +4318,25 @@ Function* hand_pred_split_4_2::exec_static(PrologMachine* mach) {
 	Term* var3 = new Var(mach);
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Funct tempVar(string1, var2, var3);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Funct tempVar2(string1, var2->Deref(), var4);
-	if(!((areg2)->Unify(&tempVar2))) {
+	if (!((areg2)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg3)->Unify(var5))) {
+	if (!((areg3)->Unify(var5))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var2->Deref();
 	local_aregs[1] = var1->Deref();
 	HeapChoice tempVar3(mach->CUTB);
-	Funct tempVar4(string5, var1->Deref(), var3->Deref(), var4->Deref(), var5->Deref(), continuation);
+	Funct tempVar4(string5, var1->Deref(), var3->Deref(), var4->Deref(),
+			var5->Deref(), continuation);
 	local_aregs[2] = new Funct(string0, &tempVar3, &tempVar4);
 	mach->CUTB = mach->CurrentChoice;
 	local_aregs[4] = local_aregs[3] = nullptr;
@@ -4169,18 +4356,18 @@ Function* hand_pred_split_4_3::exec_static(PrologMachine* mach) {
 	Term* var3 = new Var(mach);
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Funct tempVar(string1, var2, var3);
-	if(!((areg1)->Unify(&tempVar))) {
+	if (!((areg1)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg2)->Unify(var4))) {
+	if (!((areg2)->Unify(var4))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Funct tempVar2(string1, var2->Deref(), var5);
-	if(!((areg3)->Unify(&tempVar2))) {
+	if (!((areg3)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var1->Deref();
@@ -4193,7 +4380,8 @@ Function* hand_pred_split_4_3::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_statistics_2::entry_code;
-java::util::function::Function* hand_pred_statistics_2::cl1 = new hand_pred_statistics_2_1();
+java::util::function::Function* hand_pred_statistics_2::cl1 =
+		new hand_pred_statistics_2_1();
 java::util::function::Function* hand_pred_statistics_2::cputime2cont;
 wstring hand_pred_statistics_2::string0 = Const::IStr("cut");
 wstring hand_pred_statistics_2::string1 = Const::IStr(".");
@@ -4226,11 +4414,11 @@ Function* hand_pred_statistics_2_1::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Const tempVar(string4);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	Funct tempVar2(string1, var1, new Funct(string1, var2, new Const(string2)));
-	if(!((areg1)->Unify(&tempVar2))) {
+	if (!((areg1)->Unify(&tempVar2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var1->Deref();
@@ -4241,7 +4429,8 @@ Function* hand_pred_statistics_2_1::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_termequal_2::entry_code;
-java::util::function::Function* hand_pred_termequal_2::cl1 = new hand_pred_termequal_2_1();
+java::util::function::Function* hand_pred_termequal_2::cl1 =
+		new hand_pred_termequal_2_1();
 java::util::function::Function* hand_pred_termequal_2::compare4cont;
 wstring hand_pred_termequal_2::string0 = Const::IStr("cut");
 wstring hand_pred_termequal_2::string1 = Const::IStr("=");
@@ -4271,10 +4460,10 @@ Function* hand_pred_termequal_2_1::exec_static(PrologMachine* mach) {
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var2))) {
+	if (!((areg1)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = new Const(string1);
@@ -4286,12 +4475,14 @@ Function* hand_pred_termequal_2_1::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_termgreaterequal_2::entry_code;
-java::util::function::Function* hand_pred_termgreaterequal_2::cl1 = new hand_pred_termgreaterequal_2_1();
+java::util::function::Function* hand_pred_termgreaterequal_2::cl1 =
+		new hand_pred_termgreaterequal_2_1();
 java::util::function::Function* hand_pred_termgreaterequal_2::compare4cont;
 wstring hand_pred_termgreaterequal_2::string0 = (wstring("cut")).intern();
 wstring hand_pred_termgreaterequal_2::string1 = (wstring("compare")).intern();
 wstring hand_pred_termgreaterequal_2::string2 = (wstring("smgr")).intern();
-wstring hand_pred_termgreaterequal_2::string3 = (wstring("termgreaterequal")).intern();
+wstring hand_pred_termgreaterequal_2::string3 =
+		(wstring("termgreaterequal")).intern();
 
 void hand_pred_termgreaterequal_2::Init(PrologMachine* mach) {
 	entry_code = this;
@@ -4317,10 +4508,10 @@ Function* hand_pred_termgreaterequal_2_1::exec_static(PrologMachine* mach) {
 	Term* var3 = new Var(mach);
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var2))) {
+	if (!((areg1)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var3;
@@ -4332,12 +4523,14 @@ Function* hand_pred_termgreaterequal_2_1::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_termgreaterthan_2::entry_code;
-java::util::function::Function* hand_pred_termgreaterthan_2::cl1 = new hand_pred_termgreaterthan_2_1();
+java::util::function::Function* hand_pred_termgreaterthan_2::cl1 =
+		new hand_pred_termgreaterthan_2_1();
 java::util::function::Function* hand_pred_termgreaterthan_2::compare4cont;
 wstring hand_pred_termgreaterthan_2::string0 = (wstring("cut")).intern();
 wstring hand_pred_termgreaterthan_2::string1 = (wstring(">")).intern();
 wstring hand_pred_termgreaterthan_2::string2 = (wstring("compare")).intern();
-wstring hand_pred_termgreaterthan_2::string3 = (wstring("termgreaterthan")).intern();
+wstring hand_pred_termgreaterthan_2::string3 =
+		(wstring("termgreaterthan")).intern();
 
 void hand_pred_termgreaterthan_2::Init(PrologMachine* mach) {
 	entry_code = this;
@@ -4362,10 +4555,10 @@ Function* hand_pred_termgreaterthan_2_1::exec_static(PrologMachine* mach) {
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var2))) {
+	if (!((areg1)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = new Const(string1);
@@ -4377,12 +4570,14 @@ Function* hand_pred_termgreaterthan_2_1::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_termsmallerequal_2::entry_code;
-java::util::function::Function* hand_pred_termsmallerequal_2::cl1 = new hand_pred_termsmallerequal_2_1();
+java::util::function::Function* hand_pred_termsmallerequal_2::cl1 =
+		new hand_pred_termsmallerequal_2_1();
 java::util::function::Function* hand_pred_termsmallerequal_2::compare4cont;
 wstring hand_pred_termsmallerequal_2::string0 = (wstring("cut")).intern();
 wstring hand_pred_termsmallerequal_2::string1 = (wstring("compare")).intern();
 wstring hand_pred_termsmallerequal_2::string2 = (wstring("smeq")).intern();
-wstring hand_pred_termsmallerequal_2::string3 = (wstring("termsmallerequal")).intern();
+wstring hand_pred_termsmallerequal_2::string3 =
+		(wstring("termsmallerequal")).intern();
 
 void hand_pred_termsmallerequal_2::Init(PrologMachine* mach) {
 	entry_code = this;
@@ -4408,10 +4603,10 @@ Function* hand_pred_termsmallerequal_2_1::exec_static(PrologMachine* mach) {
 	Term* var3 = new Var(mach);
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var2))) {
+	if (!((areg1)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var3;
@@ -4423,12 +4618,14 @@ Function* hand_pred_termsmallerequal_2_1::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_termsmallerthan_2::entry_code;
-java::util::function::Function* hand_pred_termsmallerthan_2::cl1 = new hand_pred_termsmallerthan_2_1();
+java::util::function::Function* hand_pred_termsmallerthan_2::cl1 =
+		new hand_pred_termsmallerthan_2_1();
 java::util::function::Function* hand_pred_termsmallerthan_2::compare4cont;
 wstring hand_pred_termsmallerthan_2::string0 = (wstring("cut")).intern();
 wstring hand_pred_termsmallerthan_2::string1 = (wstring("<")).intern();
 wstring hand_pred_termsmallerthan_2::string2 = (wstring("compare")).intern();
-wstring hand_pred_termsmallerthan_2::string3 = (wstring("termsmallerthan")).intern();
+wstring hand_pred_termsmallerthan_2::string3 =
+		(wstring("termsmallerthan")).intern();
 
 void hand_pred_termsmallerthan_2::Init(PrologMachine* mach) {
 	entry_code = this;
@@ -4453,10 +4650,10 @@ Function* hand_pred_termsmallerthan_2_1::exec_static(PrologMachine* mach) {
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var2))) {
+	if (!((areg1)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = new Const(string1);
@@ -4468,7 +4665,8 @@ Function* hand_pred_termsmallerthan_2_1::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_time_1::entry_code;
-java::util::function::Function* hand_pred_time_1::cl1 = new hand_pred_time_1_1();
+java::util::function::Function* hand_pred_time_1::cl1 =
+		new hand_pred_time_1_1();
 java::util::function::Function* hand_pred_time_1::cputime2cont;
 wstring hand_pred_time_1::string0 = (wstring("cut")).intern();
 wstring hand_pred_time_1::string1 = (wstring("-")).intern();
@@ -4503,11 +4701,15 @@ Function* hand_pred_time_1_1::exec_static(PrologMachine* mach) {
 	Term* var3 = new Var(mach);
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var2;
-	Funct tempVar(string2, var3, new Funct(string4, var4, new Funct(string1, var3->Deref(), var2->Deref()), new Funct(string7, var4->Deref(), new Funct(string5, continuation))));
+	Funct tempVar(string2, var3,
+			new Funct(string4, var4,
+					new Funct(string1, var3->Deref(), var2->Deref()),
+					new Funct(string7, var4->Deref(),
+							new Funct(string5, continuation))));
 	local_aregs[1] = new Funct(string3, var1->Deref(), &tempVar);
 	mach->CUTB = mach->CurrentChoice;
 	return cputime2cont;
@@ -4553,7 +4755,15 @@ Function* hand_pred_top_0_1::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	local_aregs[0] = new Const(string1);
-	Funct tempVar(string4, var1->Deref(), new Funct(string11, var2->Deref(), new Funct(string10, new Const(string2), new Funct(string6, new Funct(string7, new Funct(string0, new HeapChoice(mach->CUTB), new Funct(string5, continuation)))))));
+	Funct tempVar(string4, var1->Deref(),
+			new Funct(string11, var2->Deref(),
+					new Funct(string10, new Const(string2),
+							new Funct(string6,
+									new Funct(string7,
+											new Funct(string0,
+													new HeapChoice(mach->CUTB),
+													new Funct(string5,
+															continuation)))))));
 	local_aregs[1] = new Funct(string9, var1, var2, &tempVar);
 	mach->CUTB = mach->CurrentChoice;
 	return write2cont;
@@ -4568,9 +4778,12 @@ Function* hand_pred_top_0_2::exec_static(PrologMachine* mach) {
 	return entry_code;
 }
 
-java::util::function::Function* hand_pred_toplevel_0::entry_code = new hand_pred_toplevel_0();
-java::util::function::Function* hand_pred_toplevel_0::cl1 = new hand_pred_toplevel_0_1();
-java::util::function::Function* hand_pred_toplevel_0::cl2 = new hand_pred_toplevel_0_2();
+java::util::function::Function* hand_pred_toplevel_0::entry_code =
+		new hand_pred_toplevel_0();
+java::util::function::Function* hand_pred_toplevel_0::cl1 =
+		new hand_pred_toplevel_0_1();
+java::util::function::Function* hand_pred_toplevel_0::cl2 =
+		new hand_pred_toplevel_0_2();
 java::util::function::Function* hand_pred_toplevel_0::top1cont;
 wstring hand_pred_toplevel_0::string0 = (wstring("cut")).intern();
 wstring hand_pred_toplevel_0::string1 = (wstring("fail")).intern();
@@ -4593,7 +4806,7 @@ Function* hand_pred_toplevel_0_1::exec_static(PrologMachine* mach) {
 	Term* continuation = local_aregs[0];
 	local_aregs[0] = new Funct(string1, continuation);
 	mach->CUTB = mach->CurrentChoice;
-	if(top1cont == nullptr) {
+	if (top1cont == nullptr) {
 		top1cont = mach->LoadPred("top", 0);
 	}
 	return top1cont;
@@ -4609,8 +4822,10 @@ Function* hand_pred_toplevel_0_2::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_untilend_1::entry_code;
-java::util::function::Function* hand_pred_untilend_1::cl1 = new hand_pred_untilend_1_1();
-java::util::function::Function* hand_pred_untilend_1::cl2 = new hand_pred_untilend_1_2();
+java::util::function::Function* hand_pred_untilend_1::cl1 =
+		new hand_pred_untilend_1_1();
+java::util::function::Function* hand_pred_untilend_1::cl2 =
+		new hand_pred_untilend_1_2();
 java::util::function::Function* hand_pred_untilend_1::cut2cont;
 java::util::function::Function* hand_pred_untilend_1::get02cont;
 wstring hand_pred_untilend_1::string0 = (wstring("cut")).intern();
@@ -4640,7 +4855,7 @@ Function* hand_pred_untilend_1_1::exec_static(PrologMachine* mach) {
 	std::vector<Term*> local_aregs = mach->Areg;
 	Term* continuation = local_aregs[1];
 	Term* areg0 = local_aregs[0]->Deref();
-	if(!((areg0)->Unify(posint10))) {
+	if (!((areg0)->Unify(posint10))) {
 		return UpperPrologMachine::Fail0;
 	}
 	mach->DoCut(mach->CUTB);
@@ -4656,7 +4871,7 @@ Function* hand_pred_untilend_1_2::exec_static(PrologMachine* mach) {
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var2;
@@ -4693,7 +4908,7 @@ Function* hand_pred_var_1_1::exec_static(PrologMachine* mach) {
 	Term* continuation = local_aregs[1];
 	Term* areg0 = local_aregs[0]->Deref();
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var1->Deref();
@@ -4704,7 +4919,8 @@ Function* hand_pred_var_1_1::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_vread_2::entry_code;
-java::util::function::Function* hand_pred_vread_2::cl1 = new hand_pred_vread_2_1();
+java::util::function::Function* hand_pred_vread_2::cl1 =
+		new hand_pred_vread_2_1();
 java::util::function::Function* hand_pred_vread_2::nexttoken2cont;
 wstring hand_pred_vread_2::string0 = (wstring("cut")).intern();
 wstring hand_pred_vread_2::string1 = (wstring("[]")).intern();
@@ -4741,14 +4957,17 @@ Function* hand_pred_vread_2_1::exec_static(PrologMachine* mach) {
 	Term* var3 = new Var(mach);
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
-	if(!((areg0)->Unify(var1))) {
+	if (!((areg0)->Unify(var1))) {
 		return UpperPrologMachine::Fail0;
 	}
-	if(!((areg1)->Unify(var2))) {
+	if (!((areg1)->Unify(var2))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var3;
-	Funct tempVar(string4, var4->Deref(), var1->Deref(), new Funct(string0, new HeapChoice(mach->CUTB), new Funct(string2, var4->Deref(), new Const(string1), var2->Deref(), continuation)));
+	Funct tempVar(string4, var4->Deref(), var1->Deref(),
+			new Funct(string0, new HeapChoice(mach->CUTB),
+					new Funct(string2, var4->Deref(), new Const(string1),
+							var2->Deref(), continuation)));
 	local_aregs[1] = new Funct(string6, var3->Deref(), var4, &tempVar);
 	mach->CUTB = mach->CurrentChoice;
 	local_aregs[2] = nullptr;
@@ -4756,9 +4975,12 @@ Function* hand_pred_vread_2_1::exec_static(PrologMachine* mach) {
 }
 
 java::util::function::Function* hand_pred_writevars_1::entry_code;
-java::util::function::Function* hand_pred_writevars_1::cl1 = new hand_pred_writevars_1_1();
-java::util::function::Function* hand_pred_writevars_1::cl2 = new hand_pred_writevars_1_2();
-java::util::function::Function* hand_pred_writevars_1::cl3 = new hand_pred_writevars_1_3();
+java::util::function::Function* hand_pred_writevars_1::cl1 =
+		new hand_pred_writevars_1_1();
+java::util::function::Function* hand_pred_writevars_1::cl2 =
+		new hand_pred_writevars_1_2();
+java::util::function::Function* hand_pred_writevars_1::cl3 =
+		new hand_pred_writevars_1_3();
 java::util::function::Function* hand_pred_writevars_1::write2cont;
 wstring hand_pred_writevars_1::string0 = (wstring("cut")).intern();
 wstring hand_pred_writevars_1::string1 = (wstring(" = ")).intern();
@@ -4792,7 +5014,7 @@ Function* hand_pred_writevars_1_1::exec_static(PrologMachine* mach) {
 	Term* continuation = local_aregs[1];
 	Term* areg0 = local_aregs[0]->Deref();
 	Const tempVar(string4);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = continuation;
@@ -4810,12 +5032,13 @@ Function* hand_pred_writevars_1_2::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string2, new Funct(string3, var1, var2), var3);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var2->Deref();
 	Const tempVar2(string1);
-	Funct tempVar3(string8, var1->Deref(), new Funct(string7, new Funct(string6, continuation)));
+	Funct tempVar3(string8, var1->Deref(),
+			new Funct(string7, new Funct(string6, continuation)));
 	local_aregs[1] = new Funct(string8, &tempVar2, &tempVar3);
 	mach->CUTB = mach->CurrentChoice;
 	return write2cont;
@@ -4829,7 +5052,7 @@ Function* hand_pred_writevars_1_3::exec_static(PrologMachine* mach) {
 	Term* var2 = new Var(mach);
 	Term* var1 = new Var(mach);
 	Funct tempVar(string2, var1, var2);
-	if(!((areg0)->Unify(&tempVar))) {
+	if (!((areg0)->Unify(&tempVar))) {
 		return UpperPrologMachine::Fail0;
 	}
 	local_aregs[0] = var2->Deref();

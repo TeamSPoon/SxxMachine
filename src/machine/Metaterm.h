@@ -6,7 +6,9 @@
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
 class Code;
 class PrologMachine;
+class pred_freeze_2;
 class pred_frozen_2;
+class pred_undo_1;
 
 class Metaterm : public Code {
 

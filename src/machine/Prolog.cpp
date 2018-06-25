@@ -3,7 +3,7 @@ using namespace std;
 #include "Prolog.h"
 #include "PredTable.h"
 #include "Code.h"
-#include "library.h"
+#include "../benches/run.h"
 #include "ClassNotFoundException.h"
 #include "IllegalAccessException.h"
 #include "InstantiationException.h"
