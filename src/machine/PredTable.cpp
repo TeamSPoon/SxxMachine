@@ -1,4 +1,7 @@
+using namespace std;
+
 #include "PredTable.h"
+#include "Code.h"
 #include "Prolog.h"
 #include "Package.h"
 #include "ClassNotFoundException.h"
@@ -6,25 +9,25 @@
 #include "InstantiationException.h"
 
 PredTable::PredTable() {
-	tables = std::vector<std::unordered_map>(33);
+	tables = std::vector<unordered_map>(33);
 }
 
-void PredTable::InsertNameArity(const std::string& N, int A, Code* Adr) {
-	std::unordered_map<std::string, Code*> T = tables[A];
+void PredTable::InsertNameArity(const wstring& N, const int& A, Code* Adr) {
+	unordered_map<wstring, Code*> T = tables[A];
 	if(T.empty()) {
-		tables[A] = T = std::unordered_map<std::string, Code*>();
+		tables[A] = T = unordered_map<wstring, Code*>();
 	}
 	T.emplace(N, Adr);
 }
 
-Code* PredTable::IsInPredTable(const std::string& N, int A) {
+Code* PredTable::IsInPredTable(const wstring& N, const int& A) {
 	if(tables[A].empty()) {
 		return nullptr;
 	}
 	return static_cast<Code*>(tables[A][N]);
 }
 
-Code* PredTable::LoadPred(PrologMachine* thiz, const std::string& Name, int arity)
+Code* PredTable::LoadPred(PrologMachine* thiz, const wstring& Name, const int& arity)
 															// source
 // arity before
 // bin
@@ -42,20 +45,20 @@ Code* PredTable::LoadPred(PrologMachine* thiz, const std::string& Name, int arit
 	return code;
 }
 
-Code* PredTable::Instanciate(const std::string& Name, int arity) {
-	std::type_info loaded_class;
+Code* PredTable::Instanciate(const wstring& Name, const int& arity) {
+	type_info loaded_class;
 	int reason = 0;
 	Code* code = nullptr;
 	try {
 		Package* p = PredTable::typeid->getPackage();
-		std::string pp = "";
+		wstring pp = "";
 		if(p != nullptr) {
 			pp = p->getName() + ".";
 		}
-		std::string s1 = pp + "pred_" + Name + "_" + std::to_string(arity);
+		wstring s1 = pp + "pred_" + Name + "_" + to_string(arity);
 		// String s2 = s1 + ".class" ;
 		// System.out.println("Trying to load " + s2) ;
-		loaded_class = std::type_info::forName(s1);
+		loaded_class = type_info::forName(s1);
 		// System.out.println("Loaded " + s2) ;
 		code = static_cast<Code*>(loaded_class.newInstance());
 		// System.out.println("and created "+s2) ;
@@ -68,7 +71,7 @@ Code* PredTable::Instanciate(const std::string& Name, int arity) {
 	}
 
 	if(reason > 0) {
-		std::cout << "Predicate " << Name << "/" << arity << " not found; does its .class file exist ?" << std::endl;
+		cout << "Predicate " << Name << "/" << arity << " not found; does its .class file exist ?" << endl;
 		return UpperPrologMachine::Fail0;
 	}
 	return code;

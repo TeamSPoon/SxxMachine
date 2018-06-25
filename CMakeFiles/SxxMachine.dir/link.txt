@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/SxxMachine.dir/src/SxxMachine.cpp.o  -o SxxMachine -rdynamic 

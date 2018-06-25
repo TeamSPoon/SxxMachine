@@ -1,0 +1,3 @@
+/opt/logicmoo_workspace/taupl/SxxMachine/CMakeFiles/edit_cache.dir
+/opt/logicmoo_workspace/taupl/SxxMachine/CMakeFiles/SxxMachine.dir
+/opt/logicmoo_workspace/taupl/SxxMachine/CMakeFiles/rebuild_cache.dir

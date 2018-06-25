@@ -1,792 +1,276 @@
 #ifndef TERM
 #define TERM
 
-/*
+#include <string>
+#include <vector>
+#include <iostream>
+#include <any>
+#include <functional>
 
+//JAVA TO C++ CONVERTER NOTE: Forward class declarations:
+class PrologMachine;
+class Funct;
+class Const;
+class Var;
+class Int;
+class Appendable;
+class Name;
 
-	Term Deref() {
-		System.out.println("general deref on terms not available");
-		return null;
-	}
+class Term {
 
-	public String toString() {
-		return "general print on terms not available";
-	}
+public:
+	virtual Term* Deref();
 
-	boolean Unify(Term that) {
-		System.out.println("general unify on terms not available");
-		return false;
-	}
+	std::string toString() override;
 
-	boolean Bind(Term that) {
-		return false;
-	}
+	virtual bool Unify(Term* that);
 
-	boolean Equal(Term that) {
-		System.out.println("general equal on terms not available");
-		return false;
-	}
+	virtual bool Bind(Term* that);
 
-	String GetName() {
-		System.out.println("general getname on terms not available");
-		return "";
-	}
+	virtual bool Equal(Term* that);
 
-	int Arity() {
-		System.out.println("general getarity on terms not available");
-		return 0;
-	}
+	virtual std::string GetName();
 
-	void UnTrailSelf() {
-		System.out.println("general untrail on terms not available");
-	}
+	virtual int Arity();
 
-	Term Copy(PrologMachine m, long t) {
-		System.out.println("general copy on terms not available");
-		return null;
-	}
+	virtual void UnTrailSelf();
 
-	long LongValue() {
-		return 0;
-	}
+	virtual Term* Copy(PrologMachine* m, long long t);
 
-	boolean IsList() {
-		return false;
-	}
+	virtual long long LongValue();
 
-	boolean IsNil() {
-		return false;
-	}
+	virtual bool IsList();
 
-	public static Term Var(PrologMachine mach) {
-		return new Var(mach);
-	}
+	virtual bool IsNil();
 
-	public static Int Number(long i) {
-		return new Int(i);
-	}
+	static Funct* F(const std::string& string6, std::vector<Term> &terms);
 
-	public static Funct Compound(String funct, Term... deref) {
-		return new Funct(funct, deref);
-	}
+	static Funct* F(Const* string6, std::vector<Term> &terms);
 
-}
+	static Term* Var(PrologMachine* mach);
 
-final class Var extends Term {
-	Object Refers;
-	long timestamp;
-	PrologMachine mach;
+	virtual Term* findOrAttrValue(PrologMachine* mach, const bool& b, Term* deref);
 
-	Var(PrologMachine machin) {
-		Refers = this;
-		timestamp = machin.TimeStamp;
-		mach = machin;
-	}
+	virtual void putAttrValue(PrologMachine* mach, Term* deref, Term* deref2);
 
-	Var(PrologMachine machin, long t) {
-		Refers = this;
-		timestamp = t;
-		mach = machin;
-	}
+	virtual void setAttrs(PrologMachine* mach, Term* deref);
 
-	Term Copy(PrologMachine m, long t) {
-		Var newv = new Var(m, t);
-		VarDict newdict = new VarDict(this, newv);
-		Refers = newdict;
-		mach.TrailEntry(this);
-		return newv;
-	}
+	virtual void formattedOutput(const int& formatFlags, Appendable* buffer) throw(IOException);
 
-	Term Deref() {
-		if ((Refers == this) || !(Refers instanceof Term))
-			return this;
-		return ((Term) Refers).Deref();
-	}
+	static Int* Number(const int& i);
 
-	void UnTrailSelf() {
-		Refers = this;
-	}
+	virtual void freeze(PrologMachine* mach, Term* deref);
 
-	public String toString() {
-		return "_" + Integer.toHexString(hashCode());
-	}
+	virtual Term* frozenGoals();
 
-	boolean Bind(Term that) {
-		Var v2;
-		if (that instanceof Var) {
-			Var v1 = (Var) that;
-			if (this.timestamp < v1.timestamp) {
-				v1.Refers = this;
-				v2 = v1;
-			} else {
-				this.Refers = that;
-				v2 = this;
-			}
-		} else {
-			this.Refers = that;
-			v2 = this;
-		}
-		if (v2.timestamp < mach.ChoicePointStack[mach.CurrentChoice].TimeStamp) {
-			mach.TrailEntry(v2);
-		}
-		return true;
-	}
+	virtual bool isAttvar();
 
-	boolean Unify(Term that) {
-		return Bind(that);
-	}
+};
 
-	boolean Equal(Term that) {
-		if (!(that instanceof Var)) {
-			return false;
-		}
-		;
-		return this == that;
-	}
+class Var final : public Term {
+public:
+	std::any Refers;
+	long long timestamp = 0;
+	PrologMachine* mach;
 
-	String GetName() {
-		return toString();
+	virtual ~Var() {
+		delete mach;
 	}
-}
-
-final class FrozenVar extends Term {
-	Term Refers;
-	long timestamp;
-	PrologMachine mach;
-	Term goals;
-
-	FrozenVar(PrologMachine machin, Term action) {
-		Refers = null;
-		timestamp = machin.TimeStamp;
-		mach = machin;
-		goals = action;
-	}
 
-	FrozenVar(PrologMachine machin, long t, Term action) {
-		Refers = null;
-		timestamp = t;
-		mach = machin;
-		goals = action;
-	}
+	Var(PrologMachine* machin);
 
-	Term Copy(PrologMachine m, long t) {
-		return new Const("[]".intern()); // might decide to copy frozenvars
-											// later
-	}
+	Var(PrologMachine* machin, long long t);
 
-	Term Deref() {
-		if (Refers == null)
-			return this;
-		return ((Term) Refers).Deref();
-	}
+	Term* Copy(PrologMachine* m, long long t) override;
 
-	void UnTrailSelf() {
-		Refers = null;
-	}
+	Term* Deref() override;
 
-	public String toString() {
-		return "_" + Integer.toHexString(hashCode());
-	}
+	void UnTrailSelf() override;
 
-	boolean Bind(Term that) {
-		Var v2;
-		if (that instanceof FrozenVar) {
-			FrozenVar thatv = (FrozenVar) that;
-			Funct newgoals = new Funct(",".intern(), this.goals, thatv.goals);
-			FrozenVar newfrv = new FrozenVar(mach, mach.CurrentChoice, newgoals);
-			this.Refers = thatv.Refers = newfrv;
-			mach.TrailEntry(this);
-			mach.TrailEntry(thatv);
-		} else if (that instanceof Var) {
-			return that.Bind(this);
-		} else {
-			this.Refers = that;
-			mach.TrailEntry(this);
-			mach.TrailEntry(new PopPendingGoals(mach, mach.pendinggoals));
-			mach.pendinggoals = new Funct(".".intern(), goals, mach.pendinggoals);
-			mach.ExceptionRaised = 1;
-		}
-		return true;
-	}
+	std::string toString() override;
 
-	boolean Unify(Term that) {
-		return Bind(that);
-	}
+	bool Bind(Term* that) override;
 
-	boolean Equal(Term that) {
-		if (!(that instanceof FrozenVar)) {
-			return false;
-		}
-		;
-		return this == that;
-	}
+	bool Unify(Term* that) override;
 
-	String GetName() {
-		return toString();
-	}
-}
+	bool Equal(Term* that) override;
 
-final class Int extends Term {
-	long IntValue;
+	std::string GetName() override;
+};
 
-	Int(long i) {
-		IntValue = i;
-	}
+class FrozenVar final : public Term {
+public:
+	Term* Refers;
+	long long timestamp = 0;
+	PrologMachine* mach;
+	Term* goals;
 
-	Term Copy(PrologMachine m, long t) {
-		return new Int(IntValue);
+	virtual ~FrozenVar() {
+		delete Refers;
+		delete mach;
+		delete goals;
 	}
 
-	long LongValue() {
-		return IntValue;
-	}
+	FrozenVar(PrologMachine* machin, Term* action);
 
-	Term Deref() {
-		return this;
-	}
+	FrozenVar(PrologMachine* machin, long long t, Term* action);
 
-	public String toString() {
-		return "" + IntValue;
-	}
+	Term* Copy(PrologMachine* m, long long t) override;
 
-	boolean Unify(Term that) {
-		Int tmpint;
-		if (!(that instanceof Int))
-			return that.Bind(this);
-		tmpint = (Int) that; // cast perhaps to be avoided
-		return (tmpint.IntValue == this.IntValue);
-	}
+	Term* Deref() override;
 
-	boolean Equal(Term that) {
-		if (!(that instanceof Int)) {
-			return false;
-		}
-		;
-		return this.IntValue == ((Int) that).IntValue;
-	}
+	void UnTrailSelf() override;
 
-	String GetName() {
-		return "" + IntValue;
-	}
+	std::string toString() override;
 
-}
+	bool Bind(Term* that) override;
 
-final class Const extends Term {
-	String Name;
+	bool Unify(Term* that) override;
 
-	static String IStr(String s) {
-		return s.intern();
-	}
+	bool Equal(Term* that) override;
 
-	static Const Intern(String s) {
-		return new Const(s);
-	}
+	std::string GetName() override;
+};
 
-	long LongValue() {
-		return 0;
-	}
+class Int final : public Term {
+public:
+	long long IntValue = 0;
 
-	Const(String N) {
-		Name = N;
-	}
+	Int(long long i);
 
-	Term Copy(PrologMachine m, long t) {
-		return new Const(Name);
-	}
+	Term* Copy(PrologMachine* m, long long t) override;
 
-	Term Deref() {
-		return this;
-	}
+	long long LongValue() override;
 
-	public String toString() {
-		return Name;
-	}
+	Term* Deref() override;
 
-	boolean Unify(Term that) {
-		if (this.getClass() == that.getClass())
-			// return (that.GetName()).equals(this.Name) ;
-			return (that.GetName() == this.Name);
-		return that.Bind(this);
-	}
+	std::string toString() override;
 
-	boolean Equal(Term that) {
-		if (this.getClass() == that.getClass())
-			return (that.toString()).equals(this.toString());
-		return false;
-	}
+	bool Unify(Term* that) override;
 
-	int Arity() {
-		return 0;
-	}
+	bool Equal(Term* that) override;
 
-	String GetName() {
-		return Name;
-	}
+	std::string GetName() override;
 
-	boolean IsNil() {
-		return this.Name.equals("[]".intern());
-	}
+};
 
-}
-
-final class Continuation extends Term {
-	Code code;
-	Term Args[];
-
-	Continuation(Term args[], Code c) {
-		int i = c.Arity() + 1;
-		Args = new Term[i];
-		while (i-- > 0)
-			Args[i] = args[i];
-		code = c;
-	}
+class Const final : public Term {
+public:
+	static Term* const  Nil;
+	std::string Name;
 
-	Term Deref() {
-		return this;
-	}
+	long long LongValue() override;
 
-	boolean Unify(Term that) {
-		return that.Bind(this);
-	}
+	Const(const std::string& N);
 
-}
-
-final class Funct extends Term {
-	Term Arguments[];
-	String Name;
-
-	Term Copy(PrologMachine m, long t) {
-		int a = Arguments.length;
-		Funct f = new Funct(Name, a);
-		Term arg;
-		while (a-- > 0) {
-			arg = Arguments[a].Deref();
-			f.Arguments[a] = arg.Copy(m, t);
-		}
-		return f;
-	}
+	Term* Copy(PrologMachine* m, long long t) override;
 
-	Funct(String N) {
-		Name = N;
-	}
+	Term* Deref() override;
 
-	Funct(String N, int arity) {
-		Name = N;
-		Arguments = new Term[arity];
-	}
+	std::string toString() override;
 
-	Funct(String N, Term a1) {
-		Name = N;
-		Arguments = new Term[1];
-		Arguments[0] = a1;
-	}
+	bool Unify(Term* that) override;
 
-	Funct(String N, Term a1, Term a2) {
-		Name = N;
-		Arguments = new Term[2];
-		Arguments[0] = a1;
-		Arguments[1] = a2;
-	}
+	bool Equal(Term* that) override;
 
-	Funct(String N, Term a1, Term a2, Term a3) {
-		Name = N;
-		Arguments = new Term[3];
-		Arguments[0] = a1;
-		Arguments[1] = a2;
-		Arguments[2] = a3;
-	}
+	int Arity() override;
 
-	Funct(String N, Term a1, Term a2, Term a3, Term a4) {
-		Name = N;
-		Arguments = new Term[4];
-		Arguments[0] = a1;
-		Arguments[1] = a2;
-		Arguments[2] = a3;
-		Arguments[3] = a4;
-	}
+	std::string GetName() override;
 
-	Funct(String N, Term a1, Term a2, Term a3, Term a4, Term a5) {
-		Name = N;
-		Arguments = new Term[5];
-		Arguments[0] = a1;
-		Arguments[1] = a2;
-		Arguments[2] = a3;
-		Arguments[3] = a4;
-		Arguments[4] = a5;
-	}
+	bool IsNil() override;
 
-	Funct(String N, Term a1, Term a2, Term a3, Term a4, Term a5, Term a6) {
-		Name = N;
-		Arguments = new Term[6];
-		Arguments[0] = a1;
-		Arguments[1] = a2;
-		Arguments[2] = a3;
-		Arguments[3] = a4;
-		Arguments[4] = a5;
-		Arguments[5] = a6;
-	}
+	static std::string IStr(const std::string& string);
 
-	Funct(String N, Term a1, Term a2, Term a3, Term a4, Term a5, Term a6, Term a7) {
-		Name = N;
-		Arguments = new Term[7];
-		Arguments[0] = a1;
-		Arguments[1] = a2;
-		Arguments[2] = a3;
-		Arguments[3] = a4;
-		Arguments[4] = a5;
-		Arguments[5] = a6;
-		Arguments[6] = a7;
-	}
+	static Const* Intern(const std::string& N);
 
-	Funct(String N, Term a1, Term a2, Term a3, Term a4, Term a5, Term a6, Term a7, Term a8) {
-		Name = N;
-		Arguments = new Term[8];
-		Arguments[0] = a1;
-		Arguments[1] = a2;
-		Arguments[2] = a3;
-		Arguments[3] = a4;
-		Arguments[4] = a5;
-		Arguments[5] = a6;
-		Arguments[6] = a7;
-		Arguments[7] = a8;
-	}
+};
 
-	Funct(String N, Term a1, Term a2, Term a3, Term a4, Term a5, Term a6, Term a7, Term a8, Term a9) {
-		Name = N;
-		Arguments = new Term[9];
-		Arguments[0] = a1;
-		Arguments[1] = a2;
-		Arguments[2] = a3;
-		Arguments[3] = a4;
-		Arguments[4] = a5;
-		Arguments[5] = a6;
-		Arguments[6] = a7;
-		Arguments[7] = a8;
-		Arguments[8] = a9;
-	}
+class Continuation final : public Term {
+public:
+	std::function<Function*(PrologMachine*)> code;
+	std::vector<Term*> Args;
 
-	Funct(String N, Term a1, Term a2, Term a3, Term a4, Term a5, Term a6, Term a7, Term a8, Term a9, Term a10) {
-		Name = N;
-		Arguments = new Term[10];
-		Arguments[0] = a1;
-		Arguments[1] = a2;
-		Arguments[2] = a3;
-		Arguments[3] = a4;
-		Arguments[4] = a5;
-		Arguments[5] = a6;
-		Arguments[6] = a7;
-		Arguments[7] = a8;
-		Arguments[8] = a9;
-		Arguments[9] = a10;
+	virtual ~Continuation() {
+		delete code;
 	}
 
-	Funct(String N, Term a1, Term a2, Term a3, Term a4, Term a5, Term a6, Term a7, Term a8, Term a9, Term a10,
-			Term a11) {
-		Name = N;
-		Arguments = new Term[11];
-		Arguments[0] = a1;
-		Arguments[1] = a2;
-		Arguments[2] = a3;
-		Arguments[3] = a4;
-		Arguments[4] = a5;
-		Arguments[5] = a6;
-		Arguments[6] = a7;
-		Arguments[7] = a8;
-		Arguments[8] = a9;
-		Arguments[9] = a10;
-		Arguments[10] = a11;
-	}
+	Continuation(std::vector<Term*>& args, const int& i, std::function<Function*(PrologMachine*)>& c);
 
-	Funct(String N, Term a1, Term a2, Term a3, Term a4, Term a5, Term a6, Term a7, Term a8, Term a9, Term a10, Term a11,
-			Term a12) {
-		Name = N;
-		Arguments = new Term[12];
-		Arguments[0] = a1;
-		Arguments[1] = a2;
-		Arguments[2] = a3;
-		Arguments[3] = a4;
-		Arguments[4] = a5;
-		Arguments[5] = a6;
-		Arguments[6] = a7;
-		Arguments[7] = a8;
-		Arguments[8] = a9;
-		Arguments[9] = a10;
-		Arguments[10] = a11;
-		Arguments[11] = a12;
-	}
+	Term* Deref() override;
 
-	Funct(String N, Term a1, Term a2, Term a3, Term a4, Term a5, Term a6, Term a7, Term a8, Term a9, Term a10, Term a11,
-			Term a12, Term a13) {
-		Name = N;
-		Arguments = new Term[13];
-		Arguments[0] = a1;
-		Arguments[1] = a2;
-		Arguments[2] = a3;
-		Arguments[3] = a4;
-		Arguments[4] = a5;
-		Arguments[5] = a6;
-		Arguments[6] = a7;
-		Arguments[7] = a8;
-		Arguments[8] = a9;
-		Arguments[9] = a10;
-		Arguments[10] = a11;
-		Arguments[11] = a12;
-		Arguments[12] = a13;
-	}
+	bool Unify(Term* that) override;
 
-	Funct(String N, Term a1, Term a2, Term a3, Term a4, Term a5, Term a6, Term a7, Term a8, Term a9, Term a10, Term a11,
-			Term a12, Term a13, Term a14) {
-		Name = N;
-		Arguments = new Term[14];
-		Arguments[0] = a1;
-		Arguments[1] = a2;
-		Arguments[2] = a3;
-		Arguments[3] = a4;
-		Arguments[4] = a5;
-		Arguments[5] = a6;
-		Arguments[6] = a7;
-		Arguments[7] = a8;
-		Arguments[8] = a9;
-		Arguments[9] = a10;
-		Arguments[10] = a11;
-		Arguments[11] = a12;
-		Arguments[12] = a13;
-		Arguments[13] = a14;
-	}
+};
 
-	Funct(String N, Term a1, Term a2, Term a3, Term a4, Term a5, Term a6, Term a7, Term a8, Term a9, Term a10, Term a11,
-			Term a12, Term a13, Term a14, Term a15) {
-		Name = N;
-		Arguments = new Term[15];
-		Arguments[0] = a1;
-		Arguments[1] = a2;
-		Arguments[2] = a3;
-		Arguments[3] = a4;
-		Arguments[4] = a5;
-		Arguments[5] = a6;
-		Arguments[6] = a7;
-		Arguments[7] = a8;
-		Arguments[8] = a9;
-		Arguments[9] = a10;
-		Arguments[10] = a11;
-		Arguments[11] = a12;
-		Arguments[12] = a13;
-		Arguments[13] = a14;
-		Arguments[14] = a15;
+class Funct final : public Term {
+public:
+	std::vector<Term*> Arguments;
+	std::string Name;
 
-	}
+	Term* Copy(PrologMachine* m, long long t) override;
 
-	Funct(String N, Term a1, Term a2, Term a3, Term a4, Term a5, Term a6, Term a7, Term a8, Term a9, Term a10, Term a11,
-			Term a12, Term a13, Term a14, Term a15, Term a16) {
-		Name = N;
-		Arguments = new Term[16];
-		Arguments[0] = a1;
-		Arguments[1] = a2;
-		Arguments[2] = a3;
-		Arguments[3] = a4;
-		Arguments[4] = a5;
-		Arguments[5] = a6;
-		Arguments[6] = a7;
-		Arguments[7] = a8;
-		Arguments[8] = a9;
-		Arguments[9] = a10;
-		Arguments[10] = a11;
-		Arguments[11] = a12;
-		Arguments[12] = a13;
-		Arguments[13] = a14;
-		Arguments[14] = a15;
-		Arguments[15] = a16;
-	}
+	Funct(const std::string& N);
 
-	Funct(String N, Term a1, Term a2, Term a3, Term a4, Term a5, Term a6, Term a7, Term a8, Term a9, Term a10, Term a11,
-			Term a12, Term a13, Term a14, Term a15, Term a16, Term a17) {
-		Name = N;
-		Arguments = new Term[17];
-		Arguments[0] = a1;
-		Arguments[1] = a2;
-		Arguments[2] = a3;
-		Arguments[3] = a4;
-		Arguments[4] = a5;
-		Arguments[5] = a6;
-		Arguments[6] = a7;
-		Arguments[7] = a8;
-		Arguments[8] = a9;
-		Arguments[9] = a10;
-		Arguments[10] = a11;
-		Arguments[11] = a12;
-		Arguments[12] = a13;
-		Arguments[13] = a14;
-		Arguments[14] = a15;
-		Arguments[15] = a16;
-		Arguments[16] = a17;
-	}
+	Funct(const std::string& N, const int& arity);
 
-	Funct(String N, Term a1, Term a2, Term a3, Term a4, Term a5, Term a6, Term a7, Term a8, Term a9, Term a10, Term a11,
-			Term a12, Term a13, Term a14, Term a15, Term a16, Term a17, Term a18) {
-		Name = N;
-		Arguments = new Term[18];
-		Arguments[0] = a1;
-		Arguments[1] = a2;
-		Arguments[2] = a3;
-		Arguments[3] = a4;
-		Arguments[4] = a5;
-		Arguments[5] = a6;
-		Arguments[6] = a7;
-		Arguments[7] = a8;
-		Arguments[8] = a9;
-		Arguments[9] = a10;
-		Arguments[10] = a11;
-		Arguments[11] = a12;
-		Arguments[12] = a13;
-		Arguments[13] = a14;
-		Arguments[14] = a15;
-		Arguments[15] = a16;
-		Arguments[16] = a17;
-		Arguments[17] = a18;
-	}
+	Funct(const std::string& N, Term* a1);
 
-	Funct(String N, Term args[]) {
-		Name = N;
-		Arguments = args;
-	}
+	Funct(const std::string& N, Term* a1, Term* a2);
 
-	long LongValue() {
-		int arity = Arguments.length;
-		Term a1, a2;
-		long i1, i2;
-		if (arity == 1) {
-			i1 = (Arguments[0].Deref()).LongValue();
-			if (Name.equals("-".intern()))
-				return -i1;
-			if (Name.equals("+".intern()))
-				return i1;
-			return 0;
-		}
-		if (arity != 2)
-			return 0;
-		i1 = (Arguments[0].Deref()).LongValue();
-		i2 = (Arguments[1].Deref()).LongValue();
-		if (Name.equals("-".intern()))
-			return i1 - i2;
-		if (Name.equals("+".intern()))
-			return i1 + i2;
-		if (Name.equals("*".intern()))
-			return i1 * i2;
-		if (Name.equals("/".intern()))
-			return i1 / i2;
-		return 0;
-	}
+	Funct(const std::string& N, Term* a1, Term* a2, Term* a3);
 
-	Term Deref() {
-		return this;
-	}
+	Funct(const std::string& N, Term* a1, Term* a2, Term* a3, Term* a4);
 
-	boolean islist(int i, String Name) {
-		if (i != 2)
-			return false;
-		return Name.equals(".".intern());
-	}
+	Funct(const std::string& N, Term* a1, Term* a2, Term* a3, Term* a4, Term* a5);
 
-	boolean IsList() {
-		return islist(this.Arguments.length, this.Name);
-	}
+	Funct(const std::string& N, Term* a1, Term* a2, Term* a3, Term* a4, Term* a5, Term* a6);
 
-	String listify(Term T) {
-		String s;
-		if (T.IsList()) {
-			Term A1, A2;
-			A1 = ((Funct) T).Arguments[0];
-			A2 = ((Funct) T).Arguments[1];
-			A1 = A1.Deref();
-			A2 = A2.Deref();
-			return "," + A1.toString() + listify(A2);
-		} else if ((T instanceof Const) && ("[]".equals(T.GetName())))
-			return "";
-		return " | " + T.toString();
-	}
+	Funct(const std::string& N, Term* a1, Term* a2, Term* a3, Term* a4, Term* a5, Term* a6, Term* a7);
 
-	public String toString() {
-		int i = Arguments.length;
-		if (islist(i, Name)) {
-			return "[" + (Arguments[0].Deref()).toString() + listify(Arguments[1].Deref()) + "]";
-		}
-		String s = ")";
-		Term p;
-		while (--i != 0) {
-			p = Arguments[i].Deref();
-			s = "," + p.toString() + s;
-		}
-		p = Arguments[0].Deref();
-		s = p.toString() + s;
-		return Name + "(" + s;
-	}
+	Funct(const std::string& N, Term* a1, Term* a2, Term* a3, Term* a4, Term* a5, Term* a6, Term* a7, Term* a8);
 
-	boolean Unify(Term that) {
-		Funct tmpfunct;
-		int i, j;
-		Term arg1[], obj1;
-		Term arg2[], obj2;
-
-		if (!(this.getClass() == that.getClass()))
-			return that.Bind(this);
-		// if (!((this.Name).equals(that.GetName()))) return false ;
-		if ((this.Name) != (that.GetName()))
-			return false;
-
-		tmpfunct = (Funct) that; // cast perhaps to be avoided
-		i = Arguments.length;
-		j = tmpfunct.Arguments.length;
-		if (i != j)
-			return false;
-		arg1 = this.Arguments;
-		arg2 = tmpfunct.Arguments;
-		do {
-			obj1 = arg1[--i].Deref();
-			obj2 = arg2[i].Deref();
-			if (!(obj1.Unify(obj2)))
-				return false;
-		} while (i > 0);
-		return true;
-	}
+	Funct(const std::string& N, Term* a1, Term* a2, Term* a3, Term* a4, Term* a5, Term* a6, Term* a7, Term* a8, Term* a9);
 
-	boolean Equal(Term that) {
-		Funct tmpfunct;
-		int i, j;
-		Term arg1[], obj1;
-		Term arg2[], obj2;
-
-		if (!(this.getClass() == that.getClass())) {
-			return false;
-		}
-		;
-		if (!((this.GetName()).equals(that.GetName())))
-			return false;
-
-		tmpfunct = (Funct) that; // cast perhaps to be avoided
-		i = Arguments.length;
-		j = tmpfunct.Arguments.length;
-		if (i != j)
-			return false;
-		arg1 = this.Arguments;
-		arg2 = tmpfunct.Arguments;
-		do {
-			obj1 = arg1[--i].Deref();
-			obj2 = arg2[i].Deref();
-			if (!(obj1.Equal(obj2)))
-				return false;
-		} while (i > 0);
-		return true;
-	}
+	Funct(const std::string& N, Term* a1, Term* a2, Term* a3, Term* a4, Term* a5, Term* a6, Term* a7, Term* a8, Term* a9, Term* a10);
 
-	int Arity() {
-		return Arguments.length;
-	}
+	Funct(const std::string& N, Term* a1, Term* a2, Term* a3, Term* a4, Term* a5, Term* a6, Term* a7, Term* a8, Term* a9, Term* a10, Term* a11);
 
-	String GetName() {
-		return Name;
-	}
-}
-*/
+	Funct(const std::string& N, Term* a1, Term* a2, Term* a3, Term* a4, Term* a5, Term* a6, Term* a7, Term* a8, Term* a9, Term* a10, Term* a11, Term* a12);
+
+	Funct(const std::string& N, Term* a1, Term* a2, Term* a3, Term* a4, Term* a5, Term* a6, Term* a7, Term* a8, Term* a9, Term* a10, Term* a11, Term* a12, Term* a13);
+
+	Funct(const std::string& N, Term* a1, Term* a2, Term* a3, Term* a4, Term* a5, Term* a6, Term* a7, Term* a8, Term* a9, Term* a10, Term* a11, Term* a12, Term* a13, Term* a14);
+
+	Funct(const std::string& N, Term* a1, Term* a2, Term* a3, Term* a4, Term* a5, Term* a6, Term* a7, Term* a8, Term* a9, Term* a10, Term* a11, Term* a12, Term* a13, Term* a14, Term* a15);
+
+	Funct(const std::string& N, Term* a1, Term* a2, Term* a3, Term* a4, Term* a5, Term* a6, Term* a7, Term* a8, Term* a9, Term* a10, Term* a11, Term* a12, Term* a13, Term* a14, Term* a15, Term* a16);
+
+	Funct(const std::string& N, Term* a1, Term* a2, Term* a3, Term* a4, Term* a5, Term* a6, Term* a7, Term* a8, Term* a9, Term* a10, Term* a11, Term* a12, Term* a13, Term* a14, Term* a15, Term* a16, Term* a17);
+
+	Funct(const std::string& N, Term* a1, Term* a2, Term* a3, Term* a4, Term* a5, Term* a6, Term* a7, Term* a8, Term* a9, Term* a10, Term* a11, Term* a12, Term* a13, Term* a14, Term* a15, Term* a16, Term* a17, Term* a18);
+
+	Funct(const std::string& N, std::vector<Term*>& args);
+
+	long long LongValue() override;
+
+	Term* Deref() override;
+
+	bool islist(const int& i, const std::string& Name);
+
+	bool IsList() override;
+
+	std::string listify(Term* T);
+
+	std::string toString() override;
+
+	bool Unify(Term* that) override;
+
+	bool Equal(Term* that) override;
+
+	int Arity() override;
+
+	std::string GetName() override;
+};
 
 
 #endif	//#ifndef TERM

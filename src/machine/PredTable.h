@@ -54,19 +54,19 @@ class InstantiationException;
 //}
 class PredTable {
 public:
-	std::vector<std::unordered_map<std::string, Code*>> tables;
+	std::vector<std::unordered_map<std::string, Code*> > tables;
 
 	PredTable();
 
-	virtual void InsertNameArity(const std::string& N, int A, Code* Adr);
+	virtual void InsertNameArity(const std::string& N, const int& A, Code* Adr);
 
-	virtual Code* IsInPredTable(const std::string& N, int A);
+	virtual Code* IsInPredTable(const std::string& N, const int& A);
 
 	// Java ONLY
-	virtual Code* LoadPred(PrologMachine* thiz, const std::string& Name, int arity); // arity is
+	virtual Code* LoadPred(PrologMachine* thiz, const std::string& Name, const int& arity); // arity is
 
 private:
-	Code* Instanciate(const std::string& Name, int arity);
+	Code* Instanciate(const std::string& Name, const int& arity);
 };
 
 

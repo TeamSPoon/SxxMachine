@@ -9,22 +9,25 @@
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.function.Function;
 
 public class Prolog {
+	public static PrologMachine M = null;
+
 	public static void main(String args[]) {
 
 		// this is the application
 		// before it can call a Prolog goal, it must make and initialise a
 		// machine
 
-		PrologMachine M = new PrologMachine();
+		M = new PrologMachine();
 		M.InitOnce();
 
 		// any time a new goal is called, the machine has to be "reset"
 
 		M.InitAlways();
 
-		if (false && args.length == 0) {
+		if (args.length == 0) {
 			while (true) {
 				try {
 					M.run();
@@ -60,23 +63,6 @@ public class Prolog {
 
 }
 
-class ChoicePointStackEntry {
-	Code Alternative;
-	int Trail;
-	Term Arguments[];
-	long TimeStamp;
-
-	ChoicePointStackEntry(Term args[]) {
-		int l = args.length;
-		Arguments = new Term[l];
-		while (l > 0) {
-			l--;
-			Arguments[l] = args[l];
-		}
-
-	}
-}
-
 class UpperPrologMachine {
 	static PredTable Predicates = null;
 	static FailProc Fail0 = null;
@@ -101,27 +87,29 @@ class PrologMachine extends UpperPrologMachine {
 	int TrailTop;
 	Lexer lextoc = null;
 	Term assumptions;
-	Term pendinggoals;
+	Term pendingGoals;
 	int ExceptionRaised;
 	InputStream currentinput;
 	OutputStream currentoutput;
 
 	public void run() {
-		Code code;
+		java.util.function.Function<PrologMachine, Function> code;
 
 		InitOnce();
 		Areg[0] = new Funct("toplevel".intern(), new Int(0));
 		// 0 is a dummy continuation
 		InitAlways();
-		Object next = null;
+		Function next = null;
 		code = UpperPrologMachine.Call1;
-		while (true) {
-			while (ExceptionRaised == 0 && code != null) {
-				next = code.Exec(this);
+		code = hand_pred_toplevel_0.entry_code;// (mach);
+		while (code != null) {
+			while (ExceptionRaised == 0) {
+				next = code.apply(this);
 				if (next == null) {
-					Debug();
+					Debug(code);
+				} else {
+					code = next;
 				}
-				code = (Code) next;
 			}
 			if (ExceptionRaised > 1) {
 				if (ExceptionRaised != 2)
@@ -130,16 +118,24 @@ class PrologMachine extends UpperPrologMachine {
 			}
 			// there are pending goals - deal with them
 			ExceptionRaised = 0;
-			Continuation c = new Continuation(Areg, code);
-			Areg[0] = new Funct("execpendinggoals".intern(), pendinggoals, c);
-			TrailEntry(new PopPendingGoals(this, pendinggoals));
-			pendinggoals = new Const("[]".intern());
+			Continuation c = new Continuation(Areg, GetArity(code), code);
+			Areg[0] = new Funct("execpendinggoals".intern(), pendingGoals, c);
+			TrailEntry(new PopPendingGoals(this, pendingGoals));
+			pendingGoals = new Const("[]".intern());
 			code = UpperPrologMachine.Call1;
 		}
 	}
 
-	public static void Debug() {
+	public static int GetArity(java.util.function.Function<PrologMachine, Function> code) {
+		if (code instanceof Code) {
+			return ((Code) code).Arity();
+		}
+		return -1;
+	}
+
+	public static void Debug(Function<PrologMachine, Function> code) {
 		try {
+			code.apply(Prolog.M);
 			System.in.read();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -150,14 +146,14 @@ class PrologMachine extends UpperPrologMachine {
 	}
 
 	Term SolveGoal(Term Goal) {
-		Code code = UpperPrologMachine.Call1;
+		Function<PrologMachine, Function> code = null;
 		Term AnswerList = new Var(this);
 		ExceptionRaised = 0;
 
-		Areg[0] = new Funct("findall".intern(), Goal, Goal, AnswerList, new Funct("halt".intern(), new Int(0)));
-
+		Areg[0] = new Funct("findall".intern(), Goal, Goal, AnswerList, new Funct("true".intern(), new Int(0)));
+		code = UpperPrologMachine.Call1;
 		while (ExceptionRaised == 0) {
-			code = code.Exec(this);
+			code = code.apply(this);
 		}
 		return AnswerList; // exceptions are ignored here !!!!
 	}
@@ -194,7 +190,7 @@ class PrologMachine extends UpperPrologMachine {
 		Term NoArgs[] = {};
 		CreateChoicePoint(NoArgs);
 		FillAlternative(null);
-		assumptions = pendinggoals = new Const("[]".intern());
+		assumptions = pendingGoals = new Const("[]".intern());
 		ExceptionRaised = 0;
 	}
 
@@ -202,11 +198,11 @@ class PrologMachine extends UpperPrologMachine {
 		return lextoc.next();
 	}
 
-	Code LoadPred(String Name, int arity) // arity is source arity before bin
+	Function LoadPred(String Name, int arity) // arity is source arity before bin
 	// in predtable + 1 !
 	{
 		Code code;
-		Class loaded_class;
+		Class<?> loaded_class;
 		int reason = 0;
 
 		code = Predicates.IsInPredTable(Name, arity + 1);
@@ -238,11 +234,11 @@ class PrologMachine extends UpperPrologMachine {
 		return code;
 	}
 
-	Code GetAlternative() {
+	Function<PrologMachine, Function> GetAlternative() {
 		return ChoicePointStack[CurrentChoice].Alternative;
 	}
 
-	void FillAlternative(Code Alt) {
+	void FillAlternative(Function<PrologMachine, Function> Alt) {
 		ChoicePointStack[CurrentChoice].Alternative = Alt;
 	}
 
@@ -315,6 +311,39 @@ class PrologMachine extends UpperPrologMachine {
 		// TODO Auto-generated method stub
 
 	}
+
+	public void Reg(int i) {
+		Areg[0] = Areg[i]; // install the continuation
+		while (i-- > 1) {
+			Areg[i] = null;
+		}
+
+	}
+
+	public Term[] RegPull(int i) {
+		int ii = i + 1;
+		Term t[] = new Term[ii];
+		System.arraycopy(Areg, 0, t, 0, ii);
+		return t;
+	}
+
+	class ChoicePointStackEntry {
+		Function<PrologMachine, Function> Alternative;
+		int Trail;
+		Term Arguments[];
+		long TimeStamp;
+
+		ChoicePointStackEntry(Term args[]) {
+			int l = args.length;
+			Arguments = new Term[l];
+			while (l > 0) {
+				l--;
+				Arguments[l] = args[l];
+			}
+
+		}
+	}
+
 }
 
 abstract class PrologObject extends Term {
@@ -362,15 +391,15 @@ abstract class PrologObject extends Term {
 		return null;
 	}
 
-	long ValueOf() {
+	long LongValue() {
 		return 0;
 	}
 
-	boolean islist() {
+	boolean IsList() {
 		return false;
 	}
 
-	boolean isnil() {
+	boolean IsNil() {
 		return false;
 	}
 
@@ -435,7 +464,7 @@ final class PopPendingGoals extends PrologObject {
 	}
 
 	void UnTrailSelf() {
-		mach.pendinggoals = old;
+		mach.pendingGoals = old;
 	}
 
 }

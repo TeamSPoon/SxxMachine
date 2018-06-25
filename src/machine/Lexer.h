@@ -1,7 +1,7 @@
 #ifndef LEXER
 #define LEXER
 
-#include "Prolog.h"
+#include "Term.h"
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -13,7 +13,6 @@
 #include "stringhelper.h"
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
-class PrologTokenizer;
 class PrologMachine;
 class Term;
 
@@ -26,7 +25,6 @@ public:
 	public:
 		PrologTokenizer(InputStream* I);
 	};
-
 public:
 	PrologMachine* prologmachine;
 
@@ -43,7 +41,7 @@ public:
 
 	std::string anonymous = (std::string("_")).intern();
 
-	virtual std::string char2string(int c);
+	virtual std::string char2string(const int& c);
 
 	bool inClause = false;
 
@@ -63,9 +61,9 @@ public:
 
 	virtual Term* make_var();
 
-	virtual void whitespaceChar(char c);
+	virtual void whitespaceChar(const char& c);
 
-	virtual void wordChar(char c);
+	virtual void wordChar(const char& c);
 
 	std::unordered_map dict;
 
@@ -319,7 +317,7 @@ public:
 	///            the low end of the range. </param>
 	/// <param name="hi">
 	///            the high end of the range. </param>
-	virtual void wordChars(int low, int hi);
+	virtual void wordChars(const int& low, const int& hi);
 
 	/// <summary>
 	/// Specifies that all characters <i>c</i> in the range
@@ -337,7 +335,7 @@ public:
 	///            the low end of the range. </param>
 	/// <param name="hi">
 	///            the high end of the range. </param>
-	virtual void whitespaceChars(int low, int hi);
+	virtual void whitespaceChars(const int& low, const int& hi);
 
 	/// <summary>
 	/// Specifies that all characters <i>c</i> in the range
@@ -350,7 +348,7 @@ public:
 	/// <param name="hi">
 	///            the high end of the range. </param>
 	/// <seealso cref= java.io.StreamTokenizer#ordinaryChar(int) </seealso>
-	virtual void ordinaryChars(int low, int hi);
+	virtual void ordinaryChars(const int& low, const int& hi);
 
 	/// <summary>
 	/// Specifies that the character argument is "ordinary" in this tokenizer. It
@@ -371,7 +369,7 @@ public:
 	/// <param name="ch">
 	///            the character. </param>
 	/// <seealso cref= java.io.StreamTokenizer#ttype </seealso>
-	virtual void ordinaryChar(int ch);
+	virtual void ordinaryChar(const int& ch);
 
 	/// <summary>
 	/// Specified that the character argument starts a single-line comment. All
@@ -385,7 +383,7 @@ public:
 	/// </summary>
 	/// <param name="ch">
 	///            the character. </param>
-	virtual void commentChar(int ch);
+	virtual void commentChar(const int& ch);
 
 	/// <summary>
 	/// Specifies that matching pairs of this character delimit string constants
@@ -414,7 +412,7 @@ public:
 	/// <seealso cref= java.io.StreamTokenizer#nextToken() </seealso>
 	/// <seealso cref= java.io.StreamTokenizer#sval </seealso>
 	/// <seealso cref= java.io.StreamTokenizer#ttype </seealso>
-	virtual void quoteChar(int ch);
+	virtual void quoteChar(const int& ch);
 
 	/// <summary>
 	/// Specifies that numbers should be parsed by this tokenizer. The syntax
@@ -467,7 +465,7 @@ public:
 	/// <seealso cref= java.io.StreamTokenizer#nextToken() </seealso>
 	/// <seealso cref= java.io.StreamTokenizer#ttype </seealso>
 	/// <seealso cref= java.io.StreamTokenizer#TT_EOL </seealso>
-	virtual void eolIsSignificant(bool flag);
+	virtual void eolIsSignificant(const bool& flag);
 
 	/// <summary>
 	/// Determines whether or not the tokenizer recognizes C-style comments. If
@@ -483,7 +481,7 @@ public:
 	/// <param name="flag">
 	///            {@code true} indicates to recognize and ignore C-style
 	///            comments. </param>
-	virtual void slashStarComments(bool flag);
+	virtual void slashStarComments(const bool& flag);
 
 	/// <summary>
 	/// Determines whether or not the tokenizer recognizes C++-style comments. If
@@ -500,7 +498,7 @@ public:
 	/// <param name="flag">
 	///            {@code true} indicates to recognize and ignore C++-style
 	///            comments. </param>
-	virtual void slashSlashComments(bool flag);
+	virtual void slashSlashComments(const bool& flag);
 
 	/// <summary>
 	/// Determines whether or not word token are automatically lowercased. If the
@@ -520,7 +518,7 @@ public:
 	/// <seealso cref= java.io.StreamTokenizer#nextToken() </seealso>
 	/// <seealso cref= java.io.StreamTokenizer#ttype </seealso>
 	/// <seealso cref= java.io.StreamTokenizer#TT_WORD </seealso>
-	virtual void lowerCaseMode(bool fl);
+	virtual void lowerCaseMode(const bool& fl);
 
 	/// <summary>
 	/// Read the next character </summary>

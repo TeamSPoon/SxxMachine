@@ -1,6 +1,7 @@
 import java.io.IOException;
+import java.util.function.Function;
 
-class Term {
+public class Term {
 
 	Term Deref() {
 		System.out.println("general deref on objects not available");
@@ -56,8 +57,12 @@ class Term {
 		return false;
 	}
 
-	public static Term Compound(String string6, Term... terms) {
+	public static Funct F(String string6, Term... terms) {
 		return new Funct(string6, terms);
+	}
+
+	public static Funct F(Const string6, Term... terms) {
+		return new Funct(string6.GetName(), terms);
 	}
 
 	public static Term Var(PrologMachine mach) {
@@ -82,6 +87,25 @@ class Term {
 	public void formattedOutput(int formatFlags, Appendable buffer) throws IOException {
 		// TODO Auto-generated method stub
 
+	}
+
+	public static Int Number(int i) {
+		return new Int(i);
+	}
+
+	public void freeze(PrologMachine mach, Term deref) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public Term frozenGoals() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean isAttvar() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
@@ -203,7 +227,7 @@ final class FrozenVar extends Term {
 	}
 
 	boolean Bind(Term that) {
-		Var v2;
+		// Var v2;
 		if (that instanceof FrozenVar) {
 			FrozenVar thatv = (FrozenVar) that;
 			Funct newgoals = new Funct(",".intern(), this.goals, thatv.goals);
@@ -216,8 +240,8 @@ final class FrozenVar extends Term {
 		} else {
 			this.Refers = that;
 			mach.TrailEntry(this);
-			mach.TrailEntry(new PopPendingGoals(mach, mach.pendinggoals));
-			mach.pendinggoals = new Funct(".".intern(), goals, mach.pendinggoals);
+			mach.TrailEntry(new PopPendingGoals(mach, mach.pendingGoals));
+			mach.pendingGoals = new Funct(".".intern(), goals, mach.pendingGoals);
 			mach.ExceptionRaised = 1;
 		}
 		return true;
@@ -286,6 +310,7 @@ final class Int extends Term {
 }
 
 final class Const extends Term {
+	public static final Term Nil = new Const("[]");
 	String Name;
 
 	long LongValue() {
@@ -334,23 +359,21 @@ final class Const extends Term {
 	}
 
 	public static String IStr(String string) {
-		// TODO Auto-generated method stub
 		return string.intern();
 	}
 
-	public static Term Intern(String N) {
-		// TODO Auto-generated method stub
+	public static Const Intern(String N) {
 		return new Const(N);
 	}
 
 }
 
 final class Continuation extends Term {
-	Code code;
+	java.util.function.Function<PrologMachine, Function> code;
 	Term Args[];
 
-	Continuation(Term args[], Code c) {
-		int i = c.Arity() + 1;
+	Continuation(Term args[], int i, java.util.function.Function<PrologMachine, Function> c) {
+		i = i + 1;
 		Args = new Term[i];
 		while (i-- > 0)
 			Args[i] = args[i];
