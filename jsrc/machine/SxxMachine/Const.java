@@ -1,6 +1,9 @@
 package SxxMachine;
 
+import java.io.IOException;
+
 public class Const extends Term {
+	public static final Term Nil = Intern("[]");
 	String Name;
 
 	long LongValue() {
@@ -12,32 +15,42 @@ public class Const extends Term {
 	}
 
 	Term Copy(Prolog m, long t) {
-		return new Const(Name);
+		return this; //new Const(Name);
 	}
 
 	public Term Deref() {
 		return this;
 	}
 
-	public String toString() {
-		return Name;
+	public static void formattedOutputC(int formattingFlags, Appendable buffer, String str) throws IOException {
+		if (formattingFlags == 0) {
+			buffer.append(str);
+		} else {
+			buffer.append("'");
+			buffer.append(str);
+			buffer.append("'");
+		}
+	}
+
+	public void formattedOutput(int formatFlags, Appendable buffer) throws IOException {
+		Const.formattedOutputC(formatFlags, buffer, GetName());
 	}
 
 	public boolean Unify(Term that) {
-		if (this.getClass() == that.getClass())
+		if (SameTypes(this, that))
 			// return (that.GetName()).equals(this.Name) ;
 			return (that.GetName() == this.Name);
 		return that.Bind(this);
 	}
 
 	boolean Equal(Term that) {
-		if (this.getClass() == that.getClass())
-			return (that.toString()).equals(this.toString());
+		if (SameTypes(this, that))
+			return (that.toQuotedString()).equals(this.toQuotedString());
 		return false;
 	}
 
-	int Arity() {
-		return 0;
+	public int Arity() {
+		return CONST;
 	}
 
 	String GetName() {
@@ -45,22 +58,34 @@ public class Const extends Term {
 	}
 
 	boolean IsNil() {
-		return this.Name.equals("[]".intern());
+		if (Nil == this)
+			return true;
+		if (Nil.GetName() == this.Name || this.Name.equals("[]".intern())) {
+			//throw
+		}
+		return false;
 	}
 
-	public static String IStr(String string) {
-		// TODO Auto-generated method stub
-		return string.intern();
-	}
+	Operation[] byArity = null;
 
-	public static Const Intern(String N) {
-		// TODO Auto-generated method stub
-		return new Const(N);
+	@Override
+	public Operation FindProc(int i) {
+		if (i < 33) {
+			if (byArity != null) {
+				Operation was = byArity[i];
+				if (was != null)
+					return was;
+				was = byArity[i] = Prolog.Predicates.LoadPred(Name, i);
+				return was;
+			} else {
+				Operation was = Prolog.Predicates.LoadPred(Name, i);
+				if (was != null) {
+					byArity = new Operation[32];
+					byArity[i] = was;
+				}
+				return was;
+			}
+		}
+		return Prolog.Predicates.LoadPred(Name, i);
 	}
-
-	public static Const Intern(Const N) {
-		// TODO Auto-generated method stub
-		return N;
-	}
-
 }

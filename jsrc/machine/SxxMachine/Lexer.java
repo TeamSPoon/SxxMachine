@@ -92,7 +92,7 @@ public class Lexer extends StreamTokenizer {
 				X = new Var(prologmachine);
 				dict.put(sval, X);
 			} else {
-				occ = ((Int) dict.get(X)).IntValue;
+				occ = ((Int) dict.get(X)).IntValue.longValue();
 				occ++;
 			}
 			I = new Int(occ);

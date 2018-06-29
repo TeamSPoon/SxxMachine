@@ -14,7 +14,7 @@ public class Code implements Operation {
 		return 0;
 	}
 
-	public Code Exec(Prolog mach) {
+	public Operation Exec(Prolog mach) {
 		mach.ExceptionRaised = 3;
 		return null;
 	}
@@ -29,10 +29,10 @@ class FailProc extends Code {
 	}
 
 	FailProc(Prolog mach) {
-		mach.Predicates.InsertNameArity("fail".intern(), 1, this);
+		mach.Predicates.InsertNameArityWithContinuation("fail", 1, this);
 	}
 
-	public Code Exec(Prolog mach) {
+	public Operation Exec(Prolog mach) {
 		if (mach.CurrentChoice == -1)
 			return (null);
 		// unwind the trail
@@ -53,10 +53,10 @@ class CutProc extends Code {
 	}
 
 	CutProc(Prolog mach) {
-		mach.Predicates.InsertNameArity("cut".intern(), 2, this);
+		mach.Predicates.InsertNameArityWithContinuation("cut".intern(), 2, this);
 	}
 
-	public Code Exec(Prolog mach) {
+	public Operation Exec(Prolog mach) {
 
 		// Areg[0] contains a Term of type HeapChoice
 		int i = ((HeapChoice) (mach.Areg[0])).CutTo;
@@ -73,10 +73,10 @@ class TrueProc extends Code {
 	}
 
 	TrueProc(Prolog mach) {
-		mach.Predicates.InsertNameArity("true".intern(), 1, this);
+		mach.Predicates.InsertNameArityWithContinuation("true".intern(), 1, this);
 	}
 
-	public Code Exec(Prolog mach) {
+	public Operation Exec(Prolog mach) {
 		return Prolog.Call1;
 	}
 
@@ -88,15 +88,15 @@ class Call1Proc extends Code {
 	}
 
 	Call1Proc(Prolog mach) {
-		mach.Predicates.InsertNameArity("call".intern(), 1, this);
+		mach.Predicates.InsertNameArityWithContinuation("call".intern(), 1, this);
 	}
 
-	public Code Exec(Prolog mach) { // Areg[0] contains a Fun - might have to
+	public Operation Exec(Prolog mach) { // Areg[0] contains a Fun - might have to
 		// be dereffed
 		Fun pred = (Fun) ((mach.Areg[0]).Deref());
 		int arity;
 		String FunctName;
-		Code code;
+		Operation code;
 
 		FunctName = pred.GetName();
 		arity = (pred.Arguments).length;
@@ -115,15 +115,15 @@ class Call2Proc extends Code {
 	}
 
 	Call2Proc(Prolog mach) {
-		mach.Predicates.InsertNameArity("call".intern(), 2, this);
+		mach.Predicates.InsertNameArityWithContinuation("call".intern(), 2, this);
 	}
 
-	public Code Exec(Prolog mach) { // Areg[0] contains a Fun or Const - might
-									// have to be dereffed
+	public Operation Exec(Prolog mach) { // Areg[0] contains a Fun or Const - might
+		// have to be dereffed
 		Term obj = (mach.Areg[0]).Deref();
 		int arity;
 		String PredName;
-		Code code;
+		Operation code;
 		Fun pred = null;
 
 		if (obj instanceof Fun) {

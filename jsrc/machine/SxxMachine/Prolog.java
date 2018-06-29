@@ -12,14 +12,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import SxxMachine.sxx_library.pred_toplevel_0;
+
 public class Prolog {
+	public static Prolog M = null;
+
 	public static void main(String args[]) {
 
 		// this is the application
 		// before it can call a Prolog goal, it must make and initialise a
 		// machine
 
-		Prolog M = new Prolog();
+		M = new Prolog();
 		M.InitOnce();
 
 		// any time a new goal is called, the machine has to be "reset"
@@ -61,7 +65,7 @@ public class Prolog {
 	}
 
 	class ChoicePointStackEntry {
-		Code Alternative;
+		Operation Alternative;
 		int Trail;
 		Term Arguments[];
 		long TimeStamp;
@@ -92,7 +96,7 @@ public class Prolog {
 	public Term Areg[] = new Term[32];
 	public ChoicePointStackEntry ChoicePointStack[];
 	public Term TrailStack[];
-	public Lexer.PrologTokenizer stdin;
+	//public Lexer.PrologTokenizer stdin;
 	public long TimeStamp;
 	public int CUTB;
 	public int CurrentChoice;
@@ -103,23 +107,30 @@ public class Prolog {
 	int ExceptionRaised;
 	InputStream currentinput;
 	OutputStream currentoutput;
+	public Term pendingGoals;
+	Operation code;
 
 	public void run() {
-		Code code;
 
 		InitOnce();
 		Areg[0] = new Fun("toplevel".intern(), new Int(0));
 		// 0 is a dummy continuation
 		InitAlways();
-		Object next = null;
-		code = Call1;
+		Operation next = null;
+		code = Prolog.Call1;
+		code = pred_toplevel_0::exec_static;// (mach);
 		while (true) {
 			while (ExceptionRaised == 0 && code != null) {
-				next = code.Exec(this);
-				if (next == null) {
-					Debug();
+				if (Areg[0] == null) {
+					Debug(code);
 				}
-				code = (Code) next;
+				next = code.Exec(this);
+				if (next == null || Areg[0] == null) {
+					Debug(code);
+					break;
+				} else {
+					code = (Operation) next;
+				}
 			}
 			if (ExceptionRaised > 1) {
 				if (ExceptionRaised != 2)
@@ -128,16 +139,32 @@ public class Prolog {
 			}
 			// there are pending goals - deal with them
 			ExceptionRaised = 0;
-			Continuation c = new Continuation(Areg, code);
+			Continuation c = new Continuation(Areg, GetArity(code), code);
 			Areg[0] = new Fun("execpendinggoals".intern(), pendinggoals, c);
 			TrailEntry(new PopPendingGoals(this, pendinggoals));
-			pendinggoals = new Const("[]".intern());
-			code = Call1;
+			pendingGoals = Const.Intern("[]");
+			code = Prolog.Call1;
 		}
 	}
 
-	public static void Debug() {
+	public Term HC(Term continuation) {
+		return Data.F("cut", new HeapChoice(CUTB), continuation);
+	}
+
+	public static int GetArity(Operation code) {
+		if (code instanceof Code) {
+			return ((Code) code).Arity();
+		}
+		return -1;
+	}
+
+	public static void Debug(Operation code) {
 		try {
+			if (code != null)
+				System.out.println("CodeClass = " + code.getClass());
+			System.out.println("Code = " + code);
+			System.out.println("AReg[0] = " + M.Areg[0]);
+
 			System.in.read();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -148,11 +175,11 @@ public class Prolog {
 	}
 
 	Term SolveGoal(Term Goal) {
-		Code code = Call1;
+		code = Call1;
 		Term AnswerList = new Var(this);
 		ExceptionRaised = 0;
 
-		Areg[0] = new Fun("findall".intern(), Goal, Goal, AnswerList, new Fun("halt".intern(), new Int(0)));
+		Areg[0] = new Fun("findall", Goal, Goal, AnswerList, new Fun("halt", new Int(0)));
 		//pred_findall_3.entry_code;
 		while (ExceptionRaised == 0) {
 			code = code.Exec(this);
@@ -182,6 +209,13 @@ public class Prolog {
 		}
 		currentinput = System.in;
 		currentoutput = System.out;
+		new sxx_library();
+		new sxx_meta();
+		new sxx_read();
+		new sxx_system();
+		new Builtins();
+		new Metaterm();
+		new animal();
 	}
 
 	void InitAlways() {
@@ -192,7 +226,7 @@ public class Prolog {
 		Term NoArgs[] = {};
 		CreateChoicePoint(NoArgs);
 		FillAlternative(null);
-		assumptions = pendinggoals = new Const("[]".intern());
+		assumptions = pendingGoals = Const.Intern("[]");
 		ExceptionRaised = 0;
 	}
 
@@ -200,17 +234,11 @@ public class Prolog {
 		return lextoc.next();
 	}
 
-	public Code LoadPred(String Name, int arity) // arity is source arity before bin
-	// in predtable + 1 !
-	{
-		return Predicates.LoadPred(this, Name, arity);
-	}
-
-	Code GetAlternative() {
+	public Operation GetAlternative() {
 		return ChoicePointStack[CurrentChoice].Alternative;
 	}
 
-	public void FillAlternative(Code Alt) {
+	public void FillAlternative(Operation Alt) {
 		ChoicePointStack[CurrentChoice].Alternative = Alt;
 	}
 
@@ -218,21 +246,21 @@ public class Prolog {
 		ChoicePointStack[CurrentChoice--] = null;
 	}
 
-	void RestoreArguments() {
+	public void RestoreArguments() {
 		int i = ChoicePointStack[CurrentChoice].Arguments.length;
 		while (i-- > 0) {
 			Areg[i] = ChoicePointStack[CurrentChoice].Arguments[i];
 		}
 	}
 
-	void UnTrail() {
+	public void UnTrail() {
 		while (TrailTop != ChoicePointStack[CurrentChoice].Trail) {
 			TrailStack[--TrailTop].UnTrailSelf();
 			TrailStack[TrailTop] = null;
 		}
 	}
 
-	void TrailEntry(Term po) { // System.out.println("trailing") ;
+	public void TrailEntry(Term po) { // System.out.println("trailing") ;
 		try {
 			TrailStack[TrailTop] = po;
 		} catch (ArrayIndexOutOfBoundsException e) {
@@ -275,17 +303,41 @@ public class Prolog {
 		CurrentChoice = CutTo;
 	}
 
-	public Code LoadPred1(String name, int arity) {
-		return Predicates.LoadPred(this, name, arity);
+	public Operation LoadPred(String name, int arity) {
+		return Predicates.LoadPred(name, arity);
 	}
 
 	public void push1(Undoable undoable) {
-		// TODO Auto-generated method stub
+		Debug(null);
+	}
+
+	public void push(Undoable undoable) {
+		Debug(null);
+	}
+
+	public void Reg(int i) {
+		Areg[0] = Areg[i]; // install the continuation
+		while (i-- > 1) {
+			Areg[i] = null;
+		}
 
 	}
+
+	public Term[] RegPull(int i) {
+		int ii = i + 1;
+		Term t[] = new Term[ii];
+		System.arraycopy(Areg, 0, t, 0, ii);
+		return t;
+	}
+
 }
 
 abstract class PrologObject extends Term {
+
+	@Override
+	public int Arity() {
+		return JAVA;
+	}
 
 	public Term Deref() {
 		System.out.println("general deref on objects not available");
@@ -314,11 +366,6 @@ abstract class PrologObject extends Term {
 	String GetName() {
 		System.out.println("general getname on objects not available");
 		return "";
-	}
-
-	int Arity() {
-		System.out.println("general getarity on objects not available");
-		return 0;
 	}
 
 	void UnTrailSelf() {

@@ -2,52 +2,131 @@ package SxxMachine;
 
 import java.io.IOException;
 
-public class Term {
+abstract class Term extends Data {
 
-	public Term Deref() {
-		System.out.println("general deref on objects not available");
+	// private Term val;
+	public final static int JAVA = -4;
+	public final static int REAL = -3;
+	public final static int INT = -2;
+	public final static int VAR = -1;
+	public final static int CONST = 0;
+
+	public Term goals;
+
+	public Term attrs;
+
+	public Term Arg(int i) {
+		System.out.println("general Arg on terms not available");
 		return null;
 	}
 
-	public String toString() {
-		return "general print on objects not available";
+	public Term ArgDeRef(int i) {
+		return Arg(i).Deref();
 	}
 
-	public boolean Unify(Term that) {
-		System.out.println("general unify on objects not available");
-		return false;
+	public Term ArgNoDeRef(int i) {
+		return Arg(i);
 	}
+
+	/**
+	 * returns or fakes an arity for all subtypes
+	 */
+	abstract public int Arity();
 
 	boolean Bind(Term that) {
 		return false;
 	}
 
-	boolean Equal(Term that) {
-		System.out.println("general equal on objects not available");
-		return false;
-	}
-
-	String GetName() {
-		System.out.println("general getname on objects not available");
-		return "";
-	}
-
-	int Arity() {
-		System.out.println("general getarity on objects not available");
-		return 0;
-	}
-
-	void UnTrailSelf() {
-		System.out.println("general untrail on objects not available");
-	}
-
 	Term Copy(Prolog m, long t) {
-		System.out.println("general copy on objects not available");
+		System.out.println("general copy on terms not available");
 		return null;
 	}
 
-	long LongValue() {
-		return 0;
+	public Term Deref() {
+		System.out.println("general deref on terms not available");
+		return (Term) this;
+	}
+
+	boolean Equal(Term that) {
+		System.out.println("general equal on terms not available");
+		return false;
+	}
+
+	public Term findOrAttrValue(Prolog trail, boolean createIfMissing, Term name) {
+		if (attrs == null || attrs == Const.Nil) {
+			if (!createIfMissing)
+				return Const.Nil;
+			Term wasAttrs = attrs;
+			Fun newatts = null;
+			attrs = Const.Nil;
+			newatts = new Fun("att", name, null, Const.Nil);
+			if (trail != null) {
+				trail.push1(new Undoable() {
+					@Override
+					public void Unwind() {
+						Term.this.attrs = wasAttrs;
+					}
+				});
+			}
+			return newatts;
+		} else {
+			Term next = attrs;
+			do {
+				if (next.Arg(0).equals(name)) {
+					return (Fun) next;
+				}
+				Term nnext = next.Arg(2);
+				if (!nnext.GetName().equals("att")) {
+					break;
+				}
+				next = nnext;
+			} while (true);
+			if (!createIfMissing)
+				return Const.Nil;
+			next.SetArg(trail, 2, new Fun("att", name, null, Const.Nil));
+			return next;
+		}
+	}
+
+	// @TODO
+	public Operation FindProc(int i) {
+		return Prolog.Predicates.LoadPred(GetName(), i);
+	}
+
+	abstract public void formattedOutput(int formatFlags, Appendable buffer) throws IOException;
+
+	public Term freeze(Prolog trail, Term newval) {
+		Term prev = frozenGoals();
+		Term newgoals = Data.Cons(newval, prev);
+		trail.push1(new Undoable() {
+			@Override
+			public void Unwind() {
+				goals = prev;
+			}
+		});
+		return this.goals = newgoals;
+	}
+
+	public Term frozenGoals() {
+		return nullIsNil(goals);
+	}
+
+	public Term[] GetArgs() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	String GetName() {
+		System.out.println("general getname on terms not available");
+		return "";
+	}
+
+	public boolean isAttvar() {
+		return attrs != null && attrs != Const.Nil;
+	}
+
+	public boolean isFrozen() {
+		return goals != null && goals != Const.Nil;
 	}
 
 	boolean IsList() {
@@ -58,385 +137,104 @@ public class Term {
 		return false;
 	}
 
-	public static Term Compound(String string6, Term... terms) {
-		return new Fun(string6, terms);
-	}
-
-	public static Term Compound(Const string6, Term... terms) {
-		return new Fun(string6.GetName(), terms);
-	}
-
-	public static Term Var(Prolog mach) {
-		return new Var(mach);
-	}
-
-	public Term findOrAttrValue(Prolog mach, boolean b, Term deref) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void putAttrValue(Prolog mach, Term deref, Term deref2) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void setAttrs(Prolog mach, Term deref) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void formattedOutput(int formatFlags, Appendable buffer) throws IOException {
-		// TODO Auto-generated method stub
-
-	}
-
-	public static Int Number(int i) {
-		return new Int(i);
-	}
-
-}
-
-final class Var extends Term {
-	Object Refers;
-	long timestamp;
-	Prolog mach;
-
-	Var(Prolog machin) {
-		Refers = this;
-		timestamp = machin.TimeStamp;
-		mach = machin;
-	}
-
-	Var(Prolog machin, long t) {
-		Refers = this;
-		timestamp = t;
-		mach = machin;
-	}
-
-	Term Copy(Prolog m, long t) {
-		Var newv = new Var(m, t);
-		VarDict newdict = new VarDict(this, newv);
-		Refers = newdict;
-		mach.TrailEntry(this);
-		return newv;
-	}
-
-	public Term Deref() {
-		if ((Refers == this) || !(Refers instanceof Term))
-			return this;
-		return ((Term) Refers).Deref();
-	}
-
-	void UnTrailSelf() {
-		Refers = this;
-	}
-
-	public String toString() {
-		return "_" + Integer.toHexString(hashCode());
-	}
-
-	boolean Bind(Term that) {
-		Var v2;
-		if (that instanceof Var) {
-			Var v1 = (Var) that;
-			if (this.timestamp < v1.timestamp) {
-				v1.Refers = this;
-				v2 = v1;
-			} else {
-				this.Refers = that;
-				v2 = this;
-			}
-		} else {
-			this.Refers = that;
-			v2 = this;
-		}
-		if (v2.timestamp < mach.ChoicePointStack[mach.CurrentChoice].TimeStamp) {
-			mach.TrailEntry(v2);
-		}
-		return true;
-	}
-
-	public boolean Unify(Term that) {
-		return Bind(that);
-	}
-
-	boolean Equal(Term that) {
-		if (!(that instanceof Var)) {
-			return false;
-		}
-		;
-		return this == that;
-	}
-
-	String GetName() {
-		return toString();
-	}
-}
-
-final class FrozenVar extends Term {
-	Term Refers;
-	long timestamp;
-	Prolog mach;
-	Term goals;
-
-	FrozenVar(Prolog machin, Term action) {
-		Refers = null;
-		timestamp = machin.TimeStamp;
-		mach = machin;
-		goals = action;
-	}
-
-	FrozenVar(Prolog machin, long t, Term action) {
-		Refers = null;
-		timestamp = t;
-		mach = machin;
-		goals = action;
-	}
-
-	Term Copy(Prolog m, long t) {
-		return new Const("[]".intern()); // might decide to copy frozenvars
-											// later
-	}
-
-	public Term Deref() {
-		if (Refers == null)
-			return this;
-		return ((Term) Refers).Deref();
-	}
-
-	void UnTrailSelf() {
-		Refers = null;
-	}
-
-	public String toString() {
-		return "_" + Integer.toHexString(hashCode());
-	}
-
-	boolean Bind(Term that) {
-		Var v2;
-		if (that instanceof FrozenVar) {
-			FrozenVar thatv = (FrozenVar) that;
-			Fun newgoals = new Fun(",".intern(), this.goals, thatv.goals);
-			FrozenVar newfrv = new FrozenVar(mach, mach.CurrentChoice, newgoals);
-			this.Refers = thatv.Refers = newfrv;
-			mach.TrailEntry(this);
-			mach.TrailEntry(thatv);
-		} else if (that instanceof Var) {
-			return that.Bind(this);
-		} else {
-			this.Refers = that;
-			mach.TrailEntry(this);
-			mach.TrailEntry(new PopPendingGoals(mach, mach.pendinggoals));
-			mach.pendinggoals = new Fun(".".intern(), goals, mach.pendinggoals);
-			mach.ExceptionRaised = 1;
-		}
-		return true;
-	}
-
-	public boolean Unify(Term that) {
-		return Bind(that);
-	}
-
-	boolean Equal(Term that) {
-		if (!(that instanceof FrozenVar)) {
-			return false;
-		}
-		;
-		return this == that;
-	}
-
-	String GetName() {
-		return toString();
-	}
-}
-
-final class Continuation extends Term {
-	Code code;
-	Term Args[];
-
-	Continuation(Term args[], Code c) {
-		int i = c.Arity() + 1;
-		Args = new Term[i];
-		while (i-- > 0)
-			Args[i] = args[i];
-		code = c;
-	}
-
-	public Term Deref() {
-		return this;
-	}
-
-	public boolean Unify(Term that) {
-		return that.Bind(this);
-	}
-
-}
-
-final class Fun extends Term {
-	Term Arguments[];
-	String Name;
-
-	Term Copy(Prolog m, long t) {
-		int a = Arguments.length;
-		Fun f = new Fun(Name, a);
-		Term arg;
-		while (a-- > 0) {
-			arg = Arguments[a].Deref();
-			f.Arguments[a] = arg.Copy(m, t);
-		}
-		return f;
-	}
-
-	Fun(String N) {
-		Name = N;
-	}
-
-	Fun(String N, int arity) {
-		Name = N;
-		Arguments = new Term[arity];
-	}
-
-	Fun(String N, Term... args) {
-		Name = N;
-		Arguments = args;
-		if (Arguments.length == 2) {
-			//isLixt = Name.equals(".");
-		}
-	}
-
 	long LongValue() {
-		int arity = Arguments.length;
-		// Term a1, a2;
-		long i1, i2;
-		if (arity == 1) {
-			i1 = (Arguments[0].Deref()).LongValue();
-			if (Name.equals("-".intern()))
-				return -i1;
-			if (Name.equals("+".intern()))
-				return i1;
-			return 0;
+		Term deref = Deref();
+		if (deref != (Term) this)
+			return deref.LongValue();
+		System.out.println("general LongValue on terms not available");
+		return -1;
+	}
+
+	private Term nullIsNil(Term attrs2) {
+		return attrs2 == null ? Const.Nil : attrs2;
+	}
+
+	public void putAttrValue(Prolog trail, Term name, Term val) {
+		Term wasAttrs = attrs;
+		Term newatts = null;
+		if (attrs == null || attrs == Const.Nil) {
+			attrs = Const.Nil;
+			newatts = new Fun("att", name, val, Const.Nil);
+			if (trail != null) {
+				trail.push1(new Undoable() {
+
+					@Override
+					public void Unwind() {
+						// TODO Auto-generated method stub
+
+					}
+				});
+			}
+			attrs = newatts;
+			return;
+		} else {
+			Term next = wasAttrs;
+			do {
+				if (wasAttrs.Arg(0).equals(name)) {
+					wasAttrs.SetArg(trail, 1, val);
+					return;
+				}
+				Term nnext = next.Arg(2);
+				if (!nnext.GetName().equals("att")) {
+					break;
+				}
+				next = nnext;
+			} while (true);
+			next.SetArg(trail, 2, new Fun("att", name, val, Const.Nil));
 		}
-		if (arity != 2)
-			return 0;
-		i1 = (Arguments[0].Deref()).LongValue();
-		i2 = (Arguments[1].Deref()).LongValue();
-		if (Name.equals("-".intern()))
-			return i1 - i2;
-		if (Name.equals("+".intern()))
-			return i1 + i2;
-		if (Name.equals("*".intern()))
-			return i1 * i2;
-		if (Name.equals("/".intern()))
-			return i1 / i2;
-		return 0;
 	}
 
-	public Term Deref() {
-		return this;
+	public void SetArg(Prolog trail, int i0, Term value) {
 	}
 
-	boolean islist(int i, String Name) {
-		if (i != 2)
-			return false;
-		return Name.equals(".".intern());
+	public void setAttrs(Prolog trail, Term newval) {
+		Term prev = nullIsNil(attrs);
+		trail.push1(new Undoable() {
+			@Override
+			public void Unwind() {
+				attrs = prev;
+			}
+		});
+		this.attrs = newval;
 	}
 
-	boolean IsList() {
-		return islist(this.Arguments.length, this.Name);
+	public void setGoals(Prolog trail, Term newval) {
+		Term prev = nullIsNil(goals);
+		trail.push1(new Undoable() {
+			@Override
+			public void Unwind() {
+				goals = prev;
+			}
+		});
+		this.goals = newval;
 	}
 
-	String listify(Term T) {
-		String s;
-		if (T.IsList()) {
-			Term A1, A2;
-			A1 = ((Fun) T).Arguments[0];
-			A2 = ((Fun) T).Arguments[1];
-			A1 = A1.Deref();
-			A2 = A2.Deref();
-			return "," + A1.toString() + listify(A2);
-		} else if ((T instanceof Const) && ("[]".equals(T.GetName())))
-			return "";
-		return " | " + T.toString();
+	public String toQuotedString() {
+		Appendable buffer = new StringBuilder();
+		try {
+			formattedOutput(1, buffer);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return buffer.toString();
 	}
 
 	public String toString() {
-		int i = Arguments.length;
-		if (islist(i, Name)) {
-			return "[" + (Arguments[0].Deref()).toString() + listify(Arguments[1].Deref()) + "]";
-		}
-		String s = ")";
-		Term p;
-		while (--i != 0) {
-			p = Arguments[i].Deref();
-			s = "," + p.toString() + s;
-		}
-		p = Arguments[0].Deref();
-		s = p.toString() + s;
-		return Name + "(" + s;
+		return toQuotedString();
 	}
 
-	public boolean Unify(Term that) {
-		Fun tmpfunct;
-		int i, j;
-		Term arg1[], obj1;
-		Term arg2[], obj2;
-
-		if (!(this.getClass() == that.getClass()))
-			return that.Bind(this);
-		// if (!((this.Name).equals(that.GetName()))) return false ;
-		if ((this.Name) != (that.GetName()))
-			return false;
-
-		tmpfunct = (Fun) that; // cast perhaps to be avoided
-		i = Arguments.length;
-		j = tmpfunct.Arguments.length;
-		if (i != j)
-			return false;
-		arg1 = this.Arguments;
-		arg2 = tmpfunct.Arguments;
-		do {
-			obj1 = arg1[--i].Deref();
-			obj2 = arg2[i].Deref();
-			if (!(obj1.Unify(obj2)))
-				return false;
-		} while (i > 0);
-		return true;
+	public boolean Unify(Prolog mach, Term o1) {
+		return Unify(o1);
 	}
 
-	boolean Equal(Term that) {
-		Fun tmpfunct;
-		int i, j;
-		Term arg1[], obj1;
-		Term arg2[], obj2;
-
-		if (!(this.getClass() == that.getClass())) {
-			return false;
-		}
-		;
-		if (!((this.GetName()).equals(that.GetName())))
-			return false;
-
-		tmpfunct = (Fun) that; // cast perhaps to be avoided
-		i = Arguments.length;
-		j = tmpfunct.Arguments.length;
-		if (i != j)
-			return false;
-		arg1 = this.Arguments;
-		arg2 = tmpfunct.Arguments;
-		do {
-			obj1 = arg1[--i].Deref();
-			obj2 = arg2[i].Deref();
-			if (!(obj1.Equal(obj2)))
-				return false;
-		} while (i > 0);
-		return true;
+	boolean Unify(Term that) {
+		System.out.println("general unify on terms not available");
+		return false;
 	}
 
-	int Arity() {
-		return Arguments.length;
+	void UnTrailSelf() {
+		System.out.println("general untrail on terms not available");
 	}
 
-	String GetName() {
-		return Name;
-	}
 }

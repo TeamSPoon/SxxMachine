@@ -9,11 +9,11 @@ import java.util.Hashtable;
 //PredTable() {
 //new Hashtable();
 //}
-//void InsertNameArity(String N, int A, Code Adr) {
+//void InsertNameArity(String N, int A, Operation Adr) {
 //put(A+N,Adr);
 //}
-//Code IsInPredTable(String N, int A) {
-//return (Code)get(A+N);
+//Operation IsInPredTable(String N, int A) {
+//return (Operation)get(A+N);
 //}
 //}
 
@@ -21,7 +21,7 @@ import java.util.Hashtable;
 //{
 //PredTable() { new Vector(); }
 //
-//void InsertNameArity(String N, int A, Code Adr)
+//void InsertNameArity(String N, int A, Operation Adr)
 //{ //System.err.println("!!!SIZE="+size()+"ADD"+N+"/"+A);
 //if (size() <= A) setSize(A+1);
 //Hashtable T = (Hashtable)elementAt(A);
@@ -32,68 +32,74 @@ import java.util.Hashtable;
 //T.put(N,Adr);
 //}
 //
-//Code IsInPredTable(String N, int A)
+//Operation IsInPredTable(String N, int A)
 //{ //System.err.println("!!!FIND"+N+"/"+A);
 //if(A>=size()) return null;
-//return (Code)((Hashtable)elementAt(A)).get(N);
+//return (Operation)((Hashtable)elementAt(A)).get(N);
 //}
 //}
 public class PredTable {
-	Hashtable<String, Code> tables[];
+	Hashtable<String, Operation> tables[];
 
 	@SuppressWarnings("unchecked")
 	PredTable() {
 		tables = new Hashtable[33];
 	}
 
-	void InsertNameArity(String N, int A, Code Adr) {
-		Hashtable<String, Code> T = tables[A];
+	public static Operation Register(String name, int arity, Operation op) {
+		Prolog.Predicates.InsertNameArity(name, arity, op);
+		return op;
+	}
+
+	void InsertNameArity(String N, int A, Operation Adr) {
+		N = N.intern();
+		Hashtable<String, Operation> T = tables[A];
 		if (T == null) {
-			tables[A] = T = new Hashtable<String, Code>();
+			tables[A] = T = new Hashtable<String, Operation>();
 		}
 		T.put(N, Adr);
 	}
 
-	Code IsInPredTable(String N, int A) {
+	public void InsertNameArityWithContinuation(String N, int A, Code Adr) {
+		InsertNameArity(N, A - 1, Adr);
+	}
+
+	private Operation IsInPredTable(String N, int A) {
 		if (tables[A] == null)
 			return null;
-		return (Code) (tables[A].get(N));
+		return (Operation) (tables[A].get(N));
 	}
 
 	// Java ONLY
-	Code LoadPred(Prolog thiz, String Name, int arity) // arity is
-														// source
-														// arity before
-														// bin
-														// in predtable + 1 !
+	public Operation LoadPred(String Name, int arity) // arity is source arity before bin in predtable + 1 !	
 	{
-		Code code;
-		
-		code = Prolog.Predicates.IsInPredTable(Name, arity + 1);
+		Operation code;
+
+		code = IsInPredTable(Name, arity);
 		if (code != null)
 			return code;
 		code = Instanciate(Name, arity);
-		Prolog.Predicates.InsertNameArity(Name, arity + 1, code);
-		code.Init(thiz);
+		InsertNameArity(Name, arity, code);
+		//code.Init(thiz);
 		return code;
 	}
 
-	private Code Instanciate(String Name, int arity) {
+	private Operation Instanciate(String Name, int arity) {
 		Class<?> loaded_class;
 		int reason = 0;
-		Code code = null;
+		Operation code = null;
 		try {
 			Package p = PredTable.class.getPackage();
 			String pp = "";
 			if (p != null) {
-				pp = p.getName() + ".";
+				//pp = p.getName() + ".";
 			}
 			String s1 = pp + "pred_" + Name + "_" + arity;
 			// String s2 = s1 + ".class" ;
 			// System.out.println("Trying to load " + s2) ;
 			loaded_class = forName(s1);
 			// System.out.println("Loaded " + s2) ;
-			code = (Code) (loaded_class.newInstance());
+			code = (Operation) loaded_class.newInstance();
 			// System.out.println("and created "+s2) ;
 		} catch (ClassNotFoundException e) {
 			reason = 1;
@@ -111,33 +117,22 @@ public class PredTable {
 	}
 
 	private Class<?> forName(String s1) throws ClassNotFoundException {
-
-		if(s1.contains("animal")) {
-			return pred_animal_1.class;
-		}
-
 		try {
 			return java.lang.Class.forName(s1);
 		} catch (ClassNotFoundException e) {
-
 			try {
-				String s0 = "SxxMachine." + s1;
+				String s0 = Builtins.class.getPackage().getName() + "." + s1;
 				return java.lang.Class.forName(s0);
-			} catch (ClassNotFoundException _e1) {
+			} catch (ClassNotFoundException _e2) {
 				try {
-					String s0 = "$" + s1;
+					String s0 = Metaterm.class.getName() + "$" + s1;
 					return java.lang.Class.forName(s0);
-				} catch (ClassNotFoundException _e2) {
+				} catch (ClassNotFoundException _e3) {
 					try {
-						String s0 = "$" + s1;
+						String s0 = Builtins.class.getName() + "$" + s1;
 						return java.lang.Class.forName(s0);
-					} catch (ClassNotFoundException _e3) {
-						try {
-							String s0 = "$" + s1;
-							return java.lang.Class.forName(s0);
-						} catch (ClassNotFoundException _e4) {
-							throw e;
-						}
+					} catch (ClassNotFoundException _e4) {
+						throw e;
 					}
 				}
 			}
