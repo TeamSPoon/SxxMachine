@@ -1,29 +1,26 @@
-#ifndef CODE
-#define CODE
+package SxxMachine;
 
 // jProlog 0.1 Copyright (C) Bart Demoen, Paul Tarau 1996
 // Prolog implementation in Java
 // KUL and CUM
 
 // changes by Bart Demoen - 25 Jan 1997 - for calling Prolog from within Java
-// allows to make a new PrologMachine, start a goal and get answers back
+// allows to make a new Prolog, start a goal and get answers back
 // all at once as with findall
-/*
-abstract public class Code {
+
+public class Code {
 	int Arity() {
 		System.out.println("no general code arity !");
 		return 0;
 	}
 
-	Code Exec(PrologMachine mach) {
+	public Code Exec(Prolog mach) {
 		mach.ExceptionRaised = 3;
 		return null;
 	}
 
-	void Init(PrologMachine mach) {
-
+	void Init(Prolog mach) {
 	}
-
 }
 
 class FailProc extends Code {
@@ -31,11 +28,11 @@ class FailProc extends Code {
 		return 1;
 	}
 
-	FailProc(PrologMachine mach) {
+	FailProc(Prolog mach) {
 		mach.Predicates.InsertNameArity("fail".intern(), 1, this);
 	}
 
-	Code Exec(PrologMachine mach) {
+	public Code Exec(Prolog mach) {
 		if (mach.CurrentChoice == -1)
 			return (null);
 		// unwind the trail
@@ -55,12 +52,13 @@ class CutProc extends Code {
 		return 2;
 	}
 
-	CutProc(PrologMachine mach) {
+	CutProc(Prolog mach) {
 		mach.Predicates.InsertNameArity("cut".intern(), 2, this);
 	}
 
-	Code Exec(PrologMachine mach) { // Areg[0] contains a Term of type
-									// HeapChoice
+	public Code Exec(Prolog mach) {
+
+		// Areg[0] contains a Term of type HeapChoice
 		int i = ((HeapChoice) (mach.Areg[0])).CutTo;
 		mach.DoCut(i);
 		mach.Areg[0] = mach.Areg[1];
@@ -74,12 +72,12 @@ class TrueProc extends Code {
 		return 1;
 	}
 
-	TrueProc(PrologMachine mach) {
+	TrueProc(Prolog mach) {
 		mach.Predicates.InsertNameArity("true".intern(), 1, this);
 	}
 
-	Code Exec(PrologMachine mach) {
-		return UpperPrologMachine.Call1;
+	public Code Exec(Prolog mach) {
+		return Prolog.Call1;
 	}
 
 }
@@ -89,13 +87,13 @@ class Call1Proc extends Code {
 		return 1;
 	}
 
-	Call1Proc(PrologMachine mach) {
+	Call1Proc(Prolog mach) {
 		mach.Predicates.InsertNameArity("call".intern(), 1, this);
 	}
 
-	Code Exec(PrologMachine mach) { // Areg[0] contains a Funct - might have to
-									// be dereffed
-		Funct pred = (Funct) ((mach.Areg[0]).Deref());
+	public Code Exec(Prolog mach) { // Areg[0] contains a Fun - might have to
+		// be dereffed
+		Fun pred = (Fun) ((mach.Areg[0]).Deref());
 		int arity;
 		String FunctName;
 		Code code;
@@ -116,20 +114,20 @@ class Call2Proc extends Code {
 		return 2;
 	}
 
-	Call2Proc(PrologMachine mach) {
+	Call2Proc(Prolog mach) {
 		mach.Predicates.InsertNameArity("call".intern(), 2, this);
 	}
 
-	Code Exec(PrologMachine mach) { // Areg[0] contains a Funct or Const - might
+	public Code Exec(Prolog mach) { // Areg[0] contains a Fun or Const - might
 									// have to be dereffed
 		Term obj = (mach.Areg[0]).Deref();
 		int arity;
 		String PredName;
 		Code code;
-		Funct pred = null;
+		Fun pred = null;
 
-		if (obj instanceof Funct) {
-			pred = (Funct) obj;
+		if (obj instanceof Fun) {
+			pred = (Fun) obj;
 			PredName = pred.GetName();
 			arity = (pred.Arguments).length;
 		} else // it is a Const
@@ -149,7 +147,9 @@ class Call2Proc extends Code {
 		return code;
 	}
 }
-*/
 
+interface Undoable {
 
-#endif	//#ifndef CODE
+	public void Unwind();
+
+}

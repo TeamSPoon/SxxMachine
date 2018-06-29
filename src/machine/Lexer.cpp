@@ -1,7 +1,4 @@
-using namespace std;
-
 #include "Lexer.h"
-#include "Prolog.h"
 
 Lexer::PrologTokenizer::PrologTokenizer(InputStream* I) : StreamTokenizer(I) {
 	parseNumbers();
@@ -9,7 +6,7 @@ Lexer::PrologTokenizer::PrologTokenizer(InputStream* I) : StreamTokenizer(I) {
 	// add more options here
 }
 
-Lexer::Lexer(InputStream* I, PrologMachine* p) throw(exception) : StreamTokenizer(I) {
+Lexer::Lexer(InputStream* I, PrologMachine* p) throw(std::exception) : StreamTokenizer(I) {
 	parseNumbers();
 	eolIsSignificant(true);
 	ordinaryChar('.');
@@ -20,17 +17,17 @@ Lexer::Lexer(InputStream* I, PrologMachine* p) throw(exception) : StreamTokenize
 	wordChar('_');
 	slashStarComments(true);
 	commentChar('%');
-	dict = unordered_map();
+	dict = std::unordered_map();
 	prologmachine = p;
 }
 
-Lexer::Lexer(const wstring& s, PrologMachine* p) throw(exception) : Lexer(new FileInputStream(s), p) {
+Lexer::Lexer(const std::string& s, PrologMachine* p) throw(std::exception) : Lexer(new FileInputStream(s), p) {
 }
 
-Lexer::Lexer(PrologMachine* p) throw(exception) : Lexer(System::in, p) {
+Lexer::Lexer(PrologMachine* p) throw(std::exception) : Lexer(System::in, p) {
 }
 
-wstring Lexer::char2string(const int& c) {
+std::string Lexer::char2string(int c) {
 	return "" + StringHelper::toString(static_cast<char>(c));
 }
 
@@ -44,12 +41,12 @@ bool Lexer::atEOC() {
 
 Term* Lexer::make_const() {
 	Const tempVar(sval.intern());
-	return new Funct((wstring("const")).intern(), &tempVar);
+	return new Funct((std::string("const")).intern(), &tempVar);
 }
 
 Term* Lexer::make_int() {
 	Int tempVar(static_cast<int>(nval));
-	return new Funct((wstring("int")).intern(), &tempVar);
+	return new Funct((std::string("int")).intern(), &tempVar);
 }
 
 Term* Lexer::make_real() {
@@ -77,27 +74,27 @@ Term* Lexer::make_var() {
 		dict.emplace(X, I);
 	}
 	Const tempVar(sval.intern());
-	return new Funct((wstring("var")).intern(), X, &tempVar, I);
+	return new Funct((std::string("var")).intern(), X, &tempVar, I);
 }
 
-void Lexer::whitespaceChar(const char& c) {
+void Lexer::whitespaceChar(char c) {
 	whitespaceChars(c, c);
 }
 
-void Lexer::wordChar(const char& c) {
+void Lexer::wordChar(char c) {
 	wordChars(c, c);
 }
 
-Term* Lexer::next0() throw(exception) {
+Term* Lexer::next0() throw(std::exception) {
 	int n = nextToken();
 	inClause = true;
 	Term* T = Somethingwrong;
-	wstring old_sval = "";
+	std::string old_sval = "";
 
 	switch(n) {
 	case TT_WORD: {
 		char c = sval[0];
-		if(isupper(c) || '_' == c) {
+		if(std::isupper(c) || '_' == c) {
 			T = make_var();
 		} else {
 			T = make_const();
@@ -105,14 +102,14 @@ Term* Lexer::next0() throw(exception) {
 	}
 		break;
 	case TT_NUMBER:
-		if(floor(nval) == nval) {
+		if(std::floor(nval) == nval) {
 			T = make_int();
 		} else {
 			T = make_real();
 		}
 		break;
 	case TT_EOF:
-		T = new Const((wstring("end_of_file")).intern());
+		T = new Const((std::string("end_of_file")).intern());
 		inClause = false;
 		break;
 	case TT_EOL:
@@ -120,26 +117,26 @@ Term* Lexer::next0() throw(exception) {
 		break;
 	case ':':
 		if('-' == nextToken()) {
-			sval = (wstring(":-")).intern();
+			sval = (std::string(":-")).intern();
 		} else {
 			old_sval = sval;
 			pushBack();
-			sval = (wstring(":")).intern();
+			sval = (std::string(":")).intern();
 		}
 		Const tempVar(sval.intern());
-		T = new Funct((wstring("const")).intern(), &tempVar);
+		T = new Funct((std::string("const")).intern(), &tempVar);
 		sval = old_sval;
 		break;
 	case '-':
 		if('>' == nextToken()) {
-			sval = (wstring("->")).intern();
+			sval = (std::string("->")).intern();
 		} else {
 			old_sval = sval;
 			pushBack();
-			sval = (wstring("-")).intern();
+			sval = (std::string("-")).intern();
 		}
 		Const tempVar2(sval.intern());
-		T = new Funct((wstring("const")).intern(), &tempVar2);
+		T = new Funct((std::string("const")).intern(), &tempVar2);
 		sval = old_sval;
 		break;
 
@@ -148,11 +145,11 @@ Term* Lexer::next0() throw(exception) {
 		if(TT_EOL == c || TT_EOF == c) {
 			inClause = false;
 			dict.clear();
-			T = new Const((wstring("end_of_clause")).intern());
+			T = new Const((std::string("end_of_clause")).intern());
 		} else {
 			old_sval = sval;
 			pushBack();
-			sval = (wstring(".")).intern();
+			sval = (std::string(".")).intern();
 			T = make_const();
 			sval = old_sval;
 		}
@@ -166,33 +163,33 @@ Term* Lexer::next0() throw(exception) {
 	// break;
 
 	case '(':
-		Const tempVar3((wstring("(")).intern());
-		T = new Funct((wstring("const")).intern(), &tempVar3);
+		Const tempVar3((std::string("(")).intern());
+		T = new Funct((std::string("const")).intern(), &tempVar3);
 		break;
 	case ')':
-		Const tempVar4((wstring(")")).intern());
-		T = new Funct((wstring("const")).intern(), &tempVar4);
+		Const tempVar4((std::string(")")).intern());
+		T = new Funct((std::string("const")).intern(), &tempVar4);
 		break;
 	case '[':
-		Const tempVar5((wstring("[")).intern());
-		T = new Funct((wstring("const")).intern(), &tempVar5);
+		Const tempVar5((std::string("[")).intern());
+		T = new Funct((std::string("const")).intern(), &tempVar5);
 		break;
 	case ']':
-		Const tempVar6((wstring("]")).intern());
-		T = new Funct((wstring("const")).intern(), &tempVar6);
+		Const tempVar6((std::string("]")).intern());
+		T = new Funct((std::string("const")).intern(), &tempVar6);
 		break;
 	case '|':
-		Const tempVar7((wstring("|")).intern());
-		T = new Funct((wstring("const")).intern(), &tempVar7);
+		Const tempVar7((std::string("|")).intern());
+		T = new Funct((std::string("const")).intern(), &tempVar7);
 		break;
 
 	case ',':
-		Const tempVar8((wstring(",")).intern());
-		T = new Funct((wstring("const")).intern(), &tempVar8);
+		Const tempVar8((std::string(",")).intern());
+		T = new Funct((std::string("const")).intern(), &tempVar8);
 		break;
 	case ';':
-		Const tempVar9((wstring(";")).intern());
-		T = new Funct((wstring("const")).intern(), &tempVar9);
+		Const tempVar9((std::string(";")).intern());
+		T = new Funct((std::string("const")).intern(), &tempVar9);
 		break;
 
 	case '=':
@@ -200,7 +197,7 @@ Term* Lexer::next0() throw(exception) {
 	case '<':
 		sval = char2string(n);
 		Const tempVar10(sval.intern());
-		T = new Funct((wstring("const")).intern(), &tempVar10);
+		T = new Funct((std::string("const")).intern(), &tempVar10);
 		break;
 
 	default:
@@ -213,9 +210,9 @@ Term* Lexer::next0() throw(exception) {
 Term* Lexer::next() {
 	try {
 		return next0();
-	} catch(const exception& e) {
+	} catch(const std::exception& e) {
 		Const tempVar((e.what()).intern());
-		return new Funct((wstring("exception")).intern(), &tempVar);
+		return new Funct((std::string("exception")).intern(), &tempVar);
 	}
 }
 
@@ -252,7 +249,7 @@ void StreamTokenizer::resetSyntax() {
 	}
 }
 
-void StreamTokenizer::wordChars(const int& low, const int& hi) {
+void StreamTokenizer::wordChars(int low, int hi) {
 	if(low < 0) {
 		low = 0;
 	}
@@ -264,7 +261,7 @@ void StreamTokenizer::wordChars(const int& low, const int& hi) {
 	}
 }
 
-void StreamTokenizer::whitespaceChars(const int& low, const int& hi) {
+void StreamTokenizer::whitespaceChars(int low, int hi) {
 	if(low < 0) {
 		low = 0;
 	}
@@ -276,7 +273,7 @@ void StreamTokenizer::whitespaceChars(const int& low, const int& hi) {
 	}
 }
 
-void StreamTokenizer::ordinaryChars(const int& low, const int& hi) {
+void StreamTokenizer::ordinaryChars(int low, int hi) {
 	if(low < 0) {
 		low = 0;
 	}
@@ -288,19 +285,19 @@ void StreamTokenizer::ordinaryChars(const int& low, const int& hi) {
 	}
 }
 
-void StreamTokenizer::ordinaryChar(const int& ch) {
+void StreamTokenizer::ordinaryChar(int ch) {
 	if(ch >= 0 && ch < ctype.size()) {
 		ctype[ch] = 0;
 	}
 }
 
-void StreamTokenizer::commentChar(const int& ch) {
+void StreamTokenizer::commentChar(int ch) {
 	if(ch >= 0 && ch < ctype.size()) {
 		ctype[ch] = CT_COMMENT;
 	}
 }
 
-void StreamTokenizer::quoteChar(const int& ch) {
+void StreamTokenizer::quoteChar(int ch) {
 	if(ch >= 0 && ch < ctype.size()) {
 		ctype[ch] = CT_QUOTE;
 	}
@@ -314,19 +311,19 @@ void StreamTokenizer::parseNumbers() {
 	ctype['-'] |= CT_DIGIT;
 }
 
-void StreamTokenizer::eolIsSignificant(const bool& flag) {
+void StreamTokenizer::eolIsSignificant(bool flag) {
 	eolIsSignificantP = flag;
 }
 
-void StreamTokenizer::slashStarComments(const bool& flag) {
+void StreamTokenizer::slashStarComments(bool flag) {
 	slashStarCommentsP = flag;
 }
 
-void StreamTokenizer::slashSlashComments(const bool& flag) {
+void StreamTokenizer::slashSlashComments(bool flag) {
 	slashSlashCommentsP = flag;
 }
 
-void StreamTokenizer::lowerCaseMode(const bool& fl) {
+void StreamTokenizer::lowerCaseMode(bool fl) {
 	forceLower = fl;
 }
 
@@ -452,7 +449,7 @@ int StreamTokenizer::nextToken() throw(IOException) {
 			ctype = c < 0 ? CT_WHITESPACE : c < 256 ? ct[c] : CT_ALPHA;
 		} while((ctype & (CT_ALPHA | CT_DIGIT)) != 0);
 		peekc = c;
-		sval = wstring::copyValueOf(buf, 0, i);
+		sval = std::string::copyValueOf(buf, 0, i);
 		if(forceLower) {
 			sval = StringHelper::toLower(sval);
 		}
@@ -463,8 +460,8 @@ int StreamTokenizer::nextToken() throw(IOException) {
 		ttype = c;
 		int i = 0;
 		/*
-		 * Invariants (because \Octal needs a lookahead): (i) c contains char value (ii)
-		 * d contains the lookahead
+		 * Invariants (because \Octal needs a lookahead): (i) c contains
+		 * char value (ii) d contains the lookahead
 		 */
 		int d = read();
 		while(d >= 0 && d != ttype && d != '\n' && d != '\r') {
@@ -523,13 +520,13 @@ int StreamTokenizer::nextToken() throw(IOException) {
 		}
 
 		/*
-		 * If we broke out of the loop because we found a matching quote character then
-		 * arrange to read a new character next time around; otherwise, save the
-		 * character.
+		 * If we broke out of the loop because we found a matching quote
+		 * character then arrange to read a new character next time around;
+		 * otherwise, save the character.
 		 */
 		peekc = (d == ttype) ? NEED_CHAR : d;
 
-		sval = wstring::copyValueOf(buf, 0, i);
+		sval = std::string::copyValueOf(buf, 0, i);
 		return ttype;
 	}
 
@@ -598,8 +595,8 @@ int StreamTokenizer::lineno() {
 	return LINENO;
 }
 
-wstring StreamTokenizer::toString() {
-	wstring ret;
+std::string StreamTokenizer::toString() {
+	std::string ret;
 	switch(ttype) {
 	case TT_EOF:
 		ret = "EOF";
@@ -611,16 +608,17 @@ wstring StreamTokenizer::toString() {
 		ret = sval;
 		break;
 	case TT_NUMBER:
-		ret = "n=" + to_string(nval);
+		ret = "n=" + std::to_string(nval);
 		break;
 	case TT_NOTHING:
 		ret = "NOTHING";
 		break;
 	default: {
 		/*
-		 * ttype is the first character of either a quoted string or is an ordinary
-		 * character. ttype can definitely not be less than 0, since those are reserved
-		 * values used in the previous case statements
+		 * ttype is the first character of either a quoted string or is an
+		 * ordinary character. ttype can definitely not be less than 0,
+		 * since those are reserved values used in the previous case
+		 * statements
 		 */
 		if(ttype < 256 && ((ctype[ttype] & CT_QUOTE) != 0)) {
 			ret = sval;
@@ -630,9 +628,9 @@ wstring StreamTokenizer::toString() {
 		std::vector<char> s(3);
 		s[0] = s[2] = '\'';
 		s[1] = static_cast<char>(ttype);
-		ret = wstring(s);
+		ret = std::string(s);
 		break;
 	}
 	}
-	return "Token[" + ret + "], line " + to_string(LINENO);
+	return "Token[" + ret + "], line " + std::to_string(LINENO);
 }

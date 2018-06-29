@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="library.java" kind="src" path="jsrc/machine"/>
-	<classpathentry kind="src" path="jsrc/bootlib"/>
-	<classpathentry kind="src" path="jsrc/compiler"/>
-	<classpathentry kind="src" path="jsrc/library"/>
-	<classpathentry kind="src" path="jsrc/testing"/>
-	<classpathentry kind="src" path="jsrc/benches"/>
+	<classpathentry kind="src" path="jsrc/machine"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="prolog/tcomp_sxx_test_animal"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
