@@ -57,9 +57,9 @@ final class Fun extends Term {
 		long i1, i2;
 		if (arity == 1) {
 			i1 = (Arguments[0].Deref()).LongValue();
-			if (Name.equals("-".intern()))
+			if (Name.equals("-"))
 				return -i1;
-			if (Name.equals("+".intern()))
+			if (Name.equals("+"))
 				return i1;
 			return 0;
 		}
@@ -67,13 +67,13 @@ final class Fun extends Term {
 			return 0;
 		i1 = (Arguments[0].Deref()).LongValue();
 		i2 = (Arguments[1].Deref()).LongValue();
-		if (Name.equals("-".intern()))
+		if (Name.equals("-"))
 			return i1 - i2;
-		if (Name.equals("+".intern()))
+		if (Name.equals("+"))
 			return i1 + i2;
-		if (Name.equals("*".intern()))
+		if (Name.equals("*"))
 			return i1 * i2;
-		if (Name.equals("/".intern()))
+		if (Name.equals("/"))
 			return i1 / i2;
 		return 0;
 	}
@@ -85,7 +85,7 @@ final class Fun extends Term {
 	private static boolean islist(int i, String Name) {
 		if (i != 2)
 			return false;
-		return Name.equals(".".intern());
+		return Name.equals(".");
 	}
 
 	boolean IsList() {
@@ -94,14 +94,15 @@ final class Fun extends Term {
 
 	static void formattedListOutput(int formatFlags, Appendable buffer, Term T) throws IOException {
 		while (true) {
+			T = T.Deref();
 			if (T.IsNil())
 				return;
 			if (T.IsList()) {
-				int arity = T.Arity();
-				int carg = 1;
+				int arity = T.Arity() - 1;
+				int carg = 0;
 				while (carg < arity) {
 					buffer.append(",");
-					T.Arg(carg).formattedOutput(formatFlags, buffer);
+					T.ArgDeRef(carg).formattedOutput(formatFlags, buffer);
 					carg++;
 				}
 				T = T.Arg(carg);
@@ -115,10 +116,10 @@ final class Fun extends Term {
 	}
 
 	public void formattedOutput(int formatFlags, Appendable buffer) throws IOException {
-		// int i = Arguments.length;
 		if (isLixt) {
 			buffer.append("[");
-			formattedListOutput(formatFlags, buffer, Arguments[1]);
+			Arguments[0].Deref().formattedOutput(formatFlags, buffer);
+			formattedListOutput(formatFlags, buffer, Arguments[1].Deref());
 			buffer.append("]");
 			return;
 		}
