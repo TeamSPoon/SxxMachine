@@ -3,7 +3,7 @@ package SxxMachine;
 public class HeapChoice extends PrologObject {
 	int CutTo;
 
-	HeapChoice(int c) {
+	public HeapChoice(int c) {
 		CutTo = c;
 	}
 }

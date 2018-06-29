@@ -61,6 +61,7 @@ public class Term {
 	public static Term Compound(String string6, Term... terms) {
 		return new Fun(string6, terms);
 	}
+
 	public static Term Compound(Const string6, Term... terms) {
 		return new Fun(string6.GetName(), terms);
 	}
@@ -89,6 +90,9 @@ public class Term {
 
 	}
 
+	public static Int Number(int i) {
+		return new Int(i);
+	}
 
 }
 
