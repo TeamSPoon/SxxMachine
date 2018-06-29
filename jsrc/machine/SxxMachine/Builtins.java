@@ -8,7 +8,7 @@ package SxxMachine;
 // smallerthan implements </2
 
 class pred_smallerthan_2 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -32,7 +32,7 @@ class pred_smallerthan_2 extends Code {
 // smallerorequal implements =</2
 
 class pred_smallerorequal_2 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -56,7 +56,7 @@ class pred_smallerorequal_2 extends Code {
 // arithequal implements =:=/2
 
 class pred_arithequal_2 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -80,7 +80,7 @@ class pred_arithequal_2 extends Code {
 // arithdifferent implements =\= /2
 
 class pred_arithdifferent_2 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -104,7 +104,7 @@ class pred_arithdifferent_2 extends Code {
 // is implements is/2
 
 class pred_is_2 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -126,7 +126,7 @@ class pred_is_2 extends Code {
 // unify implements =/2
 
 class pred_unify_2 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -145,7 +145,7 @@ class pred_unify_2 extends Code {
 // univ implements the left direction of =../2
 
 class pred_univ_3 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 3;
 	}
 
@@ -187,7 +187,7 @@ class pred_univ_3 extends Code {
 }
 
 class pred_write_1 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 1;
 	}
 
@@ -202,7 +202,7 @@ class pred_write_1 extends Code {
 }
 
 class pred_nl_0 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 0;
 	}
 
@@ -213,7 +213,7 @@ class pred_nl_0 extends Code {
 }
 
 class pred_functor_3 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 3;
 	}
 
@@ -254,7 +254,7 @@ class pred_functor_3 extends Code {
 }
 
 class pred_arg_3 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 3;
 	}
 
@@ -288,7 +288,7 @@ class pred_arg_3 extends Code {
 }
 
 class pred_nexttoken_1 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 1;
 	}
 
@@ -306,7 +306,7 @@ class pred_nexttoken_1 extends Code {
 }
 
 class pred_cputime_1 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 1;
 	}
 
@@ -346,7 +346,7 @@ class findall_list extends Term {
 }
 
 class pred_initfindall_1 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 1;
 	}
 
@@ -361,7 +361,7 @@ class pred_initfindall_1 extends Code {
 }
 
 class pred_addfindall_2 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -386,7 +386,7 @@ class pred_addfindall_2 extends Code {
 }
 
 class pred_retrievefindall_2 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -403,7 +403,7 @@ class pred_retrievefindall_2 extends Code {
 }
 
 class pred_var_equal_2 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -419,7 +419,7 @@ class pred_var_equal_2 extends Code {
 }
 
 class pred_trail_1 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 1;
 	}
 
@@ -434,7 +434,7 @@ class pred_trail_1 extends Code {
 }
 
 class pred_choice_1 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 1;
 	}
 
@@ -449,7 +449,7 @@ class pred_choice_1 extends Code {
 }
 
 class pred_type_of_2 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -479,7 +479,7 @@ class pred_type_of_2 extends Code {
 }
 
 class pred_assume_1 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 1;
 	}
 
@@ -495,7 +495,7 @@ class pred_assume_1 extends Code {
 }
 
 class pred_allassumed_1 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 1;
 	}
 
@@ -511,7 +511,7 @@ class pred_allassumed_1 extends Code {
 }
 
 class pred_get0_1 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 1;
 	}
 
@@ -532,7 +532,7 @@ class pred_get0_1 extends Code {
 }
 
 class pred_halt_0 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 0;
 	}
 
@@ -543,7 +543,7 @@ class pred_halt_0 extends Code {
 }
 
 class pred_setarg_3 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 3;
 	}
 
@@ -580,7 +580,7 @@ class pred_setarg_3 extends Code {
 }
 
 class pred_compare_3 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 3;
 	}
 
@@ -674,7 +674,7 @@ class pred_compare_3 extends Code {
 }
 
 class pred_freeze_internal_2 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -692,7 +692,7 @@ class pred_freeze_internal_2 extends Code {
 }
 
 class pred_execcontinuation_0 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 0;
 	}
 
@@ -712,7 +712,7 @@ class pred_execcontinuation_0 extends Code {
 }
 
 class pred_frozen_2 extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 

@@ -8,8 +8,8 @@ package SxxMachine;
 // allows to make a new Prolog, start a goal and get answers back
 // all at once as with findall
 
-public class Code {
-	int Arity() {
+public class Code implements Operation {
+	protected int Arity() {
 		System.out.println("no general code arity !");
 		return 0;
 	}
@@ -19,12 +19,12 @@ public class Code {
 		return null;
 	}
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 	}
 }
 
 class FailProc extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 1;
 	}
 
@@ -48,7 +48,7 @@ class FailProc extends Code {
 }
 
 class CutProc extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -68,7 +68,7 @@ class CutProc extends Code {
 }
 
 class TrueProc extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 1;
 	}
 
@@ -83,7 +83,7 @@ class TrueProc extends Code {
 }
 
 class Call1Proc extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 1;
 	}
 
@@ -110,7 +110,7 @@ class Call1Proc extends Code {
 }
 
 class Call2Proc extends Code {
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 

@@ -3,6 +3,7 @@
 	<classpathentry kind="src" path="jsrc/machine"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="prolog/tcomp_sxx_test_animal"/>
+	<classpathentry kind="src" path="prolog/tcomp_sxx_library"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

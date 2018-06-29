@@ -53,9 +53,14 @@ public class Const extends Term {
 		return string.intern();
 	}
 
-	public static Term Intern(String N) {
+	public static Const Intern(String N) {
 		// TODO Auto-generated method stub
 		return new Const(N);
+	}
+
+	public static Const Intern(Const N) {
+		// TODO Auto-generated method stub
+		return N;
 	}
 
 }

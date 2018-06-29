@@ -10,7 +10,7 @@ top :- write('?- ') ,
 
 top :- top .
 
-notmore :- get0(X) , noteq(X,10) , ! , untilend(X) , fail .
+notmore :- write('more? '),get0(X) , noteq(X,10) , ! , untilend(X) , fail .
 notmore .
 
 noteq(X,X) :- ! , fail .

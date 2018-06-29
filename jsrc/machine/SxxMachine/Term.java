@@ -61,6 +61,9 @@ public class Term {
 	public static Term Compound(String string6, Term... terms) {
 		return new Fun(string6, terms);
 	}
+	public static Term Compound(Const string6, Term... terms) {
+		return new Fun(string6.GetName(), terms);
+	}
 
 	public static Term Var(Prolog mach) {
 		return new Var(mach);
@@ -85,6 +88,7 @@ public class Term {
 		// TODO Auto-generated method stub
 
 	}
+
 
 }
 

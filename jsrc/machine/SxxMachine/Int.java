@@ -1,6 +1,6 @@
 package SxxMachine;
 
-final class Int extends Term {
+public class Int extends Term {
 	long IntValue;
 
 	Int(long i) {

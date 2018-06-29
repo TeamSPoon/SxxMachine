@@ -14,11 +14,11 @@ class pred_ap_3 extends Code {
 	static String string3 = Const.IStr("ap");
 	static String string4 = Const.IStr("call");
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 3;
 	}
 
@@ -92,11 +92,11 @@ class /**/ pred_append_3 extends Code {
 	static String string3 = Const.IStr("append");
 	static String string4 = Const.IStr("call");
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 3;
 	}
 
@@ -169,12 +169,12 @@ class /**/ pred_assumed_1 extends Code {
 	static String string2 = Const.IStr("assumed");
 	static String string3 = Const.IStr("m1");
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		allassumed2cont = mach.LoadPred("allassumed", 1);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 1;
 	}
 
@@ -218,12 +218,12 @@ class /**/ pred_assumeduring_2 extends Code {
 	static String string5 = Const.IStr("unify");
 	static Int posint1 = new Int(1);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		assume2cont = mach.LoadPred("assume", 1);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -268,12 +268,12 @@ class /**/ pred_atom_1 extends Code {
 	static String string1 = Const.IStr("atom");
 	static String string2 = Const.IStr("type_of");
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		type_of3cont = mach.LoadPred("type_of", 2);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 1;
 	}
 
@@ -314,12 +314,12 @@ class /**/ pred_atomic_1 extends Code {
 	static String string2 = Const.IStr("atomic2");
 	static String string3 = Const.IStr("type_of");
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		type_of3cont = mach.LoadPred("type_of", 2);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 1;
 	}
 
@@ -365,11 +365,11 @@ class /**/ pred_atomic2_1 extends Code {
 	static String string5 = Const.IStr("integer");
 	static Int posint1 = new Int(1);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 1;
 	}
 
@@ -433,12 +433,12 @@ class /**/ pred_collectvars_3 extends Code {
 	static String string9 = Const.IStr("var");
 	static Int posint1 = new Int(1);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		noteq3cont = mach.LoadPred("noteq", 2);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 3;
 	}
 
@@ -547,12 +547,12 @@ class /**/ pred_copy_term_2 extends Code {
 	static String string4 = Const.IStr("copy_term");
 	static String string5 = Const.IStr("findall");
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		findall4cont = mach.LoadPred("findall", 3);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -615,13 +615,13 @@ class /**/ pred_exec_1 extends Code {
 	static String string11 = Const.IStr("var");
 	static Int posint1 = new Int(1);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		specialgoal3cont = mach.LoadPred("specialgoal", 2);
 		var2cont = mach.LoadPred("var", 1);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 1;
 	}
 
@@ -753,12 +753,12 @@ class /**/ pred_execdisj_2 extends Code {
 	static String string4 = Const.IStr("execdisj");
 	static Int posint1 = new Int(1);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		exec2cont = mach.LoadPred("exec", 1);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -872,13 +872,13 @@ class /**/ pred_execpendinggoals_1 extends Code {
 	static String string4 = Const.IStr("execcontinuation");
 	static String string5 = Const.IStr("execpendinggoals");
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		exec2cont = mach.LoadPred("exec", 1);
 		execcontinuation1cont = mach.LoadPred("execcontinuation", 0);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 1;
 	}
 
@@ -938,13 +938,13 @@ class /**/ pred_findall2_4 extends Code {
 	static String string4 = Const.IStr("findall2");
 	static String string5 = Const.IStr("retrievefindall");
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		exec2cont = mach.LoadPred("exec", 1);
 		retrievefindall3cont = mach.LoadPred("retrievefindall", 2);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 4;
 	}
 
@@ -1027,12 +1027,12 @@ class /**/ pred_findall_3 extends Code {
 	static String string2 = Const.IStr("findall2");
 	static String string3 = Const.IStr("initfindall");
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		initfindall2cont = mach.LoadPred("initfindall", 1);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 3;
 	}
 
@@ -1087,13 +1087,13 @@ class /**/ pred_freeze_2 extends Code {
 	static String string5 = Const.IStr("var");
 	static Int posint1 = new Int(1);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		exec2cont = mach.LoadPred("exec", 1);
 		var2cont = mach.LoadPred("var", 1);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -1168,12 +1168,12 @@ class /**/ pred_getargs_2 extends Code {
 	static String string9 = Const.IStr("unify");
 	static Int posint900 = new Int(900);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		ap4cont = mach.LoadPred("ap", 3);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -1316,11 +1316,11 @@ class /**/ pred_infix_3 extends Code {
 	static Int posint1100 = new Int(1100);
 	static Int posint1200 = new Int(1200);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 3;
 	}
 
@@ -1931,12 +1931,12 @@ class /**/ pred_integer_1 extends Code {
 	static String string1 = Const.IStr("integer");
 	static String string2 = Const.IStr("type_of");
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		type_of3cont = mach.LoadPred("type_of", 2);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 1;
 	}
 
@@ -1982,12 +1982,12 @@ class /**/ pred_loop_1 extends Code {
 	static Int posint0 = new Int(0);
 	static Int posint1 = new Int(1);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		is3cont = mach.LoadPred("is", 2);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 1;
 	}
 
@@ -2046,12 +2046,12 @@ class /**/ pred_m1_2 extends Code {
 	static String string3 = Const.IStr("m1");
 	static String string4 = Const.IStr("var");
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		var2cont = mach.LoadPred("var", 1);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -2118,12 +2118,12 @@ class /**/ pred_maketerm_2 extends Code {
 	static String string1 = Const.IStr("maketerm");
 	static Int posint1200 = new Int(1200);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		maketerm4cont = mach.LoadPred("maketerm", 3);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -2204,7 +2204,7 @@ class /**/ pred_maketerm_3 extends Code {
 	static Int posint1 = new Int(1);
 	static Int posint900 = new Int(900);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		ap4cont = mach.LoadPred("ap", 3);
 		getargs3cont = mach.LoadPred("getargs", 2);
@@ -2212,7 +2212,7 @@ class /**/ pred_maketerm_3 extends Code {
 		unify3cont = mach.LoadPred("unify", 2);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 3;
 	}
 
@@ -2564,12 +2564,12 @@ class /**/ pred_max_3 extends Code {
 	static String string2 = Const.IStr("max");
 	static String string3 = Const.IStr("smallerthan");
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		smallerthan3cont = mach.LoadPred("smallerthan", 2);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 3;
 	}
 
@@ -2671,11 +2671,11 @@ class /**/ pred_newprec_3 extends Code {
 	static String string7 = Const.IStr("newprec");
 	static Int posint1 = new Int(1);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 3;
 	}
 
@@ -2753,11 +2753,11 @@ class /**/ pred_newprec_4 extends Code {
 	static String string8 = Const.IStr("yfx");
 	static Int posint1 = new Int(1);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 4;
 	}
 
@@ -2872,12 +2872,12 @@ class /**/ pred_not_1 extends Code {
 	static String string5 = Const.IStr("not");
 	static Int posint1 = new Int(1);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		exec2cont = mach.LoadPred("exec", 1);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 1;
 	}
 
@@ -2936,11 +2936,11 @@ class pred_noteq_2 extends Code {
 	static String string4 = Const.IStr("noteq");
 	static Int posint1 = new Int(1);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -3011,12 +3011,12 @@ class pred_notmore_0 extends Code {
 	static Int posint1 = new Int(1);
 	static Int posint10 = new Int(10);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		get02cont = mach.LoadPred("get0", 1);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 0;
 	}
 
@@ -3071,11 +3071,11 @@ class /**/ pred_notvmember_2 extends Code {
 	static String string6 = Const.IStr("notvmember");
 	static Int posint1 = new Int(1);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -3167,11 +3167,11 @@ class /**/ pred_nrev_2 extends Code {
 	static String string5 = Const.IStr("nrev");
 	static Int posint1 = new Int(1);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -3238,12 +3238,12 @@ class /**/ pred_or_2 extends Code {
 	static String string1 = Const.IStr("exec");
 	static String string2 = Const.IStr("or");
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		exec2cont = mach.LoadPred("exec", 1);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -3317,11 +3317,11 @@ class /**/ pred_prefix_3 extends Code {
 	static Int posint500 = new Int(500);
 	static Int posint1200 = new Int(1200);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 3;
 	}
 
@@ -3432,12 +3432,12 @@ class /**/ pred_read_1 extends Code {
 	static String string5 = Const.IStr("readall");
 	static Int posint1 = new Int(1);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		nexttoken2cont = mach.LoadPred("nexttoken", 1);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 1;
 	}
 
@@ -3490,12 +3490,12 @@ class /**/ pred_readall_2 extends Code {
 	static String string9 = Const.IStr("unify");
 	static Int posint1 = new Int(1);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		nexttoken2cont = mach.LoadPred("nexttoken", 1);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -3585,11 +3585,11 @@ class /**/ pred_smeq_1 extends Code {
 	static String string5 = Const.IStr("smeq");
 	static Int posint1 = new Int(1);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 1;
 	}
 
@@ -3647,11 +3647,11 @@ class /**/ pred_smgr_1 extends Code {
 	static String string5 = Const.IStr("smgr");
 	static Int posint1 = new Int(1);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 1;
 	}
 
@@ -3711,12 +3711,12 @@ class /**/ pred_sort_2 extends Code {
 	static String string6 = Const.IStr("split");
 	static Int posint1 = new Int(1);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		//split5cont = mach.LoadPred("split", 4);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -3821,11 +3821,11 @@ class /**/ pred_specialgoal_2 extends Code {
 	static String string24 = Const.IStr("unify");
 	static Int posint1 = new Int(1);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -4107,12 +4107,12 @@ class /**/ pred_split_4 extends Code {
 	static String string5 = Const.IStr("split");
 	static Int posint1 = new Int(1);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		smallerthan3cont = mach.LoadPred("smallerthan", 2);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 4;
 	}
 
@@ -4228,12 +4228,12 @@ class /**/ pred_statistics_2 extends Code {
 	static String string4 = Const.IStr("runtime");
 	static String string5 = Const.IStr("statistics");
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		cputime2cont = mach.LoadPred("cputime", 1);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -4278,12 +4278,12 @@ class /**/ pred_termequal_2 extends Code {
 	static String string2 = Const.IStr("compare");
 	static String string3 = Const.IStr("termequal");
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		compare4cont = mach.LoadPred("compare", 3);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -4329,12 +4329,12 @@ class /**/ pred_termgreaterequal_2 extends Code {
 	static String string2 = Const.IStr("smgr");
 	static String string3 = Const.IStr("termgreaterequal");
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		compare4cont = mach.LoadPred("compare", 3);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -4381,12 +4381,12 @@ class /**/ pred_termgreaterthan_2 extends Code {
 	static String string2 = Const.IStr("compare");
 	static String string3 = Const.IStr("termgreaterthan");
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		compare4cont = mach.LoadPred("compare", 3);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -4432,12 +4432,12 @@ class /**/ pred_termsmallerequal_2 extends Code {
 	static String string2 = Const.IStr("smeq");
 	static String string3 = Const.IStr("termsmallerequal");
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		compare4cont = mach.LoadPred("compare", 3);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -4484,12 +4484,12 @@ class /**/ pred_termsmallerthan_2 extends Code {
 	static String string2 = Const.IStr("compare");
 	static String string3 = Const.IStr("termsmallerthan");
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		compare4cont = mach.LoadPred("compare", 3);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -4539,12 +4539,12 @@ class /**/ pred_time_1 extends Code {
 	static String string6 = Const.IStr("time");
 	static String string7 = Const.IStr("write");
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		cputime2cont = mach.LoadPred("cputime", 1);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 1;
 	}
 
@@ -4599,12 +4599,12 @@ class /**/ pred_top_0 extends Code {
 	static String string11 = Const.IStr("writevars");
 	static Int posint1 = new Int(1);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		write2cont = mach.LoadPred("write", 1);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 0;
 	}
 
@@ -4658,12 +4658,12 @@ class /**/ pred_toplevel_0 extends Code {
 	static String string2 = Const.IStr("top");
 	static String string3 = Const.IStr("toplevel");
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		top1cont = mach.LoadPred("top", 0);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 0;
 	}
 
@@ -4713,12 +4713,12 @@ class /**/ pred_untilend_1 extends Code {
 	static Int posint1 = new Int(1);
 	static Int posint10 = new Int(10);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		get02cont = mach.LoadPred("get0", 1);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 1;
 	}
 
@@ -4773,12 +4773,12 @@ class /**/ pred_var_1 extends Code {
 	static String string1 = Const.IStr("type_of");
 	static String string2 = Const.IStr("var");
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		type_of3cont = mach.LoadPred("type_of", 2);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 1;
 	}
 
@@ -4824,12 +4824,12 @@ class /**/ pred_vread_2 extends Code {
 	static String string7 = Const.IStr("vread");
 	static Int posint1 = new Int(1);
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		nexttoken2cont = mach.LoadPred("nexttoken", 1);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 2;
 	}
 
@@ -4876,7 +4876,7 @@ class /**/ pred_writevars_1 extends Code {
 	static Code cl3 = new pred_writevars_1_3();
 	static Code write2cont;
 	static String string0 = Const.IStr("cut");
-	static String string1 = Const.IStr(" = Const.IStr(");
+	static String string1 = Const.IStr(" = ");
 	static String string2 = Const.IStr(".");
 	static String string3 = Const.IStr("=");
 	static String string4 = Const.IStr("[]");
@@ -4886,12 +4886,12 @@ class /**/ pred_writevars_1 extends Code {
 	static String string8 = Const.IStr("write");
 	static String string9 = Const.IStr("writevars");
 
-	void Init(Prolog mach) {
+	protected void Init(Prolog mach) {
 		entry_code = this;
 		write2cont = mach.LoadPred("write", 1);
 	}
 
-	int Arity() {
+	protected int Arity() {
 		return 1;
 	}
 

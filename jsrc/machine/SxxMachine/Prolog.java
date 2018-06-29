@@ -151,7 +151,6 @@ public class Prolog {
 		Code code = Call1;
 		Term AnswerList = new Var(this);
 		ExceptionRaised = 0;
-			
 
 		Areg[0] = new Fun("findall".intern(), Goal, Goal, AnswerList, new Fun("halt".intern(), new Int(0)));
 		//pred_findall_3.entry_code;
@@ -267,7 +266,7 @@ public class Prolog {
 		ChoicePointStack[CurrentChoice].TimeStamp = ++TimeStamp;
 	}
 
-	void DoCut(int CutTo) {
+	public void DoCut(int CutTo) {
 		int ch = CurrentChoice;
 		while (ch != CutTo) {
 			ChoicePointStack[ch] = null;
@@ -365,14 +364,6 @@ final class VarDict extends PrologObject {
 
 	Term Copy(Prolog m, long t) {
 		return newer;
-	}
-}
-
-final class HeapChoice extends PrologObject {
-	int CutTo;
-
-	HeapChoice(int c) {
-		CutTo = c;
 	}
 }
 

@@ -116,19 +116,19 @@ gencodeforpred(Package,Pred) :-
 				declforeachcontinuation(Conts,N,A),
 				declforeachstring(Strings,0),
 				declforeachint(AllInts),
-				'static Code entry_code = new ',ClassName,'();',
+				'public static Code entry_code = new ',ClassName,'();',
 				wr(nl),
-				'void Init(PrologMachine mach)',
+				'public void Init(Prolog mach)',
 				wr(nl),
 				'{ ',
 				initforeachcontinuation(Conts,N,A) ,
 				'}',
 				wr(nl),
-				'int Arity() { return ',
+			   'public int Arity() { return ',
 				AA,
 				' ; }',
 				wr(nl),
-				'Code Exec(PrologMachine mach)',
+				'public Code Exec(Prolog mach)',
 				wr(nl),
 				'{ Term aregs[] = {',
 				aregarray(AA) ,
@@ -163,7 +163,7 @@ genclausecode(Clause,Last,ClassName,N,Strings) :-
 		arg(Arity,Head,'$cont'(Arity)) ,
 		writel(['/* helper */class ',ClassName,'__',N,' extends ',ClassName,wr(nl),
 			'{',wr(nl),
-			'Code Exec(PrologMachine mach)',wr(nl),
+			'public Code Exec(Prolog mach)',wr(nl),
 			'{ ',
 			(Last = last -> write('mach.RemoveChoice() ;')
 				;
@@ -219,7 +219,7 @@ gets([Arg|Args],N,Strings) :-
 
 getforarg(Arg,N,Strings) :-
 		writel(['if (!( (areg',N,').Unify(',constructterm(Arg,Strings),
-			'))) return UpperPrologMachine.Fail0 ;',wr(nl)]) .
+			'))) return Prolog.Fail0 ;',wr(nl)]) .
 
 
 puts(cut(_,C),Strings) :- ! ,
@@ -284,11 +284,11 @@ newargs([A|Args],N,Strings) :-
 bodycont((_ :- B),Name,Arity) :- legacy_functor(B,Name,Arity) , ! ,
 			writel([entry_code]) .
 bodycont((_ :- B),_,_) :- legacy_functor(B,call,1) , ! ,
-			writel(['UpperPrologMachine.Call1']) .
+			writel(['Prolog.Call1']) .
 bodycont((_ :- B),_,_) :- legacy_functor(B,call,2) , ! ,
-			writel(['UpperPrologMachine.Call2']) .
+			writel(['Prolog.Call2']) .
 bodycont((_ :- B),_,_) :- legacy_functor(B,cut,2) , ! ,
-			writel(['UpperPrologMachine.Call1']) .
+			writel(['Prolog.Call1']) .
 bodycont((_ :- B),_,_) :- legacy_functor(B,Name,Arity) ,
 			writel([Name,Arity,'cont']) .
 
@@ -354,8 +354,8 @@ declforeachcontinuation([N/A|R],Name,Arity) :-
 
 declforeachstring([],_) .
 declforeachstring([N|R],M) :- MM is M + 1 ,
-			writel(['static String string',M,
-				' = Const.IStr("',N,'") ;',wr(nl)]) ,
+			writel(['static Const string',M,
+				' = Const.Intern("',N,'") ;',wr(nl)]) ,
 				declforeachstring(R,MM) .
 
 declforeachint([]) .
@@ -429,7 +429,9 @@ w_cl(Pred):-w_cl([Pred]).
 prelude(Pred):- prelude,write('\n/*\n'),w_cl(Pred),write('\n*/\n').
 prelude :- write('// Generated code file - by dmiles') , nl , fail .
 prelude :- write('// Copyright August 16, 1996,2018 LOGICMOO, KUL and CUM') , nl , fail .
-prelude :- write('// Authors: Douglas R. Miles, Bart Demoen and Paul Tarau') , nl , nl , fail .
+prelude :- write('// Authors: Douglas R. Miles, Bart Demoen and Paul Tarau
+import SxxMachine.*;
+') , nl , nl , fail .
 prelude .
 
 % main :- comp('board') , fail .
@@ -438,3 +440,6 @@ prelude .
 % main :- comp('someprolog') , fail .
 % main :- comp('chat') , fail .
 % main :- comp('boyer') , fail .
+
+:- comp('sxx_library.pl').
+:- comp('tests/animal.pl').
