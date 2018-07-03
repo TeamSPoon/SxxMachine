@@ -5,23 +5,23 @@ import java.io.IOException;
 class Var extends Term {
 	Term Refers;
 	long timestamp;
-	Prolog mach;
+	// Prolog mach;
 
 	Var(Prolog machin) {
 		Refers = this;
 		timestamp = machin.TimeStamp;
-		mach = machin;
+		// mach = machin;
 	}
 
 	Var(Prolog machin, long t) {
 		Refers = this;
 		timestamp = t;
-		mach = machin;
+		// mach = machin;
 	}
 
 	public Var(String sval) {
 		Refers = this;
-		mach = Prolog.M;
+		Prolog mach = Prolog.M;
 		timestamp = mach.TimeStamp;
 	}
 
@@ -29,7 +29,8 @@ class Var extends Term {
 		Var newv = new Var(m, t);
 		VarDict newdict = new VarDict(this, newv);
 		Refers = newdict;
-		mach.TrailEntry(this);
+		// mach.TrailEntry(this);
+		m.TrailEntry(this);
 		return newv;
 	}
 
@@ -39,7 +40,7 @@ class Var extends Term {
 		return ((Term) Refers).Deref();
 	}
 
-	void UnTrailSelf() {
+	public void UnTrailSelf() {
 		Refers = this;
 	}
 
@@ -47,9 +48,9 @@ class Var extends Term {
 		buffer.append("_" + Integer.toHexString(hashCode()));
 	}
 
-	boolean Bind(Term that) {
+	boolean Bind(Term that, Prolog mach) {
 		Var v2;
-		if (that instanceof Var) {
+		if (that.isVar()) {
 			Var v1 = (Var) that;
 			if (this.timestamp < v1.timestamp) {
 				v1.Refers = this;
@@ -68,20 +69,46 @@ class Var extends Term {
 		return true;
 	}
 
-	public boolean Unify(Term that) {
-		return Bind(that);
+	public boolean Unify(Term that, Prolog mach) {
+		return Bind(that, mach);
 	}
 
 	boolean Equal(Term that) {
 		return this == that;
 	}
 
-	String GetName() {
+	public String GetName() {
 		return toQuotedString();
 	}
 
 	@Override
 	public int Arity() {
 		return VAR;
+	}
+
+	public boolean isVar() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	public boolean isFVar() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean isStruct() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean isConst() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isInt() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

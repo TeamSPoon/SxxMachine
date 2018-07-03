@@ -1,0 +1,718 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\machine\sxxmachine\Operation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\machine\sxxmachine\HeapChoice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\machine\sxxmachine\Prolog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\machine\sxxmachine\Term.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\machine\sxxmachine\FrozenVar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\machine\sxxmachine\PredTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\machine\sxxmachine\Const.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\machine\sxxmachine\Real.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\machine\sxxmachine\Int.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\machine\sxxmachine\Data.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\machine\sxxmachine\Continuation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\machine\sxxmachine\Fun.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\machine\sxxmachine\Code.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\machine\sxxmachine\Var.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\machine\sxxmachine\Lexer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\machine\sxxmachine\Builtins.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\machine\sxxmachine\Metaterm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bootlib\sxxmachine\sxx_library.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bootlib\sxxmachine\sxx_meta.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bootlib\sxxmachine\sxx_read.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bootlib\sxxmachine\sxx_system.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\testing\sxxmachine\animal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\zebra.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\sdda.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\run.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\times10.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\unify.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\boyer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\asm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\chat_parser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\log10.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\divide10.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\ops8.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\prover.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\poly_10.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\mu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\reducer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\serialise.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\meta_qsort.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\browse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\nreverse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\crypt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\sendmore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\nand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\qsort.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\query.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\perfect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\tak.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\fast_mu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\derive.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\flatten.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\queens_8.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\benches\sxxmachine\simple_analyzer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\machine\sxxmachine\Operation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\machine\sxxmachine\HeapChoice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\machine\sxxmachine\Prolog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\machine\sxxmachine\Term.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\machine\sxxmachine\FrozenVar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\machine\sxxmachine\PredTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\machine\sxxmachine\Const.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\machine\sxxmachine\Real.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\machine\sxxmachine\Int.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\machine\sxxmachine\Data.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\machine\sxxmachine\Continuation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\machine\sxxmachine\Fun.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\machine\sxxmachine\Code.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\machine\sxxmachine\Var.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\machine\sxxmachine\Lexer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\machine\sxxmachine\Builtins.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\machine\sxxmachine\Metaterm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\bootlib\sxxmachine\sxx_library.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\bootlib\sxxmachine\sxx_meta.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\bootlib\sxxmachine\sxx_read.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\bootlib\sxxmachine\sxx_system.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\testing\sxxmachine\animal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\zebra.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\sdda.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\run.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\times10.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\unify.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\boyer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\asm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\chat_parser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\log10.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\divide10.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\ops8.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\prover.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\poly_10.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\mu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\reducer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\serialise.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\meta_qsort.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\browse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\nreverse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\crypt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\sendmore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\nand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\qsort.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\query.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\perfect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\tak.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\fast_mu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\derive.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\flatten.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\queens_8.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="build\classes\benches\sxxmachine\simple_analyzer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cmakefiles\feature_tests.cxx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cmakefiles\feature_tests.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cmakefiles\3.5.1\compileridc\CMakeCCompilerId.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cmakefiles\3.5.1\compileridcxx\CMakeCXXCompilerId.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\stringbuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stringhelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\exceptionhelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\machine\sxxmachine\Const.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\machine\sxxmachine\HeapChoice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\machine\sxxmachine\Term.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\machine\sxxmachine\Metaterm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\machine\sxxmachine\stringbuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\machine\sxxmachine\stringhelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\machine\sxxmachine\FrozenVar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\machine\sxxmachine\Continuation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\machine\sxxmachine\Operation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\machine\sxxmachine\Fun.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\machine\sxxmachine\Builtins.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\machine\sxxmachine\Var.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\machine\sxxmachine\PredTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\machine\sxxmachine\Prolog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\machine\sxxmachine\Data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\machine\sxxmachine\exceptionhelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\machine\sxxmachine\Real.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\machine\sxxmachine\Lexer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\machine\sxxmachine\Code.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\machine\sxxmachine\Int.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\bootlib\sxxmachine\sxx_meta.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\bootlib\sxxmachine\sxx_library.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\bootlib\sxxmachine\sxx_read.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\bootlib\sxxmachine\sxx_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\testing\sxxmachine\animal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\nand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\qsort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\asm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\simple_analyzer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\perfect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\crypt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\browse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\zebra.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\log10.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\poly_10.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\prover.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\meta_qsort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\sdda.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\flatten.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\chat_parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\tak.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\times10.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\ops8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\divide10.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\boyer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\run.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\derive.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\query.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\serialise.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\sendmore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\nreverse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\mu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\unify.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\reducer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\queens_8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\benches\sxxmachine\fast_mu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\stringbuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\stringhelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\exceptionhelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\machine\sxxmachine\Const.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\machine\sxxmachine\HeapChoice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\machine\sxxmachine\Term.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\machine\sxxmachine\Metaterm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\machine\sxxmachine\stringbuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\machine\sxxmachine\stringhelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\machine\sxxmachine\FrozenVar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\machine\sxxmachine\Continuation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\machine\sxxmachine\Operation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\machine\sxxmachine\Fun.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\machine\sxxmachine\Builtins.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\machine\sxxmachine\Var.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\machine\sxxmachine\PredTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\machine\sxxmachine\Prolog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\machine\sxxmachine\Data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\machine\sxxmachine\exceptionhelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\machine\sxxmachine\Real.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\machine\sxxmachine\Lexer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\machine\sxxmachine\Code.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\machine\sxxmachine\Int.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\bootlib\sxxmachine\sxx_meta.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\bootlib\sxxmachine\sxx_library.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\bootlib\sxxmachine\sxx_read.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\bootlib\sxxmachine\sxx_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\testing\sxxmachine\animal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\nand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\qsort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\asm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\simple_analyzer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\perfect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\crypt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\browse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\zebra.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\log10.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\poly_10.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\prover.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\meta_qsort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\sdda.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\flatten.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\chat_parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\tak.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\times10.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\ops8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\divide10.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\boyer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\run.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\derive.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\query.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\serialise.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\sendmore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\nreverse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\mu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\unify.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\reducer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\queens_8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="build\classes\benches\sxxmachine\fast_mu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cmakefiles\feature_tests.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="cmakefiles\3.5.1\CMakeDetermineCompilerABI_CXX.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="cmakefiles\3.5.1\CMakeDetermineCompilerABI_C.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="prolog\index.html" />
+    <None Include="C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets" />
+  </ItemGroup>
+</Project>

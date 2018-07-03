@@ -5,7 +5,7 @@ import java.io.IOException;
 final class Fun extends Term {
 	Term Arguments[];
 	String Name;
-	private boolean isLixt;
+	private char isLixt;
 
 	Term Copy(Prolog m, long t) {
 		int a = Arguments.length;
@@ -18,23 +18,19 @@ final class Fun extends Term {
 		return f;
 	}
 
-	Fun(String N) {
-		Name = N;
+	Fun(String N, int arity) {
+		this(N, new Term[arity]);
 	}
 
-	Fun(String N, int arity) {
-		Name = N;
-		Arguments = new Term[arity];
-		if (arity == 2) {
-			isLixt = Name.equals(".");
-		}
+	Fun(Const N, int arity) {
+		this(N.GetName(), new Term[arity]);
 	}
 
 	Fun(String N, Term... args) {
 		Name = N;
 		Arguments = args;
 		if (Arguments.length == 2) {
-			isLixt = Name.equals(".");
+			isLixt = Name.charAt(0);
 		}
 	}
 
@@ -54,6 +50,7 @@ final class Fun extends Term {
 	long LongValue() {
 		int arity = Arguments.length;
 		// Term a1, a2;
+		String Name = this.Name;
 		long i1, i2;
 		if (arity == 1) {
 			i1 = (Arguments[0].Deref()).LongValue();
@@ -82,14 +79,8 @@ final class Fun extends Term {
 		return this;
 	}
 
-	private static boolean islist(int i, String Name) {
-		if (i != 2)
-			return false;
-		return Name.equals(".");
-	}
-
 	boolean IsList() {
-		return islist(this.Arguments.length, this.Name);
+		return isLixt == '.';
 	}
 
 	static void formattedListOutput(int formatFlags, Appendable buffer, Term T) throws IOException {
@@ -116,18 +107,14 @@ final class Fun extends Term {
 	}
 
 	public void formattedOutput(int formatFlags, Appendable buffer) throws IOException {
-		if (isLixt) {
+		if (isLixt == '.') {
 			buffer.append("[");
 			Arguments[0].Deref().formattedOutput(formatFlags, buffer);
 			formattedListOutput(formatFlags, buffer, Arguments[1].Deref());
 			buffer.append("]");
 			return;
 		}
-		if (formatFlags != 0) {
-			Const.formattedOutputC(formatFlags, buffer, GetName());
-		} else {
-			buffer.append(GetName());
-		}
+		Const.formattedOutputC(formatFlags, buffer, GetName());
 		buffer.append("(");
 		int arity1 = Arity();
 		for (int carg = 0; carg < arity1; carg++) {
@@ -143,14 +130,14 @@ final class Fun extends Term {
 		buffer.append(")");
 	}
 
-	public boolean Unify(Term that) {
+	public boolean Unify(Term that, Prolog mach) {
 		Fun tmpfunct;
 		int i, j;
 		Term arg1[], obj1;
 		Term arg2[], obj2;
 
 		if (!(SameTypes(this, that)))
-			return that.Bind(this);
+			return that.Bind(this, mach);
 		// if (!((this.Name).equals(that.GetName()))) return false ;
 		if ((this.Name) != (that.GetName()))
 			return false;
@@ -165,7 +152,7 @@ final class Fun extends Term {
 		do {
 			obj1 = arg1[--i].Deref();
 			obj2 = arg2[i].Deref();
-			if (!(obj1.Unify(obj2)))
+			if (!(obj1.Unify(obj2, mach)))
 				return false;
 		} while (i > 0);
 		return true;
@@ -210,5 +197,21 @@ final class Fun extends Term {
 
 	String GetName() {
 		return Name;
+	}
+
+	public boolean isVar() {
+		return false;
+	}
+
+	public boolean isFVar() {
+		return false;
+	}
+
+	public boolean isStruct() {
+		return true;
+	}
+
+	public boolean isConst() {
+		return false;
 	}
 }

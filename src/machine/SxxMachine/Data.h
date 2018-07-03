@@ -3,7 +3,7 @@
 
 #include <string>
 #include <vector>
-#include "stringhelper.h"
+#include "../../stringhelper.h"
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
 namespace SxxMachine { class Real; }

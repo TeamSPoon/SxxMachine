@@ -52,7 +52,7 @@ public class PredTable {
 	}
 
 	void InsertNameArity(String N, int A, Operation Adr) {
-		N = N.intern();
+		N = N;
 		Hashtable<String, Operation> T = tables[A];
 		if (T == null) {
 			tables[A] = T = new Hashtable<String, Operation>();
@@ -71,7 +71,7 @@ public class PredTable {
 	}
 
 	// Java ONLY
-	public Operation LoadPred(String Name, int arity) // arity is source arity before bin in predtable + 1 !	
+	public Operation LoadPred(String Name, int arity) // arity is source arity before bin in predtable + 1 !
 	{
 		Operation code;
 
@@ -80,7 +80,7 @@ public class PredTable {
 			return code;
 		code = Instanciate(Name, arity);
 		InsertNameArity(Name, arity, code);
-		//code.Init(thiz);
+		// code.Init(thiz);
 		return code;
 	}
 
@@ -92,7 +92,7 @@ public class PredTable {
 			Package p = PredTable.class.getPackage();
 			String pp = "";
 			if (p != null) {
-				//pp = p.getName() + ".";
+				// pp = p.getName() + ".";
 			}
 			String s1 = pp + "pred_" + Name + "_" + arity;
 			// String s2 = s1 + ".class" ;
@@ -140,13 +140,14 @@ public class PredTable {
 	}
 
 	/**
-	 * Returns a string representation of class for
-	 * the predicate with the given arguments.
-	 * @param pkg package name
+	 * Returns a string representation of class for the predicate with the given
+	 * arguments.
+	 * 
+	 * @param pkg     package name
 	 * @param functor predicate name
-	 * @param arity predicate arity
-	 * @return a string representation of class for
-	 * the predicate that corresponds to <code>pkg:functor/arity</code>.
+	 * @param arity   predicate arity
+	 * @return a string representation of class for the predicate that corresponds
+	 *         to <code>pkg:functor/arity</code>.
 	 */
 	public static String encode(String pkg, String functor, int arity) {
 		char[] x = functor.toCharArray();

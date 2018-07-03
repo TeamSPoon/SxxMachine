@@ -1,5 +1,7 @@
 package SxxMachine;
 
+import java.util.Hashtable;
+
 public class Data {
 
 	public static Real Number(Number d) {
@@ -36,8 +38,15 @@ public class Data {
 		return new Fun(string6, terms);
 	}
 
+	public static Hashtable<String, Const> atomTable = new Hashtable<>();
+
 	public static Const Intern(String d) {
-		return new Const(d);
+		Const c = atomTable.get(d);
+		if (c == null) {
+			c = new Const(d);
+			atomTable.put(d, c);
+		}
+		return c;
 	}
 
 	static boolean SameTypes(Term thiz, Term that) {

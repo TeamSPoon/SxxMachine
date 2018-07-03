@@ -53,7 +53,7 @@ class CutProc extends Code {
 	}
 
 	CutProc(Prolog mach) {
-		mach.Predicates.InsertNameArityWithContinuation("cut".intern(), 2, this);
+		mach.Predicates.InsertNameArityWithContinuation("cut", 2, this);
 	}
 
 	public Operation Exec(Prolog mach) {
@@ -73,7 +73,7 @@ class TrueProc extends Code {
 	}
 
 	TrueProc(Prolog mach) {
-		mach.Predicates.InsertNameArityWithContinuation("true".intern(), 1, this);
+		mach.Predicates.InsertNameArityWithContinuation("true", 1, this);
 	}
 
 	public Operation Exec(Prolog mach) {
@@ -88,7 +88,7 @@ class Call1Proc extends Code {
 	}
 
 	Call1Proc(Prolog mach) {
-		mach.Predicates.InsertNameArityWithContinuation("call".intern(), 1, this);
+		mach.Predicates.InsertNameArityWithContinuation("call", 1, this);
 	}
 
 	public Operation Exec(Prolog mach) { // Areg[0] contains a Fun - might have to
@@ -115,7 +115,7 @@ class Call2Proc extends Code {
 	}
 
 	Call2Proc(Prolog mach) {
-		mach.Predicates.InsertNameArityWithContinuation("call".intern(), 2, this);
+		mach.Predicates.InsertNameArityWithContinuation("call", 2, this);
 	}
 
 	public Operation Exec(Prolog mach) { // Areg[0] contains a Fun or Const - might
@@ -146,10 +146,4 @@ class Call2Proc extends Code {
 		}
 		return code;
 	}
-}
-
-interface Undoable {
-
-	public void Unwind();
-
 }

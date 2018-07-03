@@ -2,7 +2,7 @@ package SxxMachine;
 
 import java.io.IOException;
 
-class FrozenVar extends Term {
+class FrozenVar extends Term implements Undoable {
 	Term Refers;
 	long timestamp;
 	Prolog mach;
@@ -33,7 +33,7 @@ class FrozenVar extends Term {
 		return ((Term) Refers).Deref();
 	}
 
-	void UnTrailSelf() {
+	public void UnTrailSelf() {
 		Refers = null;
 	}
 
@@ -41,45 +41,66 @@ class FrozenVar extends Term {
 		buffer.append("_" + Integer.toHexString(hashCode()));
 	}
 
-	boolean Bind(Term that) {
+	boolean Bind(Term that, Prolog mach) {
 		// Var v2;
-		if (that instanceof FrozenVar) {
+		if (that.isFVar()) {
 			FrozenVar thatv = (FrozenVar) that;
-			Fun newgoals = new Fun(",".intern(), this.goals, thatv.goals);
+			Fun newgoals = new Fun(",", this.goals, thatv.goals);
 			FrozenVar newfrv = new FrozenVar(mach, mach.CurrentChoice, newgoals);
 			this.Refers = thatv.Refers = newfrv;
 			mach.TrailEntry(this);
 			mach.TrailEntry(thatv);
-		} else if (that instanceof Var) {
-			return that.Bind(this);
+		} else if (that.isVar()) {
+			return that.Bind(this, mach);
 		} else {
 			this.Refers = that;
 			mach.TrailEntry(this);
 			mach.TrailEntry(new PopPendingGoals(mach, mach.pendinggoals));
-			mach.pendinggoals = new Fun(".".intern(), goals, mach.pendinggoals);
+			mach.pendingGoals = Data.Cons(goals, mach.pendingGoals);
 			mach.ExceptionRaised = 1;
 		}
 		return true;
 	}
 
-	public boolean Unify(Term that) {
-		return Bind(that);
+	public boolean Unify(Term that, Prolog mach) {
+		return Bind(that, mach);
 	}
 
 	boolean Equal(Term that) {
-		if (!(that instanceof FrozenVar)) {
+		if (!(that.isFVar())) {
 			return false;
 		}
 		;
 		return this == that;
 	}
 
-	String GetName() {
+	public String GetName() {
 		return toQuotedString();
 	}
 
 	@Override
 	public int Arity() {
 		return VAR;
+	}
+
+	@Override
+	public boolean isVar() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean isFVar() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	public boolean isStruct() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean isConst() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

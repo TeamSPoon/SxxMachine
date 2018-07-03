@@ -12,7 +12,7 @@ public class /**/ Metaterm {
 
 	public static class pred_frozen_2 extends Code {
 		public Operation Exec(Prolog mach) {
-			if (!mach.Areg[0].Deref().frozenGoals().Unify(mach.Areg[1].Deref()))
+			if (!mach.Areg[0].Deref().frozenGoals().Unify(mach.Areg[1].Deref(), mach))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[2]; // install the continuation
 			mach.Areg[1] = mach.Areg[2] = null;
@@ -43,7 +43,7 @@ public class /**/ Metaterm {
 	public static class pred_get_attr_3 extends Code {
 		public Operation Exec(Prolog mach) {
 			Term t = mach.Areg[0].Deref().findOrAttrValue(mach, false, mach.Areg[2].Deref());
-			if (!(t.Unify(mach.Areg[0].Deref())))
+			if (!(t.Unify(mach.Areg[0].Deref(), mach)))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[3]; // install the continuation
 			mach.Areg[1] = mach.Areg[2] = mach.Areg[3] = null;
@@ -53,7 +53,7 @@ public class /**/ Metaterm {
 
 	public static class pred_get_attrs_2 extends Code {
 		public Operation Exec(Prolog mach) {
-			if (mach.Areg[1].Deref().Unify(mach.Areg[0].Deref()))
+			if (mach.Areg[1].Deref().Unify(mach.Areg[0].Deref(), mach))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[2]; // install the continuation
 			mach.Areg[1] = mach.Areg[2] = null;

@@ -2,7 +2,7 @@ package SxxMachine;
 
 import java.io.IOException;
 
-abstract class Term extends Data {
+abstract class Term extends Data implements Undoable {
 
 	// private Term val;
 	public final static int JAVA = -4;
@@ -33,7 +33,7 @@ abstract class Term extends Data {
 	 */
 	abstract public int Arity();
 
-	boolean Bind(Term that) {
+	boolean Bind(Term that, Prolog mach) {
 		return false;
 	}
 
@@ -61,9 +61,9 @@ abstract class Term extends Data {
 			attrs = Const.Nil;
 			newatts = new Fun("att", name, null, Const.Nil);
 			if (trail != null) {
-				trail.push1(new Undoable() {
+				trail.push(new Undoable() {
 					@Override
-					public void Unwind() {
+					public void UnTrailSelf() {
 						Term.this.attrs = wasAttrs;
 					}
 				});
@@ -98,9 +98,9 @@ abstract class Term extends Data {
 	public Term freeze(Prolog trail, Term newval) {
 		Term prev = frozenGoals();
 		Term newgoals = Data.Cons(newval, prev);
-		trail.push1(new Undoable() {
+		trail.push(new Undoable() {
 			@Override
-			public void Unwind() {
+			public void UnTrailSelf() {
 				goals = prev;
 			}
 		});
@@ -156,10 +156,10 @@ abstract class Term extends Data {
 			attrs = Const.Nil;
 			newatts = new Fun("att", name, val, Const.Nil);
 			if (trail != null) {
-				trail.push1(new Undoable() {
+				trail.push(new Undoable() {
 
 					@Override
-					public void Unwind() {
+					public void UnTrailSelf() {
 						// TODO Auto-generated method stub
 
 					}
@@ -189,9 +189,9 @@ abstract class Term extends Data {
 
 	public void setAttrs(Prolog trail, Term newval) {
 		Term prev = nullIsNil(attrs);
-		trail.push1(new Undoable() {
+		trail.push(new Undoable() {
 			@Override
-			public void Unwind() {
+			public void UnTrailSelf() {
 				attrs = prev;
 			}
 		});
@@ -200,9 +200,9 @@ abstract class Term extends Data {
 
 	public void setGoals(Prolog trail, Term newval) {
 		Term prev = nullIsNil(goals);
-		trail.push1(new Undoable() {
+		trail.push(new Undoable() {
 			@Override
-			public void Unwind() {
+			public void UnTrailSelf() {
 				goals = prev;
 			}
 		});
@@ -224,17 +224,25 @@ abstract class Term extends Data {
 		return toQuotedString();
 	}
 
-	public boolean Unify(Prolog mach, Term o1) {
-		return Unify(o1);
-	}
-
-	boolean Unify(Term that) {
+	boolean Unify(Term that, Prolog mach) {
 		System.out.println("general unify on terms not available");
 		return false;
 	}
 
-	void UnTrailSelf() {
+	public void UnTrailSelf() {
 		System.out.println("general untrail on terms not available");
+	}
+
+	abstract public boolean isVar();
+
+	abstract public boolean isFVar();
+
+	abstract public boolean isStruct();
+
+	abstract public boolean isConst();
+
+	public boolean isInt() {
+		return false;
 	}
 
 }

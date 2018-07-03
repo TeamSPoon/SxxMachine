@@ -4,6 +4,7 @@
 #include "Operation.h"
 #include <string>
 #include <vector>
+#include <functional>
 #include <iostream>
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
@@ -20,12 +21,12 @@ namespace SxxMachine {
 	// allows to make a new Prolog, start a goal and get answers back
 	// all at once as with findall
 
-	class Code : public Operation {
+	class Code : public MyOperation {
 	protected:
 		virtual int Arity();
 
 	public:
-		Operation Exec(Prolog* mach) override;
+		Operation Exec(Prolog* mach);
 
 	protected:
 		virtual void Init(Prolog* mach);

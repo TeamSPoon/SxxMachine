@@ -243,7 +243,7 @@ public class Builtins {
 			dereffed = (mach.Areg[1]).Deref();
 			i1 = dereffed.LongValue();
 			dereffed = (mach.Areg[0]).Deref();
-			if (!(dereffed.Unify(new Int(i1))))
+			if (!(dereffed.Unify(new Int(i1), mach)))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[2];
 			mach.Areg[1] = mach.Areg[2] = null;
@@ -266,7 +266,7 @@ public class Builtins {
 			Term arg1 = mach.Areg[0].Deref();
 			Term arg2 = mach.Areg[1].Deref();
 
-			if (!(arg1.Unify(arg2)))
+			if (!(arg1.Unify(arg2, mach)))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[2];
 			mach.Areg[1] = mach.Areg[2] = null;
@@ -304,7 +304,7 @@ public class Builtins {
 				return Prolog.Fail0;
 			if (!(tail.IsNil()))
 				return Prolog.Fail0;
-			if (!(arg2 instanceof Const))
+			if (!(arg2.isConst()))
 				return Prolog.Fail0;
 			Term args[] = new Term[l];
 			tail = arg3;
@@ -314,7 +314,7 @@ public class Builtins {
 				tail = (((Fun) tail).Arguments[1]).Deref();
 			}
 
-			if (!(arg1.Unify(new Fun(((Const) arg2).GetName(), args))))
+			if (!(arg1.Unify(new Fun(((Const) arg2).GetName(), args), mach)))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[3];
 			mach.Areg[1] = mach.Areg[2] = mach.Areg[3] = null;
@@ -372,23 +372,23 @@ public class Builtins {
 			arg2 = arg2.Deref();
 			arg3 = arg3.Deref();
 
-			if (arg1 instanceof Var) {
-				if ((!(arg2 instanceof Const)) || (!(arg3 instanceof Int)))
+			if (arg1.isVar()) {
+				if ((!(arg2.isConst())) || (!(arg3.isInt())))
 					return false;
-				int i = (int) (((Int) arg3).IntValue);
+				int i = (int) (((Int) arg3).Num);
 				String Name = arg2.GetName();
 				Term args[] = new Term[i];
 				while (i-- > 0) {
 					args[i] = new Var(mach);
 				}
-				if (!(arg1.Unify(new Fun(Name, args))))
+				if (!(arg1.Unify(new Fun(Name, args), mach)))
 					return false;
 			} else {
 				String Name = arg1.GetName();
 				int arity = arg1.Arity();
-				if (!(arg2.Unify(Const.Intern(Name))))
+				if (!(arg2.Unify(Const.Intern(Name), mach)))
 					return false;
-				if (!(arg3.Unify(new Int(arity))))
+				if (!(arg3.Unify(new Int(arity), mach)))
 					return false;
 			}
 			return true;
@@ -417,11 +417,11 @@ public class Builtins {
 			arg2 = arg2.Deref();
 			arg3 = arg3.Deref();
 
-			if (!(arg1 instanceof Int))
+			if (!(arg1.isInt()))
 				return false;
-			if (!(arg2 instanceof Fun))
+			if (!(arg2.isStruct()))
 				return false;
-			int i = (int) (((Int) arg1).IntValue);
+			int i = (int) (((Int) arg1).Num);
 			if (i < 1)
 				return false;
 			int l = ((Fun) arg2).Arity();
@@ -429,7 +429,7 @@ public class Builtins {
 				return false;
 			Term x = ((Fun) arg2).Arguments[i - 1];
 			x = x.Deref();
-			return (arg3.Unify(x));
+			return (arg3.Unify(x, mach));
 		}
 
 		public Operation Exec(Prolog mach) {
@@ -456,10 +456,10 @@ public class Builtins {
 
 		public static Operation exec_static(Prolog mach) {
 			Term arg1 = mach.Areg[0].Deref();
-			if (!(arg1 instanceof Var))
+			if (!(arg1.isVar()))
 				return Prolog.Fail0;
 			Term t = mach.nexttoken();
-			if (!(arg1.Unify(t.Deref())))
+			if (!(arg1.Unify(t.Deref(), mach)))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[1]; // install the continuation
 			mach.Areg[1] = null;
@@ -480,7 +480,7 @@ public class Builtins {
 			Term arg1 = mach.Areg[0].Deref();
 			long t = java.lang.System.currentTimeMillis();
 			Term o = new Int(t);
-			if (!(arg1.Unify(o)))
+			if (!(arg1.Unify(o, mach)))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[1]; // install the continuation
 			mach.Areg[1] = null;
@@ -501,8 +501,8 @@ public class Builtins {
 			return this;
 		}
 
-		public boolean Unify(Term that) {
-			return that.Bind(this);
+		public boolean Unify(Term that, Prolog mach) {
+			return that.Bind(this, mach);
 		}
 
 		public String toString() {
@@ -524,7 +524,7 @@ public class Builtins {
 
 		public static Operation exec_static(Prolog mach) {
 			Term arg1 = mach.Areg[0].Deref();
-			if (!(arg1.Unify(new findall_list(mach))))
+			if (!(arg1.Unify(new findall_list(mach), mach)))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[1]; // install the continuation
 			mach.Areg[1] = null;
@@ -553,7 +553,7 @@ public class Builtins {
 			}
 			mach.TrailTop = oldtrail;
 			Var NewTail = new Var(mach);
-			(arg2.uptonowend).Refers = new Fun(".".intern(), copy, NewTail);
+			(arg2.uptonowend).Refers = new Fun(".", copy, NewTail);
 			arg2.uptonowend = NewTail;
 			// mach.Areg[0] = mach.Areg[2] ; // install the continuation
 			// mach.Areg[1] = mach.Areg[2] = null ;
@@ -576,7 +576,7 @@ public class Builtins {
 			Term arg1 = mach.Areg[0].Deref();
 			findall_list arg2 = (findall_list) (mach.Areg[1].Deref());
 			(arg2.uptonowend).Refers = Const.Nil;
-			if (!(arg1.Unify((arg2.uptonowbegin).Deref())))
+			if (!(arg1.Unify((arg2.uptonowbegin).Deref(), mach)))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[2]; // install the continuation
 			mach.Areg[1] = mach.Areg[2] = null;
@@ -615,7 +615,7 @@ public class Builtins {
 
 		public static Operation exec_static(Prolog mach) {
 			Term arg1 = mach.Areg[0].Deref();
-			if (!(arg1.Unify(new Int((long) (mach.TrailTop)))))
+			if (!(arg1.Unify(new Int((long) (mach.TrailTop)), mach)))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[1]; // install the continuation
 			mach.Areg[1] = null;
@@ -634,7 +634,7 @@ public class Builtins {
 
 		public static Operation exec_static(Prolog mach) {
 			Term arg1 = mach.Areg[0].Deref();
-			if (!(arg1.Unify(new Int((long) (mach.CurrentChoice)))))
+			if (!(arg1.Unify(new Int((long) (mach.CurrentChoice)), mach)))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[1]; // install the continuation
 			mach.Areg[1] = null;
@@ -655,20 +655,20 @@ public class Builtins {
 			Term arg1 = mach.Areg[0].Deref();
 			Term arg2 = mach.Areg[1].Deref();
 			String s;
-			if (arg1 instanceof Var)
-				s = "var".intern();
-			else if (arg1 instanceof FrozenVar)
-				s = "var".intern();
-			else if (arg1 instanceof Int)
-				s = "integer".intern();
-			else if (arg1 instanceof Const)
-				s = "atom".intern();
-			else if (arg1 instanceof Fun)
-				s = "struct".intern();
+			if (arg1.isVar())
+				s = "var";
+			else if (arg1.isFVar())
+				s = "var";
+			else if (arg1.isInt())
+				s = "integer";
+			else if (arg1.isConst())
+				s = "atom";
+			else if (arg1.isStruct())
+				s = "struct";
 			else
-				s = "unknown".intern();
+				s = "unknown";
 
-			if (!(arg2.Unify(Const.Intern(s))))
+			if (!(arg2.Unify(Const.Intern(s), mach)))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[2]; // install the continuation
 			mach.Areg[1] = mach.Areg[2] = null;
@@ -689,7 +689,7 @@ public class Builtins {
 			Term arg1 = mach.Areg[0].Deref();
 			Term ass = (mach.assumptions).Deref();
 			mach.TrailEntry(new PopAssumptions(mach, ass));
-			mach.assumptions = new Fun(".".intern(), arg1, ass);
+			mach.assumptions = new Fun(".", arg1, ass);
 			mach.Areg[0] = mach.Areg[1]; // install the continuation
 			mach.Areg[1] = null;
 			return Prolog.Call1;
@@ -708,7 +708,7 @@ public class Builtins {
 		public static Operation exec_static(Prolog mach) {
 			Term arg1 = mach.Areg[0].Deref();
 			Term ass = (mach.assumptions).Deref();
-			if (!(arg1.Unify(ass)))
+			if (!(arg1.Unify(ass, mach)))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[1]; // install the continuation
 			mach.Areg[1] = null;
@@ -735,7 +735,7 @@ public class Builtins {
 			} catch (Exception e) {
 				return Prolog.Fail0;
 			}
-			if (!(arg1.Unify(new Int((long) i))))
+			if (!(arg1.Unify(new Int((long) i), mach)))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[1]; // install the continuation
 			mach.Areg[1] = null;
@@ -780,11 +780,11 @@ public class Builtins {
 			arg2 = arg2.Deref();
 			arg3 = arg3.Deref();
 
-			if (!(arg1 instanceof Int))
+			if (!(arg1.isInt()))
 				return false;
-			if (!(arg2 instanceof Fun))
+			if (!(arg2.isStruct()))
 				return false;
-			int i = (int) (((Int) arg1).IntValue);
+			int i = (int) (((Int) arg1).Num);
 			if (i < 1)
 				return false;
 			int l = ((Fun) arg2).Arity();
@@ -818,7 +818,7 @@ public class Builtins {
 			return 3;
 		}
 
-		//	Int < Const < Fun < Var
+		// Int < Const < Fun < Var
 
 		static int Compare(Term t, Term s) {
 			if (t == s)
@@ -872,13 +872,13 @@ public class Builtins {
 			int val = Compare(arg2, arg3);
 			String s;
 			if (val < 0)
-				s = "<".intern();
+				s = "<";
 			else if (val == 0)
-				s = "=".intern();
+				s = "=";
 			else
-				s = ">".intern();
+				s = ">";
 
-			if (!(arg1.Unify(Const.Intern(s))))
+			if (!(arg1.Unify(Const.Intern(s), mach)))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[3]; // install the continuation
 			mach.Areg[1] = mach.Areg[2] = mach.Areg[3] = null;
@@ -900,7 +900,7 @@ public class Builtins {
 			Term arg2 = mach.Areg[1].Deref();
 
 			FrozenVar frv = new FrozenVar(mach, arg2);
-			if (!(arg1.Unify(frv)))
+			if (!(arg1.Unify(frv, mach)))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[2]; // install the continuation
 			mach.Areg[1] = mach.Areg[2] = null;
@@ -948,14 +948,14 @@ public class Builtins {
 			Term arg2 = mach.Areg[1].Deref();
 			Term goal;
 
-			if (arg1 instanceof Var)
-				goal = Const.Intern("true".intern());
-			else if (arg1 instanceof FrozenVar)
+			if (arg1.isVar())
+				goal = Const.Intern("true");
+			else if (arg1.isFVar())
 				goal = (((FrozenVar) arg1).goals).Deref();
 			else
 				return Prolog.Fail0;
 
-			if (!(arg2.Unify(goal)))
+			if (!(arg2.Unify(goal, mach)))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[2]; // install the continuation
 			mach.Areg[1] = mach.Areg[2] = null;

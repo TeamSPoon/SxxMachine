@@ -49,7 +49,7 @@ namespace SxxMachine {
 	}
 
 	CutProc::CutProc(Prolog* mach) {
-		mach->Predicates.InsertNameArityWithContinuation((wstring("cut")).intern(), 2, this);
+		mach->Predicates.InsertNameArityWithContinuation((wstring("cut")), 2, this);
 	}
 
 	Operation CutProc::Exec(Prolog* mach) {

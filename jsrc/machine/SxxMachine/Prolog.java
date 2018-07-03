@@ -43,7 +43,7 @@ public class Prolog {
 		}
 		// then you can call the goal
 
-		Term Goal = new Fun("animal".intern(), new Var(M)); // animal(X)
+		Term Goal = new Fun("animal", new Var(M)); // animal(X)
 		Term AnswerList = M.SolveGoal(Goal);
 
 		// AnswerList is now a list of instances of the Goal
@@ -95,8 +95,8 @@ public class Prolog {
 
 	public Term Areg[] = new Term[32];
 	public ChoicePointStackEntry ChoicePointStack[];
-	public Term TrailStack[];
-	//public Lexer.PrologTokenizer stdin;
+	public Undoable TrailStack[];
+	// public Lexer.PrologTokenizer stdin;
 	public long TimeStamp;
 	public int CUTB;
 	public int CurrentChoice;
@@ -113,7 +113,7 @@ public class Prolog {
 	public void run() {
 
 		InitOnce();
-		Areg[0] = new Fun("toplevel".intern(), new Int(0));
+		Areg[0] = new Fun("toplevel", new Int(0));
 		// 0 is a dummy continuation
 		InitAlways();
 		Operation next = null;
@@ -140,7 +140,7 @@ public class Prolog {
 			// there are pending goals - deal with them
 			ExceptionRaised = 0;
 			Continuation c = new Continuation(Areg, GetArity(code), code);
-			Areg[0] = new Fun("execpendinggoals".intern(), pendinggoals, c);
+			Areg[0] = new Fun("execpendinggoals", pendinggoals, c);
 			TrailEntry(new PopPendingGoals(this, pendinggoals));
 			pendingGoals = Const.Intern("[]");
 			code = Prolog.Call1;
@@ -180,7 +180,7 @@ public class Prolog {
 		ExceptionRaised = 0;
 
 		Areg[0] = new Fun("findall", Goal, Goal, AnswerList, new Fun("halt", new Int(0)));
-		//pred_findall_3.entry_code;
+		// pred_findall_3.entry_code;
 		while (ExceptionRaised == 0) {
 			code = code.Exec(this);
 		}
@@ -260,13 +260,17 @@ public class Prolog {
 		}
 	}
 
-	public void TrailEntry(Term po) { // System.out.println("trailing") ;
+	public void push(Undoable undoable) {
+		TrailEntry(undoable);
+	}
+
+	public void TrailEntry(Undoable po) { // System.out.println("trailing") ;
 		try {
 			TrailStack[TrailTop] = po;
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("trail expansion");
 			int i = TrailStack.length;
-			Term newstack[] = new Term[i + 20000];
+			Undoable newstack[] = new Term[i + 20000];
 			while (i-- > 0) {
 				newstack[i] = TrailStack[i];
 			}
@@ -307,14 +311,6 @@ public class Prolog {
 		return Predicates.LoadPred(name, arity);
 	}
 
-	public void push1(Undoable undoable) {
-		Debug(null);
-	}
-
-	public void push(Undoable undoable) {
-		Debug(null);
-	}
-
 	public void Reg(int i) {
 		Areg[0] = Areg[i]; // install the continuation
 		while (i-- > 1) {
@@ -349,12 +345,12 @@ abstract class PrologObject extends Term {
 		buffer.append("general print on objects not available");
 	}
 
-	public boolean Unify(Term that) {
+	public boolean Unify(Term that, Prolog mach) {
 		System.out.println("general unify on objects not available");
 		return false;
 	}
 
-	boolean Bind(Term that) {
+	boolean Bind(Term that, Prolog mach) {
 		return false;
 	}
 
@@ -368,7 +364,7 @@ abstract class PrologObject extends Term {
 		return "";
 	}
 
-	void UnTrailSelf() {
+	public void UnTrailSelf() {
 		System.out.println("general untrail on objects not available");
 	}
 
@@ -381,11 +377,33 @@ abstract class PrologObject extends Term {
 		return 0;
 	}
 
-	boolean islist() {
+	@Override
+	public boolean isConst() {
+		// TODO Auto-generated method stub
 		return false;
 	}
 
-	boolean isnil() {
+	@Override
+	public boolean isFVar() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isInt() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isStruct() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isVar() {
+		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -405,7 +423,7 @@ final class VarDict extends PrologObject {
 		return this;
 	}
 
-	void UnTrailSelf() {
+	public void UnTrailSelf() {
 		old.Refers = old;
 	}
 
@@ -425,7 +443,7 @@ final class SetArgTrail extends PrologObject {
 		mach = m;
 	}
 
-	void UnTrailSelf() {
+	public void UnTrailSelf() {
 		Which.Refers = OldValue;
 		Which.timestamp = mach.TimeStamp;
 	}
@@ -441,7 +459,7 @@ final class PopPendingGoals extends PrologObject {
 		old = o;
 	}
 
-	void UnTrailSelf() {
+	public void UnTrailSelf() {
 		mach.pendinggoals = old;
 	}
 
@@ -456,7 +474,7 @@ final class PopAssumptions extends PrologObject {
 		old = o;
 	}
 
-	void UnTrailSelf() {
+	public void UnTrailSelf() {
 		mach.assumptions = old;
 	}
 

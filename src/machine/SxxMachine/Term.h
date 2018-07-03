@@ -6,7 +6,9 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include "exceptionhelper.h"
+#include <functional>
+#include "../../exceptionhelper.h"
+
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
 namespace SxxMachine { class Prolog; }

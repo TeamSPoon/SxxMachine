@@ -100,7 +100,7 @@ TrueProc* Prolog::True0 = nullptr;
 
 		InitOnce();
 		Int tempVar(0);
-		Areg[0] = new Fun((wstring("toplevel")).intern(), &tempVar);
+		Areg[0] = new Fun((wstring("toplevel")), &tempVar);
 		// 0 is a dummy continuation
 		InitAlways();
 		Operation next = nullptr;

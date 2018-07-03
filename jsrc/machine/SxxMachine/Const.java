@@ -15,7 +15,7 @@ public class Const extends Term {
 	}
 
 	Term Copy(Prolog m, long t) {
-		return this; //new Const(Name);
+		return this; // new Const(Name);
 	}
 
 	public Term Deref() {
@@ -36,11 +36,11 @@ public class Const extends Term {
 		Const.formattedOutputC(formatFlags, buffer, GetName());
 	}
 
-	public boolean Unify(Term that) {
+	public boolean Unify(Term that, Prolog mach) {
 		if (SameTypes(this, that))
 			// return (that.GetName()).equals(this.Name) ;
 			return (that.GetName() == this.Name);
-		return that.Bind(this);
+		return that.Bind(this, mach);
 	}
 
 	boolean Equal(Term that) {
@@ -60,8 +60,8 @@ public class Const extends Term {
 	boolean IsNil() {
 		if (Nil == this)
 			return true;
-		if (Nil.GetName() == this.Name || this.Name.equals("[]".intern())) {
-			//throw
+		if (Nil.GetName() == this.Name || this.Name.equals("[]")) {
+			// throw
 		}
 		return false;
 	}
@@ -87,5 +87,29 @@ public class Const extends Term {
 			}
 		}
 		return Prolog.Predicates.LoadPred(Name, i);
+	}
+
+	@Override
+	public boolean isVar() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isFVar() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isStruct() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isConst() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 }

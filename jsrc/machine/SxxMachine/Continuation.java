@@ -26,8 +26,8 @@ final class Continuation extends PrologObject {
 		return this;
 	}
 
-	public boolean Unify(Term that) {
-		return that.Bind(this);
+	public boolean Unify(Term that, Prolog mach) {
+		return that.Bind(this, mach);
 	}
 
 	public void formattedOutput(int formatFlags, Appendable buffer) throws IOException {

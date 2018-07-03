@@ -7,7 +7,8 @@
 #include <vector>
 #include <iostream>
 #include <stdexcept>
-#include "exceptionhelper.h"
+#include <functional>
+#include "../../exceptionhelper.h"
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
 namespace SxxMachine { class Term; }

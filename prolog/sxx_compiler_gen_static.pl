@@ -310,7 +310,7 @@ gets([Arg|Args],N,Strings) :-
 
 getforarg(Arg,N,Strings) :-
 		writel(['if (!( (areg',N,').Unify(',constructterm(Arg,Strings),
-			'))) return Prolog.Fail0 ;',wr(nl)]) .
+			',mach))) return Prolog.Fail0 ;',wr(nl)]) .
 
 
 puts(cut(_,C),Strings) :- ! ,
