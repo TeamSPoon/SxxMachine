@@ -43,7 +43,7 @@ public class PredTable {
 
 	@SuppressWarnings("unchecked")
 	PredTable() {
-		tables = new Hashtable[33];
+		this.tables = new Hashtable[33];
 	}
 
 	public static Operation Register(String name, int arity, Operation op) {
@@ -53,21 +53,21 @@ public class PredTable {
 
 	void InsertNameArity(String N, int A, Operation Adr) {
 		N = N;
-		Hashtable<String, Operation> T = tables[A];
+		Hashtable<String, Operation> T = this.tables[A];
 		if (T == null) {
-			tables[A] = T = new Hashtable<String, Operation>();
+			this.tables[A] = T = new Hashtable<String, Operation>();
 		}
 		T.put(N, Adr);
 	}
 
 	public void InsertNameArityWithContinuation(String N, int A, Code Adr) {
-		InsertNameArity(N, A - 1, Adr);
+		this.InsertNameArity(N, A - 1, Adr);
 	}
 
 	private Operation IsInPredTable(String N, int A) {
-		if (tables[A] == null)
+		if (this.tables[A] == null)
 			return null;
-		return (Operation) (tables[A].get(N));
+		return (this.tables[A].get(N));
 	}
 
 	// Java ONLY
@@ -75,11 +75,11 @@ public class PredTable {
 	{
 		Operation code;
 
-		code = IsInPredTable(Name, arity);
+		code = this.IsInPredTable(Name, arity);
 		if (code != null)
 			return code;
-		code = Instanciate(Name, arity);
-		InsertNameArity(Name, arity, code);
+		code = this.Instanciate(Name, arity);
+		this.InsertNameArity(Name, arity, code);
 		// code.Init(thiz);
 		return code;
 	}
@@ -97,7 +97,7 @@ public class PredTable {
 			String s1 = pp + "pred_" + Name + "_" + arity;
 			// String s2 = s1 + ".class" ;
 			// System.out.println("Trying to load " + s2) ;
-			loaded_class = forName(s1);
+			loaded_class = this.forName(s1);
 			// System.out.println("Loaded " + s2) ;
 			code = (Operation) loaded_class.newInstance();
 			// System.out.println("and created "+s2) ;

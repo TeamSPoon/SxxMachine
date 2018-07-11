@@ -8,18 +8,18 @@ final class Continuation extends PrologObject {
 
 	Continuation(Term args[], Code c) {
 		int i = c.Arity() + 1;
-		Args = new Term[i];
+		this.Args = new Term[i];
 		while (i-- > 0)
-			Args[i] = args[i];
-		code = c;
+			this.Args[i] = args[i];
+		this.code = c;
 	}
 
 	public Continuation(Term[] args, int getArity, Operation c) {
 		int i = getArity + 1;
-		Args = new Term[i];
+		this.Args = new Term[i];
 		while (i-- > 0)
-			Args[i] = args[i];
-		code = (Code) c;
+			this.Args[i] = args[i];
+		this.code = c;
 	}
 
 	public Term Deref() {
@@ -32,11 +32,11 @@ final class Continuation extends PrologObject {
 
 	public void formattedOutput(int formatFlags, Appendable buffer) throws IOException {
 		System.out.println("general output of continuations not available");
-		buffer.append(GetName());
-		int i = Args.length;
+		buffer.append(this.GetName());
+		int i = this.Args.length;
 		int current = 0;
 		while (i-- > 0) {
-			formattedArgOutput(Args[current++], formatFlags, buffer);
+			this.formattedArgOutput(this.Args[current++], formatFlags, buffer);
 		}
 
 	}
@@ -49,7 +49,7 @@ final class Continuation extends PrologObject {
 
 	@Override
 	public int Arity() {
-		return JAVA;
+		return Data.OBJ;
 	}
 
 }

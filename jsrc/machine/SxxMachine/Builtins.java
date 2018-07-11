@@ -14,7 +14,7 @@ public class Builtins {
 	abstract static public class Borked extends Code {
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return Borked.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
@@ -97,7 +97,7 @@ public class Builtins {
 
 	public static class pred_fail_0 extends Code {
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_fail_0.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
@@ -107,7 +107,7 @@ public class Builtins {
 
 	public static class pred_true_0 extends Code {
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_true_0.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
@@ -121,17 +121,17 @@ public class Builtins {
 		}
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_smallerthan_2.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
-			long i1, i2;
+			double i1, i2;
 			Term dereffed;
 
 			dereffed = (mach.Areg[0]).Deref();
-			i1 = dereffed.LongValue();
+			i1 = dereffed.DoubleValue();
 			dereffed = (mach.Areg[1]).Deref();
-			i2 = dereffed.LongValue();
+			i2 = dereffed.DoubleValue();
 			if (i1 < i2) {
 				mach.Areg[0] = mach.Areg[2];
 				mach.Areg[1] = mach.Areg[2] = null;
@@ -149,17 +149,17 @@ public class Builtins {
 		}
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_smallerorequal_2.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
-			long i1, i2;
+			double i1, i2;
 			Term dereffed;
 
 			dereffed = (mach.Areg[0]).Deref();
-			i1 = dereffed.LongValue();
+			i1 = dereffed.DoubleValue();
 			dereffed = (mach.Areg[1]).Deref();
-			i2 = dereffed.LongValue();
+			i2 = dereffed.DoubleValue();
 			if (i1 <= i2) {
 				mach.Areg[0] = mach.Areg[2];
 				mach.Areg[1] = mach.Areg[2] = null;
@@ -177,17 +177,17 @@ public class Builtins {
 		}
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_arithequal_2.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
-			long i1, i2;
+			double i1, i2;
 			Term dereffed;
 
 			dereffed = (mach.Areg[0]).Deref();
-			i1 = dereffed.LongValue();
+			i1 = dereffed.DoubleValue();
 			dereffed = (mach.Areg[1]).Deref();
-			i2 = dereffed.LongValue();
+			i2 = dereffed.DoubleValue();
 			if (i1 == i2) {
 				mach.Areg[0] = mach.Areg[2];
 				mach.Areg[1] = mach.Areg[2] = null;
@@ -205,17 +205,17 @@ public class Builtins {
 		}
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_arithdifferent_2.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
-			long i1, i2;
+			double i1, i2;
 			Term dereffed;
 
 			dereffed = (mach.Areg[0]).Deref();
-			i1 = dereffed.LongValue();
+			i1 = dereffed.DoubleValue();
 			dereffed = (mach.Areg[1]).Deref();
-			i2 = dereffed.LongValue();
+			i2 = dereffed.DoubleValue();
 			if (i1 != i2) {
 				mach.Areg[0] = mach.Areg[2];
 				mach.Areg[1] = mach.Areg[2] = null;
@@ -233,17 +233,17 @@ public class Builtins {
 		}
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_is_2.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
-			long i1;
+			double i1;
 			Term dereffed;
 
 			dereffed = (mach.Areg[1]).Deref();
-			i1 = dereffed.LongValue();
+			i1 = dereffed.DoubleValue();
 			dereffed = (mach.Areg[0]).Deref();
-			if (!(dereffed.Unify(new Int(i1), mach)))
+			if (!(dereffed.Unify(Data.Number(i1), mach)))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[2];
 			mach.Areg[1] = mach.Areg[2] = null;
@@ -259,7 +259,7 @@ public class Builtins {
 		}
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_unify_2.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
@@ -286,7 +286,7 @@ public class Builtins {
 		// Areg[2] is a list of PrologObjects
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_univ_3.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
@@ -297,7 +297,7 @@ public class Builtins {
 
 			int l = 0;
 			while (tail.IsList()) {
-				tail = (((Fun) tail).Arguments[1]).Deref();
+				tail = tail.Arg(1).Deref();
 				l++;
 			}
 			if (l == 0)
@@ -310,8 +310,8 @@ public class Builtins {
 			tail = arg3;
 			int i;
 			for (i = 0; i < l; i++) {
-				args[i] = ((Fun) tail).Arguments[0];
-				tail = (((Fun) tail).Arguments[1]).Deref();
+				args[i] = (tail).Arg(0);
+				tail = tail.Arg(1).Deref();
 			}
 
 			if (!(arg1.Unify(new Fun(((Const) arg2).GetName(), args), mach)))
@@ -330,7 +330,7 @@ public class Builtins {
 		}
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_write_1.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
@@ -353,7 +353,7 @@ public class Builtins {
 		}
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_nl_0.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
@@ -375,7 +375,7 @@ public class Builtins {
 			if (arg1.isVar()) {
 				if ((!(arg2.isConst())) || (!(arg3.isInt())))
 					return false;
-				int i = (int) (((Int) arg3).Num);
+				int i = (int) (((Real) arg3).Num);
 				String Name = arg2.GetName();
 				Term args[] = new Term[i];
 				while (i-- > 0) {
@@ -386,20 +386,20 @@ public class Builtins {
 			} else {
 				String Name = arg1.GetName();
 				int arity = arg1.Arity();
-				if (!(arg2.Unify(Const.Intern(Name), mach)))
+				if (!(arg2.Unify(Data.Intern(Name), mach)))
 					return false;
-				if (!(arg3.Unify(new Int(arity), mach)))
+				if (!(arg3.Unify(Data.Number(arity), mach)))
 					return false;
 			}
 			return true;
 		}
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_functor_3.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
-			if (!DoFunctor3(mach, mach.Areg[0], mach.Areg[1], mach.Areg[2]))
+			if (!pred_functor_3.DoFunctor3(mach, mach.Areg[0], mach.Areg[1], mach.Areg[2]))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[3]; // install the continuation
 			mach.Areg[1] = mach.Areg[2] = mach.Areg[3] = null;
@@ -421,23 +421,23 @@ public class Builtins {
 				return false;
 			if (!(arg2.isStruct()))
 				return false;
-			int i = (int) (((Int) arg1).Num);
+			int i = (int) (((Real) arg1).Num);
 			if (i < 1)
 				return false;
-			int l = ((Fun) arg2).Arity();
+			int l = ( arg2).Arity();
 			if (i > l)
 				return false;
-			Term x = ((Fun) arg2).Arguments[i - 1];
+			Term x = ( arg2).Arg(i - 1);
 			x = x.Deref();
 			return (arg3.Unify(x, mach));
 		}
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_arg_3.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
-			if (!DoArg3(mach, mach.Areg[0], mach.Areg[1], mach.Areg[2]))
+			if (!pred_arg_3.DoArg3(mach, mach.Areg[0], mach.Areg[1], mach.Areg[2]))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[3]; // install the continuation
 			mach.Areg[1] = mach.Areg[2] = mach.Areg[3] = null;
@@ -451,7 +451,7 @@ public class Builtins {
 		}
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_nexttoken_1.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
@@ -473,13 +473,13 @@ public class Builtins {
 		}
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_cputime_1.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
 			Term arg1 = mach.Areg[0].Deref();
-			long t = java.lang.System.currentTimeMillis();
-			Term o = new Int(t);
+			double t = java.lang.System.currentTimeMillis();
+			Term o = Data.Number(t);
 			if (!(arg1.Unify(o, mach)))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[1]; // install the continuation
@@ -493,8 +493,8 @@ public class Builtins {
 		long time;
 
 		findall_list(Prolog mach) {
-			uptonowbegin = uptonowend = new Var(mach);
-			time = mach.TimeStamp;
+			this.uptonowbegin = this.uptonowend = new Var(mach);
+			this.time = mach.TimeStamp;
 		}
 
 		public Term Deref() {
@@ -506,7 +506,7 @@ public class Builtins {
 		}
 
 		public String toString() {
-			return ("findall = " + (uptonowbegin.Deref()).toString() + " - " + (uptonowend.Deref()).toString());
+			return ("findall = " + (this.uptonowbegin.Deref()).toString() + " - " + (this.uptonowend.Deref()).toString());
 		}
 
 	}
@@ -519,7 +519,7 @@ public class Builtins {
 		}
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_initfindall_1.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
@@ -538,7 +538,7 @@ public class Builtins {
 		}
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_addfindall_2.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
@@ -569,7 +569,7 @@ public class Builtins {
 		}
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_retrievefindall_2.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
@@ -590,7 +590,7 @@ public class Builtins {
 		}
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_var_equal_2.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
@@ -610,12 +610,12 @@ public class Builtins {
 		}
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_trail_1.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
 			Term arg1 = mach.Areg[0].Deref();
-			if (!(arg1.Unify(new Int((long) (mach.TrailTop)), mach)))
+			if (!(arg1.Unify(Data.Number((mach.TrailTop)), mach)))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[1]; // install the continuation
 			mach.Areg[1] = null;
@@ -629,12 +629,12 @@ public class Builtins {
 		}
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_choice_1.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
 			Term arg1 = mach.Areg[0].Deref();
-			if (!(arg1.Unify(new Int((long) (mach.CurrentChoice)), mach)))
+			if (!(arg1.Unify(Data.Number((mach.CurrentChoice)), mach)))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[1]; // install the continuation
 			mach.Areg[1] = null;
@@ -648,7 +648,7 @@ public class Builtins {
 		}
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_type_of_2.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
@@ -668,7 +668,7 @@ public class Builtins {
 			else
 				s = "unknown";
 
-			if (!(arg2.Unify(Const.Intern(s), mach)))
+			if (!(arg2.Unify(Data.Intern(s), mach)))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[2]; // install the continuation
 			mach.Areg[1] = mach.Areg[2] = null;
@@ -682,7 +682,7 @@ public class Builtins {
 		}
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_assume_1.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
@@ -702,7 +702,7 @@ public class Builtins {
 		}
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_allassumed_1.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
@@ -724,18 +724,18 @@ public class Builtins {
 		}
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_get0_1.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
 			Term arg1 = mach.Areg[0].Deref();
 			int i;
 			try {
-				i = readOneChar(mach.currentinput);
+				i = pred_get0_1.readOneChar(mach.currentinput);
 			} catch (Exception e) {
 				return Prolog.Fail0;
 			}
-			if (!(arg1.Unify(new Int((long) i), mach)))
+			if (!(arg1.Unify(Data.Number(i), mach)))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[1]; // install the continuation
 			mach.Areg[1] = null;
@@ -761,7 +761,7 @@ public class Builtins {
 		}
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_halt_0.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
@@ -784,26 +784,26 @@ public class Builtins {
 				return false;
 			if (!(arg2.isStruct()))
 				return false;
-			int i = (int) (((Int) arg1).Num);
+			int i = (int) (((Real) arg1).Num);
 			if (i < 1)
 				return false;
-			int l = ((Fun) arg2).Arity();
+			int l = ( arg2).Arity();
 			if (i > l)
 				return false;
-			Term x = ((Fun) arg2).Arguments[i - 1];
+			Term x = arg2.Arg(i - 1);
 			Var v = new Var(mach);
 			v.Refers = arg3;
-			((Fun) arg2).Arguments[i - 1] = v;
+			arg2.SetArg(null, i - 1, v);
 			mach.TrailEntry(new SetArgTrail(x, v, mach));
 			return true;
 		}
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_setarg_3.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
-			if (!DoSetArg3(mach, mach.Areg[0], mach.Areg[1], mach.Areg[2]))
+			if (!pred_setarg_3.DoSetArg3(mach, mach.Areg[0], mach.Areg[1], mach.Areg[2]))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[3]; // install the continuation
 			mach.Areg[1] = mach.Areg[2] = mach.Areg[3] = null;
@@ -818,7 +818,7 @@ public class Builtins {
 			return 3;
 		}
 
-		// Int < Const < Fun < Var
+		// Real < Const < Fun < Var
 
 		static int Compare(Term t, Term s) {
 			if (t == s)
@@ -829,21 +829,21 @@ public class Builtins {
 				return -1;
 			if (ta > sa)
 				return 1;
-			if (ta == Term.REAL) {
-				long i1 = t.LongValue();
-				long i2 = s.LongValue();
+			if (ta == Data.REAL) {
+				double i1 = t.DoubleValue();
+				double i2 = s.DoubleValue();
 				if (i1 < i2)
 					return -1;
 				if (i1 == i2)
 					return 0;
 				return 1;
 			}
-			if (ta == Term.CONST) {
+			if (ta == Data.CONST) {
 				String s1 = t.GetName();
 				String s2 = s.GetName();
 				return s1.compareTo(s2);
 			}
-			if (ta == Term.VAR) {
+			if (ta == Data.VAR) {
 				return Integer.compare(t.hashCode(), s.hashCode());
 			}
 
@@ -854,7 +854,7 @@ public class Builtins {
 				return v;
 			;
 			for (int i = 0; i < ta; i++) {
-				v = Compare(t.Arg(i).Deref(), s.Arg(i).Deref());
+				v = pred_compare_3.Compare(t.Arg(i).Deref(), s.Arg(i).Deref());
 				if (v != 0)
 					return v;
 			}
@@ -862,14 +862,14 @@ public class Builtins {
 		}
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_compare_3.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
 			Term arg1 = mach.Areg[0].Deref();
 			Term arg2 = mach.Areg[1].Deref();
 			Term arg3 = mach.Areg[2].Deref();
-			int val = Compare(arg2, arg3);
+			int val = pred_compare_3.Compare(arg2, arg3);
 			String s;
 			if (val < 0)
 				s = "<";
@@ -878,7 +878,7 @@ public class Builtins {
 			else
 				s = ">";
 
-			if (!(arg1.Unify(Const.Intern(s), mach)))
+			if (!(arg1.Unify(Data.Intern(s), mach)))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[3]; // install the continuation
 			mach.Areg[1] = mach.Areg[2] = mach.Areg[3] = null;
@@ -892,7 +892,7 @@ public class Builtins {
 		}
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_freeze_internal_2.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
@@ -917,7 +917,7 @@ public class Builtins {
 		}
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_execcontinuation_0.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
@@ -941,7 +941,7 @@ public class Builtins {
 		}
 
 		public Operation Exec(Prolog mach) {
-			return exec_static(mach);
+			return pred_frozen_2.exec_static(mach);
 		}
 
 		public static Operation exec_static(Prolog mach) {
@@ -951,7 +951,7 @@ public class Builtins {
 
 			if (!arg1.isFrozen()) {
 				if (arg1.isVar()) {
-					goal = Const.Intern("true");
+					goal = Data.Intern("true");
 				}
 				return Prolog.Fail0;
 			} else {

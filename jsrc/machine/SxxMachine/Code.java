@@ -29,7 +29,7 @@ class FailProc extends Code {
 	}
 
 	FailProc(Prolog mach) {
-		mach.Predicates.InsertNameArityWithContinuation("fail", 1, this);
+		Prolog.Predicates.InsertNameArityWithContinuation("fail", 1, this);
 	}
 
 	public Operation Exec(Prolog mach) {
@@ -53,7 +53,7 @@ class CutProc extends Code {
 	}
 
 	CutProc(Prolog mach) {
-		mach.Predicates.InsertNameArityWithContinuation("cut", 2, this);
+		Prolog.Predicates.InsertNameArityWithContinuation("cut", 2, this);
 	}
 
 	public Operation Exec(Prolog mach) {
@@ -63,7 +63,7 @@ class CutProc extends Code {
 		mach.DoCut(i);
 		mach.Areg[0] = mach.Areg[1];
 		mach.CUTB = mach.CurrentChoice;
-		return mach.Call1.Exec(mach);
+		return Prolog.Call1.Exec(mach);
 	}
 }
 
@@ -73,7 +73,7 @@ class TrueProc extends Code {
 	}
 
 	TrueProc(Prolog mach) {
-		mach.Predicates.InsertNameArityWithContinuation("true", 1, this);
+		Prolog.Predicates.InsertNameArityWithContinuation("true", 1, this);
 	}
 
 	public Operation Exec(Prolog mach) {
@@ -88,7 +88,7 @@ class Call1Proc extends Code {
 	}
 
 	Call1Proc(Prolog mach) {
-		mach.Predicates.InsertNameArityWithContinuation("call", 1, this);
+		Prolog.Predicates.InsertNameArityWithContinuation("call", 1, this);
 	}
 
 	public Operation Exec(Prolog mach) { // Areg[0] contains a Fun - might have to
@@ -99,9 +99,10 @@ class Call1Proc extends Code {
 		Operation code;
 
 		FunctName = pred.GetName();
-		arity = (pred.Arguments).length;
+		Term args[] = pred.GetArgs();
+		arity = pred.Arity();
 		code = mach.LoadPred(FunctName, arity - 1);
-		Term args[] = pred.Arguments;
+		
 		while (arity-- > 0) {
 			mach.Areg[arity] = args[arity];
 		}
@@ -115,7 +116,7 @@ class Call2Proc extends Code {
 	}
 
 	Call2Proc(Prolog mach) {
-		mach.Predicates.InsertNameArityWithContinuation("call", 2, this);
+		Prolog.Predicates.InsertNameArityWithContinuation("call", 2, this);
 	}
 
 	public Operation Exec(Prolog mach) { // Areg[0] contains a Fun or Const - might
@@ -129,7 +130,7 @@ class Call2Proc extends Code {
 		if (obj instanceof Fun) {
 			pred = (Fun) obj;
 			PredName = pred.GetName();
-			arity = (pred.Arguments).length;
+			arity = pred.Arity();
 		} else // it is a Const
 		{
 			PredName = ((Const) obj).Name;
@@ -139,7 +140,7 @@ class Call2Proc extends Code {
 		code = mach.LoadPred(PredName, arity);
 		mach.Areg[arity] = mach.Areg[1];
 		if (pred != null) {
-			Term args[] = pred.Arguments;
+			Term args[] = pred.GetArgs();
 			while (arity-- > 0) {
 				mach.Areg[arity] = args[arity];
 			}

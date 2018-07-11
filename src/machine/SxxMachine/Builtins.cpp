@@ -4,15 +4,16 @@ using namespace std;
 #include "Operation.h"
 #include "Continuation.h"
 #include "Term.h"
-#include "Int.h"
+#include "Data.h"
 #include "Fun.h"
 #include "Const.h"
+#include "Real.h"
 #include "Var.h"
 
 namespace SxxMachine {
 
 	Operation* Builtins::Borked::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return Borked::exec_static(mach);
 	}
 
 	Operation* Builtins::Borked::exec_static(Prolog* mach) {
@@ -20,7 +21,7 @@ namespace SxxMachine {
 	}
 
 	Operation* Builtins::pred_fail_0::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_fail_0::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_fail_0::exec_static(Prolog* mach) {
@@ -28,7 +29,7 @@ namespace SxxMachine {
 	}
 
 	Operation* Builtins::pred_true_0::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_true_0::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_true_0::exec_static(Prolog* mach) {
@@ -40,17 +41,17 @@ namespace SxxMachine {
 	}
 
 	Operation* Builtins::pred_smallerthan_2::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_smallerthan_2::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_smallerthan_2::exec_static(Prolog* mach) {
-		long long i1, i2;
+		double i1, i2;
 		Term* dereffed;
 
 		dereffed = (mach->Areg[0])->Deref();
-		i1 = dereffed->LongValue();
+		i1 = dereffed->DoubleValue();
 		dereffed = (mach->Areg[1])->Deref();
-		i2 = dereffed->LongValue();
+		i2 = dereffed->DoubleValue();
 		if(i1 < i2) {
 			mach->Areg[0] = mach->Areg[2];
 			mach->Areg[1] = mach->Areg[2] = nullptr;
@@ -64,17 +65,17 @@ namespace SxxMachine {
 	}
 
 	Operation* Builtins::pred_smallerorequal_2::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_smallerorequal_2::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_smallerorequal_2::exec_static(Prolog* mach) {
-		long long i1, i2;
+		double i1, i2;
 		Term* dereffed;
 
 		dereffed = (mach->Areg[0])->Deref();
-		i1 = dereffed->LongValue();
+		i1 = dereffed->DoubleValue();
 		dereffed = (mach->Areg[1])->Deref();
-		i2 = dereffed->LongValue();
+		i2 = dereffed->DoubleValue();
 		if(i1 <= i2) {
 			mach->Areg[0] = mach->Areg[2];
 			mach->Areg[1] = mach->Areg[2] = nullptr;
@@ -88,17 +89,17 @@ namespace SxxMachine {
 	}
 
 	Operation* Builtins::pred_arithequal_2::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_arithequal_2::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_arithequal_2::exec_static(Prolog* mach) {
-		long long i1, i2;
+		double i1, i2;
 		Term* dereffed;
 
 		dereffed = (mach->Areg[0])->Deref();
-		i1 = dereffed->LongValue();
+		i1 = dereffed->DoubleValue();
 		dereffed = (mach->Areg[1])->Deref();
-		i2 = dereffed->LongValue();
+		i2 = dereffed->DoubleValue();
 		if(i1 == i2) {
 			mach->Areg[0] = mach->Areg[2];
 			mach->Areg[1] = mach->Areg[2] = nullptr;
@@ -112,17 +113,17 @@ namespace SxxMachine {
 	}
 
 	Operation* Builtins::pred_arithdifferent_2::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_arithdifferent_2::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_arithdifferent_2::exec_static(Prolog* mach) {
-		long long i1, i2;
+		double i1, i2;
 		Term* dereffed;
 
 		dereffed = (mach->Areg[0])->Deref();
-		i1 = dereffed->LongValue();
+		i1 = dereffed->DoubleValue();
 		dereffed = (mach->Areg[1])->Deref();
-		i2 = dereffed->LongValue();
+		i2 = dereffed->DoubleValue();
 		if(i1 != i2) {
 			mach->Areg[0] = mach->Areg[2];
 			mach->Areg[1] = mach->Areg[2] = nullptr;
@@ -136,18 +137,17 @@ namespace SxxMachine {
 	}
 
 	Operation* Builtins::pred_is_2::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_is_2::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_is_2::exec_static(Prolog* mach) {
-		long long i1;
+		double i1;
 		Term* dereffed;
 
 		dereffed = (mach->Areg[1])->Deref();
-		i1 = dereffed->LongValue();
+		i1 = dereffed->DoubleValue();
 		dereffed = (mach->Areg[0])->Deref();
-		Int tempVar(i1);
-		if(!(dereffed->Unify(&tempVar, mach))) {
+		if(!(dereffed->Unify(Data::Number(i1), mach))) {
 			return Prolog::Fail0;
 		}
 		mach->Areg[0] = mach->Areg[2];
@@ -160,7 +160,7 @@ namespace SxxMachine {
 	}
 
 	Operation* Builtins::pred_unify_2::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_unify_2::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_unify_2::exec_static(Prolog* mach) {
@@ -180,7 +180,7 @@ namespace SxxMachine {
 	}
 
 	Operation* Builtins::pred_univ_3::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_univ_3::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_univ_3::exec_static(Prolog* mach) {
@@ -191,7 +191,7 @@ namespace SxxMachine {
 
 		int l = 0;
 		while(tail->IsList()) {
-			tail = ((static_cast<Fun*>(tail))->Arguments[1])->Deref();
+			tail = tail->Arg(1)->Deref();
 			l++;
 		}
 		if(l == 0) {
@@ -207,8 +207,8 @@ namespace SxxMachine {
 		tail = arg3;
 		int i;
 		for(i = 0; i < l; i++) {
-			args[i] = (static_cast<Fun*>(tail))->Arguments[0];
-			tail = ((static_cast<Fun*>(tail))->Arguments[1])->Deref();
+			args[i] = (tail)->Arg(0);
+			tail = tail->Arg(1)->Deref();
 		}
 
 		Fun tempVar((static_cast<Const*>(arg2))->GetName(), args);
@@ -227,7 +227,7 @@ Code* const  Builtins::pred_write_1::entry_code = new pred_write_1();
 	}
 
 	Operation* Builtins::pred_write_1::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_write_1::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_write_1::exec_static(Prolog* mach) {
@@ -248,7 +248,7 @@ Code* const  Builtins::pred_write_1::entry_code = new pred_write_1();
 	}
 
 	Operation* Builtins::pred_nl_0::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_nl_0::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_nl_0::exec_static(Prolog* mach) {
@@ -269,7 +269,7 @@ Code* const  Builtins::pred_write_1::entry_code = new pred_write_1();
 			if((!(arg2->isConst())) || (!(arg3->isInt()))) {
 				return false;
 			}
-			int i = static_cast<int>((static_cast<Int*>(arg3))->Num);
+			int i = static_cast<int>((static_cast<Real*>(arg3))->Num);
 			wstring Name = arg2->GetName();
 			std::vector<Term*> args(i);
 			while(i-- > 0) {
@@ -282,11 +282,10 @@ Code* const  Builtins::pred_write_1::entry_code = new pred_write_1();
 		} else {
 			wstring Name = arg1->GetName();
 			int arity = arg1->Arity();
-			if(!(arg2->Unify(Const::Intern(Name), mach))) {
+			if(!(arg2->Unify(Data::Intern(Name), mach))) {
 				return false;
 			}
-			Int tempVar2(arity);
-			if(!(arg3->Unify(&tempVar2, mach))) {
+			if(!(arg3->Unify(Data::Number(arity), mach))) {
 				return false;
 			}
 		}
@@ -294,11 +293,11 @@ Code* const  Builtins::pred_write_1::entry_code = new pred_write_1();
 	}
 
 	Operation* Builtins::pred_functor_3::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_functor_3::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_functor_3::exec_static(Prolog* mach) {
-		if(!DoFunctor3(mach, mach->Areg[0], mach->Areg[1], mach->Areg[2])) {
+		if(!pred_functor_3::DoFunctor3(mach, mach->Areg[0], mach->Areg[1], mach->Areg[2])) {
 			return Prolog::Fail0;
 		}
 		mach->Areg[0] = mach->Areg[3]; // install the continuation
@@ -321,25 +320,25 @@ Code* const  Builtins::pred_write_1::entry_code = new pred_write_1();
 		if(!(arg2->isStruct())) {
 			return false;
 		}
-		int i = static_cast<int>((static_cast<Int*>(arg1))->Num);
+		int i = static_cast<int>((static_cast<Real*>(arg1))->Num);
 		if(i < 1) {
 			return false;
 		}
-		int l = (static_cast<Fun*>(arg2))->Arity();
+		int l = (arg2)->Arity();
 		if(i > l) {
 			return false;
 		}
-		Term* x = (static_cast<Fun*>(arg2))->Arguments[i - 1];
+		Term* x = (arg2)->Arg(i - 1);
 		x = x->Deref();
 		return (arg3->Unify(x, mach));
 	}
 
 	Operation* Builtins::pred_arg_3::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_arg_3::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_arg_3::exec_static(Prolog* mach) {
-		if(!DoArg3(mach, mach->Areg[0], mach->Areg[1], mach->Areg[2])) {
+		if(!pred_arg_3::DoArg3(mach, mach->Areg[0], mach->Areg[1], mach->Areg[2])) {
 			return Prolog::Fail0;
 		}
 		mach->Areg[0] = mach->Areg[3]; // install the continuation
@@ -352,7 +351,7 @@ Code* const  Builtins::pred_write_1::entry_code = new pred_write_1();
 	}
 
 	Operation* Builtins::pred_nexttoken_1::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_nexttoken_1::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_nexttoken_1::exec_static(Prolog* mach) {
@@ -374,13 +373,13 @@ Code* const  Builtins::pred_write_1::entry_code = new pred_write_1();
 	}
 
 	Operation* Builtins::pred_cputime_1::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_cputime_1::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_cputime_1::exec_static(Prolog* mach) {
 		Term* arg1 = mach->Areg[0]->Deref();
-		long long t = System::currentTimeMillis();
-		Term* o = new Int(t);
+		double t = System::currentTimeMillis();
+		Term* o = Data::Number(t);
 		if(!(arg1->Unify(o, mach))) {
 			return Prolog::Fail0;
 		}
@@ -390,8 +389,8 @@ Code* const  Builtins::pred_write_1::entry_code = new pred_write_1();
 	}
 
 	Builtins::findall_list::findall_list(Prolog* mach) {
-		uptonowbegin = uptonowend = new Var(mach);
-		time = mach->TimeStamp;
+		this->uptonowbegin = this->uptonowend = new Var(mach);
+		this->time = mach->TimeStamp;
 	}
 
 	Term* Builtins::findall_list::Deref() {
@@ -404,7 +403,7 @@ Code* const  Builtins::pred_write_1::entry_code = new pred_write_1();
 
 	wstring Builtins::findall_list::toString() {
 //JAVA TO C++ CONVERTER TODO TASK: There is no native C++ equivalent to 'toString':
-		return ("findall = " + (uptonowbegin->Deref())->toString() + " - " + (uptonowend->Deref())->toString());
+		return ("findall = " + (this->uptonowbegin->Deref())->toString() + " - " + (this->uptonowend->Deref())->toString());
 	}
 
 Code* Builtins::pred_initfindall_1::entry_code = new pred_initfindall_1();
@@ -414,7 +413,7 @@ Code* Builtins::pred_initfindall_1::entry_code = new pred_initfindall_1();
 	}
 
 	Operation* Builtins::pred_initfindall_1::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_initfindall_1::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_initfindall_1::exec_static(Prolog* mach) {
@@ -433,7 +432,7 @@ Code* Builtins::pred_initfindall_1::entry_code = new pred_initfindall_1();
 	}
 
 	Operation* Builtins::pred_addfindall_2::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_addfindall_2::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_addfindall_2::exec_static(Prolog* mach) {
@@ -462,7 +461,7 @@ Code* Builtins::pred_retrievefindall_2::entry_code = new pred_retrievefindall_2(
 	}
 
 	Operation* Builtins::pred_retrievefindall_2::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_retrievefindall_2::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_retrievefindall_2::exec_static(Prolog* mach) {
@@ -482,7 +481,7 @@ Code* Builtins::pred_retrievefindall_2::entry_code = new pred_retrievefindall_2(
 	}
 
 	Operation* Builtins::pred_var_equal_2::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_var_equal_2::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_var_equal_2::exec_static(Prolog* mach) {
@@ -501,13 +500,12 @@ Code* Builtins::pred_retrievefindall_2::entry_code = new pred_retrievefindall_2(
 	}
 
 	Operation* Builtins::pred_trail_1::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_trail_1::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_trail_1::exec_static(Prolog* mach) {
 		Term* arg1 = mach->Areg[0]->Deref();
-		Int tempVar(static_cast<long long>(mach->TrailTop));
-		if(!(arg1->Unify(&tempVar, mach))) {
+		if(!(arg1->Unify(Data::Number((mach->TrailTop)), mach))) {
 			return Prolog::Fail0;
 		}
 		mach->Areg[0] = mach->Areg[1]; // install the continuation
@@ -520,13 +518,12 @@ Code* Builtins::pred_retrievefindall_2::entry_code = new pred_retrievefindall_2(
 	}
 
 	Operation* Builtins::pred_choice_1::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_choice_1::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_choice_1::exec_static(Prolog* mach) {
 		Term* arg1 = mach->Areg[0]->Deref();
-		Int tempVar(static_cast<long long>(mach->CurrentChoice));
-		if(!(arg1->Unify(&tempVar, mach))) {
+		if(!(arg1->Unify(Data::Number((mach->CurrentChoice)), mach))) {
 			return Prolog::Fail0;
 		}
 		mach->Areg[0] = mach->Areg[1]; // install the continuation
@@ -539,7 +536,7 @@ Code* Builtins::pred_retrievefindall_2::entry_code = new pred_retrievefindall_2(
 	}
 
 	Operation* Builtins::pred_type_of_2::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_type_of_2::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_type_of_2::exec_static(Prolog* mach) {
@@ -560,7 +557,7 @@ Code* Builtins::pred_retrievefindall_2::entry_code = new pred_retrievefindall_2(
 			s = "unknown";
 		}
 
-		if(!(arg2->Unify(Const::Intern(s), mach))) {
+		if(!(arg2->Unify(Data::Intern(s), mach))) {
 			return Prolog::Fail0;
 		}
 		mach->Areg[0] = mach->Areg[2]; // install the continuation
@@ -573,7 +570,7 @@ Code* Builtins::pred_retrievefindall_2::entry_code = new pred_retrievefindall_2(
 	}
 
 	Operation* Builtins::pred_assume_1::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_assume_1::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_assume_1::exec_static(Prolog* mach) {
@@ -592,7 +589,7 @@ Code* Builtins::pred_retrievefindall_2::entry_code = new pred_retrievefindall_2(
 	}
 
 	Operation* Builtins::pred_allassumed_1::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_allassumed_1::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_allassumed_1::exec_static(Prolog* mach) {
@@ -613,19 +610,18 @@ Code* const  Builtins::pred_get0_1::entry_code = new pred_get0_1();
 	}
 
 	Operation* Builtins::pred_get0_1::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_get0_1::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_get0_1::exec_static(Prolog* mach) {
 		Term* arg1 = mach->Areg[0]->Deref();
 		int i;
 		try {
-			i = readOneChar(mach->currentinput);
+			i = pred_get0_1::readOneChar(mach->currentinput);
 		} catch(const exception& e) {
 			return Prolog::Fail0;
 		}
-		Int tempVar(static_cast<long long>(i));
-		if(!(arg1->Unify(&tempVar, mach))) {
+		if(!(arg1->Unify(Data::Number(i), mach))) {
 			return Prolog::Fail0;
 		}
 		mach->Areg[0] = mach->Areg[1]; // install the continuation
@@ -650,7 +646,7 @@ Code* const  Builtins::pred_get0_1::entry_code = new pred_get0_1();
 	}
 
 	Operation* Builtins::pred_halt_0::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_halt_0::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_halt_0::exec_static(Prolog* mach) {
@@ -673,29 +669,29 @@ Code* const  Builtins::pred_get0_1::entry_code = new pred_get0_1();
 		if(!(arg2->isStruct())) {
 			return false;
 		}
-		int i = static_cast<int>((static_cast<Int*>(arg1))->Num);
+		int i = static_cast<int>((static_cast<Real*>(arg1))->Num);
 		if(i < 1) {
 			return false;
 		}
-		int l = (static_cast<Fun*>(arg2))->Arity();
+		int l = (arg2)->Arity();
 		if(i > l) {
 			return false;
 		}
-		Term* x = (static_cast<Fun*>(arg2))->Arguments[i - 1];
+		Term* x = arg2->Arg(i - 1);
 		Var* v = new Var(mach);
 		v->Refers = arg3;
-		(static_cast<Fun*>(arg2))->Arguments[i - 1] = v;
+		arg2->SetArg(nullptr, i - 1, v);
 		SetArgTrail tempVar(x, v, mach);
 		mach->TrailEntry(&tempVar);
 		return true;
 	}
 
 	Operation* Builtins::pred_setarg_3::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_setarg_3::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_setarg_3::exec_static(Prolog* mach) {
-		if(!DoSetArg3(mach, mach->Areg[0], mach->Areg[1], mach->Areg[2])) {
+		if(!pred_setarg_3::DoSetArg3(mach, mach->Areg[0], mach->Areg[1], mach->Areg[2])) {
 			return Prolog::Fail0;
 		}
 		mach->Areg[0] = mach->Areg[3]; // install the continuation
@@ -721,9 +717,9 @@ pred_compare_3* Builtins::pred_compare_3::entry_code = new pred_compare_3();
 		if(ta > sa) {
 			return 1;
 		}
-		if(ta == Term::REAL) {
-			long long i1 = t->LongValue();
-			long long i2 = s->LongValue();
+		if(ta == Data::REAL) {
+			double i1 = t->DoubleValue();
+			double i2 = s->DoubleValue();
 			if(i1 < i2) {
 				return -1;
 			}
@@ -732,12 +728,12 @@ pred_compare_3* Builtins::pred_compare_3::entry_code = new pred_compare_3();
 			}
 			return 1;
 		}
-		if(ta == Term::CONST) {
+		if(ta == Data::CONST) {
 			wstring s1 = t->GetName();
 			wstring s2 = s->GetName();
 			return s1.compare(s2);
 		}
-		if(ta == Term::VAR) {
+		if(ta == Data::VAR) {
 			return Integer::compare(t->hashCode(), s->hashCode());
 		}
 
@@ -749,7 +745,7 @@ pred_compare_3* Builtins::pred_compare_3::entry_code = new pred_compare_3();
 		}
 		;
 		for(int i = 0; i < ta; i++) {
-			v = Compare(t->Arg(i)->Deref(), s->Arg(i)->Deref());
+			v = pred_compare_3::Compare(t->Arg(i)->Deref(), s->Arg(i)->Deref());
 			if(v != 0) {
 				return v;
 			}
@@ -758,14 +754,14 @@ pred_compare_3* Builtins::pred_compare_3::entry_code = new pred_compare_3();
 	}
 
 	Operation* Builtins::pred_compare_3::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_compare_3::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_compare_3::exec_static(Prolog* mach) {
 		Term* arg1 = mach->Areg[0]->Deref();
 		Term* arg2 = mach->Areg[1]->Deref();
 		Term* arg3 = mach->Areg[2]->Deref();
-		int val = Compare(arg2, arg3);
+		int val = pred_compare_3::Compare(arg2, arg3);
 		wstring s;
 		if(val < 0) {
 			s = "<";
@@ -775,7 +771,7 @@ pred_compare_3* Builtins::pred_compare_3::entry_code = new pred_compare_3();
 			s = ">";
 		}
 
-		if(!(arg1->Unify(Const::Intern(s), mach))) {
+		if(!(arg1->Unify(Data::Intern(s), mach))) {
 			return Prolog::Fail0;
 		}
 		mach->Areg[0] = mach->Areg[3]; // install the continuation
@@ -788,7 +784,7 @@ pred_compare_3* Builtins::pred_compare_3::entry_code = new pred_compare_3();
 	}
 
 	Operation* Builtins::pred_freeze_internal_2::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_freeze_internal_2::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_freeze_internal_2::exec_static(Prolog* mach) {
@@ -812,7 +808,7 @@ Code* Builtins::pred_execcontinuation_0::entry_code = new pred_execcontinuation_
 	}
 
 	Operation* Builtins::pred_execcontinuation_0::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_execcontinuation_0::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_execcontinuation_0::exec_static(Prolog* mach) {
@@ -835,7 +831,7 @@ Code* Builtins::pred_execcontinuation_0::entry_code = new pred_execcontinuation_
 	}
 
 	Operation* Builtins::pred_frozen_2::Exec(Prolog* mach) {
-		return exec_static(mach);
+		return pred_frozen_2::exec_static(mach);
 	}
 
 	Operation* Builtins::pred_frozen_2::exec_static(Prolog* mach) {
@@ -845,7 +841,7 @@ Code* Builtins::pred_execcontinuation_0::entry_code = new pred_execcontinuation_
 
 		if(!arg1->isFrozen()) {
 			if(arg1->isVar()) {
-				goal = Const::Intern("true");
+				goal = Data::Intern("true");
 			}
 			return Prolog::Fail0;
 		} else {

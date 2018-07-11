@@ -1,7 +1,6 @@
 #ifndef TERM
 #define TERM
 
-#include "Data.h"
 #include "Undoable.h"
 #include <string>
 #include <vector>
@@ -17,16 +16,9 @@ class Appendable;
 namespace SxxMachine {
 
 
-	class Term : public Data, public Undoable {
+	class Term : public Undoable {
 
-		// private Term val;
 	public:
-		static constexpr int JAVA = -4;
-		static constexpr int REAL = -3;
-		static constexpr int INT = -2;
-		static constexpr int VAR = -1;
-		static constexpr int CONST = 0;
-
 		Term* goals;
 
 		Term* attrs;
@@ -198,6 +190,8 @@ namespace SxxMachine {
 		virtual bool isConst() = 0;
 
 		virtual bool isInt();
+
+		virtual double DoubleValue();
 
 	};
 

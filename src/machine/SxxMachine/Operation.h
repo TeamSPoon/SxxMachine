@@ -24,7 +24,6 @@ namespace SxxMachine {
 		/// <param name="prolog"> current Prolog engine </param>
 		/// <exception cref="PrologException"> if a Prolog exception is raised. </exception>
 		/// <seealso cref= Prolog </seealso>
-		//public Operation Exec(Prolog prolog);
 	};
 
 }

@@ -4,26 +4,27 @@ using namespace std;
 #include "Operation.h"
 #include "Term.h"
 #include "Code.h"
+#include "Data.h"
 #include "Appendable.h"
 
 namespace SxxMachine {
 
 	Continuation::Continuation(std::vector<Term*>& args, Code* c) {
 		int i = c->Arity() + 1;
-		Args = std::vector<Term*>(i);
+		this->Args = std::vector<Term*>(i);
 		while(i-- > 0) {
-			Args[i] = args[i];
+			this->Args[i] = args[i];
 		}
-		code = c;
+		this->code = c;
 	}
 
 	Continuation::Continuation(std::vector<Term*>& args, const int& getArity, Operation* c) {
 		int i = getArity + 1;
-		Args = std::vector<Term*>(i);
+		this->Args = std::vector<Term*>(i);
 		while(i-- > 0) {
-			Args[i] = args[i];
+			this->Args[i] = args[i];
 		}
-		code = static_cast<Code*>(c);
+		this->code = c;
 	}
 
 	Term* Continuation::Deref() {
@@ -36,11 +37,11 @@ namespace SxxMachine {
 
 	void Continuation::formattedOutput(const int& formatFlags, Appendable* buffer) throw(IOException) {
 		cout << "general output of continuations not available" << endl;
-		buffer->append(GetName());
-		int i = Args.size();
+		buffer->append(this->GetName());
+		int i = this->Args.size();
 		int current = 0;
 		while(i-- > 0) {
-			formattedArgOutput(Args[current++], formatFlags, buffer);
+			this->formattedArgOutput(this->Args[current++], formatFlags, buffer);
 		}
 
 	}
@@ -53,6 +54,6 @@ namespace SxxMachine {
 	}
 
 	int Continuation::Arity() {
-		return JAVA;
+		return Data::OBJ;
 	}
 }

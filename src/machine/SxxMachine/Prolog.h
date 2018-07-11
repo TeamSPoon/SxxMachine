@@ -132,7 +132,7 @@ namespace SxxMachine {
 
 		virtual Operation* LoadPred(const std::string& name, const int& arity);
 
-		virtual void Reg(const int& i);
+		virtual Operation* Reg(const int& i);
 
 		virtual std::vector<Term*> RegPull(const int& i);
 

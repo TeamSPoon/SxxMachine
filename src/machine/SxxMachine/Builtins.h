@@ -489,7 +489,7 @@ namespace SxxMachine {
 		protected:
 			int Arity() override;
 
-			// Int < Const < Fun < Var
+			// Real < Const < Fun < Var
 
 		public:
 			static int Compare(Term* t, Term* s);

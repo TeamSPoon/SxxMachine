@@ -9,14 +9,14 @@ using namespace std;
 namespace SxxMachine {
 
 	Var::Var(Prolog* machin) {
-		Refers = this;
-		timestamp = machin->TimeStamp;
+		this->Refers = this;
+		this->timestamp = machin->TimeStamp;
 		// mach = machin;
 	}
 
 	Var::Var(Prolog* machin, long long t) {
-		Refers = this;
-		timestamp = t;
+		this->Refers = this;
+		this->timestamp = t;
 		// mach = machin;
 	}
 
@@ -24,43 +24,43 @@ namespace SxxMachine {
 	}
 
 	Var::Var(Prolog* prologmachine, const wstring& sval) {
-		Refers = this;
-		named = sval;
+		this->Refers = this;
+		this->named = sval;
 		Prolog* mach = prologmachine;
-		timestamp = mach->TimeStamp;
+		this->timestamp = mach->TimeStamp;
 	}
 
 	Var::Var(Prolog* mach, const int& currentChoice, Fun* newgoals) : Var(mach, currentChoice) {
-		goals = newgoals;
+		this->goals = newgoals;
 	}
 
 	Term* Var::Copy(Prolog* m, long long t) {
 		Var* newv = new Var(m, t);
 		VarDict* newdict = new VarDict(this, newv);
-		Refers = newdict;
+		this->Refers = newdict;
 		// mach.TrailEntry(this);
 		m->TrailEntry(this);
 		return newv;
 	}
 
 	Term* Var::Deref() {
-		if((Refers == this) || !(dynamic_cast<Term*>(Refers) != nullptr)) {
+		if((this->Refers == this) || !(dynamic_cast<Term*>(this->Refers) != nullptr)) {
 			return this;
 		}
-		return (static_cast<Term*>(Refers))->Deref();
+		return this->Refers->Deref();
 	}
 
 	void Var::UnTrailSelf() {
-		Refers = this;
+		this->Refers = this;
 	}
 
 	void Var::formattedOutput(const int& formatFlags, Appendable* buffer) throw(IOException) {
-		buffer->append(GetVarName());
+		buffer->append(this->GetVarName());
 	}
 
 	wstring Var::GetVarName() {
 		// TODO Auto-generated method stub		
-		return "_" + abs(timestamp) + "_" + Integer::toHexString(hashCode()) + ((named != "") ? "_" + named : "");
+		return "_" + abs(this->timestamp) + "_" + Integer::toHexString(this->hashCode()) + ((this->named != "") ? "_" + this->named : "");
 	}
 
 	bool Var::FBind(Term* that, Prolog* mach) {
@@ -79,17 +79,17 @@ namespace SxxMachine {
 			mach->TrailEntry(this);
 			PopPendingGoals tempVar(mach, mach->pendingGoals);
 			mach->TrailEntry(&tempVar);
-			mach->pendingGoals = Data::Cons({ goals, mach->pendingGoals });
+			mach->pendingGoals = Data::Cons({ this->goals, mach->pendingGoals });
 			mach->ExceptionRaised = 1;
 		}
 		return true;
 	}
 
 	bool Var::Bind(Term* that, Prolog* mach) {
-		if(isFVar()) {
-			return FBind(that, mach);
+		if(this->isFVar()) {
+			return this->FBind(that, mach);
 		} else {
-			return VBind(that, mach);
+			return this->VBind(that, mach);
 		}
 	}
 
@@ -115,7 +115,7 @@ namespace SxxMachine {
 	}
 
 	bool Var::Unify(Term* that, Prolog* mach) {
-		return Bind(that, mach);
+		return this->Bind(that, mach);
 	}
 
 	bool Var::Equal(Term* that) {
@@ -123,11 +123,11 @@ namespace SxxMachine {
 	}
 
 	wstring Var::GetName() {
-		return toQuotedString();
+		return this->toQuotedString();
 	}
 
 	int Var::Arity() {
-		return VAR;
+		return Data::VAR;
 	}
 
 	bool Var::isVar() {
@@ -135,7 +135,7 @@ namespace SxxMachine {
 	}
 
 	bool Var::isFVar() {
-		return isFrozen();
+		return this->isFrozen();
 	}
 
 	bool Var::isStruct() {

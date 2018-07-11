@@ -3,6 +3,7 @@ using namespace std;
 #include "Int.h"
 #include "Prolog.h"
 #include "Term.h"
+#include "Data.h"
 
 namespace SxxMachine {
 
@@ -10,11 +11,14 @@ namespace SxxMachine {
 	}
 
 	Term* Int::Copy(Prolog* m, long long t) {
-		return new Int(Num->longValue());
+		return new Int(this->Num->longValue());
+	}
+
+	int Int::Arity() {
+		return Data::INT;
 	}
 
 	bool Int::isInt() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 }

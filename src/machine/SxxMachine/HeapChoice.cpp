@@ -5,6 +5,6 @@ using namespace std;
 namespace SxxMachine {
 
 	HeapChoice::HeapChoice(const int& c) {
-		CutTo = c;
+		this->CutTo = c;
 	}
 }

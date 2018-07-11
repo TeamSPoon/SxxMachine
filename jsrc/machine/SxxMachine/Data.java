@@ -2,7 +2,14 @@ package SxxMachine;
 
 import java.util.Hashtable;
 
-public class Data {
+public final class Data {
+	
+	public final static int OBJ = -4;
+	public final static int REAL = -3;
+	public final static int INT = -2;
+	public final static int VAR = -1;
+	public final static int CONST = 0;
+
 
 	public static Real Number(Number d) {
 		if (d.intValue() == d.hashCode())
@@ -23,7 +30,7 @@ public class Data {
 	}
 
 	public static Int BigInt(String s) {
-		return Number(Long.parseLong(s));
+		return Data.Number(Long.parseLong(s));
 	}
 
 	public static Fun Cons(Term... deref) {
@@ -41,10 +48,10 @@ public class Data {
 	public static Hashtable<String, Const> atomTable = new Hashtable<>();
 
 	public static Const Intern(String d) {
-		Const c = atomTable.get(d);
+		Const c = Data.atomTable.get(d);
 		if (c == null) {
 			c = new Const(d);
-			atomTable.put(d, c);
+			Data.atomTable.put(d, c);
 		}
 		return c;
 	}

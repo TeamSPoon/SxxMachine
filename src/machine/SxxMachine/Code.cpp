@@ -27,7 +27,7 @@ namespace SxxMachine {
 	}
 
 	FailProc::FailProc(Prolog* mach) {
-		mach->Predicates.InsertNameArityWithContinuation("fail", 1, this);
+		Prolog::Predicates->InsertNameArityWithContinuation("fail", 1, this);
 	}
 
 	Operation* FailProc::Exec(Prolog* mach) {
@@ -49,7 +49,7 @@ namespace SxxMachine {
 	}
 
 	CutProc::CutProc(Prolog* mach) {
-		mach->Predicates.InsertNameArityWithContinuation("cut", 2, this);
+		Prolog::Predicates->InsertNameArityWithContinuation("cut", 2, this);
 	}
 
 	Operation* CutProc::Exec(Prolog* mach) {
@@ -59,7 +59,7 @@ namespace SxxMachine {
 		mach->DoCut(i);
 		mach->Areg[0] = mach->Areg[1];
 		mach->CUTB = mach->CurrentChoice;
-		return mach->Call1.Exec(mach);
+		return Prolog::Call1->Exec(mach);
 	}
 
 	int TrueProc::Arity() {
@@ -67,7 +67,7 @@ namespace SxxMachine {
 	}
 
 	TrueProc::TrueProc(Prolog* mach) {
-		mach->Predicates.InsertNameArityWithContinuation("true", 1, this);
+		Prolog::Predicates->InsertNameArityWithContinuation("true", 1, this);
 	}
 
 	Operation* TrueProc::Exec(Prolog* mach) {
@@ -79,7 +79,7 @@ namespace SxxMachine {
 	}
 
 	Call1Proc::Call1Proc(Prolog* mach) {
-		mach->Predicates.InsertNameArityWithContinuation("call", 1, this);
+		Prolog::Predicates->InsertNameArityWithContinuation("call", 1, this);
 	}
 
 	Operation* Call1Proc::Exec(Prolog* mach)
@@ -91,9 +91,10 @@ namespace SxxMachine {
 		Operation* code;
 
 		FunctName = pred->GetName();
-		arity = (pred->Arguments).size();
+		std::vector<Term*> args = pred->GetArgs();
+		arity = pred->Arity();
 		code = mach->LoadPred(FunctName, arity - 1);
-		std::vector<Term*> args = pred->Arguments;
+
 		while(arity-- > 0) {
 			mach->Areg[arity] = args[arity];
 		}
@@ -105,7 +106,7 @@ namespace SxxMachine {
 	}
 
 	Call2Proc::Call2Proc(Prolog* mach) {
-		mach->Predicates.InsertNameArityWithContinuation("call", 2, this);
+		Prolog::Predicates->InsertNameArityWithContinuation("call", 2, this);
 	}
 
 	Operation* Call2Proc::Exec(Prolog* mach)
@@ -120,7 +121,7 @@ namespace SxxMachine {
 		if(dynamic_cast<Fun*>(obj) != nullptr) {
 			pred = static_cast<Fun*>(obj);
 			PredName = pred->GetName();
-			arity = (pred->Arguments).size();
+			arity = pred->Arity();
 		}
 		else { // it is a Const
 			PredName = (static_cast<Const*>(obj))->Name;
@@ -130,7 +131,7 @@ namespace SxxMachine {
 		code = mach->LoadPred(PredName, arity);
 		mach->Areg[arity] = mach->Areg[1];
 		if(pred != nullptr) {
-			std::vector<Term*> args = pred->Arguments;
+			std::vector<Term*> args = pred->GetArgs();
 			while(arity-- > 0) {
 				mach->Areg[arity] = args[arity];
 			}

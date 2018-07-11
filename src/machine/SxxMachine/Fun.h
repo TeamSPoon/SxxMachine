@@ -16,10 +16,9 @@ namespace SxxMachine {
 
 
 	class Fun final : public Term {
-	public:
+	private:
 		std::vector<Term*> Arguments;
 		std::string Name;
-	private:
 		char isLixt = '\0';
 
 	public:

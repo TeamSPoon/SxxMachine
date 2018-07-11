@@ -8,11 +8,14 @@ public class Int extends Real {
 	}
 
 	Term Copy(Prolog m, long t) {
-		return new Int(Num.longValue());
+		return new Int(this.Num.longValue());
+	}
+	
+	public final int Arity() {
+		return Data.INT;
 	}
 
 	public boolean isInt() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 

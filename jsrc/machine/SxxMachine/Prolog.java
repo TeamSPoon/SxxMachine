@@ -23,28 +23,28 @@ public class Prolog {
 		// before it can call a Prolog goal, it must make and initialise a
 		// machine
 
-		M = new Prolog();
-		M.InitOnce();
+		Prolog.M = new Prolog();
+		Prolog.M.InitOnce();
 
 		// any time a new goal is called, the machine has to be "reset"
 
-		M.InitAlways();
+		Prolog.M.InitAlways();
 
 		if (args.length == 0) {
 			while (true) {
 				try {
-					M.run();
+					Prolog.M.run();
 				} catch (Throwable t) {
 					t.printStackTrace();
 				}
-				if (M.ExceptionRaised == 4)
+				if (Prolog.M.ExceptionRaised == 4)
 					return;
 			}
 		}
 		// then you can call the goal
 
-		Term Goal = new Fun("animal", new Var(M)); // animal(X)
-		Term AnswerList = M.SolveGoal(Goal);
+		Term Goal = new Fun("animal", new Var(Prolog.M)); // animal(X)
+		Term AnswerList = Prolog.M.SolveGoal(Goal);
 
 		// AnswerList is now a list of instances of the Goal
 		// you can iterate through it as follows
@@ -53,14 +53,14 @@ public class Prolog {
 
 		NextAnswerList = AnswerList.Deref();
 		while (NextAnswerList.IsList()) {
-			Answer = (((Fun) NextAnswerList).Arguments[0]).Deref();
+			Answer = (((Fun) NextAnswerList).Arg(0)).Deref();
 			// do something with the answer - e.g. print it
 			String s = Answer.toString();
 			System.out.println(s);
 			System.out.flush();
 
 			// get the tail of the next answer list
-			NextAnswerList = (((Fun) NextAnswerList).Arguments[1]).Deref();
+			NextAnswerList = (((Fun) NextAnswerList).Arg(1)).Deref();
 		}
 	}
 
@@ -72,10 +72,10 @@ public class Prolog {
 
 		ChoicePointStackEntry(Term args[]) {
 			int l = args.length;
-			Arguments = new Term[l];
+			this.Arguments = new Term[l];
 			while (l > 0) {
 				l--;
-				Arguments[l] = args[l];
+				this.Arguments[l] = args[l];
 			}
 
 		}
@@ -90,7 +90,7 @@ public class Prolog {
 	public static TrueProc True0 = null;
 
 	public PredTable getPredicates() {
-		return Predicates;
+		return Prolog.Predicates;
 	}
 
 	public Term Areg[] = new Term[32];
@@ -111,43 +111,43 @@ public class Prolog {
 
 	public void run() {
 
-		InitOnce();
-		Areg[0] = new Fun("toplevel", new Int(0));
+		this.InitOnce();
+		this.Areg[0] = new Fun("toplevel", new Int(0));
 		// 0 is a dummy continuation
-		InitAlways();
+		this.InitAlways();
 		Operation next = null;
-		code = Prolog.Call1;
-		code = pred_toplevel_0::exec_static;// (mach);
+		this.code = Prolog.Call1;
+		this.code = pred_toplevel_0::exec_static;// (mach);
 		while (true) {
-			while (ExceptionRaised == 0 && code != null) {
-				if (Areg[0] == null) {
-					Debug(code);
+			while (this.ExceptionRaised == 0 && this.code != null) {
+				if (this.Areg[0] == null) {
+					Prolog.Debug(this.code);
 				}
-				next = code.Exec(this);
-				if (next == null || Areg[0] == null) {
-					Debug(code);
+				next = this.code.Exec(this);
+				if (next == null || this.Areg[0] == null) {
+					Prolog.Debug(this.code);
 					break;
 				} else {
-					code = (Operation) next;
+					this.code = next;
 				}
 			}
-			if (ExceptionRaised > 1) {
-				if (ExceptionRaised != 2)
-					System.out.println("Exceptional ending " + ExceptionRaised);
+			if (this.ExceptionRaised > 1) {
+				if (this.ExceptionRaised != 2)
+					System.out.println("Exceptional ending " + this.ExceptionRaised);
 				System.exit(0);
 			}
 			// there are pending goals - deal with them
-			ExceptionRaised = 0;
-			Continuation c = new Continuation(Areg, GetArity(code), code);
-			Areg[0] = new Fun("execpendinggoals", pendingGoals, c);
-			TrailEntry(new PopPendingGoals(this, pendingGoals));
-			pendingGoals = Const.Intern("[]");
-			code = Prolog.Call1;
+			this.ExceptionRaised = 0;
+			Continuation c = new Continuation(this.Areg, Prolog.GetArity(this.code), this.code);
+			this.Areg[0] = new Fun("execpendinggoals", this.pendingGoals, c);
+			this.TrailEntry(new PopPendingGoals(this, this.pendingGoals));
+			this.pendingGoals = Data.Intern("[]");
+			this.code = Prolog.Call1;
 		}
 	}
 
 	public Term HC(Term continuation) {
-		return Data.F("cut", new HeapChoice(CUTB), continuation);
+		return Data.F("cut", new HeapChoice(this.CUTB), continuation);
 	}
 
 	public static int GetArity(Operation code) {
@@ -162,7 +162,7 @@ public class Prolog {
 			if (code != null)
 				System.out.println("CodeClass = " + code.getClass());
 			System.out.println("Code = " + code);
-			System.out.println("AReg[0] = " + M.Areg[0]);
+			System.out.println("AReg[0] = " + Prolog.M.Areg[0]);
 
 			System.in.read();
 		} catch (IOException e) {
@@ -174,40 +174,40 @@ public class Prolog {
 	}
 
 	Term SolveGoal(Term Goal) {
-		code = Call1;
+		this.code = Prolog.Call1;
 		Term AnswerList = new Var(this);
-		ExceptionRaised = 0;
+		this.ExceptionRaised = 0;
 
-		Areg[0] = new Fun("findall", Goal, Goal, AnswerList, new Fun("halt", new Int(0)));
+		this.Areg[0] = new Fun("findall", Goal, Goal, AnswerList, new Fun("halt", new Int(0)));
 		// pred_findall_3.entry_code;
-		while (ExceptionRaised == 0) {
-			code = code.Exec(this);
+		while (this.ExceptionRaised == 0) {
+			this.code = this.code.Exec(this);
 		}
 		return AnswerList; // exceptions are ignored here !!!!
 	}
 
 	void InitOnce() {
-		if (null == Predicates)
-			Predicates = new PredTable();
-		if (null == Fail0)
-			Fail0 = new FailProc(this);
-		if (null == Call1)
-			Call1 = new Call1Proc(this);
-		if (null == Call2)
-			Call2 = new Call2Proc(this);
-		if (null == Cut2)
-			Cut2 = new CutProc(this);
-		if (null == True0)
-			True0 = new TrueProc(this);
-		ChoicePointStack = new ChoicePointStackEntry[20000];
-		TrailStack = new Term[20000];
+		if (null == Prolog.Predicates)
+			Prolog.Predicates = new PredTable();
+		if (null == Prolog.Fail0)
+			Prolog.Fail0 = new FailProc(this);
+		if (null == Prolog.Call1)
+			Prolog.Call1 = new Call1Proc(this);
+		if (null == Prolog.Call2)
+			Prolog.Call2 = new Call2Proc(this);
+		if (null == Prolog.Cut2)
+			Prolog.Cut2 = new CutProc(this);
+		if (null == Prolog.True0)
+			Prolog.True0 = new TrueProc(this);
+		this.ChoicePointStack = new ChoicePointStackEntry[20000];
+		this.TrailStack = new Term[20000];
 		try {
-			lextoc = new Lexer(System.in, this);
+			this.lextoc = new Lexer(System.in, this);
 		} catch (Exception e) {
 			System.err.println("lextoc failure");
 		}
-		currentinput = System.in;
-		currentoutput = System.out;
+		this.currentinput = System.in;
+		this.currentoutput = System.out;
 		new sxx_library();
 		new sxx_meta();
 		new sxx_read();
@@ -218,110 +218,110 @@ public class Prolog {
 	}
 
 	void InitAlways() {
-		TimeStamp = -1000000000;
-		CUTB = 0;
-		CurrentChoice = -1;
-		TrailTop = 0;
+		this.TimeStamp = -1000000000;
+		this.CUTB = 0;
+		this.CurrentChoice = -1;
+		this.TrailTop = 0;
 		Term NoArgs[] = {};
-		CreateChoicePoint(NoArgs);
-		FillAlternative(null);
-		assumptions = pendingGoals = Const.Intern("[]");
-		ExceptionRaised = 0;
+		this.CreateChoicePoint(NoArgs);
+		this.FillAlternative(null);
+		this.assumptions = this.pendingGoals = Data.Intern("[]");
+		this.ExceptionRaised = 0;
 	}
 
 	Term nexttoken() {
-		return lextoc.next();
+		return this.lextoc.next();
 	}
 
 	public Operation GetAlternative() {
-		return ChoicePointStack[CurrentChoice].Alternative;
+		return this.ChoicePointStack[this.CurrentChoice].Alternative;
 	}
 
 	public void FillAlternative(Operation Alt) {
-		ChoicePointStack[CurrentChoice].Alternative = Alt;
+		this.ChoicePointStack[this.CurrentChoice].Alternative = Alt;
 	}
 
 	public void RemoveChoice() {
-		ChoicePointStack[CurrentChoice--] = null;
+		this.ChoicePointStack[this.CurrentChoice--] = null;
 	}
 
 	public void RestoreArguments() {
-		int i = ChoicePointStack[CurrentChoice].Arguments.length;
+		int i = this.ChoicePointStack[this.CurrentChoice].Arguments.length;
 		while (i-- > 0) {
-			Areg[i] = ChoicePointStack[CurrentChoice].Arguments[i];
+			this.Areg[i] = this.ChoicePointStack[this.CurrentChoice].Arguments[i];
 		}
 	}
 
 	public void UnTrail() {
-		while (TrailTop != ChoicePointStack[CurrentChoice].Trail) {
-			TrailStack[--TrailTop].UnTrailSelf();
-			TrailStack[TrailTop] = null;
+		while (this.TrailTop != this.ChoicePointStack[this.CurrentChoice].Trail) {
+			this.TrailStack[--this.TrailTop].UnTrailSelf();
+			this.TrailStack[this.TrailTop] = null;
 		}
 	}
 
 	public void push(Undoable undoable) {
-		TrailEntry(undoable);
+		this.TrailEntry(undoable);
 	}
 
 	public void TrailEntry(Undoable po) { // System.out.println("trailing") ;
 		try {
-			TrailStack[TrailTop] = po;
+			this.TrailStack[this.TrailTop] = po;
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("trail expansion");
-			int i = TrailStack.length;
+			int i = this.TrailStack.length;
 			Undoable newstack[] = new Term[i + 20000];
 			while (i-- > 0) {
-				newstack[i] = TrailStack[i];
+				newstack[i] = this.TrailStack[i];
 			}
-			TrailStack = newstack;
-			TrailStack[TrailTop] = po;
+			this.TrailStack = newstack;
+			this.TrailStack[this.TrailTop] = po;
 		}
-		TrailTop++;
+		this.TrailTop++;
 	}
 
 	public void CreateChoicePoint(Term args[]) {
-		CurrentChoice++;
+		this.CurrentChoice++;
 		try {
-			ChoicePointStack[CurrentChoice] = new ChoicePointStackEntry(args);
+			this.ChoicePointStack[this.CurrentChoice] = new ChoicePointStackEntry(args);
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("choice stack expansion");
-			int i = ChoicePointStack.length;
+			int i = this.ChoicePointStack.length;
 			ChoicePointStackEntry newstack[] = new ChoicePointStackEntry[i + 20000];
 			while (i-- > 0) {
-				newstack[i] = ChoicePointStack[i];
+				newstack[i] = this.ChoicePointStack[i];
 			}
-			ChoicePointStack = newstack;
-			ChoicePointStack[CurrentChoice] = new ChoicePointStackEntry(args);
+			this.ChoicePointStack = newstack;
+			this.ChoicePointStack[this.CurrentChoice] = new ChoicePointStackEntry(args);
 		}
-		ChoicePointStack[CurrentChoice].Trail = TrailTop;
-		ChoicePointStack[CurrentChoice].TimeStamp = ++TimeStamp;
+		this.ChoicePointStack[this.CurrentChoice].Trail = this.TrailTop;
+		this.ChoicePointStack[this.CurrentChoice].TimeStamp = ++this.TimeStamp;
 	}
 
 	public void DoCut(int CutTo) {
-		int ch = CurrentChoice;
+		int ch = this.CurrentChoice;
 		while (ch != CutTo) {
-			ChoicePointStack[ch] = null;
+			this.ChoicePointStack[ch] = null;
 			ch--;
 		}
-		CurrentChoice = CutTo;
+		this.CurrentChoice = CutTo;
 	}
 
 	public Operation LoadPred(String name, int arity) {
-		return Predicates.LoadPred(name, arity);
+		return Prolog.Predicates.LoadPred(name, arity);
 	}
 
-	public void Reg(int i) {
-		Areg[0] = Areg[i]; // install the continuation
+	public Operation Reg(int i) {
+		this.Areg[0] = this.Areg[i]; // install the continuation
 		while (i-- > 1) {
-			Areg[i] = null;
+			this.Areg[i] = null;
 		}
-
+		return Prolog.Call1;
 	}
 
 	public Term[] RegPull(int i) {
 		int ii = i + 1;
 		Term t[] = new Term[ii];
-		System.arraycopy(Areg, 0, t, 0, ii);
+		System.arraycopy(this.Areg, 0, t, 0, ii);
 		return t;
 	}
 
@@ -331,7 +331,7 @@ abstract class PrologObject extends Term {
 
 	@Override
 	public int Arity() {
-		return JAVA;
+		return Data.OBJ;
 	}
 
 	public Term Deref() {
@@ -414,8 +414,8 @@ final class VarDict extends PrologObject {
 	Var old, newer;
 
 	VarDict(Var changed, Var copy) {
-		old = changed;
-		newer = copy;
+		this.old = changed;
+		this.newer = copy;
 	}
 
 	public Term Deref() {
@@ -423,11 +423,11 @@ final class VarDict extends PrologObject {
 	}
 
 	public void UnTrailSelf() {
-		old.Refers = old;
+		this.old.Refers = this.old;
 	}
 
 	Term Copy(Prolog m, long t) {
-		return newer;
+		return this.newer;
 	}
 }
 
@@ -437,14 +437,14 @@ final class SetArgTrail extends PrologObject {
 	Prolog mach;
 
 	SetArgTrail(Term old, Var changed, Prolog m) {
-		OldValue = old;
-		Which = changed;
-		mach = m;
+		this.OldValue = old;
+		this.Which = changed;
+		this.mach = m;
 	}
 
 	public void UnTrailSelf() {
-		Which.Refers = OldValue;
-		Which.timestamp = mach.TimeStamp;
+		this.Which.Refers = this.OldValue;
+		this.Which.timestamp = this.mach.TimeStamp;
 	}
 
 }
@@ -454,12 +454,12 @@ final class PopPendingGoals extends PrologObject {
 	Term old;
 
 	PopPendingGoals(Prolog m, Term o) {
-		mach = m;
-		old = o;
+		this.mach = m;
+		this.old = o;
 	}
 
 	public void UnTrailSelf() {
-		mach.pendingGoals = old;
+		this.mach.pendingGoals = this.old;
 	}
 
 }
@@ -469,12 +469,12 @@ final class PopAssumptions extends PrologObject {
 	Term old;
 
 	PopAssumptions(Prolog m, Term o) {
-		mach = m;
-		old = o;
+		this.mach = m;
+		this.old = o;
 	}
 
 	public void UnTrailSelf() {
-		mach.assumptions = old;
+		this.mach.assumptions = this.old;
 	}
 
 }

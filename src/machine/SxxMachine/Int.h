@@ -17,6 +17,8 @@ namespace SxxMachine {
 
 		Term* Copy(Prolog* m, long long t) override;
 
+		int Arity() final override;
+
 		bool isInt() override;
 
 	};

@@ -13,8 +13,8 @@ public class Lexer extends StreamTokenizer {
 	public static class PrologTokenizer extends StreamTokenizer {
 		PrologTokenizer(InputStream I) {
 			super(I);
-			parseNumbers();
-			slashStarComments(true);
+			this.parseNumbers();
+			this.slashStarComments(true);
 			// add more options here
 		}
 	}
@@ -23,18 +23,18 @@ public class Lexer extends StreamTokenizer {
 
 	public Lexer(InputStream I, Prolog p) throws Exception {
 		super(I);
-		parseNumbers();
-		eolIsSignificant(true);
-		ordinaryChar('.');
-		ordinaryChar('/');
-		quoteChar('\'');
-		quoteChar('"');
-		wordChar('$');
-		wordChar('_');
-		slashStarComments(true);
-		commentChar('%');
-		varnumberdict = new Hashtable<String, Int>();
-		varnamedict = new Hashtable<String, Var>();
+		this.parseNumbers();
+		this.eolIsSignificant(true);
+		this.ordinaryChar('.');
+		this.ordinaryChar('/');
+		this.quoteChar('\'');
+		this.quoteChar('"');
+		this.wordChar('$');
+		this.wordChar('_');
+		this.slashStarComments(true);
+		this.commentChar('%');
+		this.varnumberdict = new Hashtable<String, Int>();
+		this.varnamedict = new Hashtable<String, Var>();
 		this.prologmachine = p;
 	}
 
@@ -55,27 +55,27 @@ public class Lexer extends StreamTokenizer {
 	boolean inClause = false;
 
 	boolean atEOF() {
-		return TT_EOF == ttype;
+		return StreamTokenizer.TT_EOF == this.ttype;
 	}
 
 	boolean atEOC() {
-		return !inClause;
+		return !this.inClause;
 	}
 
 	Term make_const() {
-		return new Fun("const", Const.Intern(sval));
+		return new Fun("const", Data.Intern(this.sval));
 	}
 
 	Term make_string() {
-		return new Fun("const", Const.Intern(sval));
+		return new Fun("const", Data.Intern(this.sval));
 	}
 
 	Term make_int() {
-		return new Fun("int", new Int((int) nval));
+		return new Fun("int", new Int((int) this.nval));
 	}
 
 	Term make_real() {
-		return new Fun("real", Data.Number(nval));
+		return new Fun("real", Data.Number(this.nval));
 	}
 
 	Term make_var() {
@@ -83,34 +83,34 @@ public class Lexer extends StreamTokenizer {
 		Var X;
 		final Int I;
 		long occ;
-		if (sval.equals(anonymous)) {
-			X = new Var(prologmachine);
+		if (this.sval.equals(this.anonymous)) {
+			X = new Var(this.prologmachine);
 			occ = 0;
 			I = new Int(occ);
 		} else {
-			X = (Var) varnamedict.get(sval);
+			X = this.varnamedict.get(this.sval);
 			if (X == null) {
-				X = new Var(prologmachine, sval);
-				varnamedict.put(sval, X);
+				X = new Var(this.prologmachine, this.sval);
+				this.varnamedict.put(this.sval, X);
 				occ = 0;
 				I = new Int(occ);
 			} else {
-				Int INum = (Int) varnumberdict.get(X.GetVarName());
+				Int INum = this.varnumberdict.get(X.GetVarName());
 				occ = INum.LongValue();
 				occ++;
 				I = new Int(occ);
 			}
-			varnumberdict.put(X.GetVarName(), I);
+			this.varnumberdict.put(X.GetVarName(), I);
 		}
-		return new Fun("var", X, Const.Intern(sval), I);
+		return new Fun("var", X, Data.Intern(this.sval), I);
 	}
 
 	void whitespaceChar(char c) {
-		whitespaceChars(c, c);
+		this.whitespaceChars(c, c);
 	}
 
 	void wordChar(char c) {
-		wordChars(c, c);
+		this.wordChars(c, c);
 	}
 
 	Hashtable<String, Var> varnamedict;
@@ -119,122 +119,122 @@ public class Lexer extends StreamTokenizer {
 	Term Somethingwrong = new Fun("exception", new Int(666));
 
 	private Term next0() throws Exception {
-		int n = nextToken();
-		inClause = true;
-		Term T = Somethingwrong;
+		int n = this.nextToken();
+		this.inClause = true;
+		Term T = this.Somethingwrong;
 		String old_sval = null;
 
 		switch (n) {
 		case TT_WORD: {
-			char c = sval.charAt(0);
+			char c = this.sval.charAt(0);
 			if (Character.isUpperCase(c) || '_' == c)
-				T = make_var();
+				T = this.make_var();
 			else {
-				T = make_const();
+				T = this.make_const();
 			}
 		}
 			break;
 		case TT_NUMBER:
-			if (Math.floor(nval) == nval)
-				T = make_int();
+			if (Math.floor(this.nval) == this.nval)
+				T = this.make_int();
 			else
-				T = make_real();
+				T = this.make_real();
 			break;
 		case TT_EOF:
-			T = Const.Intern("end_of_file");
-			inClause = false;
+			T = Data.Intern("end_of_file");
+			this.inClause = false;
 			break;
 		case TT_EOL:
-			T = next();
+			T = this.next();
 			break;
 		case ':':
-			if ('-' == nextToken()) {
-				sval = ":-";
+			if ('-' == this.nextToken()) {
+				this.sval = ":-";
 			} else {
-				old_sval = sval;
-				pushBack();
-				sval = ":";
+				old_sval = this.sval;
+				this.pushBack();
+				this.sval = ":";
 			}
-			T = new Fun("const", Const.Intern(sval));
-			sval = old_sval;
+			T = new Fun("const", Data.Intern(this.sval));
+			this.sval = old_sval;
 			break;
 		case '-':
-			if ('>' == nextToken()) {
-				sval = "->";
+			if ('>' == this.nextToken()) {
+				this.sval = "->";
 			} else {
-				old_sval = sval;
-				pushBack();
-				sval = "-";
+				old_sval = this.sval;
+				this.pushBack();
+				this.sval = "-";
 			}
-			T = new Fun("const", Const.Intern(sval));
-			sval = old_sval;
+			T = new Fun("const", Data.Intern(this.sval));
+			this.sval = old_sval;
 			break;
 
 		case '.':
-			int c = nextToken();
-			if (TT_EOL == c || TT_EOF == c) {
-				inClause = false;
-				varnumberdict.clear();
-				varnamedict.clear();
-				T = Const.Intern("end_of_clause");
+			int c = this.nextToken();
+			if (StreamTokenizer.TT_EOL == c || StreamTokenizer.TT_EOF == c) {
+				this.inClause = false;
+				this.varnumberdict.clear();
+				this.varnamedict.clear();
+				T = Data.Intern("end_of_clause");
 			} else {
-				old_sval = sval;
-				pushBack();
-				sval = ".";
-				T = make_const();
-				sval = old_sval;
+				old_sval = this.sval;
+				this.pushBack();
+				this.sval = ".";
+				T = this.make_const();
+				this.sval = old_sval;
 			}
 			break;
 
 		case '\'':
-			T = make_const();
+			T = this.make_const();
 			break;
 		case '"':
-			T = make_string();
+			T = this.make_string();
 			break;
 
 		case '(':
-			T = new Fun("const", Const.Intern("("));
+			T = new Fun("const", Data.Intern("("));
 			break;
 		case ')':
-			T = new Fun("const", Const.Intern(")"));
+			T = new Fun("const", Data.Intern(")"));
 			break;
 		case '[':
-			T = new Fun("const", Const.Intern("["));
+			T = new Fun("const", Data.Intern("["));
 			break;
 		case ']':
-			T = new Fun("const", Const.Intern("]"));
+			T = new Fun("const", Data.Intern("]"));
 			break;
 		case '|':
-			T = new Fun("const", Const.Intern("|"));
+			T = new Fun("const", Data.Intern("|"));
 			break;
 
 		case ',':
-			T = new Fun("const", Const.Intern(","));
+			T = new Fun("const", Data.Intern(","));
 			break;
 		case ';':
-			T = new Fun("const", Const.Intern(";"));
+			T = new Fun("const", Data.Intern(";"));
 			break;
 
 		case '=':
 		case '>':
 		case '<':
-			sval = char2string(n);
-			T = new Fun("const", Const.Intern(sval));
+			this.sval = this.char2string(n);
+			T = new Fun("const", Data.Intern(this.sval));
 			break;
 
 		default:
-			sval = char2string(n);
-			T = make_const();
+			this.sval = this.char2string(n);
+			T = this.make_const();
 		}
 		return T;
 	}
 
 	Term next() {
 		try {
-			return next0();
+			return this.next0();
 		} catch (Exception e) {
-			return new Fun("exception", Const.Intern((e.toString())));
+			return new Fun("exception", Data.Intern((e.toString())));
 		}
 	}
 
@@ -283,7 +283,7 @@ class StreamTokenizer {
 	 * NEED_CHAR to indicate that a new character should be read, or SKIP_LF to
 	 * indicate that a new character should be read and, if it is a '\n' character,
 	 * it should be discarded and a second new character should be read. */
-	private int peekc = NEED_CHAR;
+	private int peekc = StreamTokenizer.NEED_CHAR;
 
 	private static final int NEED_CHAR = Integer.MAX_VALUE;
 	private static final int SKIP_LF = Integer.MAX_VALUE - 1;
@@ -327,7 +327,7 @@ class StreamTokenizer {
 	 * @see java.io.StreamTokenizer#TT_EOL
 	 * @see java.io.StreamTokenizer#TT_NUMBER
 	 * @see java.io.StreamTokenizer#TT_WORD */
-	protected int ttype = TT_NOTHING;
+	protected int ttype = StreamTokenizer.TT_NOTHING;
 
 	/** A constant indicating that the end of the stream has been read. */
 	protected static final int TT_EOF = -1;
@@ -375,14 +375,14 @@ class StreamTokenizer {
 
 	/** Private constructor that initializes everything except the streams. */
 	private StreamTokenizer() {
-		wordChars('a', 'z');
-		wordChars('A', 'Z');
-		wordChars(128 + 32, 255);
-		whitespaceChars(0, ' ');
-		commentChar('/');
-		quoteChar('"');
-		quoteChar('\'');
-		parseNumbers();
+		this.wordChars('a', 'z');
+		this.wordChars('A', 'Z');
+		this.wordChars(128 + 32, 255);
+		this.whitespaceChars(0, ' ');
+		this.commentChar('/');
+		this.quoteChar('"');
+		this.quoteChar('\'');
+		this.parseNumbers();
 	}
 
 	/** Creates a stream tokenizer that parses the specified input stream. The
@@ -422,7 +422,7 @@ class StreamTokenizer {
 		if (is == null) {
 			throw new NullPointerException();
 		}
-		input = is;
+		this.input = is;
 	}
 
 	/** Specifies that all characters <i>c</i> in the range
@@ -435,10 +435,10 @@ class StreamTokenizer {
 	protected void wordChars(int low, int hi) {
 		if (low < 0)
 			low = 0;
-		if (hi >= ctype.length)
-			hi = ctype.length - 1;
+		if (hi >= this.ctype.length)
+			hi = this.ctype.length - 1;
 		while (low <= hi)
-			ctype[low++] |= CT_ALPHA;
+			this.ctype[low++] |= StreamTokenizer.CT_ALPHA;
 	}
 
 	/** Specifies that all characters <i>c</i> in the range
@@ -455,10 +455,10 @@ class StreamTokenizer {
 	protected void whitespaceChars(int low, int hi) {
 		if (low < 0)
 			low = 0;
-		if (hi >= ctype.length)
-			hi = ctype.length - 1;
+		if (hi >= this.ctype.length)
+			hi = this.ctype.length - 1;
 		while (low <= hi)
-			ctype[low++] = CT_WHITESPACE;
+			this.ctype[low++] = StreamTokenizer.CT_WHITESPACE;
 	}
 
 	/** Specifies that the character argument is "ordinary" in this tokenizer. It
@@ -475,8 +475,8 @@ class StreamTokenizer {
 	 * @param ch the character.
 	 * @see java.io.StreamTokenizer#ttype */
 	protected void ordinaryChar(int ch) {
-		if (ch >= 0 && ch < ctype.length)
-			ctype[ch] = 0;
+		if (ch >= 0 && ch < this.ctype.length)
+			this.ctype[ch] = 0;
 	}
 
 	/** Specified that the character argument starts a single-line comment. All
@@ -488,8 +488,8 @@ class StreamTokenizer {
 	 *
 	 * @param ch the character. */
 	protected void commentChar(int ch) {
-		if (ch >= 0 && ch < ctype.length)
-			ctype[ch] = CT_COMMENT;
+		if (ch >= 0 && ch < this.ctype.length)
+			this.ctype[ch] = StreamTokenizer.CT_COMMENT;
 	}
 
 	/** Specifies that matching pairs of this character delimit string constants in
@@ -514,8 +514,8 @@ class StreamTokenizer {
 	 * @see java.io.StreamTokenizer#sval
 	 * @see java.io.StreamTokenizer#ttype */
 	protected void quoteChar(int ch) {
-		if (ch >= 0 && ch < ctype.length)
-			ctype[ch] = CT_QUOTE;
+		if (ch >= 0 && ch < this.ctype.length)
+			this.ctype[ch] = StreamTokenizer.CT_QUOTE;
 	}
 
 	/** Specifies that numbers should be parsed by this tokenizer. The syntax table
@@ -540,9 +540,9 @@ class StreamTokenizer {
 	 * @see java.io.StreamTokenizer#ttype */
 	protected void parseNumbers() {
 		for (int i = '0'; i <= '9'; i++)
-			ctype[i] |= CT_DIGIT;
-		ctype['.'] |= CT_DIGIT;
-		ctype['-'] |= CT_DIGIT;
+			this.ctype[i] |= StreamTokenizer.CT_DIGIT;
+		this.ctype['.'] |= StreamTokenizer.CT_DIGIT;
+		this.ctype['-'] |= StreamTokenizer.CT_DIGIT;
 	}
 
 	/** Determines whether or not ends of line are treated as tokens. If the flag
@@ -565,7 +565,7 @@ class StreamTokenizer {
 	 * @see java.io.StreamTokenizer#ttype
 	 * @see java.io.StreamTokenizer#TT_EOL */
 	protected void eolIsSignificant(boolean flag) {
-		eolIsSignificantP = flag;
+		this.eolIsSignificantP = flag;
 	}
 
 	/** Determines whether or not the tokenizer recognizes C-style comments. If the
@@ -579,7 +579,7 @@ class StreamTokenizer {
 	 * @param flag {@code true} indicates to recognize and ignore C-style
 	 *             comments. */
 	protected void slashStarComments(boolean flag) {
-		slashStarCommentsP = flag;
+		this.slashStarCommentsP = flag;
 	}
 
 	/** Determines whether or not the tokenizer recognizes C++-style comments. If
@@ -593,15 +593,15 @@ class StreamTokenizer {
 	 * @param flag {@code true} indicates to recognize and ignore C++-style
 	 *             comments. */
 	protected void slashSlashComments(boolean flag) {
-		slashSlashCommentsP = flag;
+		this.slashSlashCommentsP = flag;
 	}
 
 	/** Read the next character */
 	private int read() throws IOException {
-		if (reader != null)
-			return reader.read();
-		else if (input != null)
-			return input.read();
+		if (this.reader != null)
+			return this.reader.read();
+		else if (this.input != null)
+			return this.input.read();
 		else
 			throw new IllegalStateException();
 	}
@@ -620,68 +620,68 @@ class StreamTokenizer {
 	 * @see java.io.StreamTokenizer#sval
 	 * @see java.io.StreamTokenizer#ttype */
 	protected int nextToken() throws IOException {
-		if (pushedBack) {
-			pushedBack = false;
-			return ttype;
+		if (this.pushedBack) {
+			this.pushedBack = false;
+			return this.ttype;
 		}
-		byte ct[] = ctype;
-		sval = null;
+		byte ct[] = this.ctype;
+		this.sval = null;
 
-		int c = peekc;
+		int c = this.peekc;
 		if (c < 0)
-			c = NEED_CHAR;
-		if (c == SKIP_LF) {
-			c = read();
+			c = StreamTokenizer.NEED_CHAR;
+		if (c == StreamTokenizer.SKIP_LF) {
+			c = this.read();
 			if (c < 0)
-				return ttype = TT_EOF;
+				return this.ttype = StreamTokenizer.TT_EOF;
 			if (c == '\n')
-				c = NEED_CHAR;
+				c = StreamTokenizer.NEED_CHAR;
 		}
-		if (c == NEED_CHAR) {
-			c = read();
+		if (c == StreamTokenizer.NEED_CHAR) {
+			c = this.read();
 			if (c < 0)
-				return ttype = TT_EOF;
+				return this.ttype = StreamTokenizer.TT_EOF;
 		}
-		ttype = c; /* Just to be safe */
+		this.ttype = c; /* Just to be safe */
 
 		/*
 		 * Set peekc so that the next invocation of nextToken will read another
 		 * character unless peekc is reset in this invocation
 		 */
-		peekc = NEED_CHAR;
+		this.peekc = StreamTokenizer.NEED_CHAR;
 
-		int ctype = c < 256 ? ct[c] : CT_ALPHA;
-		while ((ctype & CT_WHITESPACE) != 0) {
+		int ctype = c < 256 ? ct[c] : StreamTokenizer.CT_ALPHA;
+		while ((ctype & StreamTokenizer.CT_WHITESPACE) != 0) {
 			if (c == '\r') {
-				LINENO++;
-				if (eolIsSignificantP) {
-					peekc = SKIP_LF;
-					return ttype = TT_EOL;
+				this.LINENO++;
+				if (this.eolIsSignificantP) {
+					this.peekc = StreamTokenizer.SKIP_LF;
+					return this.ttype = StreamTokenizer.TT_EOL;
 				}
-				c = read();
+				c = this.read();
 				if (c == '\n')
-					c = read();
+					c = this.read();
 			} else {
 				if (c == '\n') {
-					LINENO++;
-					if (eolIsSignificantP) {
-						return ttype = TT_EOL;
+					this.LINENO++;
+					if (this.eolIsSignificantP) {
+						return this.ttype = StreamTokenizer.TT_EOL;
 					}
 				}
-				c = read();
+				c = this.read();
 			}
 			if (c < 0)
-				return ttype = TT_EOF;
-			ctype = c < 256 ? ct[c] : CT_ALPHA;
+				return this.ttype = StreamTokenizer.TT_EOF;
+			ctype = c < 256 ? ct[c] : StreamTokenizer.CT_ALPHA;
 		}
 
-		if ((ctype & CT_DIGIT) != 0) {
+		if ((ctype & StreamTokenizer.CT_DIGIT) != 0) {
 			boolean neg = false;
 			if (c == '-') {
-				c = read();
+				c = this.read();
 				if (c != '.' && (c < '0' || c > '9')) {
-					peekc = c;
-					return ttype = '-';
+					this.peekc = c;
+					return this.ttype = '-';
 				}
 				neg = true;
 			}
@@ -696,9 +696,9 @@ class StreamTokenizer {
 					decexp += seendot;
 				} else
 					break;
-				c = read();
+				c = this.read();
 			}
-			peekc = c;
+			this.peekc = c;
 			if (decexp != 0) {
 				double denom = 10;
 				decexp--;
@@ -709,48 +709,48 @@ class StreamTokenizer {
 				/* Do one division of a likely-to-be-more-accurate number */
 				v = v / denom;
 			}
-			nval = neg ? -v : v;
-			return ttype = TT_NUMBER;
+			this.nval = neg ? -v : v;
+			return this.ttype = StreamTokenizer.TT_NUMBER;
 		}
 
-		if ((ctype & CT_ALPHA) != 0) {
+		if ((ctype & StreamTokenizer.CT_ALPHA) != 0) {
 			int i = 0;
 			do {
-				if (i >= buf.length) {
-					buf = copyOf(buf, buf.length * 2);
+				if (i >= this.buf.length) {
+					this.buf = this.copyOf(this.buf, this.buf.length * 2);
 				}
-				buf[i++] = (char) c;
-				c = read();
-				ctype = c < 0 ? CT_WHITESPACE : c < 256 ? ct[c] : CT_ALPHA;
-			} while ((ctype & (CT_ALPHA | CT_DIGIT)) != 0);
-			peekc = c;
-			sval = String.copyValueOf(buf, 0, i);
-			if (forceLower)
-				sval = sval.toLowerCase();
-			return ttype = TT_WORD;
+				this.buf[i++] = (char) c;
+				c = this.read();
+				ctype = c < 0 ? StreamTokenizer.CT_WHITESPACE : c < 256 ? ct[c] : StreamTokenizer.CT_ALPHA;
+			} while ((ctype & (StreamTokenizer.CT_ALPHA | StreamTokenizer.CT_DIGIT)) != 0);
+			this.peekc = c;
+			this.sval = String.copyValueOf(this.buf, 0, i);
+			if (this.forceLower)
+				this.sval = this.sval.toLowerCase();
+			return this.ttype = StreamTokenizer.TT_WORD;
 		}
 
-		if ((ctype & CT_QUOTE) != 0) {
-			ttype = c;
+		if ((ctype & StreamTokenizer.CT_QUOTE) != 0) {
+			this.ttype = c;
 			int i = 0;
 			/*
 			 * Invariants (because \Octal needs a lookahead): (i) c contains char value (ii)
 			 * d contains the lookahead
 			 */
-			int d = read();
-			while (d >= 0 && d != ttype && d != '\n' && d != '\r') {
+			int d = this.read();
+			while (d >= 0 && d != this.ttype && d != '\n' && d != '\r') {
 				if (d == '\\') {
-					c = read();
+					c = this.read();
 					int first = c; /* To allow \377, but not \477 */
 					if (c >= '0' && c <= '7') {
 						c = c - '0';
-						int c2 = read();
+						int c2 = this.read();
 						if ('0' <= c2 && c2 <= '7') {
 							c = (c << 3) + (c2 - '0');
-							c2 = read();
+							c2 = this.read();
 							if ('0' <= c2 && c2 <= '7' && first <= '3') {
 								c = (c << 3) + (c2 - '0');
-								d = read();
+								d = this.read();
 							} else
 								d = c2;
 						} else
@@ -779,16 +779,16 @@ class StreamTokenizer {
 							c = 0xB;
 							break;
 						}
-						d = read();
+						d = this.read();
 					}
 				} else {
 					c = d;
-					d = read();
+					d = this.read();
 				}
-				if (i >= buf.length) {
-					buf = copyOf(buf, buf.length * 2);
+				if (i >= this.buf.length) {
+					this.buf = this.copyOf(this.buf, this.buf.length * 2);
 				}
-				buf[i++] = (char) c;
+				this.buf[i++] = (char) c;
 			}
 
 			/*
@@ -796,61 +796,61 @@ class StreamTokenizer {
 			 * arrange to read a new character next time around; otherwise, save the
 			 * character.
 			 */
-			peekc = (d == ttype) ? NEED_CHAR : d;
+			this.peekc = (d == this.ttype) ? StreamTokenizer.NEED_CHAR : d;
 
-			sval = String.copyValueOf(buf, 0, i);
-			return ttype;
+			this.sval = String.copyValueOf(this.buf, 0, i);
+			return this.ttype;
 		}
 
-		if (c == '/' && (slashSlashCommentsP || slashStarCommentsP)) {
-			c = read();
-			if (c == '*' && slashStarCommentsP) {
+		if (c == '/' && (this.slashSlashCommentsP || this.slashStarCommentsP)) {
+			c = this.read();
+			if (c == '*' && this.slashStarCommentsP) {
 				int prevc = 0;
-				while ((c = read()) != '/' || prevc != '*') {
+				while ((c = this.read()) != '/' || prevc != '*') {
 					if (c == '\r') {
-						LINENO++;
-						c = read();
+						this.LINENO++;
+						c = this.read();
 						if (c == '\n') {
-							c = read();
+							c = this.read();
 						}
 					} else {
 						if (c == '\n') {
-							LINENO++;
-							c = read();
+							this.LINENO++;
+							c = this.read();
 						}
 					}
 					if (c < 0)
-						return ttype = TT_EOF;
+						return this.ttype = StreamTokenizer.TT_EOF;
 					prevc = c;
 				}
-				return nextToken();
-			} else if (c == '/' && slashSlashCommentsP) {
-				while ((c = read()) != '\n' && c != '\r' && c >= 0)
+				return this.nextToken();
+			} else if (c == '/' && this.slashSlashCommentsP) {
+				while ((c = this.read()) != '\n' && c != '\r' && c >= 0)
 					;
-				peekc = c;
-				return nextToken();
+				this.peekc = c;
+				return this.nextToken();
 			} else {
 				/* Now see if it is still a single line comment */
-				if ((ct['/'] & CT_COMMENT) != 0) {
-					while ((c = read()) != '\n' && c != '\r' && c >= 0)
+				if ((ct['/'] & StreamTokenizer.CT_COMMENT) != 0) {
+					while ((c = this.read()) != '\n' && c != '\r' && c >= 0)
 						;
-					peekc = c;
-					return nextToken();
+					this.peekc = c;
+					return this.nextToken();
 				} else {
-					peekc = c;
-					return ttype = '/';
+					this.peekc = c;
+					return this.ttype = '/';
 				}
 			}
 		}
 
-		if ((ctype & CT_COMMENT) != 0) {
-			while ((c = read()) != '\n' && c != '\r' && c >= 0)
+		if ((ctype & StreamTokenizer.CT_COMMENT) != 0) {
+			while ((c = this.read()) != '\n' && c != '\r' && c >= 0)
 				;
-			peekc = c;
-			return nextToken();
+			this.peekc = c;
+			return this.nextToken();
 		}
 
-		return ttype = c;
+		return this.ttype = c;
 	}
 
 	private char[] copyOf(char[] original, int newLength) {
@@ -874,15 +874,15 @@ class StreamTokenizer {
 	 * @see java.io.StreamTokenizer#sval
 	 * @see java.io.StreamTokenizer#ttype */
 	protected void pushBack() {
-		if (ttype != TT_NOTHING) /* No-op if nextToken() not called */
-			pushedBack = true;
+		if (this.ttype != StreamTokenizer.TT_NOTHING) /* No-op if nextToken() not called */
+			this.pushedBack = true;
 	}
 
 	/** Return the current line number.
 	 *
 	 * @return the current line number of this stream tokenizer. */
 	public int lineno() {
-		return LINENO;
+		return this.LINENO;
 	}
 
 	/** Returns the string representation of the current stream token and the line
@@ -906,7 +906,7 @@ class StreamTokenizer {
 	 * @see java.io.StreamTokenizer#ttype */
 	public String toString() {
 		String ret;
-		switch (ttype) {
+		switch (this.ttype) {
 		case TT_EOF:
 			ret = "EOF";
 			break;
@@ -914,10 +914,10 @@ class StreamTokenizer {
 			ret = "EOL";
 			break;
 		case TT_WORD:
-			ret = sval;
+			ret = this.sval;
 			break;
 		case TT_NUMBER:
-			ret = "n=" + nval;
+			ret = "n=" + this.nval;
 			break;
 		case TT_NOTHING:
 			ret = "NOTHING";
@@ -928,19 +928,19 @@ class StreamTokenizer {
 			 * character. ttype can definitely not be less than 0, since those are reserved
 			 * values used in the previous case statements
 			 */
-			if (ttype < 256 && ((ctype[ttype] & CT_QUOTE) != 0)) {
-				ret = sval;
+			if (this.ttype < 256 && ((this.ctype[this.ttype] & StreamTokenizer.CT_QUOTE) != 0)) {
+				ret = this.sval;
 				break;
 			}
 
 			char s[] = new char[3];
 			s[0] = s[2] = '\'';
-			s[1] = (char) ttype;
+			s[1] = (char) this.ttype;
 			ret = new String(s);
 			break;
 		}
 		}
-		return "Token[" + ret + "], line " + LINENO;
+		return "Token[" + ret + "], line " + this.LINENO;
 	}
 
 }

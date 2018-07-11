@@ -5,6 +5,7 @@ using namespace std;
 #include "Const.h"
 #include "Fun.h"
 #include "Operation.h"
+#include "Data.h"
 #include "Appendable.h"
 
 namespace SxxMachine {
@@ -15,11 +16,11 @@ namespace SxxMachine {
 	}
 
 	Term* Term::ArgDeRef(const int& i) {
-		return Arg(i)->Deref();
+		return this->Arg(i)->Deref();
 	}
 
 	Term* Term::ArgNoDeRef(const int& i) {
-		return Arg(i);
+		return this->Arg(i);
 	}
 
 	bool Term::Bind(Term* that, Prolog* mach) {
@@ -33,12 +34,12 @@ namespace SxxMachine {
 
 	Term* Term::Deref() {
 		cout << "general deref on terms not available" << endl;
-		return static_cast<Term*>(this);
+		return this;
 	}
 
 	int Term::hashCode() {
 		// TODO Auto-generated method stub
-		return Data::hashCode();
+		return __super::hashCode();
 	}
 
 	bool Term::equals(any obj) {
@@ -46,7 +47,7 @@ namespace SxxMachine {
 		if(!(dynamic_cast<Term*>(obj) != nullptr)) {
 			return false;
 		}
-		return Equal(any_cast<Term*>(obj));
+		return this->Equal(any_cast<Term*>(obj));
 	}
 
 	bool Term::Equal(Term* that) {
@@ -55,13 +56,13 @@ namespace SxxMachine {
 	}
 
 	Term* Term::findOrAttrValue(Prolog* trail, const bool& createIfMissing, Term* name) {
-		if(attrs == nullptr || attrs == Const::Nil) {
+		if(this->attrs == nullptr || this->attrs == Const::Nil) {
 			if(!createIfMissing) {
 				return Const::Nil;
 			}
-			Term* wasAttrs = attrs;
+			Term* wasAttrs = this->attrs;
 			Fun* newatts = nullptr;
-			attrs = Const::Nil;
+			this->attrs = Const::Nil;
 			newatts = new Fun("att", name, nullptr, Const::Nil);
 			if(trail != nullptr) {
 				UndoableAnonymousInnerClass tempVar(this, wasAttrs);
@@ -69,10 +70,10 @@ namespace SxxMachine {
 			}
 			return newatts;
 		} else {
-			Term* next = attrs;
+			Term* next = this->attrs;
 			do {
 				if(next->Arg(0)->Equal(name)) {
-					return static_cast<Fun*>(next);
+					return next;
 				}
 				Term* nnext = next->Arg(2);
 				if(nnext->GetName() != "att") {
@@ -99,11 +100,11 @@ namespace SxxMachine {
 	}
 
 	Operation* Term::FindProc(const int& i) {
-		return Prolog::Predicates->LoadPred(GetName(), i);
+		return Prolog::Predicates->LoadPred(this->GetName(), i);
 	}
 
 	Term* Term::freeze(Prolog* trail, Term* newval) {
-		Term* prev = frozenGoals();
+		Term* prev = this->frozenGoals();
 		Term* newgoals = Data::Cons({ newval, prev });
 		UndoableAnonymousInnerClass2 tempVar(this, prev);
 		trail->push(&tempVar);
@@ -120,7 +121,7 @@ namespace SxxMachine {
 	}
 
 	Term* Term::frozenGoals() {
-		return nullIsNil(goals);
+		return this->nullIsNil(this->goals);
 	}
 
 	std::vector<Term*> Term::GetArgs() {
@@ -134,11 +135,11 @@ namespace SxxMachine {
 	}
 
 	bool Term::isAttvar() {
-		return attrs != nullptr && attrs != Const::Nil;
+		return this->attrs != nullptr && this->attrs != Const::Nil;
 	}
 
 	bool Term::isFrozen() {
-		return goals != nullptr && goals != Const::Nil;
+		return this->goals != nullptr && this->goals != Const::Nil;
 	}
 
 	bool Term::IsList() {
@@ -150,8 +151,8 @@ namespace SxxMachine {
 	}
 
 	long long Term::LongValue() {
-		Term* deref = Deref();
-		if(deref != static_cast<Term*>(this)) {
+		Term* deref = this->Deref();
+		if(deref != this) {
 			return deref->LongValue();
 		}
 		cout << "general LongValue on terms not available" << endl;
@@ -163,16 +164,16 @@ namespace SxxMachine {
 	}
 
 	void Term::putAttrValue(Prolog* trail, Term* name, Term* val) {
-		Term* wasAttrs = attrs;
+		Term* wasAttrs = this->attrs;
 		Term* newatts = nullptr;
-		if(attrs == nullptr || attrs == Const::Nil) {
-			attrs = Const::Nil;
+		if(this->attrs == nullptr || this->attrs == Const::Nil) {
+			this->attrs = Const::Nil;
 			newatts = new Fun("att", name, val, Const::Nil);
 			if(trail != nullptr) {
 				UndoableAnonymousInnerClass3 tempVar(this);
 				trail->push(&tempVar);
 			}
-			attrs = newatts;
+			this->attrs = newatts;
 			return;
 		} else {
 			Term* next = wasAttrs;
@@ -206,7 +207,7 @@ namespace SxxMachine {
 	}
 
 	void Term::setAttrs(Prolog* trail, Term* newval) {
-		Term* prev = nullIsNil(attrs);
+		Term* prev = this->nullIsNil(this->attrs);
 		UndoableAnonymousInnerClass4 tempVar(this, prev);
 		trail->push(&tempVar);
 		this->attrs = newval;
@@ -222,7 +223,7 @@ namespace SxxMachine {
 	}
 
 	void Term::setGoals(Prolog* trail, Term* newval) {
-		Term* prev = nullIsNil(goals);
+		Term* prev = this->nullIsNil(this->goals);
 		UndoableAnonymousInnerClass5 tempVar(this, prev);
 		trail->push(&tempVar);
 		this->goals = newval;
@@ -240,7 +241,7 @@ namespace SxxMachine {
 	wstring Term::toQuotedString() {
 		Appendable* buffer = new StringBuilder();
 		try {
-			formattedOutput(1, buffer);
+			this->formattedOutput(1, buffer);
 		} catch(const exception& e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -250,7 +251,7 @@ namespace SxxMachine {
 	}
 
 	wstring Term::toString() {
-		return toQuotedString();
+		return this->toQuotedString();
 	}
 
 	bool Term::Unify(Term* that, Prolog* mach) {
@@ -263,10 +264,14 @@ namespace SxxMachine {
 	}
 
 	bool Term::isFVar() {
-		return isFrozen() && isVar();
+		return this->isFrozen() && this->isVar();
 	}
 
 	bool Term::isInt() {
 		return false;
+	}
+
+	double Term::DoubleValue() {
+		return this->LongValue();
 	}
 }

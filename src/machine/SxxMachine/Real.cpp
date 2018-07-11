@@ -2,21 +2,22 @@ using namespace std;
 
 #include "Real.h"
 #include "Prolog.h"
+#include "Data.h"
 #include "Number.h"
 #include "Appendable.h"
 
 namespace SxxMachine {
 
 	Real::Real(Number* i) {
-		Num = i;
+		this->Num = i;
 	}
 
 	Term* Real::Copy(Prolog* m, long long t) {
-		return new Real(Num);
+		return new Real(this->Num);
 	}
 
 	long long Real::LongValue() {
-		return Num->longValue();
+		return this->Num->longValue();
 	}
 
 	Term* Real::Deref() {
@@ -24,33 +25,33 @@ namespace SxxMachine {
 	}
 
 	void Real::formattedOutput(const int& formatFlags, Appendable* buffer) throw(IOException) {
-		buffer->append("" + Num);
+		buffer->append("" + this->Num);
 	}
 
 	bool Real::Unify(Term* that, Prolog* mach) {
-		if(that->Arity() != Arity()) {
+		if(that->Arity() != this->Arity()) {
 			return that->Bind(this, mach);
 		}
 		return (this->DoubleValue() == (this->DoubleValue()));
 	}
 
 	bool Real::Equal(Term* that) {
-		if(that->Arity() != Arity()) {
+		if(that->Arity() != this->Arity()) {
 			return false;
 		}
 		return (this->DoubleValue() == (this->DoubleValue()));
 	}
 
 	wstring Real::GetName() {
-		return "" + Num;
+		return "" + this->Num;
 	}
 
 	int Real::Arity() {
-		return Term::REAL;
+		return Data::REAL;
 	}
 
 	double Real::DoubleValue() {
-		return Num->doubleValue();
+		return this->Num->doubleValue();
 	}
 
 	bool Real::isVar() {
@@ -70,6 +71,6 @@ namespace SxxMachine {
 	}
 
 	bool Real::isInt() {
-		return Num->hashCode() == Num->intValue();
+		return this->Num->hashCode() == this->Num->intValue();
 	}
 }

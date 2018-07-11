@@ -9,14 +9,14 @@ class Var extends Term {
 	private String named = null;
 
 	Var(Prolog machin) {
-		Refers = this;
-		timestamp = machin.TimeStamp;
+		this.Refers = this;
+		this.timestamp = machin.TimeStamp;
 		// mach = machin;
 	}
 
 	Var(Prolog machin, long t) {
-		Refers = this;
-		timestamp = t;
+		this.Refers = this;
+		this.timestamp = t;
 		// mach = machin;
 	}
 
@@ -25,43 +25,43 @@ class Var extends Term {
 	}
 
 	public Var(Prolog prologmachine, String sval) {
-		Refers = this;
-		named = sval;
+		this.Refers = this;
+		this.named = sval;
 		Prolog mach = prologmachine;
-		timestamp = mach.TimeStamp;
+		this.timestamp = mach.TimeStamp;
 	}
 
 	public Var(Prolog mach, int currentChoice, Fun newgoals) {
 		this(mach, currentChoice);
-		goals = newgoals;
+		this.goals = newgoals;
 	}
 
 	Term Copy(Prolog m, long t) {
 		Var newv = new Var(m, t);
 		VarDict newdict = new VarDict(this, newv);
-		Refers = newdict;
+		this.Refers = newdict;
 		// mach.TrailEntry(this);
 		m.TrailEntry(this);
 		return newv;
 	}
 
 	public Term Deref() {
-		if ((Refers == this) || !(Refers instanceof Term))
+		if ((this.Refers == this) || !(this.Refers instanceof Term))
 			return this;
-		return ((Term) Refers).Deref();
+		return this.Refers.Deref();
 	}
 
 	public void UnTrailSelf() {
-		Refers = this;
+		this.Refers = this;
 	}
 
 	public void formattedOutput(int formatFlags, Appendable buffer) throws IOException {
-		buffer.append(GetVarName());
+		buffer.append(this.GetVarName());
 	}
 
 	public String GetVarName() {
 		// TODO Auto-generated method stub		
-		return "_" + Math.abs(timestamp) + "_" + Integer.toHexString(hashCode()) + ((named != null) ? "_" + named : "");
+		return "_" + Math.abs(this.timestamp) + "_" + Integer.toHexString(this.hashCode()) + ((this.named != null) ? "_" + this.named : "");
 	}
 
 	boolean FBind(Term that, Prolog mach) {
@@ -79,17 +79,17 @@ class Var extends Term {
 			this.Refers = that;
 			mach.TrailEntry(this);
 			mach.TrailEntry(new PopPendingGoals(mach, mach.pendingGoals));
-			mach.pendingGoals = Data.Cons(goals, mach.pendingGoals);
+			mach.pendingGoals = Data.Cons(this.goals, mach.pendingGoals);
 			mach.ExceptionRaised = 1;
 		}
 		return true;
 	}
 
 	boolean Bind(Term that, Prolog mach) {
-		if (isFVar()) {
-			return FBind(that, mach);
+		if (this.isFVar()) {
+			return this.FBind(that, mach);
 		} else {
-			return VBind(that, mach);
+			return this.VBind(that, mach);
 		}
 	}
 
@@ -115,7 +115,7 @@ class Var extends Term {
 	}
 
 	public boolean Unify(Term that, Prolog mach) {
-		return Bind(that, mach);
+		return this.Bind(that, mach);
 	}
 
 	boolean Equal(Term that) {
@@ -123,12 +123,12 @@ class Var extends Term {
 	}
 
 	public String GetName() {
-		return toQuotedString();
+		return this.toQuotedString();
 	}
 
 	@Override
 	public int Arity() {
-		return VAR;
+		return Data.VAR;
 	}
 
 	public boolean isVar() {
@@ -136,7 +136,7 @@ class Var extends Term {
 	}
 
 	public boolean isFVar() {
-		return isFrozen();
+		return this.isFrozen();
 	}
 
 	public boolean isStruct() {

@@ -3,17 +3,18 @@ using namespace std;
 #include "Fun.h"
 #include "Prolog.h"
 #include "Const.h"
+#include "Data.h"
 #include "Appendable.h"
 #include "Name.h"
 
 namespace SxxMachine {
 
 	Term* Fun::Copy(Prolog* m, long long t) {
-		int a = Arguments.size();
-		Fun* f = new Fun(Name, a);
+		int a = this->Arguments.size();
+		Fun* f = new Fun(this->Name, a);
 		Term* arg;
 		while(a-- > 0) {
-			arg = Arguments[a]->Deref();
+			arg = this->Arguments[a]->Deref();
 			f->Arguments[a] = arg->Copy(m, t);
 		}
 		return f;
@@ -26,32 +27,32 @@ namespace SxxMachine {
 	}
 
 	Fun::Fun(const wstring& N, vector<Term> &args) {
-		Name = N;
-		Arguments = args;
-		if(Arguments.size() == 2) {
-			isLixt = Name[0];
+		this->Name = N;
+		this->Arguments = args;
+		if(this->Arguments.size() == 2) {
+			this->isLixt = this->Name[0];
 		}
 	}
 
 	Term* Fun::Arg(const int& i) {
-		return ArgNoDeRef(i);
+		return this->ArgNoDeRef(i);
 	}
 
 	Term* Fun::ArgDeRef(const int& i) {
-		return Arg(i)->Deref();
+		return this->Arg(i)->Deref();
 	}
 
 	Term* Fun::ArgNoDeRef(const int& i) {
-		return Arguments[i];
+		return this->Arguments[i];
 	}
 
 	long long Fun::LongValue() {
-		int arity = Arguments.size();
+		int arity = this->Arguments.size();
 		// Term a1, a2;
 		wstring Name = this->Name;
 		long long i1, i2;
 		if(arity == 1) {
-			i1 = (Arguments[0]->Deref())->LongValue();
+			i1 = (this->Arguments[0]->Deref())->LongValue();
 			if(Name == "-") {
 				return -i1;
 			}
@@ -63,8 +64,8 @@ namespace SxxMachine {
 		if(arity != 2) {
 			return 0;
 		}
-		i1 = (Arguments[0]->Deref())->LongValue();
-		i2 = (Arguments[1]->Deref())->LongValue();
+		i1 = (this->Arguments[0]->Deref())->LongValue();
+		i2 = (this->Arguments[1]->Deref())->LongValue();
 		if(Name == "-") {
 			return i1 - i2;
 		}
@@ -85,7 +86,7 @@ namespace SxxMachine {
 	}
 
 	bool Fun::IsList() {
-		return isLixt == '.';
+		return this->isLixt == '.';
 	}
 
 	void Fun::formattedListOutput(const int& formatFlags, Appendable* buffer, Term* T) throw(IOException) {
@@ -113,21 +114,21 @@ namespace SxxMachine {
 	}
 
 	void Fun::formattedOutput(const int& formatFlags, Appendable* buffer) throw(IOException) {
-		if(isLixt == '.') {
+		if(this->isLixt == '.') {
 			buffer->append("[");
-			Arguments[0]->Deref().formattedOutput(formatFlags, buffer);
-			formattedListOutput(formatFlags, buffer, Arguments[1]->Deref());
+			this->Arguments[0]->Deref().formattedOutput(formatFlags, buffer);
+			Fun::formattedListOutput(formatFlags, buffer, this->Arguments[1]->Deref());
 			buffer->append("]");
 			return;
 		}
-		Const::formattedOutputC(formatFlags, buffer, GetName());
+		Const::formattedOutputC(formatFlags, buffer, this->GetName());
 		buffer->append("(");
-		int arity1 = Arity();
+		int arity1 = this->Arity();
 		for(int carg = 0; carg < arity1; carg++) {
 			if(carg != 0) {
 				buffer->append(",");
 			}
-			Term* t = Arg(carg);
+			Term* t = this->Arg(carg);
 			if(t == nullptr) {
 				buffer->append("@null");
 			} else {
@@ -143,7 +144,7 @@ namespace SxxMachine {
 		Term arg1[], obj1;
 		Term arg2[], obj2;
 
-		if(!(SameTypes(this, that))) {
+		if(!(Data::SameTypes(this, that))) {
 			return that->Bind(this, mach);
 		}
 		// if (!((this.Name).equals(that.GetName()))) return false ;
@@ -152,7 +153,7 @@ namespace SxxMachine {
 		}
 
 		tmpfunct = static_cast<Fun*>(that); // cast perhaps to be avoided
-		i = Arguments.size();
+		i = this->Arguments.size();
 		j = tmpfunct->Arguments.size();
 		if(i != j) {
 			return false;
@@ -175,7 +176,7 @@ namespace SxxMachine {
 		Term arg1[], obj1;
 		Term arg2[], obj2;
 
-		if(!(SameTypes(this, that))) {
+		if(!(Data::SameTypes(this, that))) {
 			return false;
 		}
 		;
@@ -184,7 +185,7 @@ namespace SxxMachine {
 		}
 
 		tmpfunct = static_cast<Fun*>(that); // cast perhaps to be avoided
-		i = Arguments.size();
+		i = this->Arguments.size();
 		j = tmpfunct->Arguments.size();
 		if(i != j) {
 			return false;
@@ -202,15 +203,15 @@ namespace SxxMachine {
 	}
 
 	std::vector<Term*> Fun::GetArgs() {
-		return Arguments;
+		return this->Arguments;
 	}
 
 	int Fun::Arity() {
-		return Arguments.size();
+		return this->Arguments.size();
 	}
 
 	wstring Fun::GetName() {
-		return Name;
+		return this->Name;
 	}
 
 	bool Fun::isVar() {

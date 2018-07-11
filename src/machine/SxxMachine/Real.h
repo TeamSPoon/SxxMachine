@@ -37,9 +37,9 @@ namespace SxxMachine {
 
 		std::string GetName() override;
 
-		int Arity() final override;
+		int Arity() override;
 
-		double DoubleValue();
+		double DoubleValue() final override;
 
 		bool isVar() override;
 

@@ -133,7 +133,7 @@ namespace SxxMachine {
 		/// indicate that a new character should be read and, if it is a '\n' character,
 		/// it should be discarded and a second new character should be read. 
 		/// </summary>
-		int peekc = NEED_CHAR;
+		int peekc = StreamTokenizer::NEED_CHAR;
 
 		static const int NEED_CHAR = std::numeric_limits<int>::max();
 		static const int SKIP_LF = std::numeric_limits<int>::max() - 1;
@@ -182,7 +182,7 @@ namespace SxxMachine {
 		/// <seealso cref= java.io.StreamTokenizer#TT_EOL </seealso>
 		/// <seealso cref= java.io.StreamTokenizer#TT_NUMBER </seealso>
 		/// <seealso cref= java.io.StreamTokenizer#TT_WORD  </seealso>
-		int ttype = TT_NOTHING;
+		int ttype = StreamTokenizer::TT_NOTHING;
 
 		/// <summary>
 		/// A constant indicating that the end of the stream has been read. </summary>

@@ -32,7 +32,7 @@ namespace SxxMachine {
 	}
 
 	Int* Data::BigInt(const wstring& s) {
-		return Number(StringHelper::fromString<long long>(s));
+		return Data::Number(StringHelper::fromString<long long>(s));
 	}
 
 	Fun* Data::Cons(vector<Term> &deref) {
@@ -50,10 +50,10 @@ namespace SxxMachine {
 unordered_map<wstring, Const*> Data::atomTable = unordered_map<wstring, Const*>();
 
 	Const* Data::Intern(const wstring& d) {
-		Const* c = atomTable[d];
+		Const* c = Data::atomTable[d];
 		if(c == nullptr) {
 			c = new Const(d);
-			atomTable.emplace(d, c);
+			Data::atomTable.emplace(d, c);
 		}
 		return c;
 	}

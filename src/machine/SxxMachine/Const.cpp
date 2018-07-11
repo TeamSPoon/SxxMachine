@@ -2,19 +2,20 @@ using namespace std;
 
 #include "Const.h"
 #include "Prolog.h"
+#include "Data.h"
 #include "Operation.h"
 #include "Appendable.h"
 
 namespace SxxMachine {
 
-Term* const  Const::Nil = Intern("[]");
+Term* const  Const::Nil = Data::Intern("[]");
 
 	long long Const::LongValue() {
 		return 0;
 	}
 
 	Const::Const(const wstring& N) {
-		Name = N;
+		this->Name = N;
 	}
 
 	Term* Const::Copy(Prolog* m, long long t) {
@@ -36,11 +37,11 @@ Term* const  Const::Nil = Intern("[]");
 	}
 
 	void Const::formattedOutput(const int& formatFlags, Appendable* buffer) throw(IOException) {
-		Const::formattedOutputC(formatFlags, buffer, GetName());
+		Const::formattedOutputC(formatFlags, buffer, this->GetName());
 	}
 
 	bool Const::Unify(Term* that, Prolog* mach) {
-		if(SameTypes(this, that)) {
+		if(Data::SameTypes(this, that)) {
 			// return (that.GetName()).equals(this.Name) ;
 			return (that->GetName() == this->Name);
 		}
@@ -48,25 +49,25 @@ Term* const  Const::Nil = Intern("[]");
 	}
 
 	bool Const::Equal(Term* that) {
-		if(SameTypes(this, that)) {
+		if(Data::SameTypes(this, that)) {
 			return (that->toQuotedString()).equals(this->toQuotedString());
 		}
 		return false;
 	}
 
 	int Const::Arity() {
-		return CONST;
+		return Data::CONST;
 	}
 
 	wstring Const::GetName() {
-		return Name;
+		return this->Name;
 	}
 
 	bool Const::IsNil() {
-		if(Nil == this) {
+		if(Const::Nil == this) {
 			return true;
 		}
-		if(Nil->GetName() == this->Name || this->Name == "[]") {
+		if(Const::Nil->GetName() == this->Name || this->Name == "[]") {
 			// throw
 		}
 		return false;
@@ -74,23 +75,23 @@ Term* const  Const::Nil = Intern("[]");
 
 	Operation* Const::FindProc(const int& i) {
 		if(i < 33) {
-			if(byArity.size() > 0) {
-				Operation* was = byArity[i];
+			if(this->byArity.size() > 0) {
+				Operation* was = this->byArity[i];
 				if(was != nullptr) {
 					return was;
 				}
-				was = byArity[i] = Prolog::Predicates->LoadPred(Name, i);
+				was = this->byArity[i] = Prolog::Predicates->LoadPred(this->Name, i);
 				return was;
 			} else {
-				Operation* was = Prolog::Predicates->LoadPred(Name, i);
+				Operation* was = Prolog::Predicates->LoadPred(this->Name, i);
 				if(was != nullptr) {
-					byArity = std::vector<Operation*>(32);
-					byArity[i] = was;
+					this->byArity = std::vector<Operation*>(32);
+					this->byArity[i] = was;
 				}
 				return was;
 			}
 		}
-		return Prolog::Predicates->LoadPred(Name, i);
+		return Prolog::Predicates->LoadPred(this->Name, i);
 	}
 
 	bool Const::isVar() {

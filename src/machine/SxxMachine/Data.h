@@ -19,9 +19,16 @@ class Number;
 namespace SxxMachine {
 
 
-	class Data {
+	class Data final {
 
 	public:
+		static constexpr int OBJ = -4;
+		static constexpr int REAL = -3;
+		static constexpr int INT = -2;
+		static constexpr int VAR = -1;
+		static constexpr int CONST = 0;
+
+
 		static Real* Number(Number* d);
 
 		static Int* Number(long long d);

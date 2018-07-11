@@ -18,7 +18,7 @@ namespace SxxMachine {
 //JAVA TO C++ CONVERTER TODO TASK: Most Java annotations will not have direct C++ equivalents:
 //ORIGINAL LINE: @SuppressWarnings("unchecked") PredTable()
 	PredTable::PredTable() {
-		tables = std::vector<unordered_map>(33);
+		this->tables = std::vector<unordered_map>(33);
 	}
 
 	Operation* PredTable::Register(const wstring& name, const int& arity, Operation* op) {
@@ -28,33 +28,33 @@ namespace SxxMachine {
 
 	void PredTable::InsertNameArity(const wstring& N, const int& A, Operation* Adr) {
 		N = N;
-		unordered_map<wstring, Operation*> T = tables[A];
+		unordered_map<wstring, Operation*> T = this->tables[A];
 		if(T.empty()) {
-			tables[A] = T = unordered_map<wstring, Operation*>();
+			this->tables[A] = T = unordered_map<wstring, Operation*>();
 		}
 		T.emplace(N, Adr);
 	}
 
 	void PredTable::InsertNameArityWithContinuation(const wstring& N, const int& A, Code* Adr) {
-		InsertNameArity(N, A - 1, Adr);
+		this->InsertNameArity(N, A - 1, Adr);
 	}
 
 	Operation* PredTable::IsInPredTable(const wstring& N, const int& A) {
-		if(tables[A].empty()) {
+		if(this->tables[A].empty()) {
 			return nullptr;
 		}
-		return static_cast<Operation*>(tables[A][N]);
+		return (this->tables[A][N]);
 	}
 
 	Operation* PredTable::LoadPred(const wstring& Name, const int& arity) {
 		Operation* code;
 
-		code = IsInPredTable(Name, arity);
+		code = this->IsInPredTable(Name, arity);
 		if(code != nullptr) {
 			return code;
 		}
-		code = Instanciate(Name, arity);
-		InsertNameArity(Name, arity, code);
+		code = this->Instanciate(Name, arity);
+		this->InsertNameArity(Name, arity, code);
 		// code.Init(thiz);
 		return code;
 	}
@@ -72,7 +72,7 @@ namespace SxxMachine {
 			wstring s1 = pp + "pred_" + Name + "_" + to_string(arity);
 			// String s2 = s1 + ".class" ;
 			// System.out.println("Trying to load " + s2) ;
-			loaded_class = forName(s1);
+			loaded_class = this->forName(s1);
 			// System.out.println("Loaded " + s2) ;
 			code = static_cast<Operation*>(loaded_class.newInstance());
 			// System.out.println("and created "+s2) ;

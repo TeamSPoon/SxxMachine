@@ -2,14 +2,7 @@ package SxxMachine;
 
 import java.io.IOException;
 
-abstract class Term extends Data implements Undoable {
-
-	// private Term val;
-	public final static int JAVA = -4;
-	public final static int REAL = -3;
-	public final static int INT = -2;
-	public final static int VAR = -1;
-	public final static int CONST = 0;
+abstract class Term implements Undoable {
 
 	public Term goals;
 
@@ -21,11 +14,11 @@ abstract class Term extends Data implements Undoable {
 	}
 
 	public Term ArgDeRef(int i) {
-		return Arg(i).Deref();
+		return this.Arg(i).Deref();
 	}
 
 	public Term ArgNoDeRef(int i) {
-		return Arg(i);
+		return this.Arg(i);
 	}
 
 	/**
@@ -44,7 +37,7 @@ abstract class Term extends Data implements Undoable {
 
 	public Term Deref() {
 		System.out.println("general deref on terms not available");
-		return (Term) this;
+		return this;
 	}
 
 	@Override
@@ -58,7 +51,7 @@ abstract class Term extends Data implements Undoable {
 		System.out.println("general equals on terms not available");
 		if (!(obj instanceof Term))
 			return false;
-		return Equal((Term) obj);
+		return this.Equal((Term) obj);
 	}
 
 	boolean Equal(Term that) {
@@ -67,12 +60,12 @@ abstract class Term extends Data implements Undoable {
 	}
 
 	public Term findOrAttrValue(Prolog trail, boolean createIfMissing, Term name) {
-		if (attrs == null || attrs == Const.Nil) {
+		if (this.attrs == null || this.attrs == Const.Nil) {
 			if (!createIfMissing)
 				return Const.Nil;
-			Term wasAttrs = attrs;
+			Term wasAttrs = this.attrs;
 			Fun newatts = null;
-			attrs = Const.Nil;
+			this.attrs = Const.Nil;
 			newatts = new Fun("att", name, null, Const.Nil);
 			if (trail != null) {
 				trail.push(new Undoable() {
@@ -84,10 +77,10 @@ abstract class Term extends Data implements Undoable {
 			}
 			return newatts;
 		} else {
-			Term next = attrs;
+			Term next = this.attrs;
 			do {
 				if (next.Arg(0).Equal(name)) {
-					return (Fun) next;
+					return next;
 				}
 				Term nnext = next.Arg(2);
 				if (!nnext.GetName().equals("att")) {
@@ -104,25 +97,25 @@ abstract class Term extends Data implements Undoable {
 
 	// @TODO
 	public Operation FindProc(int i) {
-		return Prolog.Predicates.LoadPred(GetName(), i);
+		return Prolog.Predicates.LoadPred(this.GetName(), i);
 	}
 
 	abstract public void formattedOutput(int formatFlags, Appendable buffer) throws IOException;
 
 	public Term freeze(Prolog trail, Term newval) {
-		Term prev = frozenGoals();
+		Term prev = this.frozenGoals();
 		Term newgoals = Data.Cons(newval, prev);
 		trail.push(new Undoable() {
 			@Override
 			public void UnTrailSelf() {
-				goals = prev;
+				Term.this.goals = prev;
 			}
 		});
 		return this.goals = newgoals;
 	}
 
 	public Term frozenGoals() {
-		return nullIsNil(goals);
+		return this.nullIsNil(this.goals);
 	}
 
 	public Term[] GetArgs() {
@@ -136,11 +129,11 @@ abstract class Term extends Data implements Undoable {
 	}
 
 	public boolean isAttvar() {
-		return attrs != null && attrs != Const.Nil;
+		return this.attrs != null && this.attrs != Const.Nil;
 	}
 
 	public boolean isFrozen() {
-		return goals != null && goals != Const.Nil;
+		return this.goals != null && this.goals != Const.Nil;
 	}
 
 	boolean IsList() {
@@ -152,8 +145,8 @@ abstract class Term extends Data implements Undoable {
 	}
 
 	long LongValue() {
-		Term deref = Deref();
-		if (deref != (Term) this)
+		Term deref = this.Deref();
+		if (deref != this)
 			return deref.LongValue();
 		System.out.println("general LongValue on terms not available");
 		return -1;
@@ -164,10 +157,10 @@ abstract class Term extends Data implements Undoable {
 	}
 
 	public void putAttrValue(Prolog trail, Term name, Term val) {
-		Term wasAttrs = attrs;
+		Term wasAttrs = this.attrs;
 		Term newatts = null;
-		if (attrs == null || attrs == Const.Nil) {
-			attrs = Const.Nil;
+		if (this.attrs == null || this.attrs == Const.Nil) {
+			this.attrs = Const.Nil;
 			newatts = new Fun("att", name, val, Const.Nil);
 			if (trail != null) {
 				trail.push(new Undoable() {
@@ -179,7 +172,7 @@ abstract class Term extends Data implements Undoable {
 					}
 				});
 			}
-			attrs = newatts;
+			this.attrs = newatts;
 			return;
 		} else {
 			Term next = wasAttrs;
@@ -203,22 +196,22 @@ abstract class Term extends Data implements Undoable {
 	}
 
 	public void setAttrs(Prolog trail, Term newval) {
-		Term prev = nullIsNil(attrs);
+		Term prev = this.nullIsNil(this.attrs);
 		trail.push(new Undoable() {
 			@Override
 			public void UnTrailSelf() {
-				attrs = prev;
+				Term.this.attrs = prev;
 			}
 		});
 		this.attrs = newval;
 	}
 
 	public void setGoals(Prolog trail, Term newval) {
-		Term prev = nullIsNil(goals);
+		Term prev = this.nullIsNil(this.goals);
 		trail.push(new Undoable() {
 			@Override
 			public void UnTrailSelf() {
-				goals = prev;
+				Term.this.goals = prev;
 			}
 		});
 		this.goals = newval;
@@ -227,7 +220,7 @@ abstract class Term extends Data implements Undoable {
 	public String toQuotedString() {
 		Appendable buffer = new StringBuilder();
 		try {
-			formattedOutput(1, buffer);
+			this.formattedOutput(1, buffer);
 		} catch (Throwable e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -236,7 +229,7 @@ abstract class Term extends Data implements Undoable {
 	}
 
 	public String toString() {
-		return toQuotedString();
+		return this.toQuotedString();
 	}
 
 	boolean Unify(Term that, Prolog mach) {
@@ -251,7 +244,7 @@ abstract class Term extends Data implements Undoable {
 	abstract public boolean isVar();
 
 	public boolean isFVar() {
-		return isFrozen() && isVar();
+		return this.isFrozen() && this.isVar();
 	}
 
 	abstract public boolean isStruct();
@@ -260,6 +253,10 @@ abstract class Term extends Data implements Undoable {
 
 	public boolean isInt() {
 		return false;
+	}
+
+	public double DoubleValue() {
+		return this.LongValue();
 	}
 
 }

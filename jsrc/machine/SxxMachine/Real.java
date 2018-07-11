@@ -6,15 +6,15 @@ public class Real extends Term {
 	public Number Num;
 
 	Real(Number i) {
-		Num = i;
+		this.Num = i;
 	}
 
 	Term Copy(Prolog m, long t) {
-		return new Real(Num);
+		return new Real(this.Num);
 	}
 
 	long LongValue() {
-		return Num.longValue();
+		return this.Num.longValue();
 	}
 
 	public Term Deref() {
@@ -22,33 +22,33 @@ public class Real extends Term {
 	}
 
 	public void formattedOutput(int formatFlags, Appendable buffer) throws IOException {
-		buffer.append("" + Num);
+		buffer.append("" + this.Num);
 	}
 
 	public boolean Unify(Term that, Prolog mach) {
-		if (that.Arity() != Arity()) {
+		if (that.Arity() != this.Arity()) {
 			return that.Bind(this, mach);
 		}
 		return (this.DoubleValue() == (this.DoubleValue()));
 	}
 
 	boolean Equal(Term that) {
-		if (that.Arity() != Arity()) {
+		if (that.Arity() != this.Arity()) {
 			return false;
 		}
 		return (this.DoubleValue() == (this.DoubleValue()));
 	}
 
 	public String GetName() {
-		return "" + Num;
+		return "" + this.Num;
 	}
 
-	public final int Arity() {
-		return Term.REAL;
+	public int Arity() {
+		return Data.REAL;
 	}
 
 	public final double DoubleValue() {
-		return Num.doubleValue();
+		return this.Num.doubleValue();
 	}
 
 	@Override
@@ -73,7 +73,7 @@ public class Real extends Term {
 
 	@Override
 	public boolean isInt() {
-		return Num.hashCode() == Num.intValue();
+		return this.Num.hashCode() == this.Num.intValue();
 	}
 
 }
