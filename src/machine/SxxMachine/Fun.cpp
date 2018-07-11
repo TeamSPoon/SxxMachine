@@ -19,23 +19,17 @@ namespace SxxMachine {
 		return f;
 	}
 
-	Fun::Fun(const wstring& N) {
-		Name = N;
+	Fun::Fun(const wstring& N, const int& arity) : Fun(N, new Term[arity]) {
 	}
 
-	Fun::Fun(const wstring& N, const int& arity) {
-		Name = N;
-		Arguments = std::vector<Term*>(arity);
-		if(arity == 2) {
-			isLixt = Name == ".";
-		}
+	Fun::Fun(Const* N, const int& arity) : Fun(N->GetName(), new Term[arity]) {
 	}
 
 	Fun::Fun(const wstring& N, vector<Term> &args) {
 		Name = N;
 		Arguments = args;
 		if(Arguments.size() == 2) {
-			isLixt = Name == ".";
+			isLixt = Name[0];
 		}
 	}
 
@@ -54,13 +48,14 @@ namespace SxxMachine {
 	long long Fun::LongValue() {
 		int arity = Arguments.size();
 		// Term a1, a2;
+		wstring Name = this->Name;
 		long long i1, i2;
 		if(arity == 1) {
 			i1 = (Arguments[0]->Deref())->LongValue();
-			if(Name == (wstring("-")).intern()) {
+			if(Name == "-") {
 				return -i1;
 			}
-			if(Name == (wstring("+")).intern()) {
+			if(Name == "+") {
 				return i1;
 			}
 			return 0;
@@ -70,16 +65,16 @@ namespace SxxMachine {
 		}
 		i1 = (Arguments[0]->Deref())->LongValue();
 		i2 = (Arguments[1]->Deref())->LongValue();
-		if(Name == (wstring("-")).intern()) {
+		if(Name == "-") {
 			return i1 - i2;
 		}
-		if(Name == (wstring("+")).intern()) {
+		if(Name == "+") {
 			return i1 + i2;
 		}
-		if(Name == (wstring("*")).intern()) {
+		if(Name == "*") {
 			return i1 * i2;
 		}
-		if(Name == (wstring("/")).intern()) {
+		if(Name == "/") {
 			return i1 / i2;
 		}
 		return 0;
@@ -89,28 +84,22 @@ namespace SxxMachine {
 		return this;
 	}
 
-	bool Fun::islist(const int& i, const wstring& Name) {
-		if(i != 2) {
-			return false;
-		}
-		return Name == (wstring(".")).intern();
-	}
-
 	bool Fun::IsList() {
-		return islist(this->Arguments.size(), this->Name);
+		return isLixt == '.';
 	}
 
 	void Fun::formattedListOutput(const int& formatFlags, Appendable* buffer, Term* T) throw(IOException) {
 		while(true) {
+			T = T->Deref();
 			if(T->IsNil()) {
 				return;
 			}
 			if(T->IsList()) {
-				int arity = T->Arity();
-				int carg = 1;
+				int arity = T->Arity() - 1;
+				int carg = 0;
 				while(carg < arity) {
 					buffer->append(",");
-					T->Arg(carg)->formattedOutput(formatFlags, buffer);
+					T->ArgDeRef(carg)->formattedOutput(formatFlags, buffer);
 					carg++;
 				}
 				T = T->Arg(carg);
@@ -124,18 +113,14 @@ namespace SxxMachine {
 	}
 
 	void Fun::formattedOutput(const int& formatFlags, Appendable* buffer) throw(IOException) {
-		// int i = Arguments.length;
-		if(isLixt) {
+		if(isLixt == '.') {
 			buffer->append("[");
-			formattedListOutput(formatFlags, buffer, Arguments[1]);
+			Arguments[0]->Deref().formattedOutput(formatFlags, buffer);
+			formattedListOutput(formatFlags, buffer, Arguments[1]->Deref());
 			buffer->append("]");
 			return;
 		}
-		if(formatFlags != 0) {
-			Const::formattedOutputC(formatFlags, buffer, GetName());
-		} else {
-			buffer->append(GetName());
-		}
+		Const::formattedOutputC(formatFlags, buffer, GetName());
 		buffer->append("(");
 		int arity1 = Arity();
 		for(int carg = 0; carg < arity1; carg++) {
@@ -152,14 +137,14 @@ namespace SxxMachine {
 		buffer->append(")");
 	}
 
-	bool Fun::Unify(Term* that) {
+	bool Fun::Unify(Term* that, Prolog* mach) {
 		Fun* tmpfunct;
 		int i, j;
 		Term arg1[], obj1;
 		Term arg2[], obj2;
 
 		if(!(SameTypes(this, that))) {
-			return that->Bind(this);
+			return that->Bind(this, mach);
 		}
 		// if (!((this.Name).equals(that.GetName()))) return false ;
 		if(static_cast<this::Name*>(!) = (that->GetName())) {
@@ -177,7 +162,7 @@ namespace SxxMachine {
 		do {
 			obj1 = arg1[--i].Deref();
 			obj2 = arg2[i].Deref();
-			if(!(obj1::Unify(obj2))) {
+			if(!(obj1::Unify(obj2, mach))) {
 				return false;
 			}
 		} while(i > 0);
@@ -226,5 +211,21 @@ namespace SxxMachine {
 
 	wstring Fun::GetName() {
 		return Name;
+	}
+
+	bool Fun::isVar() {
+		return false;
+	}
+
+	bool Fun::isFVar() {
+		return false;
+	}
+
+	bool Fun::isStruct() {
+		return true;
+	}
+
+	bool Fun::isConst() {
+		return false;
 	}
 }

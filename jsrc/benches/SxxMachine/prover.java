@@ -68,7 +68,7 @@ public static class pred_top_0 extends Code {
 
 /*
 
-top(_5470):-prover(_5470).
+top(_24640):-prover(_24640).
 
 
 */
@@ -92,10 +92,10 @@ public static class pred_on_load_prover_0 extends Code {
 
 /*
 
-on_load_prover(_5570):-write(op(950,xfy,#),_5570).
-on_load_prover(_5690):-write(op(850,xfy,&),_5690).
-on_load_prover(_5810):-write(op(500,fx,+),_5810).
-on_load_prover(_5930):-write(op(500,fx,-),_5930).
+on_load_prover(_24740):-write(op(950,xfy,#),_24740).
+on_load_prover(_24860):-write(op(850,xfy,&),_24860).
+on_load_prover(_24980):-write(op(500,fx,+),_24980).
+on_load_prover(_25100):-write(op(500,fx,-),_25100).
 
 
 */
@@ -112,28 +112,28 @@ Term continuation = local_aregs[0] ;
 local_aregs[0] = Data.F(prover.s_op,prover.posint950,prover.s_xfy,prover.s1) ;
 local_aregs[1] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_write_1::exec_static ;}
+return (Operation) prover.s_write.FindProc(1) ;}
 public static Operation exec_pred_on_load_prover_0__2(Prolog mach){ mach.FillAlternative(pred_on_load_prover_0::exec_pred_on_load_prover_0__3) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[0] ;
 local_aregs[0] = Data.F(prover.s_op,prover.posint850,prover.s_xfy,prover.s2) ;
 local_aregs[1] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_write_1::exec_static ;}
+return (Operation) prover.s_write.FindProc(1) ;}
 public static Operation exec_pred_on_load_prover_0__3(Prolog mach){ mach.FillAlternative(pred_on_load_prover_0::exec_pred_on_load_prover_0__4) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[0] ;
 local_aregs[0] = Data.F(prover.s_op,prover.posint500,prover.s_fx,prover.s3) ;
 local_aregs[1] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_write_1::exec_static ;}
+return (Operation) prover.s_write.FindProc(1) ;}
 public static Operation exec_pred_on_load_prover_0__4(Prolog mach){ mach.RemoveChoice() ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[0] ;
 local_aregs[0] = Data.F(prover.s_op,prover.posint500,prover.s_fx,prover.s4) ;
 local_aregs[1] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_write_1::exec_static ;}
+return (Operation) prover.s_write.FindProc(1) ;}
 }
 
 
@@ -141,8 +141,8 @@ public static class pred_prover_0 extends Code {
 
 /*
 
-prover(_6044):-problem(_6000,_6002,_6004,implies(_6002,_6004,fail(_6044))).
-prover(_6238):-call(_6238).
+prover(_25214):-problem(_25170,_25172,_25174,implies(_25172,_25174,fail(_25214))).
+prover(_25408):-call(_25408).
 
 
 */
@@ -178,16 +178,16 @@ public static class pred_problem_3 extends Code {
 
 /*
 
-problem(1,-a,+a,_6322):-call(_6322).
-problem(2,+a,-a& -a,_6464):-call(_6464).
-problem(3,-a,+to_be# -to_be,_6606):-call(_6606).
-problem(4,-a& -a,-a,_6748):-call(_6748).
-problem(5,-a,+b# -a,_6890):-call(_6890).
-problem(6,-a& -b,-b& -a,_7042):-call(_7042).
-problem(7,-a,-b# +b& -a,_7194):-call(_7194).
-problem(8,-a# -b# +c,-b# -a# +c,_7366):-call(_7366).
-problem(9,-a# +b,+b& -c# -a# +c,_7538):-call(_7538).
-problem(10,(-a# +c)&(-b# +c),-a& -b# +c,_7720):-call(_7720).
+problem(1,-a,+a,_25492):-call(_25492).
+problem(2,+a,-a& -a,_25634):-call(_25634).
+problem(3,-a,+to_be# -to_be,_25776):-call(_25776).
+problem(4,-a& -a,-a,_25918):-call(_25918).
+problem(5,-a,+b# -a,_26060):-call(_26060).
+problem(6,-a& -b,-b& -a,_26212):-call(_26212).
+problem(7,-a,-b# +b& -a,_26364):-call(_26364).
+problem(8,-a# -b# +c,-b# -a# +c,_26536):-call(_26536).
+problem(9,-a# +b,+b& -c# -a# +c,_26708):-call(_26708).
+problem(10,(-a# +c)&(-b# +c),-a& -b# +c,_26890):-call(_26890).
 
 
 */
@@ -335,7 +335,7 @@ public static class pred_implies_2 extends Code {
 
 /*
 
-implies(_7818,_7820,_7884):-opposite(_7820,_7826,add_conjunction(_7818,_7826,fs([],[],[],[]),_7884)).
+implies(_26988,_26990,_27054):-opposite(_26990,_26996,add_conjunction(_26988,_26996,fs([],[],[],[]),_27054)).
 
 
 */
@@ -368,10 +368,10 @@ public static class pred_opposite_2 extends Code {
 
 /*
 
-opposite(_8066&_8068,_8072#_8074,_8138):-cut(1,opposite(_8066,_8072,opposite(_8068,_8074,_8138))).
-opposite(_8318#_8320,_8324&_8326,_8390):-cut(1,opposite(_8318,_8324,opposite(_8320,_8326,_8390))).
-opposite(+_8570,-_8570,_8614):-cut(1,_8614).
-opposite(-_8694,+_8694,_8726):-call(_8726).
+opposite(_27236&_27238,_27242#_27244,_27308):-cut(1,opposite(_27236,_27242,opposite(_27238,_27244,_27308))).
+opposite(_27488#_27490,_27494&_27496,_27560):-cut(1,opposite(_27488,_27494,opposite(_27490,_27496,_27560))).
+opposite(+_27740,-_27740,_27784):-cut(1,_27784).
+opposite(-_27864,+_27864,_27896):-call(_27896).
 
 
 */
@@ -446,7 +446,7 @@ public static class pred_add_conjunction_3 extends Code {
 
 /*
 
-add_conjunction(_8822,_8824,_8826,_8898):-expand(_8822,_8826,_8834,expand(_8824,_8834,_8842,refute(_8842,_8898))).
+add_conjunction(_27992,_27994,_27996,_28068):-expand(_27992,_27996,_28004,expand(_27994,_28004,_28012,refute(_28012,_28068))).
 
 
 */
@@ -484,13 +484,13 @@ public static class pred_expand_3 extends Code {
 
 /*
 
-expand(_9150,refuted,refuted,_9194):-cut(1,_9194).
-expand(_9294&_9296,fs(_9300,_9302,_9304,_9306),refuted,_9372):-includes(_9300,_9294&_9296,cut(1,_9372)).
-expand(_9522&_9524,fs(_9528,_9530,_9532,_9534),fs(_9528,_9530,_9532,_9534),_9610):-includes(_9530,_9522&_9524,cut(1,_9610)).
-expand(_9760&_9762,fs(_9766,_9768,_9770,_9772),_9780,_9870):-cut(1,expand(_9760,fs(_9766,[_9760&_9762|_9768],_9770,_9772),_9810,expand(_9762,_9810,_9780,_9870))).
-expand(_10098#_10100,fs(_10104,_10106,_10108,_10110),_10118,_10206):-cut(1,opposite(_10098#_10100,_10130,extend(_10130,_10104,_10106,_10134,fs(_10134,_10106,_10108,_10110),_10118,_10206))).
-expand(+_10462,fs(_10466,_10468,_10470,_10472),_10480,_10550):-cut(1,extend(_10462,_10470,_10472,_10488,fs(_10466,_10468,_10488,_10472),_10480,_10550)).
-expand(-_10756,fs(_10760,_10762,_10764,_10766),_10774,_10838):-extend(_10756,_10766,_10764,_10784,fs(_10760,_10762,_10764,_10784),_10774,_10838).
+expand(_28320,refuted,refuted,_28364):-cut(1,_28364).
+expand(_28464&_28466,fs(_28470,_28472,_28474,_28476),refuted,_28542):-includes(_28470,_28464&_28466,cut(1,_28542)).
+expand(_28692&_28694,fs(_28698,_28700,_28702,_28704),fs(_28698,_28700,_28702,_28704),_28780):-includes(_28700,_28692&_28694,cut(1,_28780)).
+expand(_28930&_28932,fs(_28936,_28938,_28940,_28942),_28950,_29040):-cut(1,expand(_28930,fs(_28936,[_28930&_28932|_28938],_28940,_28942),_28980,expand(_28932,_28980,_28950,_29040))).
+expand(_29268#_29270,fs(_29274,_29276,_29278,_29280),_29288,_29376):-cut(1,opposite(_29268#_29270,_29300,extend(_29300,_29274,_29276,_29304,fs(_29304,_29276,_29278,_29280),_29288,_29376))).
+expand(+_29632,fs(_29636,_29638,_29640,_29642),_29650,_29720):-cut(1,extend(_29632,_29640,_29642,_29658,fs(_29636,_29638,_29658,_29642),_29650,_29720)).
+expand(-_29926,fs(_29930,_29932,_29934,_29936),_29944,_30008):-extend(_29926,_29936,_29934,_29954,fs(_29930,_29932,_29934,_29954),_29944,_30008).
 
 
 */
@@ -656,8 +656,8 @@ public static class pred_includes_2 extends Code {
 
 /*
 
-includes([_2064|_2066],_2064,_2074):-cut(1,_2074).
-includes([_2098|_2100],_2102,_2110):-includes(_2100,_2102,_2110).
+includes([_30208|_30210],_30208,_30250):-cut(1,_30250).
+includes([_30348|_30350],_30356,_30396):-includes(_30350,_30356,_30396).
 
 
 */
@@ -704,9 +704,9 @@ public static class pred_extend_6 extends Code {
 
 /*
 
-extend(_2134,_2136,_2138,_2140,_2142,refuted,_2150):-includes(_2138,_2134,cut(1,_2150)).
-extend(_2188,_2190,_2192,_2190,_2194,_2194,_2202):-includes(_2190,_2188,cut(1,_2202)).
-extend(_2242,_2244,_2246,[_2242|_2244],_2248,_2248,_2258):-call(_2258).
+extend(_30538,_30540,_30542,_30544,_30546,refuted,_30618):-includes(_30542,_30538,cut(1,_30618)).
+extend(_30804,_30806,_30808,_30806,_30812,_30812,_30884):-includes(_30806,_30804,cut(1,_30884)).
+extend(_31070,_31072,_31080,[_31070|_31072],_31084,_31084,_31108):-call(_31108).
 
 
 */
@@ -798,8 +798,8 @@ public static class pred_refute_1 extends Code {
 
 /*
 
-refute(refuted,_2288):-cut(1,_2288).
-refute(fs([_2310&_2312|_2318],_2324,_2326,_2328),_2352):-opposite(_2310,_2330,opposite(_2312,_2332,unify(fs(_2318,_2324,_2326,_2328),_2344,add_conjunction(_2330,_2312,_2344,add_conjunction(_2330,_2332,_2344,add_conjunction(_2310,_2332,_2344,_2352)))))).
+refute(refuted,_31312):-cut(1,_31312).
+refute(fs([_31414&_31416|_31422],_31428,_31430,_31432),_31546):-opposite(_31414,_31442,opposite(_31416,_31448,unify(fs(_31422,_31428,_31430,_31432),_31462,add_conjunction(_31442,_31416,_31462,add_conjunction(_31442,_31448,_31462,add_conjunction(_31414,_31448,_31462,_31546)))))).
 
 
 */

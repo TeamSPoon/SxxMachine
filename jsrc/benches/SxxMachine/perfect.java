@@ -96,7 +96,7 @@ local_aregs[1] = Data.F(perfect.s_perfect,perfect.posint100,var1.Deref()) ;
 local_aregs[2] = var2 ;
 local_aregs[3] = Data.F(perfect.s_ok,var2.Deref(),continuation) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_findall_3::exec_static ;}
+return (Operation) perfect.s_findall.FindProc(3) ;}
 }
 
 
@@ -157,7 +157,7 @@ local_aregs[0] = var3 ;
 local_aregs[1] = Data.F(perfect.s1,var2.Deref(),var2.Deref()) ;
 local_aregs[2] = Data.F(perfect.s_smallerorequal,var3.Deref(),var1.Deref(),Data.F(perfect.s_arithequal,perfect.posint0,Data.F(perfect.s_mod,var1.Deref(),var2.Deref()),continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_is_2::exec_static ;}
+return (Operation) perfect.s_is.FindProc(2) ;}
 public static Operation exec_pred_divisible_2__2(Prolog mach){ mach.RemoveChoice() ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[2] ;
@@ -206,7 +206,7 @@ local_aregs[0] = var3 ;
 local_aregs[1] = perfect.posint2 ;
 local_aregs[2] = Data.F(perfect.s_smallerthan,perfect.posint1,var1.Deref(),Data.F(perfect.s_not,Data.F(perfect.s_divisible,var1.Deref(),var3.Deref()),continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_is_2::exec_static ;}
+return (Operation) perfect.s_is.FindProc(2) ;}
 public static Operation exec_pred_isprime_2__2(Prolog mach){ mach.RemoveChoice() ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[2] ;
@@ -275,7 +275,7 @@ local_aregs[1] = Data.F(perfect.s3,var2.Deref(),perfect.posint1) ;
 local_aregs[2] = Data.F(perfect.s_power,var1.Deref(),var4.Deref(),var5,Data.F(perfect.s_is,var3.Deref(),Data.F(perfect.s1,var5.Deref(),var1.Deref()),continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[3] = null ;
-return (Operation)pred_is_2::exec_static ;}
+return (Operation) perfect.s_is.FindProc(2) ;}
 }
 
 

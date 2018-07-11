@@ -102,12 +102,11 @@ public class Prolog {
 	public int CurrentChoice;
 	int TrailTop;
 	Lexer lextoc = null;
-	Term assumptions;
-	Term pendinggoals;
+	public Term assumptions;
+	public Term pendingGoals;
 	int ExceptionRaised;
 	InputStream currentinput;
 	OutputStream currentoutput;
-	public Term pendingGoals;
 	Operation code;
 
 	public void run() {
@@ -140,8 +139,8 @@ public class Prolog {
 			// there are pending goals - deal with them
 			ExceptionRaised = 0;
 			Continuation c = new Continuation(Areg, GetArity(code), code);
-			Areg[0] = new Fun("execpendinggoals", pendinggoals, c);
-			TrailEntry(new PopPendingGoals(this, pendinggoals));
+			Areg[0] = new Fun("execpendinggoals", pendingGoals, c);
+			TrailEntry(new PopPendingGoals(this, pendingGoals));
 			pendingGoals = Const.Intern("[]");
 			code = Prolog.Call1;
 		}
@@ -460,7 +459,7 @@ final class PopPendingGoals extends PrologObject {
 	}
 
 	public void UnTrailSelf() {
-		mach.pendinggoals = old;
+		mach.pendingGoals = old;
 	}
 
 }

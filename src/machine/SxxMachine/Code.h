@@ -4,7 +4,6 @@
 #include "Operation.h"
 #include <string>
 #include <vector>
-#include <functional>
 #include <iostream>
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
@@ -21,12 +20,12 @@ namespace SxxMachine {
 	// allows to make a new Prolog, start a goal and get answers back
 	// all at once as with findall
 
-	class Code : public MyOperation {
+	class Code : public Operation {
 	protected:
 		virtual int Arity();
 
 	public:
-		Operation Exec(Prolog* mach);
+		Operation* Exec(Prolog* mach) override;
 
 	protected:
 		virtual void Init(Prolog* mach);
@@ -39,7 +38,7 @@ namespace SxxMachine {
 	public:
 		FailProc(Prolog* mach);
 
-		Operation Exec(Prolog* mach) override;
+		Operation* Exec(Prolog* mach) override;
 
 	};
 
@@ -50,7 +49,7 @@ namespace SxxMachine {
 	public:
 		CutProc(Prolog* mach);
 
-		Operation Exec(Prolog* mach) override;
+		Operation* Exec(Prolog* mach) override;
 	};
 
 	class TrueProc : public Code {
@@ -60,7 +59,7 @@ namespace SxxMachine {
 	public:
 		TrueProc(Prolog* mach);
 
-		Operation Exec(Prolog* mach) override;
+		Operation* Exec(Prolog* mach) override;
 
 	};
 
@@ -71,7 +70,7 @@ namespace SxxMachine {
 	public:
 		Call1Proc(Prolog* mach);
 
-		Operation Exec(Prolog* mach) override;
+		Operation* Exec(Prolog* mach) override;
 	};
 
 	class Call2Proc : public Code {
@@ -81,14 +80,7 @@ namespace SxxMachine {
 	public:
 		Call2Proc(Prolog* mach);
 
-		Operation Exec(Prolog* mach) override;
-	};
-
-	class Undoable {
-
-	public:
-		virtual void Unwind() = 0;
-
+		Operation* Exec(Prolog* mach) override;
 	};
 
 }

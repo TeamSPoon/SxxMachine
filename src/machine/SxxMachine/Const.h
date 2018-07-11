@@ -31,7 +31,7 @@ namespace SxxMachine {
 
 		void formattedOutput(const int& formatFlags, Appendable* buffer) throw(IOException) override;
 
-		bool Unify(Term* that) override;
+		bool Unify(Term* that, Prolog* mach) override;
 
 		bool Equal(Term* that) override;
 
@@ -41,9 +41,17 @@ namespace SxxMachine {
 
 		bool IsNil() override;
 
-		std::vector<Operation> byArity;
+		std::vector<Operation*> byArity;
 
-		Operation FindProc(const int& i) override;
+		Operation* FindProc(const int& i) override;
+
+		bool isVar() override;
+
+		bool isFVar() override;
+
+		bool isStruct() override;
+
+		bool isConst() override;
 	};
 
 }

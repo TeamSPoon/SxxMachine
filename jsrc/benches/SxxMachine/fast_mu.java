@@ -98,7 +98,7 @@ local_aregs[0] = var1.Deref() ;
 local_aregs[1] = var2 ;
 local_aregs[2] = Data.F(fast_mu.s_is,var3,Data.F(fast_mu.s2,var2.Deref(),fast_mu.posint1),Data.F(fast_mu.s_derive,Data.F(fast_mu.s4,fast_mu.s_m,Data.F(fast_mu.s4,fast_mu.s_i,Const.Nil)),var1.Deref(),fast_mu.posint1,var3.Deref(),var4,fast_mu.posint0,continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_length_2::exec_static ;}
+return (Operation) fast_mu.s_length.FindProc(2) ;}
 }
 
 
@@ -176,7 +176,7 @@ local_aregs[1] = Data.F(fast_mu.s1,var6.Deref(),fast_mu.posint1) ;
 local_aregs[2] = Data.F(fast_mu.s_derive,var1.Deref(),var2.Deref(),var3.Deref(),var4.Deref(),var5.Deref(),var7.Deref(),continuation) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[6] = local_aregs[5] = local_aregs[4] = local_aregs[3] = null ;
-return (Operation)pred_is_2::exec_static ;}
+return (Operation) fast_mu.s_is.FindProc(2) ;}
 }
 
 
@@ -412,7 +412,7 @@ local_aregs[1] = Data.F(fast_mu.s1,var2.Deref(),var2.Deref()) ;
 local_aregs[2] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[11] = local_aregs[10] = local_aregs[9] = local_aregs[8] = local_aregs[7] = local_aregs[6] = local_aregs[5] = local_aregs[4] = local_aregs[3] = null ;
-return (Operation)pred_is_2::exec_static ;}
+return (Operation) fast_mu.s_is.FindProc(2) ;}
 public static Operation exec_pred_rule_11__3(Prolog mach){ mach.FillAlternative(pred_rule_11::exec_pred_rule_11__4) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[11] ;
@@ -535,7 +535,7 @@ local_aregs[1] = Data.F(fast_mu.s1,var8.Deref(),fast_mu.posint1) ;
 local_aregs[2] = Data.F(fast_mu.s_rule,var2.Deref(),var3.Deref(),var4.Deref(),var5.Deref(),var6.Deref(),var7.Deref(),var13.Deref(),var1.Deref(),var10.Deref(),var11.Deref(),var12.Deref(),continuation) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[11] = local_aregs[10] = local_aregs[9] = local_aregs[8] = local_aregs[7] = local_aregs[6] = local_aregs[5] = local_aregs[4] = local_aregs[3] = null ;
-return (Operation)pred_is_2::exec_static ;}
+return (Operation) fast_mu.s_is.FindProc(2) ;}
 }
 
 

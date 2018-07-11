@@ -10,8 +10,8 @@ package SxxMachine;
  * @author Naoyuki Tamura (tamura@kobe-u.ac.jp)
  * @version 1.0
  */
-@FunctionalInterface
-public interface Operation {
+//@FunctionalInterface
+public interface Operation extends IOperation {
 	/**
 	 * Executes this operation and returns a continuation goal.
 	 *
@@ -19,5 +19,4 @@ public interface Operation {
 	 * @exception PrologException if a Prolog exception is raised.
 	 * @see Prolog
 	 */
-	public Operation Exec(Prolog prolog);
 }

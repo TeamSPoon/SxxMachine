@@ -686,42 +686,42 @@ Term continuation = local_aregs[0] ;
 local_aregs[0] = Data.F(asm.s_op,asm.posint300,asm.s_xfx,asm.s18) ;
 local_aregs[1] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_write_1::exec_static ;}
+return (Operation) asm.s_write.FindProc(1) ;}
 public static Operation exec_pred_on_load_asm_0__2(Prolog mach){ mach.FillAlternative(pred_on_load_asm_0::exec_pred_on_load_asm_0__3) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[0] ;
 local_aregs[0] = Data.F(asm.s_op,asm.posint1000,asm.s_fx,asm.s_mode) ;
 local_aregs[1] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_write_1::exec_static ;}
+return (Operation) asm.s_write.FindProc(1) ;}
 public static Operation exec_pred_on_load_asm_0__3(Prolog mach){ mach.FillAlternative(pred_on_load_asm_0::exec_pred_on_load_asm_0__4) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[0] ;
 local_aregs[0] = Data.F(asm.s_op,asm.posint950,asm.s_xfx,asm.s12) ;
 local_aregs[1] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_write_1::exec_static ;}
+return (Operation) asm.s_write.FindProc(1) ;}
 public static Operation exec_pred_on_load_asm_0__4(Prolog mach){ mach.FillAlternative(pred_on_load_asm_0::exec_pred_on_load_asm_0__5) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[0] ;
 local_aregs[0] = Data.F(asm.s_determinate,Data.F(asm.s9,Data.F(asm.s10,asm.s_cmp_error,asm.posint1),Data.F(asm.s9,Data.F(asm.s10,asm.s_name,asm.posint2),Data.F(asm.s9,Data.F(asm.s10,asm.s_length,asm.posint2),Data.F(asm.s9,Data.F(asm.s10,asm.s_asm_hash_value,asm.posint2),Const.Nil))))) ;
 local_aregs[1] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_write_1::exec_static ;}
+return (Operation) asm.s_write.FindProc(1) ;}
 public static Operation exec_pred_on_load_asm_0__5(Prolog mach){ mach.FillAlternative(pred_on_load_asm_0::exec_pred_on_load_asm_0__6) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[0] ;
 local_aregs[0] = Data.F(asm.s_mode,Data.F(asm.s_asm_pass12,asm.s_c,asm.s_d,asm.s_f)) ;
 local_aregs[1] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_write_1::exec_static ;}
+return (Operation) asm.s_write.FindProc(1) ;}
 public static Operation exec_pred_on_load_asm_0__6(Prolog mach){ mach.RemoveChoice() ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[0] ;
 local_aregs[0] = Data.F(asm.s_mode,Data.F(asm.s_opcode,asm.s_c,asm.s_f)) ;
 local_aregs[1] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_write_1::exec_static ;}
+return (Operation) asm.s_write.FindProc(1) ;}
 }
 
 
@@ -9292,7 +9292,7 @@ local_aregs[1] = var4 ;
 local_aregs[2] = var5 ;
 local_aregs[3] = Data.F(asm.s12,Data.F(asm.s_opcode,var4.Deref(),var6),Data.F(asm.s_b_ASPN_c,var6.Deref()),Data.F(asm.s_asm_pass2_inst_op,var1.Deref(),asm.posint0,var5.Deref(),continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_functor_3::exec_static ;}
+return (Operation) asm.s_functor.FindProc(3) ;}
 public static Operation exec_pred_asm_pass2_inst_3__125(Prolog mach){ mach.RemoveChoice() ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[3] ;

@@ -3,8 +3,10 @@ using namespace std;
 #include "Prolog.h"
 #include "Fun.h"
 #include "Var.h"
+#include "Operation.h"
 #include "PredTable.h"
 #include "Code.h"
+#include "Undoable.h"
 #include "Lexer.h"
 #include "../../benches/SxxMachine/run.h"
 #include "Int.h"
@@ -53,7 +55,7 @@ Prolog* Prolog::M = nullptr;
 		// then you can call the goal
 
 		Var tempVar(M);
-		Term* Goal = new Fun((wstring("animal")).intern(), &tempVar); // animal(X)
+		Term* Goal = new Fun("animal", &tempVar); // animal(X)
 		Term* AnswerList = M->SolveGoal(Goal);
 
 		// AnswerList is now a list of instances of the Goal
@@ -100,10 +102,10 @@ TrueProc* Prolog::True0 = nullptr;
 
 		InitOnce();
 		Int tempVar(0);
-		Areg[0] = new Fun((wstring("toplevel")), &tempVar);
+		Areg[0] = new Fun("toplevel", &tempVar);
 		// 0 is a dummy continuation
 		InitAlways();
-		Operation next = nullptr;
+		Operation* next = nullptr;
 		code = Prolog::Call1;
 		code = pred_toplevel_0::exec_static; // (mach);
 		while(true) {
@@ -111,12 +113,12 @@ TrueProc* Prolog::True0 = nullptr;
 				if(Areg[0] == nullptr) {
 					Debug(code);
 				}
-				next = code(this);
+				next = code->Exec(this);
 				if(next == nullptr || Areg[0] == nullptr) {
 					Debug(code);
 					break;
 				} else {
-					code = static_cast<Operation>(next);
+					code = static_cast<Operation*>(next);
 				}
 			}
 			if(ExceptionRaised > 1) {
@@ -128,8 +130,8 @@ TrueProc* Prolog::True0 = nullptr;
 			// there are pending goals - deal with them
 			ExceptionRaised = 0;
 			Continuation* c = new Continuation(Areg, GetArity(code), code);
-			Areg[0] = new Fun((wstring("execpendinggoals")).intern(), pendinggoals, c);
-			PopPendingGoals tempVar2(this, pendinggoals);
+			Areg[0] = new Fun("execpendinggoals", pendingGoals, c);
+			PopPendingGoals tempVar2(this, pendingGoals);
 			TrailEntry(&tempVar2);
 			pendingGoals = Const::Intern("[]");
 			code = Prolog::Call1;
@@ -141,14 +143,14 @@ TrueProc* Prolog::True0 = nullptr;
 		return Data::F("cut", &tempVar, continuation);
 	}
 
-	int Prolog::GetArity(Operation code) {
+	int Prolog::GetArity(Operation* code) {
 		if(dynamic_cast<Code*>(code) != nullptr) {
 			return (static_cast<Code*>(code))->Arity();
 		}
 		return -1;
 	}
 
-	void Prolog::Debug(Operation code) {
+	void Prolog::Debug(Operation* code) {
 		try {
 			if(code != nullptr) {
 				cout << "CodeClass = " << code->getClass() << endl;
@@ -172,9 +174,9 @@ TrueProc* Prolog::True0 = nullptr;
 
 		Fun tempVar("halt", new Int(0));
 		Areg[0] = new Fun("findall", Goal, Goal, AnswerList, &tempVar);
-		//pred_findall_3.entry_code;
+		// pred_findall_3.entry_code;
 		while(ExceptionRaised == 0) {
-			code = code(this);
+			code = code->Exec(this);
 		}
 		return AnswerList; // exceptions are ignored here !!!!
 	}
@@ -232,11 +234,11 @@ TrueProc* Prolog::True0 = nullptr;
 		return lextoc->next();
 	}
 
-	Operation Prolog::GetAlternative() {
+	Operation* Prolog::GetAlternative() {
 		return ChoicePointStack[CurrentChoice]->Alternative;
 	}
 
-	void Prolog::FillAlternative(Operation Alt) {
+	void Prolog::FillAlternative(Operation* Alt) {
 		ChoicePointStack[CurrentChoice]->Alternative = Alt;
 	}
 
@@ -258,14 +260,18 @@ TrueProc* Prolog::True0 = nullptr;
 		}
 	}
 
-	void Prolog::TrailEntry(Term* po)
+	void Prolog::push(Undoable* undoable) {
+		TrailEntry(undoable);
+	}
+
+	void Prolog::TrailEntry(Undoable* po)
 	{ // System.out.println("trailing") ;
 		try {
 			TrailStack[TrailTop] = po;
 		} catch(const out_of_range& e) {
 			cout << "trail expansion" << endl;
 			int i = TrailStack.size();
-			std::vector<Term*> newstack(i + 20000);
+			std::vector<Undoable*> newstack = std::vector<Term*>(i + 20000);
 			while(i-- > 0) {
 				newstack[i] = TrailStack[i];
 			}
@@ -302,16 +308,8 @@ TrueProc* Prolog::True0 = nullptr;
 		CurrentChoice = CutTo;
 	}
 
-	Operation Prolog::LoadPred(const wstring& name, const int& arity) {
+	Operation* Prolog::LoadPred(const wstring& name, const int& arity) {
 		return Predicates->LoadPred(name, arity);
-	}
-
-	void Prolog::push1(Undoable* undoable) {
-		Debug(nullptr);
-	}
-
-	void Prolog::push(Undoable* undoable) {
-		Debug(nullptr);
 	}
 
 	void Prolog::Reg(const int& i) {
@@ -342,12 +340,12 @@ TrueProc* Prolog::True0 = nullptr;
 		buffer->append("general print on objects not available");
 	}
 
-	bool PrologObject::Unify(Term* that) {
+	bool PrologObject::Unify(Term* that, Prolog* mach) {
 		cout << "general unify on objects not available" << endl;
 		return false;
 	}
 
-	bool PrologObject::Bind(Term* that) {
+	bool PrologObject::Bind(Term* that, Prolog* mach) {
 		return false;
 	}
 
@@ -374,11 +372,28 @@ TrueProc* Prolog::True0 = nullptr;
 		return 0;
 	}
 
-	bool PrologObject::islist() {
+	bool PrologObject::isConst() {
+		// TODO Auto-generated method stub
 		return false;
 	}
 
-	bool PrologObject::isnil() {
+	bool PrologObject::isFVar() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	bool PrologObject::isInt() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	bool PrologObject::isStruct() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	bool PrologObject::isVar() {
+		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -416,7 +431,7 @@ TrueProc* Prolog::True0 = nullptr;
 	}
 
 	void PopPendingGoals::UnTrailSelf() {
-		mach->pendinggoals = old;
+		mach->pendingGoals = old;
 	}
 
 	PopAssumptions::PopAssumptions(Prolog* m, Term* o) {

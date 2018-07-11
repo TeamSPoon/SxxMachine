@@ -111,7 +111,7 @@ public static class pred_top_0 extends Code {
 
 /*
 
-top(_15012):-query(_15012).
+top(_38962):-query(_38962).
 
 
 */
@@ -135,8 +135,8 @@ public static class pred_query_0 extends Code {
 
 /*
 
-query(_15090):-query(_15062,fail(_15090)).
-query(_15200):-call(_15200).
+query(_39040):-query(_39012,fail(_39040)).
+query(_39150):-call(_39150).
 
 
 */
@@ -168,7 +168,7 @@ public static class pred_query_1 extends Code {
 
 /*
 
-query([_15244,_15250,_15256,_15262],_15374):-density(_15244,_15250,density(_15256,_15262,smallerthan(_15262,_15250,is(_15296,20*_15250,is(_15308,21*_15262,smallerthan(_15296,_15308,_15374)))))).
+query([_39194,_39200,_39206,_39212],_39324):-density(_39194,_39200,density(_39206,_39212,smallerthan(_39212,_39200,is(_39246,20*_39200,is(_39258,21*_39212,smallerthan(_39246,_39258,_39324)))))).
 
 
 */
@@ -202,7 +202,7 @@ public static class pred_density_2 extends Code {
 
 /*
 
-density(_15734,_15736,_15812):-pop(_15734,_15742,area(_15734,_15748,is(_15736,_15742*100//_15748,_15812))).
+density(_39684,_39686,_39762):-pop(_39684,_39692,area(_39684,_39698,is(_39686,_39692*100//_39698,_39762))).
 
 
 */
@@ -236,31 +236,31 @@ public static class pred_pop_2 extends Code {
 
 /*
 
-pop(china,8250,_16048):-call(_16048).
-pop(india,5863,_16162):-call(_16162).
-pop(ussr,2521,_16276):-call(_16276).
-pop(usa,2119,_16390):-call(_16390).
-pop(indonesia,1276,_16504):-call(_16504).
-pop(japan,1097,_16618):-call(_16618).
-pop(brazil,1042,_16732):-call(_16732).
-pop(bangladesh,750,_16846):-call(_16846).
-pop(pakistan,682,_16960):-call(_16960).
-pop(w_germany,620,_17074):-call(_17074).
-pop(nigeria,613,_17188):-call(_17188).
-pop(mexico,581,_17302):-call(_17302).
-pop(uk,559,_17416):-call(_17416).
-pop(italy,554,_17530):-call(_17530).
-pop(france,525,_17644):-call(_17644).
-pop(philippines,415,_17758):-call(_17758).
-pop(thailand,410,_17872):-call(_17872).
-pop(turkey,383,_17986):-call(_17986).
-pop(egypt,364,_18100):-call(_18100).
-pop(spain,352,_18214):-call(_18214).
-pop(poland,337,_18328):-call(_18328).
-pop(s_korea,335,_18442):-call(_18442).
-pop(iran,320,_18556):-call(_18556).
-pop(ethiopia,272,_18670):-call(_18670).
-pop(argentina,251,_18784):-call(_18784).
+pop(china,8250,_39998):-call(_39998).
+pop(india,5863,_40112):-call(_40112).
+pop(ussr,2521,_40226):-call(_40226).
+pop(usa,2119,_40340):-call(_40340).
+pop(indonesia,1276,_40454):-call(_40454).
+pop(japan,1097,_40568):-call(_40568).
+pop(brazil,1042,_40682):-call(_40682).
+pop(bangladesh,750,_40796):-call(_40796).
+pop(pakistan,682,_40910):-call(_40910).
+pop(w_germany,620,_41024):-call(_41024).
+pop(nigeria,613,_41138):-call(_41138).
+pop(mexico,581,_41252):-call(_41252).
+pop(uk,559,_41366):-call(_41366).
+pop(italy,554,_41480):-call(_41480).
+pop(france,525,_41594):-call(_41594).
+pop(philippines,415,_41708):-call(_41708).
+pop(thailand,410,_41822):-call(_41822).
+pop(turkey,383,_41936):-call(_41936).
+pop(egypt,364,_42050):-call(_42050).
+pop(spain,352,_42164):-call(_42164).
+pop(poland,337,_42278):-call(_42278).
+pop(s_korea,335,_42392):-call(_42392).
+pop(iran,320,_42506):-call(_42506).
+pop(ethiopia,272,_42620):-call(_42620).
+pop(argentina,251,_42734):-call(_42734).
 
 
 */
@@ -553,31 +553,31 @@ public static class pred_area_2 extends Code {
 
 /*
 
-area(china,3380,_18898):-call(_18898).
-area(india,1139,_19018):-call(_19018).
-area(ussr,8708,_19138):-call(_19138).
-area(usa,3609,_19258):-call(_19258).
-area(indonesia,570,_19378):-call(_19378).
-area(japan,148,_19498):-call(_19498).
-area(brazil,3288,_19618):-call(_19618).
-area(bangladesh,55,_19738):-call(_19738).
-area(pakistan,311,_19858):-call(_19858).
-area(w_germany,96,_19978):-call(_19978).
-area(nigeria,373,_20098):-call(_20098).
-area(mexico,764,_20218):-call(_20218).
-area(uk,86,_20338):-call(_20338).
-area(italy,116,_20458):-call(_20458).
-area(france,213,_20578):-call(_20578).
-area(philippines,90,_20698):-call(_20698).
-area(thailand,200,_20818):-call(_20818).
-area(turkey,296,_20938):-call(_20938).
-area(egypt,386,_21058):-call(_21058).
-area(spain,190,_21178):-call(_21178).
-area(poland,121,_21298):-call(_21298).
-area(s_korea,37,_21418):-call(_21418).
-area(iran,628,_21538):-call(_21538).
-area(ethiopia,350,_21658):-call(_21658).
-area(argentina,1080,_21778):-call(_21778).
+area(china,3380,_42848):-call(_42848).
+area(india,1139,_42968):-call(_42968).
+area(ussr,8708,_43088):-call(_43088).
+area(usa,3609,_43208):-call(_43208).
+area(indonesia,570,_43328):-call(_43328).
+area(japan,148,_43448):-call(_43448).
+area(brazil,3288,_43568):-call(_43568).
+area(bangladesh,55,_43688):-call(_43688).
+area(pakistan,311,_43808):-call(_43808).
+area(w_germany,96,_43928):-call(_43928).
+area(nigeria,373,_44048):-call(_44048).
+area(mexico,764,_44168):-call(_44168).
+area(uk,86,_44288):-call(_44288).
+area(italy,116,_44408):-call(_44408).
+area(france,213,_44528):-call(_44528).
+area(philippines,90,_44648):-call(_44648).
+area(thailand,200,_44768):-call(_44768).
+area(turkey,296,_44888):-call(_44888).
+area(egypt,386,_45008):-call(_45008).
+area(spain,190,_45128):-call(_45128).
+area(poland,121,_45248):-call(_45248).
+area(s_korea,37,_45368):-call(_45368).
+area(iran,628,_45488):-call(_45488).
+area(ethiopia,350,_45608):-call(_45608).
+area(argentina,1080,_45728):-call(_45728).
 
 
 */

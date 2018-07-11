@@ -15,10 +15,10 @@ namespace SxxMachine {
 
 	class Real : public Term {
 	public:
-		Number* IntValue;
+		Number* Num;
 
 		virtual ~Real() {
-			delete IntValue;
+			delete Num;
 		}
 
 		Real(Number* i);
@@ -31,7 +31,7 @@ namespace SxxMachine {
 
 		void formattedOutput(const int& formatFlags, Appendable* buffer) throw(IOException) override;
 
-		bool Unify(Term* that) override;
+		bool Unify(Term* that, Prolog* mach) override;
 
 		bool Equal(Term* that) override;
 
@@ -40,6 +40,16 @@ namespace SxxMachine {
 		int Arity() final override;
 
 		double DoubleValue();
+
+		bool isVar() override;
+
+		bool isFVar() override;
+
+		bool isStruct() override;
+
+		bool isConst() override;
+
+		bool isInt() override;
 
 	};
 }

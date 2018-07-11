@@ -21,16 +21,16 @@ namespace SxxMachine {
 		tables = std::vector<unordered_map>(33);
 	}
 
-	Operation PredTable::Register(const wstring& name, const int& arity, Operation op) {
+	Operation* PredTable::Register(const wstring& name, const int& arity, Operation* op) {
 		Prolog::Predicates->InsertNameArity(name, arity, op);
 		return op;
 	}
 
-	void PredTable::InsertNameArity(const wstring& N, const int& A, Operation Adr) {
-		N = N.intern();
-		unordered_map<wstring, Operation> T = tables[A];
+	void PredTable::InsertNameArity(const wstring& N, const int& A, Operation* Adr) {
+		N = N;
+		unordered_map<wstring, Operation*> T = tables[A];
 		if(T.empty()) {
-			tables[A] = T = unordered_map<wstring, Operation>();
+			tables[A] = T = unordered_map<wstring, Operation*>();
 		}
 		T.emplace(N, Adr);
 	}
@@ -39,15 +39,15 @@ namespace SxxMachine {
 		InsertNameArity(N, A - 1, Adr);
 	}
 
-	Operation PredTable::IsInPredTable(const wstring& N, const int& A) {
+	Operation* PredTable::IsInPredTable(const wstring& N, const int& A) {
 		if(tables[A].empty()) {
 			return nullptr;
 		}
-		return static_cast<Operation>(tables[A][N]);
+		return static_cast<Operation*>(tables[A][N]);
 	}
 
-	Operation PredTable::LoadPred(const wstring& Name, const int& arity) {
-		Operation code;
+	Operation* PredTable::LoadPred(const wstring& Name, const int& arity) {
+		Operation* code;
 
 		code = IsInPredTable(Name, arity);
 		if(code != nullptr) {
@@ -55,26 +55,26 @@ namespace SxxMachine {
 		}
 		code = Instanciate(Name, arity);
 		InsertNameArity(Name, arity, code);
-		//code.Init(thiz);
+		// code.Init(thiz);
 		return code;
 	}
 
-	Operation PredTable::Instanciate(const wstring& Name, const int& arity) {
+	Operation* PredTable::Instanciate(const wstring& Name, const int& arity) {
 		type_info loaded_class;
 		int reason = 0;
-		Operation code = nullptr;
+		Operation* code = nullptr;
 		try {
 			Package* p = PredTable::typeid->getPackage();
 			wstring pp = "";
 			if(p != nullptr) {
-				//pp = p.getName() + ".";
+				// pp = p.getName() + ".";
 			}
 			wstring s1 = pp + "pred_" + Name + "_" + to_string(arity);
 			// String s2 = s1 + ".class" ;
 			// System.out.println("Trying to load " + s2) ;
 			loaded_class = forName(s1);
 			// System.out.println("Loaded " + s2) ;
-			code = static_cast<Operation>(loaded_class.newInstance());
+			code = static_cast<Operation*>(loaded_class.newInstance());
 			// System.out.println("and created "+s2) ;
 		} catch(const ClassNotFoundException& e) {
 			reason = 1;

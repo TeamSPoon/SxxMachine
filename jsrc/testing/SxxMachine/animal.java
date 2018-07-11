@@ -24,9 +24,9 @@ public static class pred_animal_1 extends Code {
 
 /*
 
-animal(goat,_6018):-call(_6018).
-animal(elephant,_6092):-call(_6092).
-animal(_6144,_6186):-write('please type one more animal name: ',read(_6144,_6186)).
+animal(goat,_6012):-call(_6012).
+animal(elephant,_6086):-call(_6086).
+animal(_6138,_6180):-write('please type one more animal name: ',read(_6138,_6180)).
 
 
 */
@@ -64,7 +64,7 @@ if (!( (areg0).Unify(var1,mach))) return Prolog.Fail0 ;
 local_aregs[0] = animal.s7 ;
 local_aregs[1] = Data.F(animal.s_read,var1.Deref(),continuation) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_write_1::exec_static ;}
+return (Operation) animal.s_write.FindProc(1) ;}
 }
 
 

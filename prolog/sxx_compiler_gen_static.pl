@@ -4,6 +4,30 @@ append([X|L1],L2,[X|L3]) :- append(L1,L2,L3) .
 legacy_functor(P,'.',A):- functor(P,'[|]',A),!.
 legacy_functor(P,F,A):- functor(P,F,A),!.
 
+:- dynamic system_predicate/1.
+:- multifile system_predicate/1.
+
+%system_predicate('$builtin_member'(_,_)).
+system_predicate('$erase'(_)).
+system_predicate('$fast_write'(_)).
+system_predicate('$fast_write'(_,_)).
+system_predicate('$call'(_,_)).
+system_predicate('mutex_lock_bt'(_)).
+system_predicate('$set_exception'(_)).
+system_predicate('$get_exception'(_)).
+system_predicate('$get_current_B'(_)).
+system_predicate('$compare0'(_,_,_)).
+system_predicate('$compiled_predicate'(_,_,_)).
+system_predicate('$compiled_predicate_or_builtin'(_,_,_)).
+system_predicate('$hash_remove_first'(_,_,_)).
+system_predicate('$hash_adda'(_,_,_)).
+system_predicate('$hash_addz'(_,_,_)).
+system_predicate('$read_token0'(_,_,_)).
+system_predicate('$atom_type0'(_,_)).
+system_predicate('$begin_sync'(_,_)).
+
+
+:- consult(sxx_system).
 
 comp(FileSpec):- comp_to(FileSpec,'../jsrc/bootlib').
     
@@ -163,6 +187,11 @@ gencode_sss(_,_,_,[]) .
 gencode_sss(Strings,Dir,Stem,[Pred|Preds]) :- 
   gencodeforpred(Strings,Dir,Stem,Pred) , 
   gencode_sss(Strings,Dir,Stem,Preds) .
+
+gencodeforpred(_Strings,_Dir,_Stem,Pred) :-  Pred = [(H :- B)] , 
+   H == B, 
+   asserta(system_predicate(H)),!,
+   format('~N/* System pred ~q */~n',[H]).
 
 gencodeforpred(Strings,Dir,Stem,Pred) :-  Pred = [(H :- _)|_] , 
    legacy_functor(H,PN,A) , AA is A - 1,
@@ -383,8 +412,14 @@ bodycont(_String,(_ :- B),_,_) :- legacy_functor(B,cut,2) , ! , writel(['Prolog.
 bodycont(String,(_ :- B),_,_) :- fail, legacy_functor(B,Name,Arity) ,getnameindex(String,Name,0,I),!, 
                         MArity is Arity-1, writel(['(Operation) ',getval(stem),'.s',I,'.FindProc(',MArity,')']) .
 
+
+bodycont(String,(_ :- B),_,_) :- legacy_functor(B,Name,Arity), MArity is Arity-1,                 
+		 functor(P,Name,MArity),system_predicate(P),!,
+                 writel(['(Operation) ',writeConst(Name,String),'.FindProc(',MArity,')']) .
+
 bodycont(_String,(_ :- B),_,_) :- legacy_functor(B,Name0,Arity) , MArity is Arity-1, symbol_to_name(Name0,Name),
 			writel(['(Operation)pred_',Name,'_',MArity,'::exec_static']) .
+
 
 bodycont(_String,(_ :- B),_,_) :- legacy_functor(B,Name0,Arity) , symbol_to_name(Name0,Name),
 			writel([Name,Arity,'cont']) .
@@ -454,7 +489,7 @@ declforeachstring([N|R],M) :- MM is M + 1 , declfor1string(N,M),declforeachstrin
 
 declfor1string(cut,M):- M >0,!.
 declfor1string(N,M):- atom_string(N,S),writel(['final static Const ',varnamestr(M,N),
-                      ' = Data.Intern(',format('~q',[S]),') ;',wr(nl)]).
+                      ' = Data.Intern(',writeq(S),') ;',wr(nl)]).
 				
 
 constructnum(Int) :- integer(Int) ,AInt is abs(Int), X is 2^30, AInt>X, ! , writel(['Data.BigInt("',Int,'")']).
@@ -472,8 +507,10 @@ posneg(N) :- writel(['posint',N]) .
 declforeachpred([]) .
 declforeachpred([P|R]):- !, declforeachpred1(P),declforeachpred(R).
 
+declforeachpred1([(P:-A)]):- P==A.
 declforeachpred1([(P:-_)|_]) :- functor(P,F,A),!,symbol_to_name(F,Name),  AA is A - 1,
-                   writel(['final static Operation reg_',Name,'_',AA,' = PredTable.Register("',F,'",',AA,', new pred_',Name,'_',AA,'());',wr(nl)]),!.
+                   atom_string(F,Str),
+                   writel(['final static Operation reg_',Name,'_',AA,' = PredTable.Register(',writeq(Str),',',AA,', new pred_',Name,'_',AA,'());',wr(nl)]),!.
 	           
 declforeachpred1(_).
 
@@ -561,7 +598,7 @@ prelude .
 :- comp_to(sxx_library,'../jsrc/bootlib').
 :- comp_to(sxx_meta,'../jsrc/bootlib').
 %:- comp_to(sxx_compiler_gen_static,'../jsrc/compiler').
-%:- comp_to(sxx_builtins_cafe,'../jsrc/library').
+:- comp_to(sxx_builtins_cafe,'../jsrc/library').
 :- comp_to('tests/*','../jsrc/testing').
 :- comp_to('bench/*','../jsrc/benches').
 

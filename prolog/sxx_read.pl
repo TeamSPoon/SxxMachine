@@ -76,7 +76,11 @@ maketerm([var(Var,Name,Occ)],Out,_) :- Out = Var , !  .
 
 maketerm([int(Term)],Out,_) :- ! , Out = Term .
 
+maketerm([real(Term)],Out,_) :- ! , Out = Term .
+
 maketerm([const(Term)],Out,_) :- ! , Out = Term .
+
+maketerm([string(Term)],Out,_) :- ! , Out = Term .
 
 maketerm([const(Name),const('(')|Argswithcomma],Out,_) :-
 			getargs(Argswithcomma,Args) ,

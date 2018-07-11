@@ -185,7 +185,7 @@ Term continuation = local_aregs[0] ;
 local_aregs[0] = Data.F(run.s_style_check,Data.F(run.s5,run.s_singleton)) ;
 local_aregs[1] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_write_1::exec_static ;}
+return (Operation) run.s_write.FindProc(1) ;}
 public static Operation exec_pred_on_load_run_0__2(Prolog mach){ mach.FillAlternative(pred_on_load_run_0::exec_pred_on_load_run_0__3) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[0] ;
@@ -193,7 +193,7 @@ Var var1 = Data.V(mach) ;
 local_aregs[0] = Data.F(run.s13,Data.F(run.s7,Data.F(run.s_file_search_path,run.s_bench,var1),run.s_true),Data.F(run.s4,Data.F(run.s_prolog_load_context,run.s_directory,run.s10),Data.F(run.s_assert,Data.F(run.s11,run.s_user,Data.F(run.s_file_search_path,run.s_bench,run.s10))))) ;
 local_aregs[1] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_write_1::exec_static ;}
+return (Operation) run.s_write.FindProc(1) ;}
 public static Operation exec_pred_on_load_run_0__3(Prolog mach){ mach.FillAlternative(pred_on_load_run_0::exec_pred_on_load_run_0__4) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[0] ;
@@ -201,14 +201,14 @@ Var var1 = Data.V(mach) ;
 local_aregs[0] = Data.F(run.s_if,Data.F(run.s_statistics,run.s_gctime,var1)) ;
 local_aregs[1] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_write_1::exec_static ;}
+return (Operation) run.s_write.FindProc(1) ;}
 public static Operation exec_pred_on_load_run_0__4(Prolog mach){ mach.RemoveChoice() ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[0] ;
 local_aregs[0] = Data.F(run.s_dynamic,Data.F(run.s9,run.s_rni,run.posint0)) ;
 local_aregs[1] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_write_1::exec_static ;}
+return (Operation) run.s_write.FindProc(1) ;}
 }
 
 
@@ -311,7 +311,7 @@ public static class pred_run_program_4 extends Code {
 
 /*
 
-run_program(_880,_882,_884,_886,_916):-ntimes(_880,_882,_888,_890,cut(1,add(1,_886,1,add(2,_886,_888,add(3,_886,_890,format(_884,'~p~t~18| ~t~3f~25| ~t~3f~32|~n',[_880,_888,_890],_916)))))).
+run_program(_6700,_6702,_6704,_6706,_6842):-ntimes(_6700,_6702,_6714,_6716,cut(1,add(1,_6706,1,add(2,_6706,_6714,add(3,_6706,_6716,format(_6704,'~p~t~18| ~t~3f~25| ~t~3f~32|~n',[_6700,_6714,_6716],_6842)))))).
 
 
 */
@@ -353,7 +353,7 @@ public static class pred_add_3 extends Code {
 
 /*
 
-add(_994,_996,_998,_1016):-arg(_994,_996,_1000,is(_1008,_1000+_998,nb_setarg(_994,_996,_1008,_1016))).
+add(_7266,_7268,_7270,_7350):-arg(_7266,_7268,_7278,is(_7288,_7278+_7270,nb_setarg(_7266,_7268,_7288,_7350))).
 
 
 */
@@ -383,7 +383,7 @@ local_aregs[1] = var2.Deref() ;
 local_aregs[2] = var4 ;
 local_aregs[3] = Data.F(run.s_is,var5,Data.F(run.s3,var4.Deref(),var3.Deref()),Data.F(run.s_nb_setarg,var1.Deref(),var2.Deref(),var5.Deref(),continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_arg_3::exec_static ;}
+return (Operation) run.s_arg.FindProc(3) ;}
 }
 
 
@@ -391,7 +391,7 @@ public static class pred_ntimes_4 extends Code {
 
 /*
 
-ntimes(_1096,_1098,_1100,_1102,_1158):-get_performance_stats(_1104,_1106,ntimes(_1096,_1098,get_performance_stats(_1108,_1110,ntimes_dummy(_1098,get_performance_stats(_1112,_1114,is(_1100,_1110-_1106-(_1114-_1110),is(_1102,_1108-_1104-(_1112-_1108),_1158))))))).
+ntimes(_7718,_7720,_7722,_7724,_7882):-get_performance_stats(_7728,_7730,ntimes(_7718,_7720,get_performance_stats(_7740,_7742,ntimes_dummy(_7720,get_performance_stats(_7750,_7752,is(_7722,_7742-_7730-(_7752-_7742),is(_7724,_7740-_7728-(_7750-_7740),_7882))))))).
 
 
 */
@@ -436,8 +436,8 @@ public static class pred_ntimes_2 extends Code {
 
 /*
 
-ntimes(_1232,_1234,_1242):-arithequal(0,_1234,cut(1,_1242)).
-ntimes(_1272,_1274,_1290):-not_not_top(_1272,cut(1,is(_1282,_1274-1,ntimes(_1272,_1282,_1290)))).
+ntimes(_8314,_8316,_8362):-arithequal(0,_8316,cut(1,_8362)).
+ntimes(_8510,_8512,_8586):-not_not_top(_8510,cut(1,is(_8526,_8512-1,ntimes(_8510,_8526,_8586)))).
 
 
 */
@@ -484,8 +484,8 @@ public static class pred_ntimes_dummy_1 extends Code {
 
 /*
 
-ntimes_dummy(_1334,_1342):-arithequal(0,_1334,cut(1,_1342)).
-ntimes_dummy(_1370,_1386):-not_not_dummy(cut(1,is(_1378,_1370-1,ntimes_dummy(_1378,_1386)))).
+ntimes_dummy(_8814,_8854):-arithequal(0,_8814,cut(1,_8854)).
+ntimes_dummy(_9000,_9062):-not_not_dummy(cut(1,is(_9010,_9000-1,ntimes_dummy(_9010,_9062)))).
 
 
 */
@@ -525,8 +525,8 @@ public static class pred_not_not_top_1 extends Code {
 
 /*
 
-not_not_top(_1424,_1432):-not_top(_1424,cut(1,fail(_1432))).
-not_not_top(_1462,_1472):-call(_1472).
+not_not_top(_9260,_9304):-not_top(_9260,cut(1,fail(_9304))).
+not_not_top(_9458,_9480):-call(_9480).
 
 
 */
@@ -564,8 +564,8 @@ public static class pred_not_top_1 extends Code {
 
 /*
 
-not_top(_1486,_1494):- :(_1486,top,cut(1,fail(_1494))).
-not_top(_1526,_1536):-call(_1536).
+not_top(_9586,_9632):- :(_9586,top,cut(1,fail(_9632))).
+not_top(_9806,_9828):-call(_9828).
 
 
 */
@@ -604,8 +604,8 @@ public static class pred_not_not_dummy_0 extends Code {
 
 /*
 
-not_not_dummy(_1556):-not_dummy(cut(1,fail(_1556))).
-not_not_dummy(_1590):-call(_1590).
+not_not_dummy(_9970):-not_dummy(cut(1,fail(_9970))).
+not_not_dummy(_10132):-call(_10132).
 
 
 */
@@ -635,8 +635,8 @@ public static class pred_not_dummy_0 extends Code {
 
 /*
 
-not_dummy(_1608):-dummy(cut(1,fail(_1608))).
-not_dummy(_1642):-call(_1642).
+not_dummy(_10266):-dummy(cut(1,fail(_10266))).
+not_dummy(_10434):-call(_10434).
 
 
 */
@@ -666,7 +666,7 @@ public static class pred_dummy_0 extends Code {
 
 /*
 
-dummy(_1662):-call(_1662).
+dummy(_10562):-call(_10562).
 
 
 */
@@ -690,7 +690,7 @@ public static class pred_tune_counts_0 extends Code {
 
 /*
 
-tune_counts(_1716):-forall(program(_1676,_1678),(tune_count(_1676,_1684),format('~q.~n',[program(_1676,_1684)])),_1716).
+tune_counts(_10738):-forall(program(_10678,_10680),(tune_count(_10678,_10686),format('~q.~n',[program(_10678,_10686)])),_10738).
 
 
 */
@@ -719,7 +719,7 @@ public static class pred_tune_count_2 extends Code {
 
 /*
 
-tune_count(_1736,_1738,_1782):-between(1,100,_1740,is(_1748,1<<_1740,ntimes(_1736,_1748,_1750,_1752,smallerthan(0.5,_1750,cut(1,is(_1738,round(_1748*(1/_1750)),_1782)))))).
+tune_count(_10900,_10902,_11030):-between(1,100,_10910,is(_10920,1<<_10910,ntimes(_10900,_10920,_10930,_10932,smallerthan(0.5,_10930,cut(1,is(_10902,round(_10920*(1/_10930)),_11030)))))).
 
 
 */
@@ -756,7 +756,7 @@ public static class pred_program_3 extends Code {
 
 /*
 
-program(_1850,_1852,_1854,_1880):-program(_1850,_1856,is(_1852,max(1,round(_1856*_1854)),_1880)).
+program(_11468,_11470,_11472,_11546):-program(_11468,_11478,is(_11470,max(1,round(_11478*_11472)),_11546)).
 
 
 */
@@ -793,25 +793,25 @@ public static class pred_program_2 extends Code {
 
 /*
 
-program(boyer,8,_1922):-call(_1922).
-program(browse,7,_1946):-call(_1946).
-program(chat_parser,46,_1970):-call(_1970).
-program(crypt,868,_1994):-call(_1994).
-program(fast_mu,4819,_2018):-call(_2018).
-program(flatten,8275,_2042):-call(_2042).
-program(meta_qsort,966,_2066):-call(_2066).
-program(mu,6827,_2090):-call(_2090).
-program(nreverse,11378,_2114):-call(_2114).
-program(poly_10,105,_2138):-call(_2138).
-program(prover,6400,_2162):-call(_2162).
-program(qsort,8445,_2186):-call(_2186).
-program(queens_8,63,_2210):-call(_2210).
-program(query,1219,_2234):-call(_2234).
-program(reducer,164,_2258):-call(_2258).
-program(sendmore,44,_2282):-call(_2282).
-program(simple_analyzer,320,_2306):-call(_2306).
-program(tak,35,_2330):-call(_2330).
-program(zebra,166,_2354):-call(_2354).
+program(boyer,8,_11818):-call(_11818).
+program(browse,7,_12010):-call(_12010).
+program(chat_parser,46,_12202):-call(_12202).
+program(crypt,868,_12394):-call(_12394).
+program(fast_mu,4819,_12586):-call(_12586).
+program(flatten,8275,_12778):-call(_12778).
+program(meta_qsort,966,_12970):-call(_12970).
+program(mu,6827,_13162):-call(_13162).
+program(nreverse,11378,_13354):-call(_13354).
+program(poly_10,105,_13546):-call(_13546).
+program(prover,6400,_13738):-call(_13738).
+program(qsort,8445,_13930):-call(_13930).
+program(queens_8,63,_14122):-call(_14122).
+program(query,1219,_14314):-call(_14314).
+program(reducer,164,_14506):-call(_14506).
+program(sendmore,44,_14698):-call(_14698).
+program(simple_analyzer,320,_14890):-call(_14890).
+program(tak,35,_15082):-call(_15082).
+program(zebra,166,_15274):-call(_15274).
 
 
 */
@@ -1038,7 +1038,7 @@ public static class pred_run_interleaved_1 extends Code {
 
 /*
 
-run_interleaved(_2404,_2444):-compile_programs(findall(_2408-_2410,program(_2410,_2408,_2404),_2420,phrase(seq_interleaved(_2420),_2426,seq_clause(_2426,_2428,retractall(rni,assert((rni:-_2428),_2436,garbage_collect(time(rni,erase(_2436,_2444))))))))).
+run_interleaved(_15570,_15708):-compile_programs(findall(_15574-_15576,program(_15576,_15574,_15570),_15592,phrase(seq_interleaved(_15592),_15602,seq_clause(_15602,_15608,retractall(rni,assert((rni:-_15608),_15624,garbage_collect(time(rni,erase(_15624,_15708))))))))).
 
 
 */
@@ -1072,14 +1072,14 @@ public static class pred_$002D$002D$003E_2 extends Code {
 
 /*
 
--->(seq_interleaved([]),!,_2530):-call(_2530).
--->(seq_interleaved(_2548),(seq_interleaved(_2548,_2554),seq_interleaved(_2554)),_2574):-call(_2574).
--->(seq_interleaved([],[]),[],_2604):-call(_2604).
--->(seq_interleaved([1-_2624|_2630],_2636),(!,[_2624],seq_interleaved(_2630,_2636)),_2670):-call(_2670).
--->(seq_interleaved([_2688-_2690|_2696],[_2700-_2690|_2708]),([_2690],{_2700 is _2688-1},seq_interleaved(_2696,_2708)),_2764):-call(_2764).
--->(seq_non_interleaved([]),[],_2992):-call(_2992).
--->(seq_non_interleaved([0-_3012|_3018]),(!,seq_non_interleaved(_3018)),_3042):-call(_3042).
--->(seq_non_interleaved([_3060-_3062|_3068]),([_3062],{_3088 is _3060-1},seq_non_interleaved([_3088-_3062|_3068])),_3132):-call(_3132).
+-->(seq_interleaved([]),!,_16246):-call(_16246).
+-->(seq_interleaved(_16426),(seq_interleaved(_16426,_16432),seq_interleaved(_16432)),_16470):-call(_16470).
+-->(seq_interleaved([],[]),[],_16680):-call(_16680).
+-->(seq_interleaved([1-_16862|_16868],_16874),(!,[_16862],seq_interleaved(_16868,_16874)),_16926):-call(_16926).
+-->(seq_interleaved([_17106-_17108|_17114],[_17118-_17108|_17126]),([_17108],{_17118 is _17106-1},seq_interleaved(_17114,_17126)),_17200):-call(_17200).
+-->(seq_non_interleaved([]),[],_18520):-call(_18520).
+-->(seq_non_interleaved([0-_18702|_18708]),(!,seq_non_interleaved(_18708)),_18750):-call(_18750).
+-->(seq_non_interleaved([_18930-_18932|_18938]),([_18932],{_18958 is _18930-1},seq_non_interleaved([_18958-_18932|_18938])),_19020):-call(_19020).
 
 
 */

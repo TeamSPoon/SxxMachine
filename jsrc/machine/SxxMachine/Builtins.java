@@ -899,7 +899,8 @@ public class Builtins {
 			Term arg1 = mach.Areg[0].Deref();
 			Term arg2 = mach.Areg[1].Deref();
 
-			FrozenVar frv = new FrozenVar(mach, arg2);
+			Var frv = new Var(mach);
+			frv.setGoals(mach, arg2);
 			if (!(arg1.Unify(frv, mach)))
 				return Prolog.Fail0;
 			mach.Areg[0] = mach.Areg[2]; // install the continuation
@@ -948,12 +949,14 @@ public class Builtins {
 			Term arg2 = mach.Areg[1].Deref();
 			Term goal;
 
-			if (arg1.isVar())
-				goal = Const.Intern("true");
-			else if (arg1.isFVar())
-				goal = (((FrozenVar) arg1).goals).Deref();
-			else
+			if (!arg1.isFrozen()) {
+				if (arg1.isVar()) {
+					goal = Const.Intern("true");
+				}
 				return Prolog.Fail0;
+			} else {
+				goal = arg1.frozenGoals().Deref();
+			}
 
 			if (!(arg2.Unify(goal, mach)))
 				return Prolog.Fail0;

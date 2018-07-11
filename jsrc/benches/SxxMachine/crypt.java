@@ -347,7 +347,7 @@ local_aregs[1] = Data.F(crypt.s2,Data.F(crypt.s1,var1.Deref(),var3.Deref()),var4
 local_aregs[2] = Data.F(crypt.s_is,var5.Deref(),Data.F(crypt.s_mod,var7.Deref(),crypt.posint10),Data.F(crypt.s_is,var8,Data.F(crypt.s4,var7.Deref(),crypt.posint10),Data.F(crypt.s_mult,var2.Deref(),var3.Deref(),var8.Deref(),var6.Deref(),continuation))) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[4] = local_aregs[3] = null ;
-return (Operation)pred_is_2::exec_static ;}
+return (Operation) crypt.s_is.FindProc(2) ;}
 public static Operation exec_pred_mult_4__2(Prolog mach){ mach.RemoveChoice() ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[4] ;
@@ -368,7 +368,7 @@ local_aregs[1] = Data.F(crypt.s_mod,var2.Deref(),crypt.posint10) ;
 local_aregs[2] = Data.F(crypt.s_is,var4.Deref(),Data.F(crypt.s4,var2.Deref(),crypt.posint10),continuation) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[4] = local_aregs[3] = null ;
-return (Operation)pred_is_2::exec_static ;}
+return (Operation) crypt.s_is.FindProc(2) ;}
 }
 
 

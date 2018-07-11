@@ -262,35 +262,35 @@ Term continuation = local_aregs[0] ;
 local_aregs[0] = Data.F(sxx_system.s_op,sxx_system.posint1150,sxx_system.s_fx,sxx_system.s_package) ;
 local_aregs[1] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_write_1::exec_static ;}
+return (Operation) sxx_system.s_write.FindProc(1) ;}
 public static Operation exec_pred_on_load_sxx_system_0__2(Prolog mach){ mach.FillAlternative(pred_on_load_sxx_system_0::exec_pred_on_load_sxx_system_0__3) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[0] ;
 local_aregs[0] = Data.F(sxx_system.s_package,sxx_system.s105) ;
 local_aregs[1] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_write_1::exec_static ;}
+return (Operation) sxx_system.s_write.FindProc(1) ;}
 public static Operation exec_pred_on_load_sxx_system_0__3(Prolog mach){ mach.FillAlternative(pred_on_load_sxx_system_0::exec_pred_on_load_sxx_system_0__4) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[0] ;
 local_aregs[0] = Data.F(sxx_system.s_public,Data.F(sxx_system.s62,sxx_system.s_system_predicate,sxx_system.posint1)) ;
 local_aregs[1] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_write_1::exec_static ;}
+return (Operation) sxx_system.s_write.FindProc(1) ;}
 public static Operation exec_pred_on_load_sxx_system_0__4(Prolog mach){ mach.FillAlternative(pred_on_load_sxx_system_0::exec_pred_on_load_sxx_system_0__5) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[0] ;
 local_aregs[0] = Data.F(sxx_system.s_multifile,Data.F(sxx_system.s62,sxx_system.s_system_predicate,sxx_system.posint1)) ;
 local_aregs[1] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_write_1::exec_static ;}
+return (Operation) sxx_system.s_write.FindProc(1) ;}
 public static Operation exec_pred_on_load_sxx_system_0__5(Prolog mach){ mach.RemoveChoice() ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[0] ;
 local_aregs[0] = Data.F(sxx_system.s_dynamic,Data.F(sxx_system.s62,sxx_system.s_system_predicate,sxx_system.posint1)) ;
 local_aregs[1] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_write_1::exec_static ;}
+return (Operation) sxx_system.s_write.FindProc(1) ;}
 }
 
 

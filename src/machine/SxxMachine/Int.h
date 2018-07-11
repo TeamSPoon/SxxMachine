@@ -10,12 +10,15 @@ namespace SxxMachine { class Term; }
 namespace SxxMachine {
 
 	class Int : public Real {
-		//long IntValue;
+		// long Num;
 
 	public:
 		Int(long long i);
 
 		Term* Copy(Prolog* m, long long t) override;
+
+		bool isInt() override;
+
 	};
 }
 

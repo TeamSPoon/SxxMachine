@@ -37,8 +37,8 @@ public static class pred_top_0 extends Code {
 
 /*
 
-top(_10276):-queens(8,_10248,fail(_10276)).
-top(_10394):-call(_10394).
+top(_34226):-queens(8,_34198,fail(_34226)).
+top(_34344):-call(_34344).
 
 
 */
@@ -71,7 +71,7 @@ public static class pred_queens_2 extends Code {
 
 /*
 
-queens(_10432,_10434,_10490):-range(1,_10432,_10442,queens(_10442,[],_10434,_10490)).
+queens(_34382,_34384,_34440):-range(1,_34382,_34392,queens(_34392,[],_34384,_34440)).
 
 
 */
@@ -105,8 +105,8 @@ public static class pred_queens_3 extends Code {
 
 /*
 
-queens([],_10670,_10670,_10694):-call(_10694).
-queens(_10786,_10788,_10790,_10870):-select(_10786,_10796,_10798,not_attack(_10788,_10798,queens(_10796,[_10798|_10788],_10790,_10870))).
+queens([],_34620,_34620,_34644):-call(_34644).
+queens(_34736,_34738,_34740,_34820):-select(_34736,_34746,_34748,not_attack(_34738,_34748,queens(_34746,[_34748|_34738],_34740,_34820))).
 
 
 */
@@ -158,7 +158,7 @@ public static class pred_not_attack_2 extends Code {
 
 /*
 
-not_attack(_11112,_11114,_11156):-not_attack(_11112,_11114,1,_11156).
+not_attack(_35062,_35064,_35106):-not_attack(_35062,_35064,1,_35106).
 
 
 */
@@ -191,8 +191,8 @@ public static class pred_not_attack_3 extends Code {
 
 /*
 
-not_attack([],_11284,_11286,_11326):-cut(1,_11326).
-not_attack([_11408|_11410],_11416,_11418,_11520):- =\=(_11416,_11408+_11418,=\=(_11416,_11408-_11418,is(_11452,_11418+1,not_attack(_11410,_11416,_11452,_11520)))).
+not_attack([],_35234,_35236,_35276):-cut(1,_35276).
+not_attack([_35358|_35360],_35366,_35368,_35470):- =\=(_35366,_35358+_35368,=\=(_35366,_35358-_35368,is(_35402,_35368+1,not_attack(_35360,_35366,_35402,_35470)))).
 
 
 */
@@ -238,7 +238,7 @@ local_aregs[1] = Data.F(queens_8.s1,var1.Deref(),var4.Deref()) ;
 local_aregs[2] = Data.F(queens_8.s5,var3.Deref(),Data.F(queens_8.s2,var1.Deref(),var4.Deref()),Data.F(queens_8.s_is,var5,Data.F(queens_8.s1,var4.Deref(),queens_8.posint1),Data.F(queens_8.s_not_attack,var2.Deref(),var3.Deref(),var5.Deref(),continuation))) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[3] = null ;
-return (Operation)pred_$003D$005C$003D_2::exec_static ;}
+return (Operation) queens_8.s5.FindProc(2) ;}
 }
 
 
@@ -246,8 +246,8 @@ public static class pred_select_3 extends Code {
 
 /*
 
-select([_11810|_11812],_11812,_11810,_11842):-call(_11842).
-select([_11952|_11954],[_11952|_11960],_11968,_12016):-select(_11954,_11960,_11968,_12016).
+select([_35760|_35762],_35762,_35760,_35792):-call(_35792).
+select([_35902|_35904],[_35902|_35910],_35918,_35966):-select(_35904,_35910,_35918,_35966).
 
 
 */
@@ -299,8 +299,8 @@ public static class pred_range_3 extends Code {
 
 /*
 
-range(_12162,_12162,[_12162],_12212):-cut(1,_12212).
-range(_12306,_12314,[_12306|_12308],_12394):-smallerthan(_12306,_12314,is(_12332,_12306+1,range(_12332,_12314,_12308,_12394))).
+range(_36112,_36112,[_36112],_36162):-cut(1,_36162).
+range(_36256,_36264,[_36256|_36258],_36344):-smallerthan(_36256,_36264,is(_36282,_36256+1,range(_36282,_36264,_36258,_36344))).
 
 
 */

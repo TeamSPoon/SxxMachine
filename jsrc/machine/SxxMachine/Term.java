@@ -47,6 +47,20 @@ abstract class Term extends Data implements Undoable {
 		return (Term) this;
 	}
 
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		System.out.println("general equals on terms not available");
+		if (!(obj instanceof Term))
+			return false;
+		return Equal((Term) obj);
+	}
+
 	boolean Equal(Term that) {
 		System.out.println("general equal on terms not available");
 		return false;
@@ -72,7 +86,7 @@ abstract class Term extends Data implements Undoable {
 		} else {
 			Term next = attrs;
 			do {
-				if (next.Arg(0).equals(name)) {
+				if (next.Arg(0).Equal(name)) {
 					return (Fun) next;
 				}
 				Term nnext = next.Arg(2);
@@ -112,12 +126,12 @@ abstract class Term extends Data implements Undoable {
 	}
 
 	public Term[] GetArgs() {
-		// TODO Auto-generated method stub
+		System.out.println("general GetArgs on terms not available");
 		return null;
 	}
 
 	String GetName() {
-		System.out.println("general getname on terms not available");
+		System.out.println("general GetName on terms not available");
 		return "";
 	}
 
@@ -170,7 +184,7 @@ abstract class Term extends Data implements Undoable {
 		} else {
 			Term next = wasAttrs;
 			do {
-				if (wasAttrs.Arg(0).equals(name)) {
+				if (wasAttrs.Arg(0).Equal(name)) {
 					wasAttrs.SetArg(trail, 1, val);
 					return;
 				}
@@ -185,6 +199,7 @@ abstract class Term extends Data implements Undoable {
 	}
 
 	public void SetArg(Prolog trail, int i0, Term value) {
+		System.out.println("general SetArg on terms not available");
 	}
 
 	public void setAttrs(Prolog trail, Term newval) {
@@ -213,7 +228,7 @@ abstract class Term extends Data implements Undoable {
 		Appendable buffer = new StringBuilder();
 		try {
 			formattedOutput(1, buffer);
-		} catch (IOException e) {
+		} catch (Throwable e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -235,7 +250,9 @@ abstract class Term extends Data implements Undoable {
 
 	abstract public boolean isVar();
 
-	abstract public boolean isFVar();
+	public boolean isFVar() {
+		return isFrozen() && isVar();
+	}
 
 	abstract public boolean isStruct();
 

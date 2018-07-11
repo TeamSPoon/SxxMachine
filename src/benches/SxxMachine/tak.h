@@ -1,7 +1,6 @@
 #ifndef TAK
 #define TAK
 
-#include "../../machine/SxxMachine/Operation.h"
 #include "../../machine/SxxMachine/Code.h"
 #include <vector>
 
@@ -12,87 +11,83 @@ namespace SxxMachine { class Operation; }
 namespace SxxMachine { class Prolog; }
 
 namespace SxxMachine {
-
 	using namespace SxxMachine;
 
 	class tak {
-	public:
-		static Const* const  s_cut;
-		static Const* const  s1;
-		static Const* const  s2;
-		static Const* const  s3;
-		static Const* const  s_is;
-		static Const* const  s_smallerorequal;
-		static Const* const  s_smallerthan;
-		static Const* const  s_tak;
-		static Const* const  s_top;
-		static Const* const  s_unify;
-		static Int* const  posint1;
-		static Int* const  posint6;
-		static Int* const  posint12;
-		static Int* const  posint18;
-		static const Operation reg_top_0;
-		static const Operation reg_tak_0;
-		static const Operation reg_tak_4;
+public:
+	static Const* const  s_cut;
+	static Const* const  s1;
+	static Const* const  s2;
+	static Const* const  s3;
+	static Const* const  s_is;
+	static Const* const  s_smallerorequal;
+	static Const* const  s_smallerthan;
+	static Const* const  s_tak;
+	static Const* const  s_top;
+	static Const* const  s_unify;
+	static Int* const  posint1;
+	static Int* const  posint6;
+	static Int* const  posint12;
+	static Int* const  posint18;
+	static Operation* const  reg_top_0;
+	static Operation* const  reg_tak_0;
+	static Operation* const  reg_tak_4;
+public:
+	class pred_top_0 : public Code {
 
-	public:
-		class pred_top_0 : public Code {
+	/*
+	
+	top(_5326):-tak(_5326).
+	
+	
+	*/
 
-			/*
-			
-			top(_5320):-tak(_5320).
-			
-			
-			*/
+public:
+	Operation* Exec(Prolog* mach) override;
+	static Operation* exec_static(Prolog* mach);
+	static Operation* exec_pred_top_0__1(Prolog* mach);
+	};
 
-		public:
-			Operation Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+public:
+	class pred_tak_0 : public Code {
 
-			static Operation exec_pred_top_0__1(Prolog* mach);
-		};
+	/*
+	
+	tak(_5404):-tak(18,12,6,_5382,_5404).
+	
+	
+	*/
 
-	public:
-		class pred_tak_0 : public Code {
+public:
+	Operation* Exec(Prolog* mach) override;
+	static Operation* exec_static(Prolog* mach);
+	static Operation* exec_pred_tak_0__1(Prolog* mach);
+	};
 
-			/*
-			
-			tak(_5398):-tak(18,12,6,_5376,_5398).
-			
-			
-			*/
 
-		public:
-			Operation Exec(Prolog* mach) override;
+public:
+	class pred_tak_4 : public Code {
 
-			static Operation exec_static(Prolog* mach);
+	/*
+	
+	tak(_5516,_5518,_5520,_5522,_5586):-smallerorequal(_5516,_5518,unify(_5522,_5520,_5586)).
+	tak(_5770,_5772,_5774,_5776,_5946):-smallerthan(_5772,_5770,is(_5792,_5770-1,tak(_5792,_5772,_5774,_5804,is(_5814,_5772-1,tak(_5814,_5774,_5770,_5826,is(_5836,_5774-1,tak(_5836,_5770,_5772,_5848,tak(_5804,_5826,_5848,_5776,_5946)))))))).
+	
+	
+	*/
 
-			static Operation exec_pred_tak_0__1(Prolog* mach);
-		};
+public:
+	Operation* Exec(Prolog* mach) override;
+	static Operation* exec_static(Prolog* mach);
+	static Operation* exec_pred_tak_4__1(Prolog* mach);
+	static Operation* exec_pred_tak_4__2(Prolog* mach);
+	};
 
-	public:
-		class pred_tak_4 : public Code {
-
-			/*
-			
-			tak(_5510,_5512,_5514,_5516,_5580):-smallerorequal(_5510,_5512,unify(_5516,_5514,_5580)).
-			tak(_5764,_5766,_5768,_5770,_5940):-smallerthan(_5766,_5764,is(_5786,_5764-1,tak(_5786,_5766,_5768,_5798,is(_5808,_5766-1,tak(_5808,_5768,_5764,_5820,is(_5830,_5768-1,tak(_5830,_5764,_5766,_5842,tak(_5798,_5820,_5842,_5770,_5940)))))))).
-			
-			
-			*/
-
-		public:
-			Operation Exec(Prolog* mach) override;
-
-			static Operation exec_static(Prolog* mach);
-
-			static Operation exec_pred_tak_4__1(Prolog* mach);
-
-			static Operation exec_pred_tak_4__2(Prolog* mach);
-		};
 
 	};
+
+
 
 }
 

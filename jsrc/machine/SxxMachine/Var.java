@@ -6,6 +6,7 @@ class Var extends Term {
 	Term Refers;
 	long timestamp;
 	// Prolog mach;
+	private String named = null;
 
 	Var(Prolog machin) {
 		Refers = this;
@@ -20,9 +21,19 @@ class Var extends Term {
 	}
 
 	public Var(String sval) {
+		this(Prolog.M, sval);
+	}
+
+	public Var(Prolog prologmachine, String sval) {
 		Refers = this;
-		Prolog mach = Prolog.M;
+		named = sval;
+		Prolog mach = prologmachine;
 		timestamp = mach.TimeStamp;
+	}
+
+	public Var(Prolog mach, int currentChoice, Fun newgoals) {
+		this(mach, currentChoice);
+		goals = newgoals;
 	}
 
 	Term Copy(Prolog m, long t) {
@@ -45,10 +56,44 @@ class Var extends Term {
 	}
 
 	public void formattedOutput(int formatFlags, Appendable buffer) throws IOException {
-		buffer.append("_" + Integer.toHexString(hashCode()));
+		buffer.append(GetVarName());
+	}
+
+	public String GetVarName() {
+		// TODO Auto-generated method stub		
+		return "_" + Math.abs(timestamp) + "_" + Integer.toHexString(hashCode()) + ((named != null) ? "_" + named : "");
+	}
+
+	boolean FBind(Term that, Prolog mach) {
+		// Var v2;
+		if (that.isFVar()) {
+			Var thatv = (Var) that;
+			Fun newgoals = new Fun(",", this.goals, thatv.goals);
+			Var newfrv = new Var(mach, mach.CurrentChoice, newgoals);
+			this.Refers = thatv.Refers = newfrv;
+			mach.TrailEntry(this);
+			mach.TrailEntry(thatv);
+		} else if (that.isVar()) {
+			return that.Bind(this, mach);
+		} else {
+			this.Refers = that;
+			mach.TrailEntry(this);
+			mach.TrailEntry(new PopPendingGoals(mach, mach.pendingGoals));
+			mach.pendingGoals = Data.Cons(goals, mach.pendingGoals);
+			mach.ExceptionRaised = 1;
+		}
+		return true;
 	}
 
 	boolean Bind(Term that, Prolog mach) {
+		if (isFVar()) {
+			return FBind(that, mach);
+		} else {
+			return VBind(that, mach);
+		}
+	}
+
+	boolean VBind(Term that, Prolog mach) {
 		Var v2;
 		if (that.isVar()) {
 			Var v1 = (Var) that;
@@ -87,13 +132,11 @@ class Var extends Term {
 	}
 
 	public boolean isVar() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	public boolean isFVar() {
-		// TODO Auto-generated method stub
-		return false;
+		return isFrozen();
 	}
 
 	public boolean isStruct() {

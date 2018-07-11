@@ -2,8 +2,9 @@
 #define DATA
 
 #include <string>
+#include <unordered_map>
 #include <vector>
-#include "../../stringhelper.h"
+#include "stringhelper.h"
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
 namespace SxxMachine { class Real; }
@@ -16,6 +17,7 @@ namespace SxxMachine { class Prolog; }
 class Number;
 
 namespace SxxMachine {
+
 
 	class Data {
 
@@ -35,6 +37,8 @@ namespace SxxMachine {
 		static Fun* F(Const* string6, std::vector<Term> &terms);
 
 		static Fun* F(const std::string& string6, std::vector<Term> &terms);
+
+		static std::unordered_map<std::string, Const*> atomTable;
 
 		static Const* Intern(const std::string& d);
 

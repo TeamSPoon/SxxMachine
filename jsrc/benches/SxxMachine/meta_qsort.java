@@ -201,7 +201,7 @@ local_aregs[0] = var1.Deref() ;
 local_aregs[1] = mach.HC(Data.F(meta_qsort.s_fail,continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[2] = null ;
-return (Operation)pred_var_1::exec_static ;}
+return (Operation) meta_qsort.s_var.FindProc(1) ;}
 public static Operation exec_pred_interpret_2__2(Prolog mach){ mach.FillAlternative(pred_interpret_2::exec_pred_interpret_2__3) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[2] ;
@@ -287,7 +287,7 @@ local_aregs[0] = var1.Deref() ;
 local_aregs[1] = mach.HC(Data.F(meta_qsort.s_fail,continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[2] = null ;
-return (Operation)pred_number_1::exec_static ;}
+return (Operation) meta_qsort.s_number.FindProc(1) ;}
 public static Operation exec_pred_interpret_2__8(Prolog mach){ mach.FillAlternative(pred_interpret_2::exec_pred_interpret_2__9) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[2] ;

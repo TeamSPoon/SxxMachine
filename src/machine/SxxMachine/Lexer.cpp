@@ -2,9 +2,10 @@ using namespace std;
 
 #include "Lexer.h"
 #include "Prolog.h"
+#include "Var.h"
 #include "Term.h"
 #include "Const.h"
-#include "Var.h"
+#include "Data.h"
 
 namespace SxxMachine {
 
@@ -25,8 +26,9 @@ namespace SxxMachine {
 		wordChar('_');
 		slashStarComments(true);
 		commentChar('%');
-		dict = unordered_map();
-		prologmachine = p;
+		varnumberdict = unordered_map<wstring, Int*>();
+		varnamedict = unordered_map<wstring, Var*>();
+		this->prologmachine = p;
 	}
 
 	Lexer::Lexer(const wstring& s, Prolog* p) throw(exception) : Lexer(new FileInputStream(s), p) {
@@ -48,41 +50,47 @@ namespace SxxMachine {
 	}
 
 	Term* Lexer::make_const() {
-		Const tempVar(sval.intern());
-		return new Fun((wstring("const")).intern(), &tempVar);
+		return new Fun("const", Const::Intern(sval));
+	}
+
+	Term* Lexer::make_string() {
+		return new Fun("const", Const::Intern(sval));
 	}
 
 	Term* Lexer::make_int() {
 		Int tempVar(static_cast<int>(nval));
-		return new Fun((wstring("int")).intern(), &tempVar);
+		return new Fun("int", &tempVar);
 	}
 
 	Term* Lexer::make_real() {
-		return Somethingwrong; // new realToken(nval);
+		return new Fun("real", Data::Number(nval));
 	}
 
 	Term* Lexer::make_var() {
-		sval = sval.intern();
+		// sval = sval;
 		Var* X;
-		Int* I;
-		long long occ = 0;
+		Int * const I;
+		long long occ;
 		if(sval == anonymous) {
 			X = new Var(prologmachine);
+			occ = 0;
 			I = new Int(occ);
 		} else {
-			X = static_cast<Var*>(dict[sval]);
+			X = static_cast<Var*>(varnamedict[sval]);
 			if(X == nullptr) {
-				X = new Var(prologmachine);
-				dict.emplace(sval, X);
+				X = new Var(prologmachine, sval);
+				varnamedict.emplace(sval, X);
+				occ = 0;
+				I = new Int(occ);
 			} else {
-				occ = (static_cast<Int*>(dict[X]))->IntValue->longValue();
+				Int* INum = static_cast<Int*>(varnumberdict[X->GetVarName()]);
+				occ = INum->LongValue();
 				occ++;
+				I = new Int(occ);
 			}
-			I = new Int(occ);
-			dict.emplace(X, I);
+			varnumberdict.emplace(X->GetVarName(), I);
 		}
-		Const tempVar(sval.intern());
-		return new Fun((wstring("var")).intern(), X, &tempVar, I);
+		return new Fun("var", X, Const::Intern(sval), I);
 	}
 
 	void Lexer::whitespaceChar(const char& c) {
@@ -117,7 +125,7 @@ namespace SxxMachine {
 			}
 			break;
 		case TT_EOF:
-			T = new Const((wstring("end_of_file")).intern());
+			T = Const::Intern("end_of_file");
 			inClause = false;
 			break;
 		case TT_EOL:
@@ -125,26 +133,24 @@ namespace SxxMachine {
 			break;
 		case ':':
 			if('-' == nextToken()) {
-				sval = (wstring(":-")).intern();
+				sval = ":-";
 			} else {
 				old_sval = sval;
 				pushBack();
-				sval = (wstring(":")).intern();
+				sval = ":";
 			}
-			Const tempVar(sval.intern());
-			T = new Fun((wstring("const")).intern(), &tempVar);
+			T = new Fun("const", Const::Intern(sval));
 			sval = old_sval;
 			break;
 		case '-':
 			if('>' == nextToken()) {
-				sval = (wstring("->")).intern();
+				sval = "->";
 			} else {
 				old_sval = sval;
 				pushBack();
-				sval = (wstring("-")).intern();
+				sval = "-";
 			}
-			Const tempVar2(sval.intern());
-			T = new Fun((wstring("const")).intern(), &tempVar2);
+			T = new Fun("const", Const::Intern(sval));
 			sval = old_sval;
 			break;
 
@@ -152,12 +158,13 @@ namespace SxxMachine {
 			int c = nextToken();
 			if(TT_EOL == c || TT_EOF == c) {
 				inClause = false;
-				dict.clear();
-				T = new Const((wstring("end_of_clause")).intern());
+				varnumberdict.clear();
+				varnamedict.clear();
+				T = Const::Intern("end_of_clause");
 			} else {
 				old_sval = sval;
 				pushBack();
-				sval = (wstring(".")).intern();
+				sval = ".";
 				T = make_const();
 				sval = old_sval;
 			}
@@ -167,45 +174,38 @@ namespace SxxMachine {
 		case '\'':
 			T = make_const();
 			break;
-		// case '"': T=make_string();
-		// break;
+		case '"':
+			T = make_string();
+			break;
 
 		case '(':
-			Const tempVar3((wstring("(")).intern());
-			T = new Fun((wstring("const")).intern(), &tempVar3);
+			T = new Fun("const", Const::Intern("("));
 			break;
 		case ')':
-			Const tempVar4((wstring(")")).intern());
-			T = new Fun((wstring("const")).intern(), &tempVar4);
+			T = new Fun("const", Const::Intern(")"));
 			break;
 		case '[':
-			Const tempVar5((wstring("[")).intern());
-			T = new Fun((wstring("const")).intern(), &tempVar5);
+			T = new Fun("const", Const::Intern("["));
 			break;
 		case ']':
-			Const tempVar6((wstring("]")).intern());
-			T = new Fun((wstring("const")).intern(), &tempVar6);
+			T = new Fun("const", Const::Intern("]"));
 			break;
 		case '|':
-			Const tempVar7((wstring("|")).intern());
-			T = new Fun((wstring("const")).intern(), &tempVar7);
+			T = new Fun("const", Const::Intern("|"));
 			break;
 
 		case ',':
-			Const tempVar8((wstring(",")).intern());
-			T = new Fun((wstring("const")).intern(), &tempVar8);
+			T = new Fun("const", Const::Intern(","));
 			break;
 		case ';':
-			Const tempVar9((wstring(";")).intern());
-			T = new Fun((wstring("const")).intern(), &tempVar9);
+			T = new Fun("const", Const::Intern(";"));
 			break;
 
 		case '=':
 		case '>':
 		case '<':
 			sval = char2string(n);
-			Const tempVar10(sval.intern());
-			T = new Fun((wstring("const")).intern(), &tempVar10);
+			T = new Fun("const", Const::Intern(sval));
 			break;
 
 		default:
@@ -219,8 +219,7 @@ namespace SxxMachine {
 		try {
 			return next0();
 		} catch(const exception& e) {
-			Const tempVar((e.what()).intern());
-			return new Fun((wstring("exception")).intern(), &tempVar);
+			return new Fun("exception", Const::Intern((e.what())));
 		}
 	}
 
@@ -236,25 +235,12 @@ namespace SxxMachine {
 	}
 
 //JAVA TO C++ CONVERTER TODO TASK: Most Java annotations will not have direct C++ equivalents:
-//ORIGINAL LINE: @Deprecated("As of JDK version 1.1, the preferred way to tokenize an input") public StreamTokenizer(java.io.InputStream is)
+//ORIGINAL LINE: @Deprecated("As of JDK version 1.1, the preferred way to tokenize an input") protected StreamTokenizer(java.io.InputStream is)
 	StreamTokenizer::StreamTokenizer(InputStream* is) : StreamTokenizer() {
 		if(is == nullptr) {
 			throw NullPointerException();
 		}
 		input = is;
-	}
-
-	StreamTokenizer::StreamTokenizer(Reader* r) : StreamTokenizer() {
-		if(r == nullptr) {
-			throw NullPointerException();
-		}
-		reader = r;
-	}
-
-	void StreamTokenizer::resetSyntax() {
-		for(int i = ctype.size(); --i >= 0;) {
-			ctype[i] = 0;
-		}
 	}
 
 	void StreamTokenizer::wordChars(const int& low, const int& hi) {
@@ -278,18 +264,6 @@ namespace SxxMachine {
 		}
 		while(low <= hi) {
 			ctype[low++] = CT_WHITESPACE;
-		}
-	}
-
-	void StreamTokenizer::ordinaryChars(const int& low, const int& hi) {
-		if(low < 0) {
-			low = 0;
-		}
-		if(hi >= ctype.size()) {
-			hi = ctype.size() - 1;
-		}
-		while(low <= hi) {
-			ctype[low++] = 0;
 		}
 	}
 
@@ -329,10 +303,6 @@ namespace SxxMachine {
 
 	void StreamTokenizer::slashSlashComments(const bool& flag) {
 		slashSlashCommentsP = flag;
-	}
-
-	void StreamTokenizer::lowerCaseMode(const bool& fl) {
-		forceLower = fl;
 	}
 
 	int StreamTokenizer::read() throw(IOException) {
@@ -450,7 +420,7 @@ namespace SxxMachine {
 			int i = 0;
 			do {
 				if(i >= buf.size()) {
-					buf = Arrays::copyOf(buf, buf.size() * 2);
+					buf = copyOf(buf, buf.size() * 2);
 				}
 				buf[i++] = static_cast<char>(c);
 				c = read();
@@ -468,8 +438,8 @@ namespace SxxMachine {
 			ttype = c;
 			int i = 0;
 			/*
-			 * Invariants (because \Octal needs a lookahead): (i) c contains
-			 * char value (ii) d contains the lookahead
+			 * Invariants (because \Octal needs a lookahead): (i) c contains char value (ii)
+			 * d contains the lookahead
 			 */
 			int d = read();
 			while(d >= 0 && d != ttype && d != '\n' && d != '\r') {
@@ -522,15 +492,15 @@ namespace SxxMachine {
 					d = read();
 				}
 				if(i >= buf.size()) {
-					buf = Arrays::copyOf(buf, buf.size() * 2);
+					buf = copyOf(buf, buf.size() * 2);
 				}
 				buf[i++] = static_cast<char>(c);
 			}
 
 			/*
-			 * If we broke out of the loop because we found a matching quote
-			 * character then arrange to read a new character next time around;
-			 * otherwise, save the character.
+			 * If we broke out of the loop because we found a matching quote character then
+			 * arrange to read a new character next time around; otherwise, save the
+			 * character.
 			 */
 			peekc = (d == ttype) ? NEED_CHAR : d;
 
@@ -593,6 +563,19 @@ namespace SxxMachine {
 		return ttype = c;
 	}
 
+	std::vector<char> StreamTokenizer::copyOf(std::vector<char&>& original, const int& newLength) {
+		int copySize = newLength;
+		int origLenth = original.size();
+		if(origLenth < copySize) {
+			copySize = origLenth;
+		}
+		std::vector<char> copy(newLength);
+		while(copySize-- > 0) {
+			copy[copySize] = original[copySize];
+		}
+		return copy;
+	}
+
 	void StreamTokenizer::pushBack() {
 		if(ttype != TT_NOTHING) { // No-op if nextToken() not called
 			pushedBack = true;
@@ -623,10 +606,9 @@ namespace SxxMachine {
 			break;
 		default: {
 			/*
-			 * ttype is the first character of either a quoted string or is an
-			 * ordinary character. ttype can definitely not be less than 0,
-			 * since those are reserved values used in the previous case
-			 * statements
+			 * ttype is the first character of either a quoted string or is an ordinary
+			 * character. ttype can definitely not be less than 0, since those are reserved
+			 * values used in the previous case statements
 			 */
 			if(ttype < 256 && ((ctype[ttype] & CT_QUOTE) != 0)) {
 				ret = sval;

@@ -18,7 +18,7 @@ Term* const  Const::Nil = Intern("[]");
 	}
 
 	Term* Const::Copy(Prolog* m, long long t) {
-		return this; //new Const(Name);
+		return this; // new Const(Name);
 	}
 
 	Term* Const::Deref() {
@@ -39,12 +39,12 @@ Term* const  Const::Nil = Intern("[]");
 		Const::formattedOutputC(formatFlags, buffer, GetName());
 	}
 
-	bool Const::Unify(Term* that) {
+	bool Const::Unify(Term* that, Prolog* mach) {
 		if(SameTypes(this, that)) {
 			// return (that.GetName()).equals(this.Name) ;
 			return (that->GetName() == this->Name);
 		}
-		return that->Bind(this);
+		return that->Bind(this, mach);
 	}
 
 	bool Const::Equal(Term* that) {
@@ -66,30 +66,50 @@ Term* const  Const::Nil = Intern("[]");
 		if(Nil == this) {
 			return true;
 		}
-		if(Nil->GetName() == this->Name || this->Name == (wstring("[]")).intern()) {
-			//throw
+		if(Nil->GetName() == this->Name || this->Name == "[]") {
+			// throw
 		}
 		return false;
 	}
 
-	Operation Const::FindProc(const int& i) {
+	Operation* Const::FindProc(const int& i) {
 		if(i < 33) {
 			if(byArity.size() > 0) {
-				Operation was = byArity[i];
+				Operation* was = byArity[i];
 				if(was != nullptr) {
 					return was;
 				}
 				was = byArity[i] = Prolog::Predicates->LoadPred(Name, i);
 				return was;
 			} else {
-				Operation was = Prolog::Predicates->LoadPred(Name, i);
+				Operation* was = Prolog::Predicates->LoadPred(Name, i);
 				if(was != nullptr) {
-					byArity = std::vector<Operation>(32);
+					byArity = std::vector<Operation*>(32);
 					byArity[i] = was;
 				}
 				return was;
 			}
 		}
 		return Prolog::Predicates->LoadPred(Name, i);
+	}
+
+	bool Const::isVar() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	bool Const::isFVar() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	bool Const::isStruct() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	bool Const::isConst() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 }

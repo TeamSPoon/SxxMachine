@@ -31,9 +31,9 @@ namespace SxxMachine {
 		class Borked : public Code {
 
 		public:
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 
 		};
 
@@ -135,17 +135,17 @@ namespace SxxMachine {
 	public:
 		class pred_fail_0 : public Code {
 		public:
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 	public:
 		class pred_true_0 : public Code {
 		public:
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 	public:
@@ -154,9 +154,9 @@ namespace SxxMachine {
 			int Arity() override;
 
 		public:
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 		// smallerorequal implements =</2
@@ -167,9 +167,9 @@ namespace SxxMachine {
 			int Arity() override;
 
 		public:
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 		// arithequal implements =:=/2
@@ -180,9 +180,9 @@ namespace SxxMachine {
 			int Arity() override;
 
 		public:
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 		// arithdifferent implements =\= /2
@@ -193,9 +193,9 @@ namespace SxxMachine {
 			int Arity() override;
 
 		public:
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 		// is implements is/2
@@ -206,9 +206,9 @@ namespace SxxMachine {
 			int Arity() override;
 
 		public:
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 		// unify implements =/2
@@ -219,9 +219,9 @@ namespace SxxMachine {
 			int Arity() override;
 
 		public:
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 		// univ implements the left direction of =../2
@@ -236,9 +236,9 @@ namespace SxxMachine {
 			// Areg[2] is a list of PrologObjects
 
 		public:
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 	public:
@@ -250,9 +250,9 @@ namespace SxxMachine {
 			int Arity() override;
 
 		public:
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 	public:
@@ -261,9 +261,9 @@ namespace SxxMachine {
 			int Arity() override;
 
 		public:
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 	public:
@@ -274,9 +274,9 @@ namespace SxxMachine {
 		public:
 			static bool DoFunctor3(Prolog* mach, Term* arg1, Term* arg2, Term* arg3);
 
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 	public:
@@ -287,9 +287,9 @@ namespace SxxMachine {
 		public:
 			static bool DoArg3(Prolog* mach, Term* arg1, Term* arg2, Term* arg3);
 
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 	public:
@@ -298,9 +298,9 @@ namespace SxxMachine {
 			int Arity() override;
 
 		public:
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 	public:
@@ -309,9 +309,9 @@ namespace SxxMachine {
 			int Arity() override;
 
 		public:
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 	public:
@@ -329,7 +329,7 @@ namespace SxxMachine {
 
 			Term* Deref() override;
 
-			bool Unify(Term* that) override;
+			bool Unify(Term* that, Prolog* mach) override;
 
 			std::string toString() override;
 
@@ -344,9 +344,9 @@ namespace SxxMachine {
 			int Arity() override;
 
 		public:
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 	public:
@@ -355,9 +355,9 @@ namespace SxxMachine {
 			int Arity() override;
 
 		public:
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 	public:
@@ -369,9 +369,9 @@ namespace SxxMachine {
 			int Arity() override;
 
 		public:
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 	public:
@@ -380,9 +380,9 @@ namespace SxxMachine {
 			int Arity() override;
 
 		public:
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 	public:
@@ -391,9 +391,9 @@ namespace SxxMachine {
 			int Arity() override;
 
 		public:
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 	public:
@@ -402,9 +402,9 @@ namespace SxxMachine {
 			int Arity() override;
 
 		public:
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 	public:
@@ -413,9 +413,9 @@ namespace SxxMachine {
 			int Arity() override;
 
 		public:
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 	public:
@@ -424,9 +424,9 @@ namespace SxxMachine {
 			int Arity() override;
 
 		public:
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 	public:
@@ -435,9 +435,9 @@ namespace SxxMachine {
 			int Arity() override;
 
 		public:
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 	public:
@@ -449,9 +449,9 @@ namespace SxxMachine {
 			int Arity() override;
 
 		public:
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 
 		private:
 			static int readOneChar(InputStream* currentinput) throw(IOException);
@@ -463,9 +463,9 @@ namespace SxxMachine {
 			int Arity() override;
 
 		public:
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 	public:
@@ -476,9 +476,9 @@ namespace SxxMachine {
 		public:
 			static bool DoSetArg3(Prolog* mach, Term* arg1, Term* arg2, Term* arg3);
 
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 	public:
@@ -489,14 +489,14 @@ namespace SxxMachine {
 		protected:
 			int Arity() override;
 
-			//	Int < Const < Fun < Var
+			// Int < Const < Fun < Var
 
 		public:
 			static int Compare(Term* t, Term* s);
 
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 	public:
@@ -505,9 +505,9 @@ namespace SxxMachine {
 			int Arity() override;
 
 		public:
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 	public:
@@ -519,9 +519,9 @@ namespace SxxMachine {
 			int Arity() override;
 
 		public:
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 	public:
@@ -530,9 +530,9 @@ namespace SxxMachine {
 			int Arity() override;
 
 		public:
-			Operation Exec(Prolog* mach) override;
+			Operation* Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+			static Operation* exec_static(Prolog* mach);
 		};
 
 	};

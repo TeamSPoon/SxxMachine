@@ -2,14 +2,14 @@
 #define CONTINUATION
 
 #include "Prolog.h"
-#include "Operation.h"
 #include <vector>
 #include <iostream>
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
+namespace SxxMachine { class Operation; }
 namespace SxxMachine { class Term; }
 namespace SxxMachine { class Code; }
-namespace SxxMachine { class Operation; }
+namespace SxxMachine { class Prolog; }
 class Appendable;
 
 namespace SxxMachine {
@@ -17,16 +17,20 @@ namespace SxxMachine {
 
 	class Continuation final : public PrologObject {
 	public:
-		Operation code;
+		Operation* code;
 		std::vector<Term*> Args;
+
+		virtual ~Continuation() {
+			delete code;
+		}
 
 		Continuation(std::vector<Term*>& args, Code* c);
 
-		Continuation(std::vector<Term*>& args, const int& getArity, Operation c);
+		Continuation(std::vector<Term*>& args, const int& getArity, Operation* c);
 
 		Term* Deref() override;
 
-		bool Unify(Term* that) override;
+		bool Unify(Term* that, Prolog* mach) override;
 
 		void formattedOutput(const int& formatFlags, Appendable* buffer) throw(IOException) override;
 

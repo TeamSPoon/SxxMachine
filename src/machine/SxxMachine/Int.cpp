@@ -10,6 +10,11 @@ namespace SxxMachine {
 	}
 
 	Term* Int::Copy(Prolog* m, long long t) {
-		return new Int(IntValue->longValue());
+		return new Int(Num->longValue());
+	}
+
+	bool Int::isInt() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 }

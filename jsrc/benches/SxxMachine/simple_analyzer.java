@@ -198,7 +198,7 @@ public static class pred_top_0 extends Code {
 
 /*
 
-top(_466):-main(_458,_466).
+top(_15330):-main(_15308,_15330).
 
 
 */
@@ -224,7 +224,7 @@ public static class pred_main_1 extends Code {
 
 /*
 
-main(_484,_1118):-analyze_strees([stree(main/0,(main:-qsort([1,2],_508,[]),true;fail),(main:-true),[],1),stree(qsort/3,(qsort(_562,_564,_566):-_562=[_570|_572],part(_572,_570,_586,_588),qsort(_588,_594,_566),qsort(_586,_564,[_570|_594]),true;_562=[],_566=_564,true;fail),(qsort(_680,_682,_684):-true),[],1),stree(part/4,(part(_718,_720,_722,_724):-'$cut_load'(_728),'$cut_part/4_1'(_718,_720,_722,_724,_728),true;fail),(part(_768,_770,_772,_774):-true),[stree('$cut_part/4_1'/5,('$cut_part/4_1'(_790,_792,_794,_796,_798):-_790=[_802|_804],'$fac_$cut_part/4_1/5_2'(_804,_792,_794,_796,_798,_802),true;_790=[],_794=[],_796=[],true;fail),('$cut_part/4_1'(_894,_896,_898,_900,_902):-true),[stree('$fac_$cut_part/4_1/5_2'/6,('$fac_$cut_part/4_1/5_2'(_918,_920,_922,_924,_926,_928):-_922=[_928|_934],_928=<_920,'$cut_shallow'(_926),part(_918,_920,_934,_924),true;_924=[_928|_990],part(_918,_920,_922,_990),true;fail),('$fac_$cut_part/4_1/5_2'(_1040,_1042,_1044,_1046,_1048,_1050):-true),[],1)],1)],1)],_484,_1118).
+main(_15394,_16054):-analyze_strees([stree(main/0,(main:-qsort([1,2],_15418,[]),true;fail),(main:-true),[],1),stree(qsort/3,(qsort(_15472,_15474,_15476):-_15472=[_15480|_15482],part(_15482,_15480,_15496,_15498),qsort(_15498,_15504,_15476),qsort(_15496,_15474,[_15480|_15504]),true;_15472=[],_15476=_15474,true;fail),(qsort(_15590,_15592,_15594):-true),[],1),stree(part/4,(part(_15628,_15630,_15632,_15634):-'$cut_load'(_15638),'$cut_part/4_1'(_15628,_15630,_15632,_15634,_15638),true;fail),(part(_15678,_15680,_15682,_15684):-true),[stree('$cut_part/4_1'/5,('$cut_part/4_1'(_15700,_15702,_15704,_15706,_15708):-_15700=[_15712|_15714],'$fac_$cut_part/4_1/5_2'(_15714,_15702,_15704,_15706,_15708,_15712),true;_15700=[],_15704=[],_15706=[],true;fail),('$cut_part/4_1'(_15804,_15806,_15808,_15810,_15812):-true),[stree('$fac_$cut_part/4_1/5_2'/6,('$fac_$cut_part/4_1/5_2'(_15828,_15830,_15832,_15834,_15836,_15838):-_15832=[_15838|_15844],_15838=<_15830,'$cut_shallow'(_15836),part(_15828,_15830,_15844,_15834),true;_15834=[_15838|_15900],part(_15828,_15830,_15832,_15900),true;fail),('$fac_$cut_part/4_1/5_2'(_15950,_15952,_15954,_15956,_15958,_15960):-true),[],1)],1)],1)],_15394,_16054).
 
 
 */
@@ -300,7 +300,7 @@ public static class pred_analyze_strees_2 extends Code {
 
 /*
 
-analyze_strees(_1140,_1142,_1154):-init_strees(_1140,_1144,_1146,seal(_1146,analyze_closure(_1140,_1146,_1142,_1154))).
+analyze_strees(_16146,_16148,_16214):-init_strees(_16146,_16154,_16156,seal(_16156,analyze_closure(_16146,_16156,_16148,_16214))).
 
 
 */
@@ -335,7 +335,7 @@ public static class pred_analyze_closure_3 extends Code {
 
 /*
 
-analyze_closure(_1196,_1198,_1200,_1212):-traverse_strees(_1196,_1198,_1202,0,_1204,analyze_closure(_1196,_1202,_1200,_1204,_1212)).
+analyze_closure(_16434,_16436,_16438,_16506):-traverse_strees(_16434,_16436,_16446,0,_16450,analyze_closure(_16434,_16446,_16438,_16450,_16506)).
 
 
 */
@@ -375,8 +375,8 @@ public static class pred_analyze_closure_4 extends Code {
 
 /*
 
-analyze_closure(_1256,_1258,_1258,_1260,_1268):-smallerorequal(_1260,0,cut(1,_1268)).
-analyze_closure(_1302,_1304,_1306,_1308,_1316):-smallerthan(0,_1308,cut(1,analyze_closure(_1302,_1304,_1306,_1316))).
+analyze_closure(_16746,_16748,_16748,_16752,_16810):-smallerorequal(_16752,0,cut(1,_16810)).
+analyze_closure(_16956,_16958,_16960,_16962,_17034):-smallerthan(0,_16962,cut(1,analyze_closure(_16956,_16958,_16960,_17034))).
 
 
 */
@@ -435,8 +435,8 @@ public static class pred_init_strees_3 extends Code {
 
 /*
 
-init_strees([],_1360,_1360,_1368):-true(_1368).
-init_strees([_1392|_1394],_1396,_1398,_1438):-unify(stree(_1408,(_1402:-_1404),_1412,_1414,_1416),_1392,bottom_call(_1408,_1418,table_command(get(_1408,_1418),_1396,_1426,init_disj(_1404,_1426,_1428,init_strees(_1414,_1428,_1430,init_strees(_1394,_1430,_1398,true(_1438))))))).
+init_strees([],_17246,_17246,_17288):-true(_17288).
+init_strees([_17392|_17394],_17400,_17402,_17546):-unify(stree(_17412,(_17406:-_17408),_17416,_17418,_17420),_17392,bottom_call(_17412,_17432,table_command(get(_17412,_17432),_17400,_17446,init_disj(_17408,_17446,_17454,init_strees(_17418,_17454,_17462,init_strees(_17394,_17462,_17402,true(_17546))))))).
 
 
 */
@@ -460,7 +460,7 @@ if (!( (areg2).Unify(var1.Deref(),mach))) return Prolog.Fail0 ;
 local_aregs[0] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[3] = local_aregs[2] = local_aregs[1] = null ;
-return (Operation)pred_true_0::exec_static ;}
+return (Operation) simple_analyzer.s_true.FindProc(0) ;}
 public static Operation exec_pred_init_strees_3__2(Prolog mach){ mach.RemoveChoice() ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[3] ;
@@ -522,7 +522,7 @@ if (!( (areg2).Unify(var1.Deref(),mach))) return Prolog.Fail0 ;
 local_aregs[0] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[3] = local_aregs[2] = local_aregs[1] = null ;
-return (Operation)pred_true_0::exec_static ;}
+return (Operation) simple_analyzer.s_true.FindProc(0) ;}
 public static Operation exec_pred_init_conj_3__2(Prolog mach){ mach.RemoveChoice() ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[3] ;
@@ -575,7 +575,7 @@ if (!( (areg2).Unify(var1.Deref(),mach))) return Prolog.Fail0 ;
 local_aregs[0] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[3] = local_aregs[2] = local_aregs[1] = null ;
-return (Operation)pred_true_0::exec_static ;}
+return (Operation) simple_analyzer.s_true.FindProc(0) ;}
 public static Operation exec_pred_init_disj_3__2(Prolog mach){ mach.RemoveChoice() ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[3] ;
@@ -688,7 +688,7 @@ if (!( (areg4).Unify(var2.Deref(),mach))) return Prolog.Fail0 ;
 local_aregs[0] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[5] = local_aregs[4] = local_aregs[3] = local_aregs[2] = local_aregs[1] = null ;
-return (Operation)pred_true_0::exec_static ;}
+return (Operation) simple_analyzer.s_true.FindProc(0) ;}
 public static Operation exec_pred_traverse_strees_5__2(Prolog mach){ mach.RemoveChoice() ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[5] ;
@@ -764,7 +764,7 @@ if (!( (areg5).Unify(var3.Deref(),mach))) return Prolog.Fail0 ;
 local_aregs[0] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[6] = local_aregs[5] = local_aregs[4] = local_aregs[3] = local_aregs[2] = local_aregs[1] = null ;
-return (Operation)pred_true_0::exec_static ;}
+return (Operation) simple_analyzer.s_true.FindProc(0) ;}
 public static Operation exec_pred_traverse_disj_6__2(Prolog mach){ mach.RemoveChoice() ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[6] ;
@@ -905,7 +905,7 @@ if (!( (areg10).Unify(var5.Deref(),mach))) return Prolog.Fail0 ;
 local_aregs[0] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[11] = local_aregs[10] = local_aregs[9] = local_aregs[8] = local_aregs[7] = local_aregs[6] = local_aregs[5] = local_aregs[4] = local_aregs[3] = local_aregs[2] = local_aregs[1] = null ;
-return (Operation)pred_true_0::exec_static ;}
+return (Operation) simple_analyzer.s_true.FindProc(0) ;}
 public static Operation exec_pred_traverse_conj_11__2(Prolog mach){ mach.RemoveChoice() ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[11] ;
@@ -1739,7 +1739,7 @@ local_aregs[1] = var4 ;
 local_aregs[2] = var5 ;
 local_aregs[3] = Data.F(simple_analyzer.s_functor,var2.Deref(),var4.Deref(),var5.Deref(),Data.F(simple_analyzer.s_functor,var3.Deref(),var4.Deref(),var5.Deref(),Data.F(simple_analyzer.s_lub_call,simple_analyzer.posint1,var5.Deref(),var1.Deref(),var2.Deref(),var3.Deref(),continuation))) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_functor_3::exec_static ;}
+return (Operation) simple_analyzer.s_functor.FindProc(3) ;}
 }
 
 
@@ -1844,7 +1844,7 @@ local_aregs[1] = var1.Deref() ;
 local_aregs[2] = var2.Deref() ;
 local_aregs[3] = Data.F(simple_analyzer.s_bottom_call,simple_analyzer.posint1,var2.Deref(),var3.Deref(),continuation) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_functor_3::exec_static ;}
+return (Operation) simple_analyzer.s_functor.FindProc(3) ;}
 }
 
 
@@ -1940,7 +1940,7 @@ local_aregs[1] = var1.Deref() ;
 local_aregs[2] = var2.Deref() ;
 local_aregs[3] = Data.F(simple_analyzer.s_get,var3.Deref(),Data.F(simple_analyzer.s11,var1.Deref(),var2.Deref()),var6,Data.F(simple_analyzer.s_lattice_modes_call,simple_analyzer.posint1,var2.Deref(),var6.Deref(),var4.Deref(),var5.Deref(),simple_analyzer.s_true,continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_functor_3::exec_static ;}
+return (Operation) simple_analyzer.s_functor.FindProc(3) ;}
 }
 
 
@@ -2206,7 +2206,7 @@ local_aregs[2] = var1.Deref() ;
 local_aregs[3] = Data.F(simple_analyzer.s_get,var7.Deref(),var5.Deref(),var6.Deref(),var3.Deref(),var4.Deref(),continuation) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[6] = local_aregs[5] = local_aregs[4] = null ;
-return (Operation)pred_compare_3::exec_static ;}
+return (Operation) simple_analyzer.s_compare.FindProc(3) ;}
 }
 
 
@@ -2337,7 +2337,7 @@ local_aregs[2] = var1.Deref() ;
 local_aregs[3] = Data.F(simple_analyzer.s_set_2,var10.Deref(),var5.Deref(),var6.Deref(),var2.Deref(),var3.Deref(),var4.Deref(),var7.Deref(),var8.Deref(),var9.Deref(),continuation) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[4] = null ;
-return (Operation)pred_compare_3::exec_static ;}
+return (Operation) simple_analyzer.s_compare.FindProc(3) ;}
 }
 
 
@@ -2644,7 +2644,7 @@ local_aregs[2] = var6 ;
 local_aregs[3] = Data.F(simple_analyzer.s_get_entry_modes,var1.Deref(),simple_analyzer.posint1,var6.Deref(),var2.Deref(),var3.Deref(),var7,Data.F(simple_analyzer.s_sort,var7.Deref(),var4.Deref(),continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[4] = null ;
-return (Operation)pred_functor_3::exec_static ;}
+return (Operation) simple_analyzer.s_functor.FindProc(3) ;}
 }
 
 
@@ -2783,7 +2783,7 @@ local_aregs[1] = var3 ;
 local_aregs[2] = var4 ;
 local_aregs[3] = Data.F(simple_analyzer.s_filter_vars,var4.Deref(),var1.Deref(),var5,Data.F(simple_analyzer.s_sort,var5.Deref(),var2.Deref(),continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_functor_3::exec_static ;}
+return (Operation) simple_analyzer.s_functor.FindProc(3) ;}
 }
 
 
@@ -3395,7 +3395,7 @@ local_aregs[1] = var1.Deref() ;
 local_aregs[2] = var2.Deref() ;
 local_aregs[3] = Data.F(simple_analyzer.s_inv_2,var4.Deref(),var1.Deref(),var3.Deref(),continuation) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_compare_3::exec_static ;}
+return (Operation) simple_analyzer.s_compare.FindProc(3) ;}
 }
 
 
@@ -3559,7 +3559,7 @@ local_aregs[2] = var1.Deref() ;
 local_aregs[3] = Data.F(simple_analyzer.s_intersectv_3,var6.Deref(),var3.Deref(),var4.Deref(),var1.Deref(),var2.Deref(),var5.Deref(),continuation) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[4] = null ;
-return (Operation)pred_compare_3::exec_static ;}
+return (Operation) simple_analyzer.s_compare.FindProc(3) ;}
 }
 
 
@@ -3775,7 +3775,7 @@ local_aregs[2] = var1.Deref() ;
 local_aregs[3] = Data.F(simple_analyzer.s_diffv_3,var6.Deref(),var3.Deref(),var4.Deref(),var1.Deref(),var2.Deref(),var5.Deref(),continuation) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[4] = null ;
-return (Operation)pred_compare_3::exec_static ;}
+return (Operation) simple_analyzer.s_compare.FindProc(3) ;}
 }
 
 
@@ -3990,7 +3990,7 @@ local_aregs[2] = var1.Deref() ;
 local_aregs[3] = Data.F(simple_analyzer.s_unionv_3,var6.Deref(),var3.Deref(),var4.Deref(),var1.Deref(),var2.Deref(),var5.Deref(),continuation) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[4] = null ;
-return (Operation)pred_compare_3::exec_static ;}
+return (Operation) simple_analyzer.s_compare.FindProc(3) ;}
 }
 
 
@@ -4182,7 +4182,7 @@ local_aregs[1] = var3.Deref() ;
 local_aregs[2] = var1.Deref() ;
 local_aregs[3] = Data.F(simple_analyzer.s_includev_3,var5.Deref(),var3.Deref(),var1.Deref(),var2.Deref(),var4.Deref(),continuation) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_compare_3::exec_static ;}
+return (Operation) simple_analyzer.s_compare.FindProc(3) ;}
 }
 
 
@@ -4315,7 +4315,7 @@ local_aregs[1] = var1.Deref() ;
 local_aregs[2] = var3.Deref() ;
 local_aregs[3] = Data.F(simple_analyzer.s_subsetv_2,var5.Deref(),var1.Deref(),var2.Deref(),var4.Deref(),continuation) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_compare_3::exec_static ;}
+return (Operation) simple_analyzer.s_compare.FindProc(3) ;}
 }
 
 

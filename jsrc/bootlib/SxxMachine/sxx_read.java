@@ -66,7 +66,9 @@ final static Const s_notvmember = Data.Intern("notvmember") ;
 final static Const s_prefix = Data.Intern("prefix") ;
 final static Const s_read = Data.Intern("read") ;
 final static Const s_readall = Data.Intern("readall") ;
+final static Const s_real = Data.Intern("real") ;
 final static Const s_smallerorequal = Data.Intern("smallerorequal") ;
+final static Const s_string = Data.Intern("string") ;
 final static Const s_unify = Data.Intern("unify") ;
 final static Const s_univ = Data.Intern("univ") ;
 final static Const s_var = Data.Intern("var") ;
@@ -74,7 +76,7 @@ final static Const s_vread = Data.Intern("vread") ;
 final static Const s_xfx = Data.Intern("xfx") ;
 final static Const s_xfy = Data.Intern("xfy") ;
 final static Const s_yfx = Data.Intern("yfx") ;
-final static Const s66 = Data.Intern("|") ;
+final static Const s68 = Data.Intern("|") ;
 final static Int posint1 = Data.Number(1L) ;
 final static Int posint200 = Data.Number(200L) ;
 final static Int posint300 = Data.Number(300L) ;
@@ -851,15 +853,17 @@ public static class pred_maketerm_3 extends Code {
 
 maketerm([var(_1740,_1742,_1744)],_1752,_1754,_1762):-unify(_1740,_1752,cut(1,_1762)).
 maketerm([int(_1796)],_1804,_1806,_1814):-cut(1,unify(_1796,_1804,_1814)).
-maketerm([const(_1848)],_1856,_1858,_1866):-cut(1,unify(_1848,_1856,_1866)).
-maketerm([const(_1900),const('(')|_1916],_1918,_1920,_1930):-getargs(_1916,_1922,univ(_1918,_1900,_1922,_1930)).
-maketerm(_1966,_1968,_1970,_2014):-ap(_1982,[const(_1974)|_1980],_1966,infix(_1984,_1986,_1974,smallerorequal(_1984,_1970,newprec(_1986,_1984,_1988,_1990,maketerm(_1982,_1992,_1988,maketerm(_1980,_1994,_1990,univ(_1968,_1974,[_1992,_1994],_2014))))))).
-maketerm([const(_2104)|_2110],_2112,_2114,_2136):-prefix(_2116,_2118,_2104,smallerorequal(_2116,_2114,newprec(_2118,_2116,_2120,maketerm(_2110,_2122,_2120,univ(_2112,_2104,[_2122],_2136))))).
-maketerm([const('[')|_2210],[_2214|_2216],_2218,_2248):-ap(_2230,[const(',')|_2228],_2210,maketerm(_2230,_2214,900,maketerm([const('[')|_2228],_2216,900,_2248))).
-maketerm([const('[')|_2304],[_2308|_2310],_2312,_2344):-ap(_2324,[const('|')|_2322],_2304,ap(_2336,[const(']')],_2322,maketerm(_2324,_2308,900,maketerm(_2336,_2310,900,_2344)))).
-maketerm([const('(')|_2410],_2412,_2414,_2434):-ap(_2426,[const(')')],_2410,cut(1,maketerm(_2426,_2412,_2434))).
-maketerm([const('[')|_2484],[_2488],_2492,_2512):-ap(_2504,[const(']')],_2484,maketerm(_2504,_2488,900,_2512)).
-maketerm([const('['),const(']')],[],_2570,_2580):-call(_2580).
+maketerm([real(_1848)],_1856,_1858,_1866):-cut(1,unify(_1848,_1856,_1866)).
+maketerm([const(_1900)],_1908,_1910,_1918):-cut(1,unify(_1900,_1908,_1918)).
+maketerm([string(_1952)],_1960,_1962,_1970):-cut(1,unify(_1952,_1960,_1970)).
+maketerm([const(_2004),const('(')|_2020],_2022,_2024,_2034):-getargs(_2020,_2026,univ(_2022,_2004,_2026,_2034)).
+maketerm(_2070,_2072,_2074,_2118):-ap(_2086,[const(_2078)|_2084],_2070,infix(_2088,_2090,_2078,smallerorequal(_2088,_2074,newprec(_2090,_2088,_2092,_2094,maketerm(_2086,_2096,_2092,maketerm(_2084,_2098,_2094,univ(_2072,_2078,[_2096,_2098],_2118))))))).
+maketerm([const(_2208)|_2214],_2216,_2218,_2240):-prefix(_2220,_2222,_2208,smallerorequal(_2220,_2218,newprec(_2222,_2220,_2224,maketerm(_2214,_2226,_2224,univ(_2216,_2208,[_2226],_2240))))).
+maketerm([const('[')|_2314],[_2318|_2320],_2322,_2352):-ap(_2334,[const(',')|_2332],_2314,maketerm(_2334,_2318,900,maketerm([const('[')|_2332],_2320,900,_2352))).
+maketerm([const('[')|_2408],[_2412|_2414],_2416,_2448):-ap(_2428,[const('|')|_2426],_2408,ap(_2440,[const(']')],_2426,maketerm(_2428,_2412,900,maketerm(_2440,_2414,900,_2448)))).
+maketerm([const('(')|_2514],_2516,_2518,_2538):-ap(_2530,[const(')')],_2514,cut(1,maketerm(_2530,_2516,_2538))).
+maketerm([const('[')|_2588],[_2592],_2596,_2616):-ap(_2608,[const(']')],_2588,maketerm(_2608,_2592,900,_2616)).
+maketerm([const('['),const(']')],[],_2674,_2684):-call(_2684).
 
 
 */
@@ -916,7 +920,7 @@ Term areg0 = local_aregs[0].Deref() ;
 Var var3 = Data.V(mach) ;
 Var var2 = Data.V(mach) ;
 Var var1 = Data.V(mach) ;
-if (!( (areg0).Unify(Data.F(sxx_read.s9,Data.F(sxx_read.s_const,var1),Const.Nil),mach))) return Prolog.Fail0 ;
+if (!( (areg0).Unify(Data.F(sxx_read.s9,Data.F(sxx_read.s_real,var1),Const.Nil),mach))) return Prolog.Fail0 ;
 if (!( (areg1).Unify(var2,mach))) return Prolog.Fail0 ;
 if (!( (areg2).Unify(var3,mach))) return Prolog.Fail0 ;
 mach.DoCut(mach.CUTB)  ;
@@ -925,6 +929,40 @@ mach.CUTB = mach.CurrentChoice ;
 local_aregs[3] = local_aregs[2] = null ;
 return Prolog.Call1 ;}
 public static Operation exec_pred_maketerm_3__4(Prolog mach){ mach.FillAlternative(pred_maketerm_3::exec_pred_maketerm_3__5) ;
+Term local_aregs[] = mach.Areg ;
+Term continuation = local_aregs[3] ;
+Term areg2 = local_aregs[2].Deref() ;
+Term areg1 = local_aregs[1].Deref() ;
+Term areg0 = local_aregs[0].Deref() ;
+Var var3 = Data.V(mach) ;
+Var var2 = Data.V(mach) ;
+Var var1 = Data.V(mach) ;
+if (!( (areg0).Unify(Data.F(sxx_read.s9,Data.F(sxx_read.s_const,var1),Const.Nil),mach))) return Prolog.Fail0 ;
+if (!( (areg1).Unify(var2,mach))) return Prolog.Fail0 ;
+if (!( (areg2).Unify(var3,mach))) return Prolog.Fail0 ;
+mach.DoCut(mach.CUTB)  ;
+local_aregs[0] = Data.F(sxx_read.s_unify,var1.Deref(),var2.Deref(),continuation) ;
+mach.CUTB = mach.CurrentChoice ;
+local_aregs[3] = local_aregs[2] = null ;
+return Prolog.Call1 ;}
+public static Operation exec_pred_maketerm_3__5(Prolog mach){ mach.FillAlternative(pred_maketerm_3::exec_pred_maketerm_3__6) ;
+Term local_aregs[] = mach.Areg ;
+Term continuation = local_aregs[3] ;
+Term areg2 = local_aregs[2].Deref() ;
+Term areg1 = local_aregs[1].Deref() ;
+Term areg0 = local_aregs[0].Deref() ;
+Var var3 = Data.V(mach) ;
+Var var2 = Data.V(mach) ;
+Var var1 = Data.V(mach) ;
+if (!( (areg0).Unify(Data.F(sxx_read.s9,Data.F(sxx_read.s_string,var1),Const.Nil),mach))) return Prolog.Fail0 ;
+if (!( (areg1).Unify(var2,mach))) return Prolog.Fail0 ;
+if (!( (areg2).Unify(var3,mach))) return Prolog.Fail0 ;
+mach.DoCut(mach.CUTB)  ;
+local_aregs[0] = Data.F(sxx_read.s_unify,var1.Deref(),var2.Deref(),continuation) ;
+mach.CUTB = mach.CurrentChoice ;
+local_aregs[3] = local_aregs[2] = null ;
+return Prolog.Call1 ;}
+public static Operation exec_pred_maketerm_3__6(Prolog mach){ mach.FillAlternative(pred_maketerm_3::exec_pred_maketerm_3__7) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[3] ;
 Term areg2 = local_aregs[2].Deref() ;
@@ -944,7 +982,7 @@ local_aregs[2] = Data.F(sxx_read.s_univ,var3.Deref(),var1.Deref(),var5.Deref(),c
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[3] = null ;
 return (Operation)pred_getargs_2::exec_static ;}
-public static Operation exec_pred_maketerm_3__5(Prolog mach){ mach.FillAlternative(pred_maketerm_3::exec_pred_maketerm_3__6) ;
+public static Operation exec_pred_maketerm_3__7(Prolog mach){ mach.FillAlternative(pred_maketerm_3::exec_pred_maketerm_3__8) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[3] ;
 Term areg2 = local_aregs[2].Deref() ;
@@ -971,7 +1009,7 @@ local_aregs[2] = var1.Deref() ;
 local_aregs[3] = Data.F(sxx_read.s_infix,var7,var8,var5.Deref(),Data.F(sxx_read.s_smallerorequal,var7.Deref(),var3.Deref(),Data.F(sxx_read.s_newprec,var8.Deref(),var7.Deref(),var9,var10,Data.F(sxx_read.s_maketerm,var4.Deref(),var11,var9.Deref(),Data.F(sxx_read.s_maketerm,var6.Deref(),var12,var10.Deref(),Data.F(sxx_read.s_univ,var2.Deref(),var5.Deref(),Data.F(sxx_read.s9,var11.Deref(),Data.F(sxx_read.s9,var12.Deref(),Const.Nil)),continuation)))))) ;
 mach.CUTB = mach.CurrentChoice ;
 return (Operation)pred_ap_3::exec_static ;}
-public static Operation exec_pred_maketerm_3__6(Prolog mach){ mach.FillAlternative(pred_maketerm_3::exec_pred_maketerm_3__7) ;
+public static Operation exec_pred_maketerm_3__8(Prolog mach){ mach.FillAlternative(pred_maketerm_3::exec_pred_maketerm_3__9) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[3] ;
 Term areg2 = local_aregs[2].Deref() ;
@@ -994,7 +1032,7 @@ local_aregs[2] = var1.Deref() ;
 local_aregs[3] = Data.F(sxx_read.s_smallerorequal,var5.Deref(),var4.Deref(),Data.F(sxx_read.s_newprec,var6.Deref(),var5.Deref(),var7,Data.F(sxx_read.s_maketerm,var2.Deref(),var8,var7.Deref(),Data.F(sxx_read.s_univ,var3.Deref(),var1.Deref(),Data.F(sxx_read.s9,var8.Deref(),Const.Nil),continuation)))) ;
 mach.CUTB = mach.CurrentChoice ;
 return (Operation)pred_prefix_3::exec_static ;}
-public static Operation exec_pred_maketerm_3__7(Prolog mach){ mach.FillAlternative(pred_maketerm_3::exec_pred_maketerm_3__8) ;
+public static Operation exec_pred_maketerm_3__9(Prolog mach){ mach.FillAlternative(pred_maketerm_3::exec_pred_maketerm_3__10) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[3] ;
 Term areg2 = local_aregs[2].Deref() ;
@@ -1015,7 +1053,7 @@ local_aregs[2] = var1.Deref() ;
 local_aregs[3] = Data.F(sxx_read.s_maketerm,var5.Deref(),var2.Deref(),sxx_read.posint900,Data.F(sxx_read.s_maketerm,Data.F(sxx_read.s9,Data.F(sxx_read.s_const,sxx_read.s30),var6.Deref()),var3.Deref(),sxx_read.posint900,continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
 return (Operation)pred_ap_3::exec_static ;}
-public static Operation exec_pred_maketerm_3__8(Prolog mach){ mach.FillAlternative(pred_maketerm_3::exec_pred_maketerm_3__9) ;
+public static Operation exec_pred_maketerm_3__10(Prolog mach){ mach.FillAlternative(pred_maketerm_3::exec_pred_maketerm_3__11) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[3] ;
 Term areg2 = local_aregs[2].Deref() ;
@@ -1032,12 +1070,12 @@ if (!( (areg0).Unify(Data.F(sxx_read.s9,Data.F(sxx_read.s_const,sxx_read.s30),va
 if (!( (areg1).Unify(Data.F(sxx_read.s9,var2,var3),mach))) return Prolog.Fail0 ;
 if (!( (areg2).Unify(var4,mach))) return Prolog.Fail0 ;
 local_aregs[0] = var5 ;
-local_aregs[1] = Data.F(sxx_read.s9,Data.F(sxx_read.s_const,sxx_read.s66),var6) ;
+local_aregs[1] = Data.F(sxx_read.s9,Data.F(sxx_read.s_const,sxx_read.s68),var6) ;
 local_aregs[2] = var1.Deref() ;
 local_aregs[3] = Data.F(sxx_read.s_ap,var7,Data.F(sxx_read.s9,Data.F(sxx_read.s_const,sxx_read.s31),Const.Nil),var6.Deref(),Data.F(sxx_read.s_maketerm,var5.Deref(),var2.Deref(),sxx_read.posint900,Data.F(sxx_read.s_maketerm,var7.Deref(),var3.Deref(),sxx_read.posint900,continuation))) ;
 mach.CUTB = mach.CurrentChoice ;
 return (Operation)pred_ap_3::exec_static ;}
-public static Operation exec_pred_maketerm_3__9(Prolog mach){ mach.FillAlternative(pred_maketerm_3::exec_pred_maketerm_3__10) ;
+public static Operation exec_pred_maketerm_3__11(Prolog mach){ mach.FillAlternative(pred_maketerm_3::exec_pred_maketerm_3__12) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[3] ;
 Term areg2 = local_aregs[2].Deref() ;
@@ -1056,7 +1094,7 @@ local_aregs[2] = var1.Deref() ;
 local_aregs[3] = mach.HC(Data.F(sxx_read.s_maketerm,var4.Deref(),var2.Deref(),continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
 return (Operation)pred_ap_3::exec_static ;}
-public static Operation exec_pred_maketerm_3__10(Prolog mach){ mach.FillAlternative(pred_maketerm_3::exec_pred_maketerm_3__11) ;
+public static Operation exec_pred_maketerm_3__12(Prolog mach){ mach.FillAlternative(pred_maketerm_3::exec_pred_maketerm_3__13) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[3] ;
 Term areg2 = local_aregs[2].Deref() ;
@@ -1075,7 +1113,7 @@ local_aregs[2] = var1.Deref() ;
 local_aregs[3] = Data.F(sxx_read.s_maketerm,var4.Deref(),var2.Deref(),sxx_read.posint900,continuation) ;
 mach.CUTB = mach.CurrentChoice ;
 return (Operation)pred_ap_3::exec_static ;}
-public static Operation exec_pred_maketerm_3__11(Prolog mach){ mach.RemoveChoice() ;
+public static Operation exec_pred_maketerm_3__13(Prolog mach){ mach.RemoveChoice() ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[3] ;
 Term areg2 = local_aregs[2].Deref() ;
@@ -1096,9 +1134,9 @@ public static class pred_newprec_4 extends Code {
 
 /*
 
-newprec(xfx,_2598,_2600,_2602,_2622):-cut(1,is(_2600,_2598-1,is(_2602,_2598-1,_2622))).
-newprec(xfy,_2664,_2666,_2668,_2682):-cut(1,is(_2666,_2664-1,unify(_2664,_2668,_2682))).
-newprec(yfx,_2724,_2726,_2728,_2742):-cut(1,is(_2728,_2724-1,unify(_2724,_2726,_2742))).
+newprec(xfx,_2702,_2704,_2706,_2726):-cut(1,is(_2704,_2702-1,is(_2706,_2702-1,_2726))).
+newprec(xfy,_2768,_2770,_2772,_2786):-cut(1,is(_2770,_2768-1,unify(_2768,_2772,_2786))).
+newprec(yfx,_2828,_2830,_2832,_2846):-cut(1,is(_2832,_2828-1,unify(_2828,_2830,_2846))).
 
 
 */
@@ -1173,8 +1211,8 @@ public static class pred_newprec_3 extends Code {
 
 /*
 
-newprec(fx,_2784,_2786,_2800):-cut(1,is(_2786,_2784-1,_2800)).
-newprec(fy,_2832,_2832,_2842):-call(_2842).
+newprec(fx,_2888,_2890,_2904):-cut(1,is(_2890,_2888-1,_2904)).
+newprec(fy,_2936,_2936,_2946):-call(_2946).
 
 
 */
@@ -1222,8 +1260,8 @@ public static class pred_getargs_2 extends Code {
 
 /*
 
-getargs(_2860,_2862,_2890):-ap(_2874,[const(')')],_2860,maketerm(_2874,_2876,900,unify([_2876],_2862,_2890))).
-getargs(_2934,_2936,_2964):-ap(_2948,[const(',')|_2946],_2934,maketerm(_2948,_2950,900,unify([_2950|_2956],_2936,getargs(_2946,_2956,_2964)))).
+getargs(_2964,_2966,_2994):-ap(_2978,[const(')')],_2964,maketerm(_2978,_2980,900,unify([_2980],_2966,_2994))).
+getargs(_3038,_3040,_3068):-ap(_3052,[const(',')|_3050],_3038,maketerm(_3052,_3054,900,unify([_3054|_3060],_3040,getargs(_3050,_3060,_3068)))).
 
 
 */
@@ -1277,7 +1315,7 @@ public static class pred_maketerm_2 extends Code {
 
 /*
 
-maketerm(_3016,_3018,_3026):-maketerm(_3016,_3018,1200,_3026).
+maketerm(_3120,_3122,_3130):-maketerm(_3120,_3122,1200,_3130).
 
 
 */
@@ -1310,8 +1348,8 @@ public static class pred_ap_3 extends Code {
 
 /*
 
-ap([],_3052,_3052,_3062):-call(_3062).
-ap([_3082|_3084],_3092,[_3082|_3090],_3100):-ap(_3084,_3092,_3090,_3100).
+ap([],_3156,_3156,_3166):-call(_3166).
+ap([_3186|_3188],_3196,[_3186|_3194],_3204):-ap(_3188,_3196,_3194,_3204).
 
 
 */

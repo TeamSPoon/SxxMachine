@@ -1,16 +1,15 @@
 #ifndef PROLOG
 #define PROLOG
 
-#include "Operation.h"
 #include "Term.h"
 #include <string>
 #include <vector>
 #include <iostream>
 #include <stdexcept>
-#include <functional>
-#include "../../exceptionhelper.h"
+#include "exceptionhelper.h"
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
+namespace SxxMachine { class Operation; }
 namespace SxxMachine { class Term; }
 namespace SxxMachine { class PredTable; }
 namespace SxxMachine { class FailProc; }
@@ -18,10 +17,9 @@ namespace SxxMachine { class Call1Proc; }
 namespace SxxMachine { class Call2Proc; }
 namespace SxxMachine { class CutProc; }
 namespace SxxMachine { class TrueProc; }
+namespace SxxMachine { class Undoable; }
 namespace SxxMachine { class Lexer; }
 namespace SxxMachine { class run; }
-namespace SxxMachine { class Operation; }
-namespace SxxMachine { class Undoable; }
 namespace SxxMachine { class Var; }
 class Appendable;
 
@@ -44,10 +42,10 @@ namespace SxxMachine {
 		virtual ~Prolog() {
 			delete lextoc;
 			delete assumptions;
-			delete pendinggoals;
+			delete pendingGoals;
 			delete currentinput;
 			delete currentoutput;
-			delete pendingGoals;
+			delete code;
 		}
 
 		static void main(std::vector<std::string>& args);
@@ -58,12 +56,13 @@ namespace SxxMachine {
 			Prolog* outerInstance;
 
 		public:
-			Operation Alternative;
+			Operation* Alternative;
 			int Trail = 0;
 			std::vector<Term*> Arguments;
 			long long TimeStamp = 0;
 
 			virtual ~ChoicePointStackEntry() {
+				delete Alternative;
 				delete outerInstance;
 			}
 
@@ -83,28 +82,27 @@ namespace SxxMachine {
 
 		std::vector<Term*> Areg(32);
 		std::vector<ChoicePointStackEntry*> ChoicePointStack;
-		std::vector<Term*> TrailStack;
-		//public Lexer.PrologTokenizer stdin;
+		std::vector<Undoable*> TrailStack;
+		// public Lexer.PrologTokenizer stdin;
 		long long TimeStamp = 0;
 		int CUTB = 0;
 		int CurrentChoice = 0;
 		int TrailTop = 0;
 		Lexer* lextoc = nullptr;
 		Term* assumptions;
-		Term* pendinggoals;
+		Term* pendingGoals;
 		int ExceptionRaised = 0;
 		InputStream* currentinput;
 		OutputStream* currentoutput;
-		Term* pendingGoals;
-		Operation code;
+		Operation* code;
 
 		virtual void run();
 
 		virtual Term* HC(Term* continuation);
 
-		static int GetArity(Operation code);
+		static int GetArity(Operation* code);
 
-		static void Debug(Operation code);
+		static void Debug(Operation* code);
 
 		virtual Term* SolveGoal(Term* Goal);
 
@@ -114,9 +112,9 @@ namespace SxxMachine {
 
 		virtual Term* nexttoken();
 
-		virtual Operation GetAlternative();
+		virtual Operation* GetAlternative();
 
-		virtual void FillAlternative(Operation Alt);
+		virtual void FillAlternative(Operation* Alt);
 
 		virtual void RemoveChoice();
 
@@ -124,17 +122,15 @@ namespace SxxMachine {
 
 		virtual void UnTrail();
 
-		virtual void TrailEntry(Term* po);
+		virtual void push(Undoable* undoable);
+
+		virtual void TrailEntry(Undoable* po);
 
 		virtual void CreateChoicePoint(std::vector<Term*>& args);
 
 		virtual void DoCut(const int& CutTo);
 
-		virtual Operation LoadPred(const std::string& name, const int& arity);
-
-		virtual void push1(Undoable* undoable);
-
-		virtual void push(Undoable* undoable);
+		virtual Operation* LoadPred(const std::string& name, const int& arity);
 
 		virtual void Reg(const int& i);
 
@@ -151,9 +147,9 @@ namespace SxxMachine {
 
 		void formattedOutput(const int& formatFlags, Appendable* buffer) throw(IOException) override;
 
-		bool Unify(Term* that) override;
+		bool Unify(Term* that, Prolog* mach) override;
 
-		bool Bind(Term* that) override;
+		bool Bind(Term* that, Prolog* mach) override;
 
 		bool Equal(Term* that) override;
 
@@ -165,9 +161,15 @@ namespace SxxMachine {
 
 		long long LongValue() override;
 
-		virtual bool islist();
+		bool isConst() override;
 
-		virtual bool isnil();
+		bool isFVar() override;
+
+		bool isInt() override;
+
+		bool isStruct() override;
+
+		bool isVar() override;
 
 	};
 

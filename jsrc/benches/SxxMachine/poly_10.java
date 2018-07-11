@@ -79,7 +79,7 @@ Term continuation = local_aregs[0] ;
 local_aregs[0] = Data.F(poly_10.s_op,poly_10.posint700,poly_10.s_xfx,poly_10.s_less_than) ;
 local_aregs[1] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_write_1::exec_static ;}
+return (Operation) poly_10.s_write.FindProc(1) ;}
 }
 
 
@@ -328,7 +328,7 @@ local_aregs[1] = Data.F(poly_10.s2,var1.Deref(),var2.Deref()) ;
 local_aregs[2] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[3] = null ;
-return (Operation)pred_is_2::exec_static ;}
+return (Operation) poly_10.s_is.FindProc(2) ;}
 }
 
 
@@ -503,9 +503,9 @@ public static class pred_poly_exp_3 extends Code {
 
 /*
 
-poly_exp(0,_1490,1,_1498):-cut(1,_1498).
-poly_exp(_1522,_1524,_1526,_1550):-is(_1534,_1522>>1,is(_1522,_1534<<1,cut(1,poly_exp(_1534,_1524,_1542,poly_mul(_1542,_1542,_1526,_1550))))).
-poly_exp(_1610,_1612,_1614,_1632):-is(_1622,_1610-1,poly_exp(_1622,_1612,_1624,poly_mul(_1612,_1624,_1614,_1632))).
+poly_exp(0,_23582,1,_23624):-cut(1,_23624).
+poly_exp(_23730,_23732,_23734,_23838):-is(_23744,_23730>>1,is(_23730,_23744<<1,cut(1,poly_exp(_23744,_23732,_23766,poly_mul(_23766,_23766,_23734,_23838))))).
+poly_exp(_24172,_24174,_24176,_24256):-is(_24186,_24172-1,poly_exp(_24186,_24174,_24196,poly_mul(_24174,_24196,_24176,_24256))).
 
 
 */
@@ -550,7 +550,7 @@ local_aregs[1] = Data.F(poly_10.s7,var1.Deref(),poly_10.posint1) ;
 local_aregs[2] = Data.F(poly_10.s_is,var1.Deref(),Data.F(poly_10.s6,var4.Deref(),poly_10.posint1),mach.HC(Data.F(poly_10.s_poly_exp,var4.Deref(),var2.Deref(),var5,Data.F(poly_10.s_poly_mul,var5.Deref(),var5.Deref(),var3.Deref(),continuation)))) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[3] = null ;
-return (Operation)pred_is_2::exec_static ;}
+return (Operation) poly_10.s_is.FindProc(2) ;}
 public static Operation exec_pred_poly_exp_3__3(Prolog mach){ mach.RemoveChoice() ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[3] ;
@@ -570,7 +570,7 @@ local_aregs[1] = Data.F(poly_10.s3,var1.Deref(),poly_10.posint1) ;
 local_aregs[2] = Data.F(poly_10.s_poly_exp,var4.Deref(),var2.Deref(),var5,Data.F(poly_10.s_poly_mul,var2.Deref(),var5.Deref(),var3.Deref(),continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[3] = null ;
-return (Operation)pred_is_2::exec_static ;}
+return (Operation) poly_10.s_is.FindProc(2) ;}
 }
 
 
@@ -578,11 +578,11 @@ public static class pred_poly_mul_3 extends Code {
 
 /*
 
-poly_mul(poly(_1680,_1682),poly(_1680,_1688),poly(_1680,_1694),_1702):-cut(1,term_mul(_1682,_1688,_1694,_1702)).
-poly_mul(poly(_1738,_1740),poly(_1744,_1746),poly(_1738,_1752),_1766):-less_than(_1738,_1744,cut(1,mul_through(_1740,poly(_1744,_1746),_1752,_1766))).
-poly_mul(_1820,poly(_1810,_1812),poly(_1810,_1818),_1828):-cut(1,mul_through(_1812,_1820,_1818,_1828)).
-poly_mul(poly(_1864,_1866),_1874,poly(_1864,_1872),_1882):-cut(1,mul_through(_1866,_1874,_1872,_1882)).
-poly_mul(_1916,_1918,_1920,_1934):-is(_1920,_1916*_1918,_1934).
+poly_mul(poly(_24534,_24536),poly(_24534,_24542),poly(_24534,_24548),_24610):-cut(1,term_mul(_24536,_24542,_24548,_24610)).
+poly_mul(poly(_24786,_24788),poly(_24792,_24794),poly(_24786,_24800),_24880):-less_than(_24786,_24792,cut(1,mul_through(_24788,poly(_24792,_24794),_24800,_24880))).
+poly_mul(_25118,poly(_25106,_25108),poly(_25106,_25114),_25176):-cut(1,mul_through(_25108,_25118,_25114,_25176)).
+poly_mul(poly(_25352,_25354),_25366,poly(_25352,_25360),_25422):-cut(1,mul_through(_25354,_25366,_25360,_25422)).
+poly_mul(_25598,_25600,_25602,_25654):-is(_25602,_25598*_25600,_25654).
 
 
 */
@@ -684,7 +684,7 @@ local_aregs[1] = Data.F(poly_10.s1,var1.Deref(),var2.Deref()) ;
 local_aregs[2] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[3] = null ;
-return (Operation)pred_is_2::exec_static ;}
+return (Operation) poly_10.s_is.FindProc(2) ;}
 }
 
 
@@ -692,9 +692,9 @@ public static class pred_term_mul_3 extends Code {
 
 /*
 
-term_mul([],_1960,[],_1968):-cut(1,_1968).
-term_mul(_1992,[],[],_2000):-cut(1,_2000).
-term_mul([_2026|_2028],_2030,_2032,_2044):-single_term_mul(_2030,_2026,_2034,term_mul(_2028,_2030,_2036,term_add(_2034,_2036,_2032,_2044))).
+term_mul([],_25812,[],_25854):-cut(1,_25854).
+term_mul(_25972,[],[],_26016):-cut(1,_26016).
+term_mul([_26134|_26136],_26142,_26144,_26220):-single_term_mul(_26142,_26134,_26152,term_mul(_26136,_26142,_26160,term_add(_26152,_26160,_26144,_26220))).
 
 
 */
@@ -763,8 +763,8 @@ public static class pred_single_term_mul_3 extends Code {
 
 /*
 
-single_term_mul([],_2092,[],_2100):-cut(1,_2100).
-single_term_mul([term(_2126,_2128)|_2134],term(_2138,_2140),[term(_2144,_2146)|_2152],_2172):-is(_2144,_2126+_2138,poly_mul(_2128,_2140,_2146,single_term_mul(_2134,term(_2138,_2140),_2152,_2172))).
+single_term_mul([],_26526,[],_26568):-cut(1,_26568).
+single_term_mul([term(_26692,_26694)|_26700],term(_26704,_26706),[term(_26710,_26712)|_26718],_26812):-is(_26710,_26692+_26704,poly_mul(_26694,_26706,_26712,single_term_mul(_26700,term(_26704,_26706),_26718,_26812))).
 
 
 */
@@ -812,7 +812,7 @@ local_aregs[1] = Data.F(poly_10.s2,var1.Deref(),var4.Deref()) ;
 local_aregs[2] = Data.F(poly_10.s_poly_mul,var2.Deref(),var5.Deref(),var7.Deref(),Data.F(poly_10.s_single_term_mul,var3.Deref(),Data.F(poly_10.s_term,var4.Deref(),var5.Deref()),var8.Deref(),continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[3] = null ;
-return (Operation)pred_is_2::exec_static ;}
+return (Operation) poly_10.s_is.FindProc(2) ;}
 }
 
 
@@ -820,8 +820,8 @@ public static class pred_mul_through_3 extends Code {
 
 /*
 
-mul_through([],_2218,[],_2226):-cut(1,_2226).
-mul_through([term(_2252,_2254)|_2260],_2274,[term(_2252,_2266)|_2272],_2282):-poly_mul(_2254,_2274,_2266,mul_through(_2260,_2274,_2272,_2282)).
+mul_through([],_27110,[],_27152):-cut(1,_27152).
+mul_through([term(_27282,_27284)|_27290],_27308,[term(_27282,_27296)|_27302],_27372):-poly_mul(_27284,_27308,_27296,mul_through(_27290,_27308,_27302,_27372)).
 
 
 */

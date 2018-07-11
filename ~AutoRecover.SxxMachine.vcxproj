@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{AA3BB8EC-EEEF-4B5C-BF42-5D0823F4BF2E}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="cmakefiles\3.5.1\compileridcxx\CMakeCXXCompilerId.cpp" />
+    <ClCompile Include="cmakefiles\3.5.1\compileridc\CMakeCCompilerId.c" />
+    <ClCompile Include="cmakefiles\feature_tests.c" />
+    <ClCompile Include="cmakefiles\feature_tests.cxx" />
+    <ClCompile Include="src\bootlib\sxxmachine\sxx_library.cpp" />
+    <ClCompile Include="src\bootlib\sxxmachine\sxx_meta.cpp" />
+    <ClCompile Include="src\bootlib\sxxmachine\sxx_read.cpp" />
+    <ClCompile Include="src\bootlib\sxxmachine\sxx_system.cpp" />
+    <ClCompile Include="src\machine\sxxmachine\Builtins.cpp" />
+    <ClCompile Include="src\machine\sxxmachine\Code.cpp" />
+    <ClCompile Include="src\machine\sxxmachine\Const.cpp" />
+    <ClCompile Include="src\machine\sxxmachine\Continuation.cpp" />
+    <ClCompile Include="src\machine\sxxmachine\Data.cpp" />
+    <ClCompile Include="src\machine\sxxmachine\FrozenVar.cpp" />
+    <ClCompile Include="src\machine\sxxmachine\Fun.cpp" />
+    <ClCompile Include="src\machine\sxxmachine\HeapChoice.cpp" />
+    <ClCompile Include="src\machine\sxxmachine\Int.cpp" />
+    <ClCompile Include="src\machine\sxxmachine\Lexer.cpp" />
+    <ClCompile Include="src\machine\sxxmachine\Metaterm.cpp" />
+    <ClCompile Include="src\machine\sxxmachine\Operation.cpp" />
+    <ClCompile Include="src\machine\sxxmachine\PredTable.cpp" />
+    <ClCompile Include="src\machine\sxxmachine\Prolog.cpp" />
+    <ClCompile Include="src\machine\sxxmachine\Real.cpp" />
+    <ClCompile Include="src\machine\sxxmachine\Term.cpp" />
+    <ClCompile Include="src\machine\sxxmachine\Var.cpp" />
+    <ClCompile Include="src\testing\sxxmachine\animal.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="build\classes\benches\sxxmachine\asm.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\boyer.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\browse.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\chat_parser.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\crypt.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\derive.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\divide10.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\fast_mu.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\flatten.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\log10.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\meta_qsort.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\mu.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\nand.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\nreverse.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\ops8.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\perfect.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\poly_10.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\prover.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\qsort.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\queens_8.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\query.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\reducer.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\run.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\sdda.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\sendmore.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\serialise.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\simple_analyzer.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\tak.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\times10.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\unify.h" />
+    <ClInclude Include="build\classes\benches\sxxmachine\zebra.h" />
+    <ClInclude Include="build\classes\bootlib\sxxmachine\sxx_library.h" />
+    <ClInclude Include="build\classes\bootlib\sxxmachine\sxx_meta.h" />
+    <ClInclude Include="build\classes\bootlib\sxxmachine\sxx_read.h" />
+    <ClInclude Include="build\classes\bootlib\sxxmachine\sxx_system.h" />
+    <ClInclude Include="build\classes\exceptionhelper.h" />
+    <ClInclude Include="build\classes\machine\sxxmachine\Builtins.h" />
+    <ClInclude Include="build\classes\machine\sxxmachine\Code.h" />
+    <ClInclude Include="build\classes\machine\sxxmachine\Const.h" />
+    <ClInclude Include="build\classes\machine\sxxmachine\Continuation.h" />
+    <ClInclude Include="build\classes\machine\sxxmachine\Data.h" />
+    <ClInclude Include="build\classes\machine\sxxmachine\exceptionhelper.h" />
+    <ClInclude Include="build\classes\machine\sxxmachine\FrozenVar.h" />
+    <ClInclude Include="build\classes\machine\sxxmachine\Fun.h" />
+    <ClInclude Include="build\classes\machine\sxxmachine\HeapChoice.h" />
+    <ClInclude Include="build\classes\machine\sxxmachine\Int.h" />
+    <ClInclude Include="build\classes\machine\sxxmachine\Lexer.h" />
+    <ClInclude Include="build\classes\machine\sxxmachine\Metaterm.h" />
+    <ClInclude Include="build\classes\machine\sxxmachine\Operation.h" />
+    <ClInclude Include="build\classes\machine\sxxmachine\PredTable.h" />
+    <ClInclude Include="build\classes\machine\sxxmachine\Prolog.h" />
+    <ClInclude Include="build\classes\machine\sxxmachine\Real.h" />
+    <ClInclude Include="build\classes\machine\sxxmachine\stringbuilder.h" />
+    <ClInclude Include="build\classes\machine\sxxmachine\stringhelper.h" />
+    <ClInclude Include="build\classes\machine\sxxmachine\Term.h" />
+    <ClInclude Include="build\classes\machine\sxxmachine\Var.h" />
+    <ClInclude Include="build\classes\stringbuilder.h" />
+    <ClInclude Include="build\classes\stringhelper.h" />
+    <ClInclude Include="build\classes\testing\sxxmachine\animal.h" />
+    <ClInclude Include="src\benches\sxxmachine\asm.h" />
+    <ClInclude Include="src\benches\sxxmachine\boyer.h" />
+    <ClInclude Include="src\benches\sxxmachine\browse.h" />
+    <ClInclude Include="src\benches\sxxmachine\chat_parser.h" />
+    <ClInclude Include="src\benches\sxxmachine\crypt.h" />
+    <ClInclude Include="src\benches\sxxmachine\derive.h" />
+    <ClInclude Include="src\benches\sxxmachine\divide10.h" />
+    <ClInclude Include="src\benches\sxxmachine\fast_mu.h" />
+    <ClInclude Include="src\benches\sxxmachine\flatten.h" />
+    <ClInclude Include="src\benches\sxxmachine\log10.h" />
+    <ClInclude Include="src\benches\sxxmachine\meta_qsort.h" />
+    <ClInclude Include="src\benches\sxxmachine\mu.h" />
+    <ClInclude Include="src\benches\sxxmachine\nand.h" />
+    <ClInclude Include="src\benches\sxxmachine\nreverse.h" />
+    <ClInclude Include="src\benches\sxxmachine\ops8.h" />
+    <ClInclude Include="src\benches\sxxmachine\perfect.h" />
+    <ClInclude Include="src\benches\sxxmachine\poly_10.h" />
+    <ClInclude Include="src\benches\sxxmachine\prover.h" />
+    <ClInclude Include="src\benches\sxxmachine\qsort.h" />
+    <ClInclude Include="src\benches\sxxmachine\queens_8.h" />
+    <ClInclude Include="src\benches\sxxmachine\query.h" />
+    <ClInclude Include="src\benches\sxxmachine\reducer.h" />
+    <ClInclude Include="src\benches\sxxmachine\run.h" />
+    <ClInclude Include="src\benches\sxxmachine\sdda.h" />
+    <ClInclude Include="src\benches\sxxmachine\sendmore.h" />
+    <ClInclude Include="src\benches\sxxmachine\serialise.h" />
+    <ClInclude Include="src\benches\sxxmachine\simple_analyzer.h" />
+    <ClInclude Include="src\benches\sxxmachine\tak.h" />
+    <ClInclude Include="src\benches\sxxmachine\times10.h" />
+    <ClInclude Include="src\benches\sxxmachine\unify.h" />
+    <ClInclude Include="src\benches\sxxmachine\zebra.h" />
+    <ClInclude Include="src\bootlib\sxxmachine\sxx_library.h" />
+    <ClInclude Include="src\bootlib\sxxmachine\sxx_meta.h" />
+    <ClInclude Include="src\bootlib\sxxmachine\sxx_read.h" />
+    <ClInclude Include="src\bootlib\sxxmachine\sxx_system.h" />
+    <ClInclude Include="src\exceptionhelper.h" />
+    <ClInclude Include="src\machine\sxxmachine\Builtins.h" />
+    <ClInclude Include="src\machine\sxxmachine\Code.h" />
+    <ClInclude Include="src\machine\sxxmachine\Const.h" />
+    <ClInclude Include="src\machine\sxxmachine\Continuation.h" />
+    <ClInclude Include="src\machine\sxxmachine\Data.h" />
+    <ClInclude Include="src\machine\sxxmachine\exceptionhelper.h" />
+    <ClInclude Include="src\machine\sxxmachine\FrozenVar.h" />
+    <ClInclude Include="src\machine\sxxmachine\Fun.h" />
+    <ClInclude Include="src\machine\sxxmachine\HeapChoice.h" />
+    <ClInclude Include="src\machine\sxxmachine\Int.h" />
+    <ClInclude Include="src\machine\sxxmachine\Lexer.h" />
+    <ClInclude Include="src\machine\sxxmachine\Metaterm.h" />
+    <ClInclude Include="src\machine\sxxmachine\Operation.h" />
+    <ClInclude Include="src\machine\sxxmachine\PredTable.h" />
+    <ClInclude Include="src\machine\sxxmachine\Prolog.h" />
+    <ClInclude Include="src\machine\sxxmachine\Real.h" />
+    <ClInclude Include="src\machine\sxxmachine\stringbuilder.h" />
+    <ClInclude Include="src\machine\sxxmachine\stringhelper.h" />
+    <ClInclude Include="src\machine\sxxmachine\Term.h" />
+    <ClInclude Include="src\machine\sxxmachine\Var.h" />
+    <ClInclude Include="src\stringbuilder.h" />
+    <ClInclude Include="src\stringhelper.h" />
+    <ClInclude Include="src\testing\sxxmachine\animal.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="cmakefiles\3.5.1\CMakeDetermineCompilerABI_C.bin" />
+    <None Include="cmakefiles\3.5.1\CMakeDetermineCompilerABI_CXX.bin" />
+    <None Include="cmakefiles\feature_tests.bin" />
+    <None Include="prolog\index.html" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

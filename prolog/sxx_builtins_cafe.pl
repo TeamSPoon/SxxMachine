@@ -2631,8 +2631,8 @@ with_mutex(M,G):-
 '$builtin_append'([], Zs, Zs).
 '$builtin_append'([X|Xs], Ys, [X|Zs]) :- '$builtin_append'(Xs, Ys, Zs).
 
-%'$builtin_member'(X, [X|_]).
-%'$builtin_member'(X, [_|L]) :- '$builtin_member'(X, L).
+'$builtin_member'(X, [X|_]).
+'$builtin_member'(X, [_|L]) :- '$builtin_member'(X, L).
 
 '$builtin_message'([]) :- !.
 '$builtin_message'([M]) :- !, write(M).

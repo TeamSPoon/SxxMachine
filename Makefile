@@ -80,9 +80,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /opt/logicmoo_workspace/taupl/test123/SxxMachine/CMakeFiles /opt/logicmoo_workspace/taupl/test123/SxxMachine/CMakeFiles/progress.marks
-	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /opt/logicmoo_workspace/taupl/test123/SxxMachine/CMakeFiles 0
+	# $(CMAKE_COMMAND) -E cmake_progress_start /opt/logicmoo_workspace/taupl/test123/SxxMachine/CMakeFiles /opt/logicmoo_workspace/taupl/test123/SxxMachine/CMakeFiles/progress.marks
+	# $(MAKE) -f CMakeFiles/Makefile2 all
+	# $(CMAKE_COMMAND) -E cmake_progress_start /opt/logicmoo_workspace/taupl/test123/SxxMachine/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -653,6 +653,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	#$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

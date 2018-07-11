@@ -632,7 +632,7 @@ local_aregs[0] = chat_parser.s_runtime ;
 local_aregs[1] = Data.F(chat_parser.s5,var1,Data.F(chat_parser.s5,var2,Const.Nil)) ;
 local_aregs[2] = Data.F(chat_parser.s_chat_parser,Data.F(chat_parser.s_statistics,chat_parser.s_runtime,Data.F(chat_parser.s5,var3,Data.F(chat_parser.s5,var4,Const.Nil)),Data.F(chat_parser.s_write,chat_parser.s116,Data.F(chat_parser.s_write,var4.Deref(),Data.F(chat_parser.s_write,chat_parser.s_milliseconds,continuation))))) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_statistics_2::exec_static ;}
+return (Operation) chat_parser.s_statistics.FindProc(2) ;}
 }
 
 

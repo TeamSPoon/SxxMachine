@@ -2,13 +2,12 @@
 #define TERM
 
 #include "Data.h"
-#include "Code.h"
+#include "Undoable.h"
 #include <string>
 #include <vector>
 #include <iostream>
-#include <functional>
-#include "../../exceptionhelper.h"
-
+#include <stdexcept>
+#include <any>
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
 namespace SxxMachine { class Prolog; }
@@ -18,7 +17,7 @@ class Appendable;
 namespace SxxMachine {
 
 
-	class Term : public Data {
+	class Term : public Data, public Undoable {
 
 		// private Term val;
 	public:
@@ -48,11 +47,15 @@ namespace SxxMachine {
 		/// </summary>
 		virtual int Arity() = 0;
 
-		virtual bool Bind(Term* that);
+		virtual bool Bind(Term* that, Prolog* mach);
 
 		virtual Term* Copy(Prolog* m, long long t);
 
 		virtual Term* Deref();
+
+		int hashCode() override;
+
+		bool equals(std::any obj) override;
 
 		virtual bool Equal(Term* that);
 
@@ -72,12 +75,12 @@ namespace SxxMachine {
 
 			UndoableAnonymousInnerClass(Term* outerInstance, SxxMachine::Term* wasAttrs);
 
-			void Unwind() override;
+			void UnTrailSelf() override;
 		};
 
 		// @TODO
 	public:
-		virtual Operation FindProc(const int& i);
+		virtual Operation* FindProc(const int& i);
 
 		virtual void formattedOutput(const int& formatFlags, Appendable* buffer) = 0;
 
@@ -97,7 +100,7 @@ namespace SxxMachine {
 
 			UndoableAnonymousInnerClass2(Term* outerInstance, SxxMachine::Term* prev);
 
-			void Unwind() override;
+			void UnTrailSelf() override;
 		};
 
 	public:
@@ -132,7 +135,7 @@ namespace SxxMachine {
 			UndoableAnonymousInnerClass3(Term* outerInstance);
 
 
-			void Unwind() override;
+			void UnTrailSelf() override;
 		};
 
 	public:
@@ -154,7 +157,7 @@ namespace SxxMachine {
 
 			UndoableAnonymousInnerClass4(Term* outerInstance, SxxMachine::Term* prev);
 
-			void Unwind() override;
+			void UnTrailSelf() override;
 		};
 
 	public:
@@ -174,7 +177,7 @@ namespace SxxMachine {
 
 			UndoableAnonymousInnerClass5(Term* outerInstance, SxxMachine::Term* prev);
 
-			void Unwind() override;
+			void UnTrailSelf() override;
 		};
 
 	public:
@@ -182,11 +185,19 @@ namespace SxxMachine {
 
 		std::string toString() override;
 
-		virtual bool Unify(Prolog* mach, Term* o1);
+		virtual bool Unify(Term* that, Prolog* mach);
 
-		virtual bool Unify(Term* that);
+		void UnTrailSelf() override;
 
-		virtual void UnTrailSelf();
+		virtual bool isVar() = 0;
+
+		virtual bool isFVar();
+
+		virtual bool isStruct() = 0;
+
+		virtual bool isConst() = 0;
+
+		virtual bool isInt();
 
 	};
 

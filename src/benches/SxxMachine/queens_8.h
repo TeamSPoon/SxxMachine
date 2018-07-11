@@ -1,7 +1,6 @@
 #ifndef QUEENS_8
 #define QUEENS_8
 
-#include "../../machine/SxxMachine/Operation.h"
 #include "../../machine/SxxMachine/Code.h"
 #include <vector>
 
@@ -12,178 +11,166 @@ namespace SxxMachine { class Operation; }
 namespace SxxMachine { class Prolog; }
 
 namespace SxxMachine {
-
 	using namespace SxxMachine;
 
 	class queens_8 {
-	public:
-		static Const* const  s_cut;
-		static Const* const  s1;
-		static Const* const  s2;
-		static Const* const  s3;
-		static Const* const  s4;
-		static Const* const  s5;
-		static Const* const  s_call;
-		static Const* const  s_fail;
-		static Const* const  s_is;
-		static Const* const  s_not_attack;
-		static Const* const  s_queens;
-		static Const* const  s_range;
-		static Const* const  s_select;
-		static Const* const  s_smallerthan;
-		static Const* const  s_top;
-		static Int* const  posint1;
-		static Int* const  posint8;
-		static const Operation reg_top_0;
-		static const Operation reg_queens_2;
-		static const Operation reg_queens_3;
-		static const Operation reg_not_attack_2;
-		static const Operation reg_not_attack_3;
-		static const Operation reg_select_3;
-		static const Operation reg_range_3;
+public:
+	static Const* const  s_cut;
+	static Const* const  s1;
+	static Const* const  s2;
+	static Const* const  s3;
+	static Const* const  s4;
+	static Const* const  s5;
+	static Const* const  s_call;
+	static Const* const  s_fail;
+	static Const* const  s_is;
+	static Const* const  s_not_attack;
+	static Const* const  s_queens;
+	static Const* const  s_range;
+	static Const* const  s_select;
+	static Const* const  s_smallerthan;
+	static Const* const  s_top;
+	static Int* const  posint1;
+	static Int* const  posint8;
+	static Operation* const  reg_top_0;
+	static Operation* const  reg_queens_2;
+	static Operation* const  reg_queens_3;
+	static Operation* const  reg_not_attack_2;
+	static Operation* const  reg_not_attack_3;
+	static Operation* const  reg_select_3;
+	static Operation* const  reg_range_3;
+public:
+	class pred_top_0 : public Code {
 
-	public:
-		class pred_top_0 : public Code {
+	/*
+	
+	top(_34226):-queens(8,_34198,fail(_34226)).
+	top(_34344):-call(_34344).
+	
+	
+	*/
 
-			/*
-			
-			top(_10264):-queens(8,_10236,fail(_10264)).
-			top(_10382):-call(_10382).
-			
-			
-			*/
+public:
+	Operation* Exec(Prolog* mach) override;
+	static Operation* exec_static(Prolog* mach);
+	static Operation* exec_pred_top_0__1(Prolog* mach);
+	static Operation* exec_pred_top_0__2(Prolog* mach);
+	};
 
-		public:
-			Operation Exec(Prolog* mach) override;
 
-			static Operation exec_static(Prolog* mach);
+public:
+	class pred_queens_2 : public Code {
 
-			static Operation exec_pred_top_0__1(Prolog* mach);
+	/*
+	
+	queens(_34382,_34384,_34440):-range(1,_34382,_34392,queens(_34392,[],_34384,_34440)).
+	
+	
+	*/
 
-			static Operation exec_pred_top_0__2(Prolog* mach);
-		};
+public:
+	Operation* Exec(Prolog* mach) override;
+	static Operation* exec_static(Prolog* mach);
+	static Operation* exec_pred_queens_2__1(Prolog* mach);
+	};
 
-	public:
-		class pred_queens_2 : public Code {
 
-			/*
-			
-			queens(_10420,_10422,_10478):-range(1,_10420,_10430,queens(_10430,[],_10422,_10478)).
-			
-			
-			*/
+public:
+	class pred_queens_3 : public Code {
 
-		public:
-			Operation Exec(Prolog* mach) override;
+	/*
+	
+	queens([],_34620,_34620,_34644):-call(_34644).
+	queens(_34736,_34738,_34740,_34820):-select(_34736,_34746,_34748,not_attack(_34738,_34748,queens(_34746,[_34748|_34738],_34740,_34820))).
+	
+	
+	*/
 
-			static Operation exec_static(Prolog* mach);
+public:
+	Operation* Exec(Prolog* mach) override;
+	static Operation* exec_static(Prolog* mach);
+	static Operation* exec_pred_queens_3__1(Prolog* mach);
+	static Operation* exec_pred_queens_3__2(Prolog* mach);
+	};
 
-			static Operation exec_pred_queens_2__1(Prolog* mach);
-		};
 
-	public:
-		class pred_queens_3 : public Code {
+public:
+	class pred_not_attack_2 : public Code {
 
-			/*
-			
-			queens([],_10658,_10658,_10682):-call(_10682).
-			queens(_10774,_10776,_10778,_10858):-select(_10774,_10784,_10786,not_attack(_10776,_10786,queens(_10784,[_10786|_10776],_10778,_10858))).
-			
-			
-			*/
+	/*
+	
+	not_attack(_35062,_35064,_35106):-not_attack(_35062,_35064,1,_35106).
+	
+	
+	*/
 
-		public:
-			Operation Exec(Prolog* mach) override;
+public:
+	Operation* Exec(Prolog* mach) override;
+	static Operation* exec_static(Prolog* mach);
+	static Operation* exec_pred_not_attack_2__1(Prolog* mach);
+	};
 
-			static Operation exec_static(Prolog* mach);
 
-			static Operation exec_pred_queens_3__1(Prolog* mach);
+public:
+	class pred_not_attack_3 : public Code {
 
-			static Operation exec_pred_queens_3__2(Prolog* mach);
-		};
+	/*
+	
+	not_attack([],_35234,_35236,_35276):-cut(1,_35276).
+	not_attack([_35358|_35360],_35366,_35368,_35470):- =\=(_35366,_35358+_35368,=\=(_35366,_35358-_35368,is(_35402,_35368+1,not_attack(_35360,_35366,_35402,_35470)))).
+	
+	
+	*/
 
-	public:
-		class pred_not_attack_2 : public Code {
+public:
+	Operation* Exec(Prolog* mach) override;
+	static Operation* exec_static(Prolog* mach);
+	static Operation* exec_pred_not_attack_3__1(Prolog* mach);
+	static Operation* exec_pred_not_attack_3__2(Prolog* mach);
+	};
 
-			/*
-			
-			not_attack(_11100,_11102,_11144):-not_attack(_11100,_11102,1,_11144).
-			
-			
-			*/
 
-		public:
-			Operation Exec(Prolog* mach) override;
+public:
+	class pred_select_3 : public Code {
 
-			static Operation exec_static(Prolog* mach);
+	/*
+	
+	select([_35760|_35762],_35762,_35760,_35792):-call(_35792).
+	select([_35902|_35904],[_35902|_35910],_35918,_35966):-select(_35904,_35910,_35918,_35966).
+	
+	
+	*/
 
-			static Operation exec_pred_not_attack_2__1(Prolog* mach);
-		};
+public:
+	Operation* Exec(Prolog* mach) override;
+	static Operation* exec_static(Prolog* mach);
+	static Operation* exec_pred_select_3__1(Prolog* mach);
+	static Operation* exec_pred_select_3__2(Prolog* mach);
+	};
 
-	public:
-		class pred_not_attack_3 : public Code {
 
-			/*
-			
-			not_attack([],_11272,_11274,_11314):-cut(1,_11314).
-			not_attack([_11396|_11398],_11404,_11406,_11508):- =\=(_11404,_11396+_11406,=\=(_11404,_11396-_11406,is(_11440,_11406+1,not_attack(_11398,_11404,_11440,_11508)))).
-			
-			
-			*/
+public:
+	class pred_range_3 : public Code {
 
-		public:
-			Operation Exec(Prolog* mach) override;
+	/*
+	
+	range(_36112,_36112,[_36112],_36162):-cut(1,_36162).
+	range(_36256,_36264,[_36256|_36258],_36344):-smallerthan(_36256,_36264,is(_36282,_36256+1,range(_36282,_36264,_36258,_36344))).
+	
+	
+	*/
 
-			static Operation exec_static(Prolog* mach);
+public:
+	Operation* Exec(Prolog* mach) override;
+	static Operation* exec_static(Prolog* mach);
+	static Operation* exec_pred_range_3__1(Prolog* mach);
+	static Operation* exec_pred_range_3__2(Prolog* mach);
+	};
 
-			static Operation exec_pred_not_attack_3__1(Prolog* mach);
-
-			static Operation exec_pred_not_attack_3__2(Prolog* mach);
-		};
-
-	public:
-		class pred_select_3 : public Code {
-
-			/*
-			
-			select([_11798|_11800],_11800,_11798,_11830):-call(_11830).
-			select([_11940|_11942],[_11940|_11948],_11956,_12004):-select(_11942,_11948,_11956,_12004).
-			
-			
-			*/
-
-		public:
-			Operation Exec(Prolog* mach) override;
-
-			static Operation exec_static(Prolog* mach);
-
-			static Operation exec_pred_select_3__1(Prolog* mach);
-
-			static Operation exec_pred_select_3__2(Prolog* mach);
-		};
-
-	public:
-		class pred_range_3 : public Code {
-
-			/*
-			
-			range(_12150,_12150,[_12150],_12200):-cut(1,_12200).
-			range(_12294,_12302,[_12294|_12296],_12382):-smallerthan(_12294,_12302,is(_12320,_12294+1,range(_12320,_12302,_12296,_12382))).
-			
-			
-			*/
-
-		public:
-			Operation Exec(Prolog* mach) override;
-
-			static Operation exec_static(Prolog* mach);
-
-			static Operation exec_pred_range_3__1(Prolog* mach);
-
-			static Operation exec_pred_range_3__2(Prolog* mach);
-		};
 
 	};
+
+
 
 }
 

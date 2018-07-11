@@ -263,7 +263,7 @@ local_aregs[0] = var3.Deref() ;
 local_aregs[1] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[3] = local_aregs[2] = null ;
-return (Operation)pred_var_1::exec_static ;}
+return (Operation) sdda.s_var.FindProc(1) ;}
 public static Operation exec_pred_entry_exit_modes_list_3__2(Prolog mach){ mach.RemoveChoice() ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[3] ;
@@ -286,7 +286,7 @@ local_aregs[1] = Data.F(sdda.s7,var5,var6) ;
 local_aregs[2] = Data.F(sdda.s_length,var6.Deref(),var7,Data.F(sdda.s_proc_exit_mode,var1.Deref(),var2.Deref(),Const.Nil,Data.F(sdda.s8,var5.Deref(),var7.Deref()),var6.Deref(),var8,Data.F(sdda.s_entry_exit_modes_list,var1.Deref(),var2.Deref(),var4.Deref(),continuation))) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[3] = null ;
-return (Operation)pred_$003D$002E$002E_2::exec_static ;}
+return (Operation) sdda.s13.FindProc(2) ;}
 }
 
 
@@ -425,7 +425,7 @@ local_aregs[1] = Data.F(sdda.s7,var4.Deref(),var6.Deref()) ;
 local_aregs[2] = Data.F(sdda.s_all_shared,var6.Deref(),var7.Deref(),Data.F(sdda.s_add_to_list,Data.F(sdda.s7,Data.F(sdda.s8,var4.Deref(),var5.Deref()),Data.F(sdda.s7,var6.Deref(),Data.F(sdda.s7,var7.Deref(),Const.Nil))),var2.Deref(),continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[6] = local_aregs[5] = local_aregs[4] = local_aregs[3] = null ;
-return (Operation)pred_$003D$002E$002E_2::exec_static ;}
+return (Operation) sdda.s13.FindProc(2) ;}
 }
 
 
@@ -433,10 +433,10 @@ public static class pred_clause_exit_modes_list_6 extends Code {
 
 /*
 
-clause_exit_modes_list(_1236,_1238,_1240,_1242,_1244,[],_1252):-var(_1242,cut(1,_1252)).
-clause_exit_modes_list(_1294,_1296,_1298,[_1290|_1292],_1300,_1302,_1322):-eqmember([_1290,_1300],_1298,clause_exit_modes_list(_1294,_1296,_1298,_1292,_1300,_1302,_1322)).
-clause_exit_modes_list(_1382,_1384,_1386,[_1372|_1374],_1388,[_1378|_1380],_1414):-dup(_1388,_1378,clause_exit_mode(_1382,_1384,[[_1372,_1388]|_1386],_1372,_1378,clause_exit_modes_list(_1382,_1384,_1386,_1374,_1388,_1380,_1414))).
-clause_exit_modes_list(_1482,_1484,_1486,[_1478|_1480],_1488,_1490,_1498):-clause_exit_modes_list(_1482,_1484,_1486,_1480,_1488,_1490,_1498).
+clause_exit_modes_list(_8194,_8196,_8198,_8200,_8202,[],_8272):-var(_8200,cut(1,_8272)).
+clause_exit_modes_list(_8426,_8428,_8430,[_8420|_8422],_8434,_8436,_8532):-eqmember([_8420,_8434],_8430,clause_exit_modes_list(_8426,_8428,_8430,_8422,_8434,_8436,_8532)).
+clause_exit_modes_list(_8806,_8808,_8810,[_8794|_8796],_8814,[_8800|_8802],_8936):-dup(_8814,_8800,clause_exit_mode(_8806,_8808,[[_8794,_8814]|_8810],_8794,_8800,clause_exit_modes_list(_8806,_8808,_8810,_8796,_8814,_8802,_8936))).
+clause_exit_modes_list(_9296,_9298,_9300,[_9290|_9292],_9304,_9306,_9378):-clause_exit_modes_list(_9296,_9298,_9300,_9292,_9304,_9306,_9378).
 
 
 */
@@ -471,7 +471,7 @@ local_aregs[0] = var4.Deref() ;
 local_aregs[1] = mach.HC(continuation) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[6] = local_aregs[5] = local_aregs[4] = local_aregs[3] = local_aregs[2] = null ;
-return (Operation)pred_var_1::exec_static ;}
+return (Operation) sdda.s_var.FindProc(1) ;}
 public static Operation exec_pred_clause_exit_modes_list_6__2(Prolog mach){ mach.FillAlternative(pred_clause_exit_modes_list_6::exec_pred_clause_exit_modes_list_6__3) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[6] ;
@@ -567,7 +567,7 @@ public static class pred_clause_exit_mode_5 extends Code {
 
 /*
 
-clause_exit_mode(_1538,_1540,_1542,_1544,_1546,_1590):-or(_1544=(_1550:-_1552),(_1544=_1550,_1552=true),=..(_1550,[_1580|_1582],unify(_1582,_1546,body_exit_mode(_1538,_1540,_1542,_1552,_1590)))).
+clause_exit_mode(_9590,_9592,_9594,_9596,_9598,_9732):-or(_9596=(_9602:-_9604),(_9596=_9602,_9604=true),=..(_9602,[_9638|_9640],unify(_9640,_9598,body_exit_mode(_9590,_9592,_9594,_9604,_9732)))).
 
 
 */
@@ -613,8 +613,8 @@ public static class pred_body_exit_mode_4 extends Code {
 
 /*
 
-body_exit_mode(_1654,_1656,_1658,(_1650,_1652),_1666):-body_exit_mode(_1654,_1656,_1658,_1650,body_exit_mode(_1654,_1656,_1658,_1652,_1666)).
-body_exit_mode(_1710,_1712,_1714,_1716,_1742):-functor(_1716,_1718,_1720,=..(_1716,[_1718|_1726],proc_exit_mode(_1710,_1712,_1714,_1718/_1720,_1726,_1734,unify(_1726,_1734,_1742)))).
+body_exit_mode(_10076,_10078,_10080,(_10070,_10072),_10154):-body_exit_mode(_10076,_10078,_10080,_10070,body_exit_mode(_10076,_10078,_10080,_10072,_10154)).
+body_exit_mode(_10412,_10414,_10416,_10418,_10528):-functor(_10418,_10424,_10426,=..(_10418,[_10424|_10432],proc_exit_mode(_10412,_10414,_10416,_10424/_10426,_10432,_10458,unify(_10432,_10458,_10528)))).
 
 
 */
@@ -673,7 +673,7 @@ local_aregs[2] = var6 ;
 local_aregs[3] = Data.F(sdda.s13,var4.Deref(),Data.F(sdda.s7,var5.Deref(),var7),Data.F(sdda.s_proc_exit_mode,var1.Deref(),var2.Deref(),var3.Deref(),Data.F(sdda.s8,var5.Deref(),var6.Deref()),var7.Deref(),var8,Data.F(sdda.s_unify,var7.Deref(),var8.Deref(),continuation))) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[4] = null ;
-return (Operation)pred_functor_3::exec_static ;}
+return (Operation) sdda.s_functor.FindProc(3) ;}
 }
 
 
@@ -681,11 +681,11 @@ public static class pred_unify_2 extends Code {
 
 /*
 
-unify(_1804,_1804,_1812):-cut(1,_1812).
-unify(_1834,g,_1848):-atomic(_1834,cut(1,not(_1834=[],_1848))).
-unify(g,_1882,_1896):-atomic(_1882,cut(1,not(_1882=[],_1896))).
-unify([_1932|_1934],[_1938|_1940],_1948):-cut(1,unify(_1932,_1938,unify(_1934,_1940,_1948))).
-unify(_1986,_1988,_2008):- =..(_1986,[_1992|_1994],=..(_1988,[_1992|_2000],unify(_1994,_2000,_2008))).
+unify(_10900,_10900,_10936):-cut(1,_10936).
+unify(_11034,g,_11096):-atomic(_11034,cut(1,not(_11034=[],_11096))).
+unify(g,_11272,_11332):-atomic(_11272,cut(1,not(_11272=[],_11332))).
+unify([_11506|_11508],[_11512|_11514],_11578):-cut(1,unify(_11506,_11512,unify(_11508,_11514,_11578))).
+unify(_11776,_11778,_11854):- =..(_11776,[_11782|_11784],=..(_11778,[_11782|_11796],unify(_11784,_11796,_11854))).
 
 
 */
@@ -721,7 +721,7 @@ local_aregs[0] = var1.Deref() ;
 local_aregs[1] = mach.HC(Data.F(sdda.s_not,Data.F(sdda.s12,var1.Deref(),Const.Nil),continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[2] = null ;
-return (Operation)pred_atomic_1::exec_static ;}
+return (Operation) sdda.s_atomic.FindProc(1) ;}
 public static Operation exec_pred_unify_2__3(Prolog mach){ mach.FillAlternative(pred_unify_2::exec_pred_unify_2__4) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[2] ;
@@ -734,7 +734,7 @@ local_aregs[0] = var1.Deref() ;
 local_aregs[1] = mach.HC(Data.F(sdda.s_not,Data.F(sdda.s12,var1.Deref(),Const.Nil),continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[2] = null ;
-return (Operation)pred_atomic_1::exec_static ;}
+return (Operation) sdda.s_atomic.FindProc(1) ;}
 public static Operation exec_pred_unify_2__4(Prolog mach){ mach.FillAlternative(pred_unify_2::exec_pred_unify_2__5) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[2] ;
@@ -767,7 +767,7 @@ local_aregs[0] = var1.Deref() ;
 local_aregs[1] = Data.F(sdda.s7,var3,var4) ;
 local_aregs[2] = Data.F(sdda.s13,var2.Deref(),Data.F(sdda.s7,var3.Deref(),var5),Data.F(sdda.s_unify,var4.Deref(),var5.Deref(),continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_$003D$002E$002E_2::exec_static ;}
+return (Operation) sdda.s13.FindProc(2) ;}
 }
 
 
@@ -775,7 +775,7 @@ public static class pred_equiv_2 extends Code {
 
 /*
 
-equiv(_2048,_2050,_2060):-equiv(_2048,_2050,_2052,_2060).
+equiv(_12096,_12098,_12140):-equiv(_12096,_12098,_12106,_12140).
 
 
 */
@@ -809,13 +809,13 @@ public static class pred_equiv_3 extends Code {
 
 /*
 
-equiv(_2086,_2088,_2090,_2098):-termequal(_2086,_2088,cut(1,_2098)).
-equiv(g,_2130,_2132,_2146):-atomic(_2130,cut(1,not(_2130=[],_2146))).
-equiv(_2182,g,_2184,_2198):-atomic(_2182,cut(1,not(_2182=[],_2198))).
-equiv(_2234,_2236,_2238,_2246):-var(_2234,cut(1,var(_2236,equiv_vars(_2234,_2236,_2238,_2246)))).
-equiv(_2292,_2294,_2296,_2304):-var(_2294,cut(1,var(_2292,equiv_vars(_2292,_2294,_2296,_2304)))).
-equiv([_2352|_2354],[_2358|_2360],_2362,_2370):-cut(1,equiv(_2352,_2358,_2362,equiv(_2354,_2360,_2362,_2370))).
-equiv(_2414,_2416,_2418,_2438):- =..(_2414,[_2422|_2424],=..(_2416,[_2422|_2430],equiv(_2424,_2430,_2418,_2438))).
+equiv(_12302,_12304,_12306,_12358):-termequal(_12302,_12304,cut(1,_12358)).
+equiv(g,_12534,_12536,_12602):-atomic(_12534,cut(1,not(_12534=[],_12602))).
+equiv(_12796,g,_12800,_12866):-atomic(_12796,cut(1,not(_12796=[],_12866))).
+equiv(_13060,_13062,_13064,_13138):-var(_13060,cut(1,var(_13062,equiv_vars(_13060,_13062,_13064,_13138)))).
+equiv(_13392,_13394,_13396,_13470):-var(_13394,cut(1,var(_13392,equiv_vars(_13392,_13394,_13396,_13470)))).
+equiv([_13724|_13726],[_13730|_13732],_13740,_13808):-cut(1,equiv(_13724,_13730,_13740,equiv(_13726,_13732,_13740,_13808))).
+equiv(_14054,_14056,_14058,_14142):- =..(_14054,[_14062|_14064],=..(_14056,[_14062|_14076],equiv(_14064,_14076,_14058,_14142))).
 
 
 */
@@ -859,7 +859,7 @@ local_aregs[0] = var1.Deref() ;
 local_aregs[1] = mach.HC(Data.F(sdda.s_not,Data.F(sdda.s12,var1.Deref(),Const.Nil),continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[3] = local_aregs[2] = null ;
-return (Operation)pred_atomic_1::exec_static ;}
+return (Operation) sdda.s_atomic.FindProc(1) ;}
 public static Operation exec_pred_equiv_3__3(Prolog mach){ mach.FillAlternative(pred_equiv_3::exec_pred_equiv_3__4) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[3] ;
@@ -875,7 +875,7 @@ local_aregs[0] = var1.Deref() ;
 local_aregs[1] = mach.HC(Data.F(sdda.s_not,Data.F(sdda.s12,var1.Deref(),Const.Nil),continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[3] = local_aregs[2] = null ;
-return (Operation)pred_atomic_1::exec_static ;}
+return (Operation) sdda.s_atomic.FindProc(1) ;}
 public static Operation exec_pred_equiv_3__4(Prolog mach){ mach.FillAlternative(pred_equiv_3::exec_pred_equiv_3__5) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[3] ;
@@ -892,7 +892,7 @@ local_aregs[0] = var1.Deref() ;
 local_aregs[1] = mach.HC(Data.F(sdda.s_var,var2.Deref(),Data.F(sdda.s_equiv_vars,var1.Deref(),var2.Deref(),var3.Deref(),continuation))) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[3] = local_aregs[2] = null ;
-return (Operation)pred_var_1::exec_static ;}
+return (Operation) sdda.s_var.FindProc(1) ;}
 public static Operation exec_pred_equiv_3__5(Prolog mach){ mach.FillAlternative(pred_equiv_3::exec_pred_equiv_3__6) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[3] ;
@@ -909,7 +909,7 @@ local_aregs[0] = var2.Deref() ;
 local_aregs[1] = mach.HC(Data.F(sdda.s_var,var1.Deref(),Data.F(sdda.s_equiv_vars,var1.Deref(),var2.Deref(),var3.Deref(),continuation))) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[3] = local_aregs[2] = null ;
-return (Operation)pred_var_1::exec_static ;}
+return (Operation) sdda.s_var.FindProc(1) ;}
 public static Operation exec_pred_equiv_3__6(Prolog mach){ mach.FillAlternative(pred_equiv_3::exec_pred_equiv_3__7) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[3] ;
@@ -949,7 +949,7 @@ local_aregs[1] = Data.F(sdda.s7,var4,var5) ;
 local_aregs[2] = Data.F(sdda.s13,var2.Deref(),Data.F(sdda.s7,var4.Deref(),var6),Data.F(sdda.s_equiv,var5.Deref(),var6.Deref(),var3.Deref(),continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[3] = null ;
-return (Operation)pred_$003D$002E$002E_2::exec_static ;}
+return (Operation) sdda.s13.FindProc(2) ;}
 }
 
 
@@ -957,10 +957,10 @@ public static class pred_equiv_vars_3 extends Code {
 
 /*
 
-equiv_vars(_2482,_2484,_2486,_2512):-var(_2486,cut(1,unify([[_2482,_2484]|_2504],_2486,_2512))).
-equiv_vars(_2568,_2570,[[_2552,_2558]|_2566],_2578):-termequal(_2568,_2552,cut(1,termequal(_2570,_2558,_2578))).
-equiv_vars(_2636,_2638,[[_2620,_2626]|_2634],_2646):-termequal(_2638,_2626,cut(1,termequal(_2636,_2620,_2646))).
-equiv_vars(_2692,_2694,[_2688|_2690],_2702):-equiv_vars(_2692,_2694,_2690,_2702).
+equiv_vars(_14418,_14420,_14422,_14502):-var(_14422,cut(1,unify([[_14418,_14420]|_14444],_14422,_14502))).
+equiv_vars(_14736,_14738,[[_14718,_14724]|_14732],_14804):-termequal(_14736,_14718,cut(1,termequal(_14738,_14724,_14804))).
+equiv_vars(_15058,_15060,[[_15040,_15046]|_15054],_15126):-termequal(_15060,_15046,cut(1,termequal(_15058,_15040,_15126))).
+equiv_vars(_15368,_15370,[_15362|_15364],_15420):-equiv_vars(_15368,_15370,_15364,_15420).
 
 
 */
@@ -988,7 +988,7 @@ local_aregs[0] = var3.Deref() ;
 local_aregs[1] = mach.HC(Data.F(sdda.s_unify,Data.F(sdda.s7,Data.F(sdda.s7,var1.Deref(),Data.F(sdda.s7,var2.Deref(),Const.Nil)),var4),var3.Deref(),continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[3] = local_aregs[2] = null ;
-return (Operation)pred_var_1::exec_static ;}
+return (Operation) sdda.s_var.FindProc(1) ;}
 public static Operation exec_pred_equiv_vars_3__2(Prolog mach){ mach.FillAlternative(pred_equiv_vars_3::exec_pred_equiv_vars_3__3) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[3] ;
@@ -1119,7 +1119,7 @@ local_aregs[0] = var1.Deref() ;
 local_aregs[1] = mach.HC(Data.F(sdda.s_dup_var,var1.Deref(),var2.Deref(),var3.Deref(),continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[3] = local_aregs[2] = null ;
-return (Operation)pred_var_1::exec_static ;}
+return (Operation) sdda.s_var.FindProc(1) ;}
 public static Operation exec_pred_dup_3__2(Prolog mach){ mach.FillAlternative(pred_dup_3::exec_pred_dup_3__3) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[3] ;
@@ -1135,7 +1135,7 @@ local_aregs[0] = var1.Deref() ;
 local_aregs[1] = mach.HC(continuation) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[3] = local_aregs[2] = null ;
-return (Operation)pred_atomic_1::exec_static ;}
+return (Operation) sdda.s_atomic.FindProc(1) ;}
 public static Operation exec_pred_dup_3__3(Prolog mach){ mach.FillAlternative(pred_dup_3::exec_pred_dup_3__4) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[3] ;
@@ -1175,7 +1175,7 @@ local_aregs[1] = Data.F(sdda.s7,var4,var5) ;
 local_aregs[2] = Data.F(sdda.s_dup,var5.Deref(),var6,var3.Deref(),Data.F(sdda.s13,var2.Deref(),Data.F(sdda.s7,var4.Deref(),var6.Deref()),continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[3] = null ;
-return (Operation)pred_$003D$002E$002E_2::exec_static ;}
+return (Operation) sdda.s13.FindProc(2) ;}
 }
 
 
@@ -1213,7 +1213,7 @@ local_aregs[0] = var3.Deref() ;
 local_aregs[1] = mach.HC(Data.F(sdda.s_unify,Data.F(sdda.s7,Data.F(sdda.s7,var1.Deref(),Data.F(sdda.s7,var2.Deref(),Const.Nil)),var4),var3.Deref(),continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[3] = local_aregs[2] = null ;
-return (Operation)pred_var_1::exec_static ;}
+return (Operation) sdda.s_var.FindProc(1) ;}
 public static Operation exec_pred_dup_var_3__2(Prolog mach){ mach.FillAlternative(pred_dup_var_3::exec_pred_dup_var_3__3) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[3] ;
@@ -1522,7 +1522,7 @@ local_aregs[0] = var2.Deref() ;
 local_aregs[1] = mach.HC(Data.F(sdda.s_fail,continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[2] = null ;
-return (Operation)pred_var_1::exec_static ;}
+return (Operation) sdda.s_var.FindProc(1) ;}
 public static Operation exec_pred_look_up_act_2__2(Prolog mach){ mach.FillAlternative(pred_look_up_act_2::exec_pred_look_up_act_2__3) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[2] ;
@@ -1594,7 +1594,7 @@ local_aregs[1] = var3 ;
 local_aregs[2] = var4 ;
 local_aregs[3] = Data.F(sdda.s_bind_all,var5,var4.Deref(),Data.F(sdda.s_unify,var1.Deref(),var2.Deref(),var4.Deref(),continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_unify_3::exec_static ;}
+return (Operation) sdda.s_unify.FindProc(3) ;}
 }
 
 
@@ -1628,7 +1628,7 @@ local_aregs[0] = var2.Deref() ;
 local_aregs[1] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[2] = null ;
-return (Operation)pred_var_1::exec_static ;}
+return (Operation) sdda.s_var.FindProc(1) ;}
 public static Operation exec_pred_bind_all_2__2(Prolog mach){ mach.FillAlternative(pred_bind_all_2::exec_pred_bind_all_2__3) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[2] ;
@@ -1643,7 +1643,7 @@ local_aregs[0] = var1.Deref() ;
 local_aregs[1] = Data.F(sdda.s_bind_all,var1.Deref(),var3.Deref(),continuation) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[2] = null ;
-return (Operation)pred_var_1::exec_static ;}
+return (Operation) sdda.s_var.FindProc(1) ;}
 public static Operation exec_pred_bind_all_2__3(Prolog mach){ mach.RemoveChoice() ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[2] ;
@@ -1693,7 +1693,7 @@ local_aregs[0] = var2.Deref() ;
 local_aregs[1] = Data.F(sdda.s_unify,Data.F(sdda.s7,var1.Deref(),var3),var2.Deref(),continuation) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[2] = null ;
-return (Operation)pred_var_1::exec_static ;}
+return (Operation) sdda.s_var.FindProc(1) ;}
 public static Operation exec_pred_add_to_list_2__2(Prolog mach){ mach.RemoveChoice() ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[2] ;
@@ -1742,7 +1742,7 @@ local_aregs[0] = var2.Deref() ;
 local_aregs[1] = mach.HC(Data.F(sdda.s_fail,continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[2] = null ;
-return (Operation)pred_var_1::exec_static ;}
+return (Operation) sdda.s_var.FindProc(1) ;}
 public static Operation exec_pred_umember_2__2(Prolog mach){ mach.FillAlternative(pred_umember_2::exec_pred_umember_2__3) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[2] ;
@@ -1804,7 +1804,7 @@ local_aregs[0] = var2.Deref() ;
 local_aregs[1] = mach.HC(Data.F(sdda.s_fail,continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[2] = null ;
-return (Operation)pred_var_1::exec_static ;}
+return (Operation) sdda.s_var.FindProc(1) ;}
 public static Operation exec_pred_sumember_2__2(Prolog mach){ mach.FillAlternative(pred_sumember_2::exec_pred_sumember_2__3) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[2] ;
@@ -2131,7 +2131,7 @@ local_aregs[0] = var1.Deref() ;
 local_aregs[1] = mach.HC(Data.F(sdda.s_make_name,var2.Deref(),var1.Deref(),Data.F(sdda.s_is,var3.Deref(),Data.F(sdda.s3,var2.Deref(),sdda.posint1),continuation))) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[3] = local_aregs[2] = null ;
-return (Operation)pred_var_1::exec_static ;}
+return (Operation) sdda.s_var.FindProc(1) ;}
 public static Operation exec_pred_name_vars_3__2(Prolog mach){ mach.FillAlternative(pred_name_vars_3::exec_pred_name_vars_3__3) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[3] ;
@@ -2147,7 +2147,7 @@ local_aregs[0] = var1.Deref() ;
 local_aregs[1] = mach.HC(continuation) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[3] = local_aregs[2] = null ;
-return (Operation)pred_atom_1::exec_static ;}
+return (Operation) sdda.s_atom.FindProc(1) ;}
 public static Operation exec_pred_name_vars_3__3(Prolog mach){ mach.FillAlternative(pred_name_vars_3::exec_pred_name_vars_3__4) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[3] ;
@@ -2186,7 +2186,7 @@ local_aregs[1] = Data.F(sdda.s7,var4,var5) ;
 local_aregs[2] = Data.F(sdda.s_name_vars,var5.Deref(),var2.Deref(),var3.Deref(),continuation) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[3] = null ;
-return (Operation)pred_$003D$002E$002E_2::exec_static ;}
+return (Operation) sdda.s13.FindProc(2) ;}
 }
 
 
@@ -2221,7 +2221,7 @@ local_aregs[0] = var3 ;
 local_aregs[1] = Data.F(sdda.s9,var1.Deref(),sdda.posint26) ;
 local_aregs[2] = Data.F(sdda.s_is,var4,Data.F(sdda.s3,Data.F(sdda.s_mod,var1.Deref(),sdda.posint26),Const.Intern("A")),Data.F(sdda.s_build_name,var3.Deref(),var4.Deref(),var5,Data.F(sdda.s_name,var2.Deref(),var5.Deref(),continuation))) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_is_2::exec_static ;}
+return (Operation) sdda.s_is.FindProc(2) ;}
 }
 
 

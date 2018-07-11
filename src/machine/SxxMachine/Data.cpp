@@ -47,8 +47,15 @@ namespace SxxMachine {
 		return new Fun(string6, terms);
 	}
 
+unordered_map<wstring, Const*> Data::atomTable = unordered_map<wstring, Const*>();
+
 	Const* Data::Intern(const wstring& d) {
-		return new Const(d);
+		Const* c = atomTable[d];
+		if(c == nullptr) {
+			c = new Const(d);
+			atomTable.emplace(d, c);
+		}
+		return c;
 	}
 
 	bool Data::SameTypes(Term* thiz, Term* that) {

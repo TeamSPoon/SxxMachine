@@ -4,6 +4,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="jsrc/bootlib"/>
 	<classpathentry kind="src" path="jsrc/testing"/>
+	<classpathentry kind="src" path="jsrc/library"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

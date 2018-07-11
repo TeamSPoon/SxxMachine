@@ -124,7 +124,7 @@ local_aregs[1] = Data.F(sendmore.s1,Data.F(sendmore.s1,var1.Deref(),var2.Deref()
 local_aregs[2] = Data.F(sendmore.s_or,Data.F(sendmore.s4,Data.F(sendmore.s7,var6.Deref(),sendmore.posint10),Data.F(sendmore.s2,Data.F(sendmore.s8,var4.Deref(),var6.Deref()),Data.F(sendmore.s8,var5.Deref(),sendmore.posint0))),Data.F(sendmore.s2,Data.F(sendmore.s_is,var4.Deref(),Data.F(sendmore.s3,var6.Deref(),sendmore.posint10)),Data.F(sendmore.s8,var5.Deref(),sendmore.posint1)),continuation) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[5] = local_aregs[4] = local_aregs[3] = null ;
-return (Operation)pred_is_2::exec_static ;}
+return (Operation) sendmore.s_is.FindProc(2) ;}
 }
 
 

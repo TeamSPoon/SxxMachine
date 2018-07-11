@@ -190,7 +190,7 @@ Var var1 = Data.V(mach) ;
 local_aregs[0] = sxx_library.s15 ;
 local_aregs[1] = Data.F(sxx_library.s_vread,var1,var2,Data.F(sxx_library.s_exec,var1.Deref(),Data.F(sxx_library.s_writevars,var2.Deref(),Data.F(sxx_library.s_write,sxx_library.s_Yes,Data.F(sxx_library.s_nl,Data.F(sxx_library.s_notmore,mach.HC(Data.F(sxx_library.s_fail,continuation)))))))) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_write_1::exec_static ;}
+return (Operation) sxx_library.s_write.FindProc(1) ;}
 public static Operation exec_pred_top_0__2(Prolog mach){ mach.RemoveChoice() ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[0] ;
@@ -223,7 +223,7 @@ Var var1 = Data.V(mach) ;
 local_aregs[0] = sxx_library.s52 ;
 local_aregs[1] = Data.F(sxx_library.s_get0,var1,Data.F(sxx_library.s_noteq,var1.Deref(),sxx_library.posint10,mach.HC(Data.F(sxx_library.s_untilend,var1.Deref(),Data.F(sxx_library.s_fail,continuation))))) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_write_1::exec_static ;}
+return (Operation) sxx_library.s_write.FindProc(1) ;}
 public static Operation exec_pred_notmore_0__2(Prolog mach){ mach.RemoveChoice() ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[0] ;
@@ -313,7 +313,7 @@ if (!( (areg0).Unify(var1,mach))) return Prolog.Fail0 ;
 local_aregs[0] = var2 ;
 local_aregs[1] = Data.F(sxx_library.s_untilend,var2.Deref(),continuation) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_get0_1::exec_static ;}
+return (Operation) sxx_library.s_get0.FindProc(1) ;}
 }
 
 
@@ -354,7 +354,7 @@ if (!( (areg0).Unify(Data.F(sxx_library.s5,Data.F(sxx_library.s9,var1,var2),var3
 local_aregs[0] = var2.Deref() ;
 local_aregs[1] = Data.F(sxx_library.s_write,sxx_library.s1,Data.F(sxx_library.s_write,var1.Deref(),Data.F(sxx_library.s_nl,Data.F(sxx_library.s_fail,continuation)))) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_write_1::exec_static ;}
+return (Operation) sxx_library.s_write.FindProc(1) ;}
 public static Operation exec_pred_writevars_1__3(Prolog mach){ mach.RemoveChoice() ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[1] ;
@@ -730,7 +730,7 @@ if (!( (areg0).Unify(var1,mach))) return Prolog.Fail0 ;
 local_aregs[0] = var1.Deref() ;
 local_aregs[1] = mach.HC(Data.F(sxx_library.s_fail,continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_var_1::exec_static ;}
+return (Operation) sxx_library.s_var.FindProc(1) ;}
 public static Operation exec_pred_exec_1__2(Prolog mach){ mach.FillAlternative(pred_exec_1::exec_pred_exec_1__3) ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[1] ;
@@ -904,7 +904,7 @@ local_aregs[0] = var2 ;
 local_aregs[1] = Data.F(sxx_library.s3,var1.Deref(),sxx_library.posint1) ;
 local_aregs[2] = Data.F(sxx_library.s_loop,var2.Deref(),continuation) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_is_2::exec_static ;}
+return (Operation) sxx_library.s_is.FindProc(2) ;}
 }
 
 
@@ -1081,7 +1081,7 @@ local_aregs[1] = Data.F(sxx_library.s9,var3.Deref(),var1.Deref()) ;
 local_aregs[2] = Data.F(sxx_library.s5,var2.Deref(),Const.Nil) ;
 local_aregs[3] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_findall_3::exec_static ;}
+return (Operation) sxx_library.s_findall.FindProc(3) ;}
 }
 
 
@@ -1331,7 +1331,7 @@ local_aregs[0] = var2.Deref() ;
 local_aregs[1] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[2] = null ;
-return (Operation)pred_var_1::exec_static ;}
+return (Operation) sxx_library.s_var.FindProc(1) ;}
 public static Operation exec_pred_m1_2__2(Prolog mach){ mach.RemoveChoice() ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[2] ;
@@ -1608,7 +1608,7 @@ local_aregs[1] = var1.Deref() ;
 local_aregs[2] = var2.Deref() ;
 local_aregs[3] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_compare_3::exec_static ;}
+return (Operation) sxx_library.s_compare.FindProc(3) ;}
 }
 
 
@@ -1641,7 +1641,7 @@ local_aregs[1] = var1.Deref() ;
 local_aregs[2] = var2.Deref() ;
 local_aregs[3] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_compare_3::exec_static ;}
+return (Operation) sxx_library.s_compare.FindProc(3) ;}
 }
 
 
@@ -1675,7 +1675,7 @@ local_aregs[1] = var1.Deref() ;
 local_aregs[2] = var2.Deref() ;
 local_aregs[3] = Data.F(sxx_library.s_smeq,var3.Deref(),continuation) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_compare_3::exec_static ;}
+return (Operation) sxx_library.s_compare.FindProc(3) ;}
 }
 
 
@@ -1746,7 +1746,7 @@ local_aregs[1] = var1.Deref() ;
 local_aregs[2] = var2.Deref() ;
 local_aregs[3] = Data.F(sxx_library.s_smgr,var3.Deref(),continuation) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_compare_3::exec_static ;}
+return (Operation) sxx_library.s_compare.FindProc(3) ;}
 }
 
 
@@ -1816,7 +1816,7 @@ local_aregs[1] = var1.Deref() ;
 local_aregs[2] = var2.Deref() ;
 local_aregs[3] = continuation ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_compare_3::exec_static ;}
+return (Operation) sxx_library.s_compare.FindProc(3) ;}
 }
 
 
@@ -1888,7 +1888,7 @@ local_aregs[0] = var1.Deref() ;
 local_aregs[1] = mach.HC(Data.F(sxx_library.s_freeze_internal,var1.Deref(),var2.Deref(),continuation)) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[2] = null ;
-return (Operation)pred_var_1::exec_static ;}
+return (Operation) sxx_library.s_var.FindProc(1) ;}
 public static Operation exec_pred_freeze_2__2(Prolog mach){ mach.RemoveChoice() ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[2] ;

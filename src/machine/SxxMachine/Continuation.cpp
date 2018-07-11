@@ -1,6 +1,7 @@
 using namespace std;
 
 #include "Continuation.h"
+#include "Operation.h"
 #include "Term.h"
 #include "Code.h"
 #include "Appendable.h"
@@ -16,7 +17,7 @@ namespace SxxMachine {
 		code = c;
 	}
 
-	Continuation::Continuation(std::vector<Term*>& args, const int& getArity, Operation c) {
+	Continuation::Continuation(std::vector<Term*>& args, const int& getArity, Operation* c) {
 		int i = getArity + 1;
 		Args = std::vector<Term*>(i);
 		while(i-- > 0) {
@@ -29,8 +30,8 @@ namespace SxxMachine {
 		return this;
 	}
 
-	bool Continuation::Unify(Term* that) {
-		return that->Bind(this);
+	bool Continuation::Unify(Term* that, Prolog* mach) {
+		return that->Bind(this, mach);
 	}
 
 	void Continuation::formattedOutput(const int& formatFlags, Appendable* buffer) throw(IOException) {

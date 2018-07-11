@@ -193,7 +193,7 @@ local_aregs[0] = boyer.s_runtime ;
 local_aregs[1] = Data.F(boyer.s5,var1,Data.F(boyer.s5,var2,Const.Nil)) ;
 local_aregs[2] = Data.F(boyer.s_wff,var3,Data.F(boyer.s_rewrite,var3.Deref(),var4,Data.F(boyer.s_tautology,var4.Deref(),Const.Nil,Const.Nil,Data.F(boyer.s_statistics,boyer.s_runtime,Data.F(boyer.s5,var5,Data.F(boyer.s5,var6,Const.Nil)),Data.F(boyer.s_write,boyer.s46,Data.F(boyer.s_write,var6.Deref(),Data.F(boyer.s_write,boyer.s1,continuation))))))) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_statistics_2::exec_static ;}
+return (Operation) boyer.s_statistics.FindProc(2) ;}
 }
 
 
@@ -261,7 +261,7 @@ public static class pred_tautology_1 extends Code {
 
 /*
 
-tautology(_982,_992):-rewrite(_982,_984,tautology(_984,[],[],_992)).
+tautology(_6834,_6882):-rewrite(_6834,_6840,tautology(_6840,[],[],_6882)).
 
 
 */
@@ -291,7 +291,7 @@ public static class pred_tautology_3 extends Code {
 
 /*
 
-tautology(_1024,_1026,_1028,_1172):-or((truep(_1024,_1026)->true),(falsep(_1024,_1028)->fail;_1024=if(_1056,_1058,_1060)->(truep(_1056,_1026)->tautology(_1058,_1026,_1028);falsep(_1056,_1028)->tautology(_1060,_1026,_1028);tautology(_1058,[_1056|_1026],_1028),tautology(_1060,_1026,[_1056|_1028]))),cut(1,_1172)).
+tautology(_7050,_7052,_7054,_7242):-or((truep(_7050,_7052)->true),(falsep(_7050,_7054)->fail;_7050=if(_7082,_7084,_7086)->(truep(_7082,_7052)->tautology(_7084,_7052,_7054);falsep(_7082,_7054)->tautology(_7086,_7052,_7054);tautology(_7084,[_7082|_7052],_7054),tautology(_7086,_7052,[_7082|_7054]))),cut(1,_7242)).
 
 
 */
@@ -330,8 +330,8 @@ public static class pred_rewrite_2 extends Code {
 
 /*
 
-rewrite(_1204,_1204,_1212):-atomic(_1204,cut(1,_1212)).
-rewrite(_1240,_1242,_1280):-functor(_1240,_1244,_1246,functor(_1248,_1244,_1246,rewrite_args(_1246,_1240,_1248,or((equal(_1248,_1254),rewrite(_1254,_1242)),_1242=_1248,cut(1,_1280))))).
+rewrite(_7380,_7380,_7426):-atomic(_7380,cut(1,_7426)).
+rewrite(_7542,_7544,_7656):-functor(_7542,_7550,_7552,functor(_7556,_7550,_7552,rewrite_args(_7552,_7542,_7556,or((equal(_7556,_7574),rewrite(_7574,_7544)),_7544=_7556,cut(1,_7656))))).
 
 
 */
@@ -354,7 +354,7 @@ local_aregs[0] = var1.Deref() ;
 local_aregs[1] = mach.HC(continuation) ;
 mach.CUTB = mach.CurrentChoice ;
 local_aregs[2] = null ;
-return (Operation)pred_atomic_1::exec_static ;}
+return (Operation) boyer.s_atomic.FindProc(1) ;}
 public static Operation exec_pred_rewrite_2__2(Prolog mach){ mach.RemoveChoice() ;
 Term local_aregs[] = mach.Areg ;
 Term continuation = local_aregs[2] ;
@@ -373,7 +373,7 @@ local_aregs[1] = var3 ;
 local_aregs[2] = var4 ;
 local_aregs[3] = Data.F(boyer.s_functor,var5,var3.Deref(),var4.Deref(),Data.F(boyer.s_rewrite_args,var4.Deref(),var1.Deref(),var5.Deref(),Data.F(boyer.s_or,Data.F(boyer.s2,Data.F(boyer.s_equal,var5.Deref(),var6),Data.F(boyer.s_rewrite,var6.Deref(),var2.Deref())),Data.F(boyer.s8,var2.Deref(),var5.Deref()),mach.HC(continuation)))) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_functor_3::exec_static ;}
+return (Operation) boyer.s_functor.FindProc(3) ;}
 }
 
 
@@ -381,8 +381,8 @@ public static class pred_rewrite_args_3 extends Code {
 
 /*
 
-rewrite_args(0,_1340,_1342,_1350):-cut(1,_1350).
-rewrite_args(_1374,_1376,_1378,_1398):-arg(_1374,_1376,_1380,arg(_1374,_1378,_1382,rewrite(_1380,_1382,is(_1390,_1374-1,rewrite_args(_1390,_1376,_1378,_1398))))).
+rewrite_args(0,_7986,_7988,_8028):-cut(1,_8028).
+rewrite_args(_8122,_8124,_8126,_8232):-arg(_8122,_8124,_8134,arg(_8122,_8126,_8142,rewrite(_8134,_8142,is(_8158,_8122-1,rewrite_args(_8158,_8124,_8126,_8232))))).
 
 
 */
@@ -429,7 +429,7 @@ local_aregs[1] = var2.Deref() ;
 local_aregs[2] = var4 ;
 local_aregs[3] = Data.F(boyer.s_arg,var1.Deref(),var3.Deref(),var5,Data.F(boyer.s_rewrite,var4.Deref(),var5.Deref(),Data.F(boyer.s_is,var6,Data.F(boyer.s3,var1.Deref(),boyer.posint1),Data.F(boyer.s_rewrite_args,var6.Deref(),var2.Deref(),var3.Deref(),continuation)))) ;
 mach.CUTB = mach.CurrentChoice ;
-return (Operation)pred_arg_3::exec_static ;}
+return (Operation) boyer.s_arg.FindProc(3) ;}
 }
 
 
@@ -437,8 +437,8 @@ public static class pred_truep_2 extends Code {
 
 /*
 
-truep(t,_1462,_1470):-cut(1,_1470).
-truep(_1492,_1494,_1502):-boyer_member(_1492,_1494,_1502).
+truep(t,_8614,_8648):-cut(1,_8648).
+truep(_8740,_8742,_8782):-boyer_member(_8740,_8742,_8782).
 
 
 */
@@ -483,8 +483,8 @@ public static class pred_falsep_2 extends Code {
 
 /*
 
-falsep(f,_1526,_1534):-cut(1,_1534).
-falsep(_1556,_1558,_1566):-boyer_member(_1556,_1558,_1566).
+falsep(f,_8920,_8954):-cut(1,_8954).
+falsep(_9052,_9054,_9094):-boyer_member(_9052,_9054,_9094).
 
 
 */
@@ -529,8 +529,8 @@ public static class pred_boyer_member_2 extends Code {
 
 /*
 
-boyer_member(_1592,[_1592|_1594],_1602):-cut(1,_1602).
-boyer_member(_1630,[_1626|_1628],_1638):-boyer_member(_1630,_1628,_1638).
+boyer_member(_9236,[_9236|_9238],_9278):-cut(1,_9278).
+boyer_member(_9388,[_9382|_9384],_9430):-boyer_member(_9388,_9384,_9430).
 
 
 */
@@ -577,65 +577,65 @@ public static class pred_equal_2 extends Code {
 
 /*
 
-equal(and(_1664,_1666),if(_1664,if(_1666,t,f),f),_1692):-call(_1692).
-equal(append(append(_1710,_1712),_1718),append(_1710,append(_1712,_1718)),_1740):-call(_1740).
-equal(assignment(_1764,append(_1758,_1760)),if(assignedp(_1764,_1758),assignment(_1764,_1758),assignment(_1764,_1760)),_1802):-call(_1802).
-equal(assume_false(_1820,_1822),cons(cons(_1820,f),_1822),_1844):-call(_1844).
-equal(assume_true(_1862,_1864),cons(cons(_1862,t),_1864),_1886):-call(_1886).
-equal(boolean(_1904),or(equal(_1904,t),equal(_1904,f)),_1932):-call(_1932).
-equal(car(gopher(_1950)),if(listp(_1950),car(flatten(_1950)),zero),_1984):-call(_1984).
-equal(compile(_2002),reverse(codegen(optimize(_2002),[])),_2026):-call(_2026).
-equal(count_list(_2050,sort_lp(_2044,_2046)),myplus(count_list(_2050,_2044),count_list(_2050,_2046)),_2080):-call(_2080).
-equal(countps_(_2098,_2100),countps_loop(_2098,_2100,zero),_2118):-call(_2118).
-equal(boyer_difference(_2136,_2138),_2140,_2148):-boyer_difference(_2136,_2138,_2140,_2148).
-equal(divides(_2176,_2178),zerop(remainder(_2178,_2176)),_2198):-call(_2198).
-equal(dsort(_2216),sort2(_2216),_2230):-call(_2230).
-equal(eqp(_2248,_2250),equal(fix(_2248),fix(_2250)),_2274):-call(_2274).
-equal(equal(_2292,_2294),_2296,_2304):-eq(_2292,_2294,_2296,_2304).
-equal(even1(_2332),if(zerop(_2332),t,odd(decr(_2332))),_2362):-call(_2362).
-equal(exec(append(_2380,_2382),_2388,_2390),exec(_2382,exec(_2380,_2388,_2390),_2390),_2416):-call(_2416).
-equal(exp(_2434,_2436),_2438,_2446):-exp(_2434,_2436,_2438,_2446).
-equal(fact_(_2474),fact_loop(_2474,1),_2490):-call(_2490).
-equal(falsify(_2508),falsify1(normalize(_2508),[]),_2528):-call(_2528).
-equal(fix(_2546),if(numberp(_2546),_2546,zero),_2568):-call(_2568).
-equal(flatten(cdr(gopher(_2586))),if(listp(_2586),cdr(flatten(_2586)),cons(zero,[])),_2630):-call(_2630).
-equal(gcd(_2648,_2650),_2652,_2660):-gcd(_2648,_2650,_2652,_2660).
-equal(get(_2696,set(_2688,_2690,_2692)),if(eqp(_2696,_2688),_2690,get(_2696,_2692)),_2728):-call(_2728).
-equal(greatereqp(_2746,_2748),not(lessp(_2746,_2748)),_2768):-call(_2768).
-equal(greatereqpr(_2786,_2788),not(lessp(_2786,_2788)),_2808):-call(_2808).
-equal(greaterp(_2826,_2828),lessp(_2828,_2826),_2844):-call(_2844).
-equal(if(if(_2862,_2864,_2866),_2872,_2874),if(_2862,if(_2864,_2872,_2874),if(_2866,_2872,_2874)),_2908):-call(_2908).
-equal(iff(_2926,_2928),and(implies(_2926,_2928),implies(_2928,_2926)),_2956):-call(_2956).
-equal(implies(_2974,_2976),if(_2974,if(_2976,t,f),t),_3002):-call(_3002).
-equal(last(append(_3020,_3022)),if(listp(_3022),last(_3022),if(listp(_3020),cons(car(last(_3020))),_3022)),_3076):-call(_3076).
-equal(length(_3094),_3096,_3104):-mylength(_3094,_3096,_3104).
-equal(lesseqp(_3130,_3132),not(lessp(_3132,_3130)),_3152):-call(_3152).
-equal(lessp(_3170,_3172),_3174,_3182):-lessp(_3170,_3172,_3174,_3182).
-equal(listp(gopher(_3210)),listp(_3210),_3228):-call(_3228).
-equal(mc_flatten(_3246,_3248),append(flatten(_3246),_3248),_3268):-call(_3268).
-equal(meaning(_3286,_3288),_3290,_3298):-meaning(_3286,_3288,_3290,_3298).
-equal(boyer_member(_3326,_3328),_3330,_3338):-myboyer_member(_3326,_3328,_3330,_3338).
-equal(not(_3366),if(_3366,f,t),_3384):-call(_3384).
-equal(nth(_3402,_3404),_3406,_3414):-nth(_3402,_3404,_3406,_3414).
-equal(numberp(greatest_factor(_3442,_3444)),not(and(or(zerop(_3444),equal(_3444,1)),not(numberp(_3442)))),_3492):-call(_3492).
-equal(or(_3510,_3512),if(_3510,t,if(_3512,t,f),f),_3540):-call(_3540).
-equal(myplus(_3558,_3560),_3562,_3570):-myplus(_3558,_3560,_3562,_3570).
-equal(power_eval(_3598,_3600),_3602,_3610):-power_eval(_3598,_3600,_3602,_3610).
-equal(prime(_3638),and(not(zerop(_3638)),and(not(equal(_3638,add1(zero))),prime1(_3638,decr(_3638)))),_3692):-call(_3692).
-equal(prime_list(append(_3710,_3712)),and(prime_list(_3710),prime_list(_3712)),_3740):-call(_3740).
-equal(quotient(_3758,_3760),_3762,_3770):-quotient(_3758,_3760,_3762,_3770).
-equal(remainder(_3798,_3800),_3802,_3810):-remainder(_3798,_3800,_3802,_3810).
-equal(reverse_(_3838),reverse_loop(_3838,[]),_3854):-call(_3854).
-equal(reverse(append(_3872,_3874)),append(reverse(_3874),reverse(_3872)),_3902):-call(_3902).
-equal(reverse_loop(_3920,_3922),_3924,_3932):-reverse_loop(_3920,_3922,_3924,_3932).
-equal(samefringe(_3960,_3962),equal(flatten(_3960),flatten(_3962)),_3986):-call(_3986).
-equal(sigma(zero,_4006),quotient(times(_4006,add1(_4006)),2),_4032):-call(_4032).
-equal(sort2(delete(_4050,_4052)),delete(_4050,sort2(_4052)),_4076):-call(_4076).
-equal(tautology_checker(_4094),tautologyp(normalize(_4094),[]),_4114):-call(_4114).
-equal(times(_4132,_4134),_4136,_4144):-times(_4132,_4134,_4136,_4144).
-equal(times_list(append(_4172,_4174)),times(times_list(_4172),times_list(_4174)),_4202):-call(_4202).
-equal(value(normalize(_4220),_4226),value(_4220,_4226),_4242):-call(_4242).
-equal(zerop(_4260),or(equal(_4260,zero),not(numberp(_4260))),_4290):-call(_4290).
+equal(and(_9578,_9580),if(_9578,if(_9580,t,f),f),_9624):-call(_9624).
+equal(append(append(_9750,_9752),_9758),append(_9750,append(_9752,_9758)),_9798):-call(_9798).
+equal(assignment(_9930,append(_9924,_9926)),if(assignedp(_9930,_9924),assignment(_9930,_9924),assignment(_9930,_9926)),_9986):-call(_9986).
+equal(assume_false(_10112,_10114),cons(cons(_10112,f),_10114),_10154):-call(_10154).
+equal(assume_true(_10280,_10282),cons(cons(_10280,t),_10282),_10322):-call(_10322).
+equal(boolean(_10448),or(equal(_10448,t),equal(_10448,f)),_10494):-call(_10494).
+equal(car(gopher(_10620)),if(listp(_10620),car(flatten(_10620)),zero),_10672):-call(_10672).
+equal(compile(_10798),reverse(codegen(optimize(_10798),[])),_10840):-call(_10840).
+equal(count_list(_10972,sort_lp(_10966,_10968)),myplus(count_list(_10972,_10966),count_list(_10972,_10968)),_11020):-call(_11020).
+equal(countps_(_11146,_11148),countps_loop(_11146,_11148,zero),_11184):-call(_11184).
+equal(boyer_difference(_11310,_11312),_11318,_11360):-boyer_difference(_11310,_11312,_11318,_11360).
+equal(divides(_11528,_11530),zerop(remainder(_11530,_11528)),_11568):-call(_11568).
+equal(dsort(_11694),sort2(_11694),_11726):-call(_11726).
+equal(eqp(_11852,_11854),equal(fix(_11852),fix(_11854)),_11896):-call(_11896).
+equal(equal(_12022,_12024),_12030,_12072):-eq(_12022,_12024,_12030,_12072).
+equal(even1(_12240),if(zerop(_12240),t,odd(decr(_12240))),_12288):-call(_12288).
+equal(exec(append(_12414,_12416),_12422,_12424),exec(_12416,exec(_12414,_12422,_12424),_12424),_12468):-call(_12468).
+equal(exp(_12594,_12596),_12602,_12644):-exp(_12594,_12596,_12602,_12644).
+equal(fact_(_12812),fact_loop(_12812,1),_12846):-call(_12846).
+equal(falsify(_12972),falsify1(normalize(_12972),[]),_13010):-call(_13010).
+equal(fix(_13136),if(numberp(_13136),_13136,zero),_13176):-call(_13176).
+equal(flatten(cdr(gopher(_13302))),if(listp(_13302),cdr(flatten(_13302)),cons(zero,[])),_13364):-call(_13364).
+equal(gcd(_13490,_13492),_13498,_13540):-gcd(_13490,_13492,_13498,_13540).
+equal(get(_13716,set(_13708,_13710,_13712)),if(eqp(_13716,_13708),_13710,get(_13716,_13712)),_13766):-call(_13766).
+equal(greatereqp(_13892,_13894),not(lessp(_13892,_13894)),_13932):-call(_13932).
+equal(greatereqpr(_14058,_14060),not(lessp(_14058,_14060)),_14098):-call(_14098).
+equal(greaterp(_14224,_14226),lessp(_14226,_14224),_14260):-call(_14260).
+equal(if(if(_14386,_14388,_14390),_14396,_14398),if(_14386,if(_14388,_14396,_14398),if(_14390,_14396,_14398)),_14450):-call(_14450).
+equal(iff(_14576,_14578),and(implies(_14576,_14578),implies(_14578,_14576)),_14624):-call(_14624).
+equal(implies(_14750,_14752),if(_14750,if(_14752,t,f),t),_14796):-call(_14796).
+equal(last(append(_14922,_14924)),if(listp(_14924),last(_14924),if(listp(_14922),cons(car(last(_14922))),_14924)),_14996):-call(_14996).
+equal(length(_15122),_15128,_15168):-mylength(_15122,_15128,_15168).
+equal(lesseqp(_15322,_15324),not(lessp(_15324,_15322)),_15362):-call(_15362).
+equal(lessp(_15488,_15490),_15496,_15538):-lessp(_15488,_15490,_15496,_15538).
+equal(listp(gopher(_15706)),listp(_15706),_15742):-call(_15742).
+equal(mc_flatten(_15868,_15870),append(flatten(_15868),_15870),_15908):-call(_15908).
+equal(meaning(_16034,_16036),_16042,_16084):-meaning(_16034,_16036,_16042,_16084).
+equal(boyer_member(_16252,_16254),_16260,_16302):-myboyer_member(_16252,_16254,_16260,_16302).
+equal(not(_16470),if(_16470,f,t),_16506):-call(_16506).
+equal(nth(_16632,_16634),_16640,_16682):-nth(_16632,_16634,_16640,_16682).
+equal(numberp(greatest_factor(_16850,_16852)),not(and(or(zerop(_16852),equal(_16852,1)),not(numberp(_16850)))),_16918):-call(_16918).
+equal(or(_17044,_17046),if(_17044,t,if(_17046,t,f),f),_17092):-call(_17092).
+equal(myplus(_17218,_17220),_17226,_17268):-myplus(_17218,_17220,_17226,_17268).
+equal(power_eval(_17436,_17438),_17444,_17486):-power_eval(_17436,_17438,_17444,_17486).
+equal(prime(_17654),and(not(zerop(_17654)),and(not(equal(_17654,add1(zero))),prime1(_17654,decr(_17654)))),_17726):-call(_17726).
+equal(prime_list(append(_17852,_17854)),and(prime_list(_17852),prime_list(_17854)),_17900):-call(_17900).
+equal(quotient(_18026,_18028),_18034,_18076):-quotient(_18026,_18028,_18034,_18076).
+equal(remainder(_18244,_18246),_18252,_18294):-remainder(_18244,_18246,_18252,_18294).
+equal(reverse_(_18462),reverse_loop(_18462,[]),_18496):-call(_18496).
+equal(reverse(append(_18622,_18624)),append(reverse(_18624),reverse(_18622)),_18670):-call(_18670).
+equal(reverse_loop(_18796,_18798),_18804,_18846):-reverse_loop(_18796,_18798,_18804,_18846).
+equal(samefringe(_19014,_19016),equal(flatten(_19014),flatten(_19016)),_19058):-call(_19058).
+equal(sigma(zero,_19186),quotient(times(_19186,add1(_19186)),2),_19230):-call(_19230).
+equal(sort2(delete(_19356,_19358)),delete(_19356,sort2(_19358)),_19400):-call(_19400).
+equal(tautology_checker(_19526),tautologyp(normalize(_19526),[]),_19564):-call(_19564).
+equal(times(_19690,_19692),_19698,_19740):-times(_19690,_19692,_19698,_19740).
+equal(times_list(append(_19908,_19910)),times(times_list(_19908),times_list(_19910)),_19956):-call(_19956).
+equal(value(normalize(_20082),_20088),value(_20082,_20088),_20122):-call(_20122).
+equal(zerop(_20248),or(equal(_20248,zero),not(numberp(_20248))),_20296):-call(_20296).
 
 
 */
