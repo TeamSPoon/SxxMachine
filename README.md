@@ -1,4 +1,4 @@
-
+<pre>
 ?- animal(X).
 X = goat
 Yes
@@ -9,4 +9,4 @@ L = [goat,elephant,foo]
 X = _999999965_64bfbc86_X
 Yes
 more? 
-
+</pre>
